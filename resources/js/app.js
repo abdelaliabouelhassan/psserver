@@ -37,20 +37,25 @@ Vue.use(VueAxios, axios)
 /*Vue Router*/
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
-/*End Vue Router*/
-
-/********** End  packages  ***********/
-
-
-/**/
 import routes from './router/router.js'
 const router = new VueRouter({
     mode: 'history',
     routes
 })
-/**/
+/*End Vue Router*/
+
+/*Vuex*/
+import store from './store/store'
+/*End Vuex*/
+
+
+/********** End  packages  ***********/
+
+
+
 
 const app = new Vue({
     el: '#app',
+    store,
     router
 });

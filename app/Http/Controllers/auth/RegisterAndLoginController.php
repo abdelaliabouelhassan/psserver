@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\VerificationEmail;
 use App\Models\User;
 use Dotenv\Exception\ValidationException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 
 class RegisterAndLoginController extends Controller
 {
@@ -22,12 +25,21 @@ class RegisterAndLoginController extends Controller
         ]);
 
 
-        User::create([
+       $user =  User::create([
            'username'=>$request->username,
            'email'=>$request->email,
            'password'=>Hash::make($request->password),
         ]);
 
+        $user =   User::findOrFail($user->id);
+        $bytes = random_bytes(20);
+        $name    =   bin2hex($bytes) .'_'. uniqid() . '_' .  Carbon::now();
+        $token = $name;
+        $user->remember_token = $token;
+        $user->save();
+        Mail::to($request->email)->send(new VerificationEmail($token,$request->email,$request->username));
+
+        return response()->json('Account Created Successfully',200);
 
     }
     //login
@@ -43,9 +55,25 @@ class RegisterAndLoginController extends Controller
 
         return response()->json('The Provided Cerdentials Are Incorrect.',422);
     }
-
     //logout
     public function logout(){
         return Auth::logout();
+    }
+
+
+    public function verifyemail($email,$token){
+         $user =   User::where('email',$email)->first();
+         if($user){
+               if($user->remember_token == $token){
+                    $user->email_verified_at = now();
+                    $user->remember_token = "";
+                    $user->save();
+                    return "Email Verified Successfully";
+               }else{
+                   return abort(404);
+               }
+         }else{
+             return abort(404);
+         }
     }
 }
