@@ -2156,7 +2156,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_recaptcha__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-recaptcha */ "./node_modules/vue-recaptcha/dist/vue-recaptcha.es.js");
 //
 //
 //
@@ -2212,19 +2211,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    VueRecaptcha: vue_recaptcha__WEBPACK_IMPORTED_MODULE_0__["default"]
-  },
   data: function data() {
     return {
       disabel: false,
       form: {
         username: "",
-        password: "",
-        recaptcha: ''
+        password: ""
       },
       errors: ""
     };
@@ -43871,88 +43864,71 @@ var render = function() {
       _c("div", { staticClass: "col-2" }),
       _vm._v(" "),
       _c("div", { staticClass: "col-8" }, [
-        _c(
-          "div",
-          { staticClass: "mt-4" },
-          [
-            _vm.errors
-              ? _c("span", { staticClass: "text-danger" }, [
-                  _vm._v(_vm._s(this.errors))
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.username,
-                  expression: "form.username"
-                }
-              ],
-              staticClass: "form-control my-3 rounded",
-              class: { "is-invalid": _vm.errors },
-              attrs: {
-                type: "text",
-                placeholder: "Username",
-                name: "username"
-              },
-              domProps: { value: _vm.form.username },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "username", $event.target.value)
-                }
+        _c("div", { staticClass: "mt-4" }, [
+          _vm.errors
+            ? _c("span", { staticClass: "text-danger" }, [
+                _vm._v(_vm._s(this.errors))
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.username,
+                expression: "form.username"
               }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.password,
-                  expression: "form.password"
+            ],
+            staticClass: "form-control my-3 rounded",
+            class: { "is-invalid": _vm.errors },
+            attrs: { type: "text", placeholder: "Username", name: "username" },
+            domProps: { value: _vm.form.username },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
                 }
-              ],
-              staticClass: "form-control my-3 rounded",
-              class: { "is-invalid": _vm.errors },
-              attrs: {
-                type: "password",
-                placeholder: "Password",
-                name: "password"
-              },
-              domProps: { value: _vm.form.password },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "password", $event.target.value)
-                }
+                _vm.$set(_vm.form, "username", $event.target.value)
               }
-            }),
-            _vm._v(" "),
-            _vm._m(0),
-            _vm._v(" "),
-            _c("vue-recaptcha", {
-              attrs: { sitekey: "6LfxBRwaAAAAADtxjeGrYn0Y4GFrerYsBczm4qZ0" }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "btn btn-dark btn-block rounded",
-              attrs: {
-                disabled: _vm.disabel,
-                type: "submit",
-                value: "Sign In"
-              },
-              on: { click: _vm.login }
-            })
-          ],
-          1
-        )
+            }
+          }),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.password,
+                expression: "form.password"
+              }
+            ],
+            staticClass: "form-control my-3 rounded",
+            class: { "is-invalid": _vm.errors },
+            attrs: {
+              type: "password",
+              placeholder: "Password",
+              name: "password"
+            },
+            domProps: { value: _vm.form.password },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form, "password", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "btn btn-dark btn-block rounded",
+            attrs: { disabled: _vm.disabel, type: "submit", value: "Sign In" },
+            on: { click: _vm.login }
+          })
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-2" })
@@ -46514,221 +46490,6 @@ function normalizeComponent (
     options: options
   }
 }
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-recaptcha/dist/vue-recaptcha.es.js":
-/*!*************************************************************!*\
-  !*** ./node_modules/vue-recaptcha/dist/vue-recaptcha.es.js ***!
-  \*************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-function _extends() {
-  _extends = Object.assign || function (target) {
-    for (var i = 1; i < arguments.length; i++) {
-      var source = arguments[i];
-
-      for (var key in source) {
-        if (Object.prototype.hasOwnProperty.call(source, key)) {
-          target[key] = source[key];
-        }
-      }
-    }
-
-    return target;
-  };
-
-  return _extends.apply(this, arguments);
-}
-
-var defer = function defer() {
-  var state = false; // Resolved or not
-
-  var callbacks = [];
-
-  var resolve = function resolve(val) {
-    if (state) {
-      return;
-    }
-
-    state = true;
-
-    for (var i = 0, len = callbacks.length; i < len; i++) {
-      callbacks[i](val);
-    }
-  };
-
-  var then = function then(cb) {
-    if (!state) {
-      callbacks.push(cb);
-      return;
-    }
-
-    cb();
-  };
-
-  var deferred = {
-    resolved: function resolved() {
-      return state;
-    },
-    resolve: resolve,
-    promise: {
-      then: then
-    }
-  };
-  return deferred;
-};
-
-var ownProp = Object.prototype.hasOwnProperty;
-function createRecaptcha() {
-  var deferred = defer();
-  return {
-    notify: function notify() {
-      deferred.resolve();
-    },
-    wait: function wait() {
-      return deferred.promise;
-    },
-    render: function render(ele, options, cb) {
-      this.wait().then(function () {
-        cb(window.grecaptcha.render(ele, options));
-      });
-    },
-    reset: function reset(widgetId) {
-      if (typeof widgetId === 'undefined') {
-        return;
-      }
-
-      this.assertLoaded();
-      this.wait().then(function () {
-        return window.grecaptcha.reset(widgetId);
-      });
-    },
-    execute: function execute(widgetId) {
-      if (typeof widgetId === 'undefined') {
-        return;
-      }
-
-      this.assertLoaded();
-      this.wait().then(function () {
-        return window.grecaptcha.execute(widgetId);
-      });
-    },
-    checkRecaptchaLoad: function checkRecaptchaLoad() {
-      if (ownProp.call(window, 'grecaptcha') && ownProp.call(window.grecaptcha, 'render')) {
-        this.notify();
-      }
-    },
-    assertLoaded: function assertLoaded() {
-      if (!deferred.resolved()) {
-        throw new Error('ReCAPTCHA has not been loaded');
-      }
-    }
-  };
-}
-var recaptcha = createRecaptcha();
-
-if (typeof window !== 'undefined') {
-  window.vueRecaptchaApiLoaded = recaptcha.notify;
-}
-
-var VueRecaptcha = {
-  name: 'VueRecaptcha',
-  props: {
-    sitekey: {
-      type: String,
-      required: true
-    },
-    theme: {
-      type: String
-    },
-    badge: {
-      type: String
-    },
-    type: {
-      type: String
-    },
-    size: {
-      type: String
-    },
-    tabindex: {
-      type: String
-    },
-    loadRecaptchaScript: {
-      type: Boolean,
-      "default": false
-    },
-    recaptchaScriptId: {
-      type: String,
-      "default": '__RECAPTCHA_SCRIPT'
-    },
-    recaptchaHost: {
-      type: String,
-      "default": 'www.google.com'
-    },
-    language: {
-      type: String,
-      "default": ''
-    }
-  },
-  beforeMount: function beforeMount() {
-    if (this.loadRecaptchaScript) {
-      if (!document.getElementById(this.recaptchaScriptId)) {
-        // Note: vueRecaptchaApiLoaded load callback name is per the latest documentation
-        var script = document.createElement('script');
-        script.id = this.recaptchaScriptId;
-        script.src = "https://" + this.recaptchaHost + "/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit&hl=" + this.language;
-        script.async = true;
-        script.defer = true;
-        document.head.appendChild(script);
-      }
-    }
-  },
-  mounted: function mounted() {
-    var _this = this;
-
-    recaptcha.checkRecaptchaLoad();
-
-    var opts = _extends({}, this.$props, {
-      callback: this.emitVerify,
-      'expired-callback': this.emitExpired,
-      'error-callback': this.emitError
-    });
-
-    var container = this.$slots["default"] ? this.$el.children[0] : this.$el;
-    recaptcha.render(container, opts, function (id) {
-      _this.$widgetId = id;
-
-      _this.$emit('render', id);
-    });
-  },
-  methods: {
-    reset: function reset() {
-      recaptcha.reset(this.$widgetId);
-    },
-    execute: function execute() {
-      recaptcha.execute(this.$widgetId);
-    },
-    emitVerify: function emitVerify(response) {
-      this.$emit('verify', response);
-    },
-    emitExpired: function emitExpired() {
-      this.$emit('expired');
-    },
-    emitError: function emitError() {
-      this.$emit('error');
-    }
-  },
-  render: function render(h) {
-    return h('div', {}, this.$slots["default"]);
-  }
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (VueRecaptcha);
 
 
 /***/ }),

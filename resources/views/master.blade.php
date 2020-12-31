@@ -39,8 +39,6 @@
 
     <!-- style css -->
     <link rel="stylesheet" href="{{asset('style/style.css')}}">
-    <script src="https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit" async defer>
-</script> 
 
     <!-- responsive css -->
 
@@ -65,9 +63,6 @@
     src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
     integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
     crossorigin="anonymous"></script>
-
-    <script src="https://unpkg.com/vue-recaptcha@latest/dist/vue-recaptcha.min.js"></script>
-
 
 <!-- vgnav -->
 <script
