@@ -31,11 +31,9 @@ Route::get('/take',function (){
 });
 Route::get('/verifyemail/{email}/{token}','auth\RegisterAndLoginController@verifyemail');
 
-Route::get('/app_login',function (){
-    return view('auth/login');
-});
-Route::get('/app_register',function (){
-    return view('auth/register');
+
+Route::get('/', function () {
+    return view('master');
 });
 
 Route::get('{path}',function (){

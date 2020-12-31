@@ -1,10 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createMultiTabState from 'vuex-multi-tab-state';
 Vue.use(Vuex)
+
 
 
 export default new Vuex.Store({
     state:{
+        islogin:false,
         user:[],
     },
     getters:{
@@ -15,6 +18,11 @@ export default new Vuex.Store({
     },
     actions:{
 
-    }
+    },
+     plugins: [
+         createMultiTabState({
+             statesPaths: ['user','islogin'],
+         }),
+    ],
 
 });

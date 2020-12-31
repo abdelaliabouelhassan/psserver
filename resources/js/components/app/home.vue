@@ -1,5 +1,6 @@
 <template>
             <div>
+                 
                 <div class="card serverCard p-4 mb-3 mt-5">
                     <img src="img/flags.png" class="img-fluid flag-img" alt="">
                     <div class="row">
@@ -293,7 +294,9 @@
 
 <script>
     export default {
-        name: "home"
+          mounted () {
+        this.$modal.show('example')
+    }
     }
 </script>
 

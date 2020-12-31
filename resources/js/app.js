@@ -36,7 +36,41 @@ Vue.component('register', require('./components/app/auth/register').default);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+window.something = new Vue();
+
 /**********   packages   ***********/
+
+import VModal from 'vue-js-modal'
+Vue.use(VModal)
+/*sweetalert2*/
+import Swal from 'sweetalert2'
+window.Swal = Swal
+const swalWithBootstrapButtons = Swal.mixin({
+    customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger'
+    },
+    buttonsStyling: false
+})
+window.swalWithBootstrapButtons = swalWithBootstrapButtons
+
+const Toast = Swal.mixin({
+    toast: true,
+    position: 'bottom-start',
+    showConfirmButton: false,
+    timer: 5000,
+    timerProgressBar: true,
+    onOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+})
+
+window.Toast = Toast
+/*end sweetalert2*/
+
+
+
 /*axios*/
 import axios from 'axios'
 import VueAxios from 'vue-axios'
