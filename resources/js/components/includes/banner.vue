@@ -1,6 +1,6 @@
 <template>
     <section class="hero">
-        <img src="img/banner-logo.png" class="img-fluid banner-logo" alt="">
+        <img src="/img/banner-logo.png" class="img-fluid banner-logo" alt="">
     </section>
 </template>
 

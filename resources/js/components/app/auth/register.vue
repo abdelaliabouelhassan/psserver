@@ -101,7 +101,7 @@ export default {
 
      this.disabel = true;
       this.axios
-        .post("api/register", this.form)
+        .post("/api/register", this.form)
         .then((response) => {
           this.errors = [];
         

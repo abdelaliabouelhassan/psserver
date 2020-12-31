@@ -39,6 +39,7 @@
               >Remember Me</label
             >
           </div>
+           <vue-recaptcha sitekey="6LfxBRwaAAAAADtxjeGrYn0Y4GFrerYsBczm4qZ0"></vue-recaptcha>
           <input
            :disabled="disabel"
             type="submit"
@@ -54,33 +55,29 @@
 </template>
 
 <script>
+
+import VueRecaptcha from 'vue-recaptcha';
+
 export default {
+   components: { VueRecaptcha },
+
   data() {
     return {
         disabel:false,
       form: {
         username: "",
         password: "",
+        recaptcha:''
       },
       errors:"",
     };
   },
   methods: {
-    testauth() {
-      this.axios
-        .get("api/user")
-        .then((response) => {
-        
-          console.log(response);
-        })
-        .catch((errors) => {
-          console.log(errors.response);
-        });
-    },
+ 
     login() {
        this.disabel = true;
       this.axios
-        .post("api/login", this.form)
+        .post("/api/login", this.form)
         .then((response) => {
           this.errors = [];
            this.disabel = false;

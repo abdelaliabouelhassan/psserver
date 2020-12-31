@@ -22,3 +22,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/register','auth\RegisterAndLoginController@register');
 Route::post('/login','auth\RegisterAndLoginController@login');
 Route::get('/logout','auth\RegisterAndLoginController@logout');
+
+
+//Verification email
+Route::middleware('auth:sanctum')->post('/Verification', 'auth\RegisterAndLoginController@Verification');
+
+
+//servers
+Route::middleware('auth:sanctum')->post('/createserver', 'serverController@CreateServer');
+
+

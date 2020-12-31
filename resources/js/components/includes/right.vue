@@ -1,6 +1,6 @@
 <template>
     <div class="col-md-4 my-1">
-        <button class="btn btn-danger btn-block rounded py-3 font-weight-bold">ADD YOUR SERVER</button>
+          <router-link to="/createserver"  class="btn btn-danger btn-block rounded py-3 font-weight-bold">ADD YOUR SERVER</router-link>
         <div class="card firstCard py-5 mt-4">
             <div class="container">
                 <p class="text-danger">FEATURED SERVER</p>
@@ -9,7 +9,7 @@
                 <p class="mt-4 mb-3 text-white card-lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
                 <p>
                   <span>
-                    <img src="img/like.png" class="img-fluid" alt="">
+                    <img src="/img/like.png" class="img-fluid" alt="">
                   </span>
                     <span class="text-success">22545</span>
                     <span class="mx-3 text-secondary">|</span>
@@ -19,11 +19,11 @@
                     <span class="text-white">988</span>
                 </p>
                 <a href="" class="btn btn-light mt-5 d-inline">VISIT WEBSITE</a>
-                <img src="img/m2.png" class="img-fluid d-inline ml-4" alt="">
+                <img src="/img/m2.png" class="img-fluid d-inline ml-4" alt="">
             </div>
         </div>
         <div class="card card-two mt-3">
-            <img src="img/add.png" class="card-img-top img-fluid" alt="">
+            <img src="/img/add.png" class="card-img-top img-fluid" alt="">
             <div class="card-body bg-dark">
                 <div class="px-3">
                     <p class="text-white">
@@ -31,7 +31,7 @@
                     </p>
                     <div class="row mt-3">
                         <div class="col-6">
-                            <img src="img/eye.png" class="img-fluid" alt="">
+                            <img src="/img/eye.png" class="img-fluid" alt="">
                             <span class="vision">29 834</span>
                         </div>
                         <div class="col-6">

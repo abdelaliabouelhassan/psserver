@@ -3,9 +3,8 @@
     <div class="row">
       <div class="col-md-3">
         <div class="logo">
-          <a href="index.html">
-            <img src="img/logo.png" style="width: 90px" alt="" />
-          </a>
+            <router-link to="/"><img src="/img/logo.png" style="width: 90px" alt="" /></router-link>
+        
         </div>
       </div>
       <div class="col-md-9 d-flex align-items-center">
@@ -13,7 +12,8 @@
           <nav class="vg-nav">
             <ul class="vg-nav-main-container">
               <li>
-                <a href="index.html" class="text-white">HOME</a>
+                  <router-link to="/home"  class="text-white">HOME</router-link>
+               
               </li>
 
               <li class="dropdown">
@@ -21,25 +21,18 @@
                 <ul class="left">
                   <li><a href="" class="text-dark">SERVER 1</a></li>
                   <li><a href="" class="text-dark">SERVER 2</a></li>
-                  <li class="dropdown">
-                    <a href="" class="text-dark">SERVER 3</a>
-                    <ul class="left another">
-                      <li><a href="" class="text-dark">SERVER 1</a></li>
-                      <li><a href="" class="text-dark">SERVER 2</a></li>
-                      <li><a href="" class="text-dark">SERVER 3</a></li>
-                    </ul>
-                  </li>
+                  <li><a href="" class="text-dark">SERVER 3</a></li>
                   <li><a href="" class="text-dark">SERVER 4</a></li>
-                  <li><a href="" class="text-dark">SERVER 5</a></li>
-                  <li><a href="" class="text-dark">SERVER 6</a></li>
+                    <li><a href="" class="text-dark">SERVER 5</a></li>
                 </ul>
               </li>
               <li>
                 <a href="" class="text-white">PARTNERS</a>
               </li>
-              <li class="dropdown">
-                <a href="" class="text-white">FAQ</a>
-                <ul class="left">
+              <li >
+                 <router-link to="/faq"  class="text-white">FAQ</router-link>
+               
+                <!-- <ul class="left">
                   <li><a href="" class="text-dark">SERVER 1</a></li>
                   <li><a href="" class="text-dark">SERVER 2</a></li>
                   <li class="dropdown">
@@ -50,10 +43,11 @@
                       <li><a href="" class="text-dark">SERVER 3</a></li>
                     </ul>
                   </li>
-                </ul>
+                </ul> -->
               </li>
               <li>
-                <a href="" class="text-white">CONTACT</a>
+                 <router-link to="/contact"  class="text-white">CONTACT</router-link>
+            
               </li>
             </ul>
           </nav>
@@ -70,26 +64,26 @@
             class="btn btn-link text-white hidbtn text-decoration-none"
             
           >
-            <img src="img/add-user.png" class="img-fluid" alt="" />
+            <img src="/img/add-user.png" class="img-fluid" alt="" />
             Create Account
           </a>
           <!-- <a href="" class="btn btn-link text-white
                     hidbtn dropdown-toggle">Sign in</a> -->
-          <button class="btn btn-danger ml-2">ADD SERVER</button>
+         <router-link to="/createserver"  class="btn btn-danger ml-2">ADD SERVER</router-link>
+
+        
         </p>
         <p class="my-auto headerbtns ml-5" v-if="$store.state.islogin">
-          <a
-            style="font-size: 0px"
-            href=""
-            class="btn btn-link text-white hidbtn text-decoration-none"
-          >
-            <img src="img/Ellipse 1655.png" alt="" />
+       
+         <router-link to="/myprofile"  style="font-size: 0px"  class="btn btn-link text-white hidbtn text-decoration-none" >
+
+            <img src="/img/Ellipse 1655.png" alt="" />
             <h6>{{ $store.state.user.username }}</h6>
-            <br />
-            <p class="user-mail dropdown-toggle" style="left: 0px">
+            <!-- <br />
+            <p class="user-mail" style="left: 0px">
               {{ $store.state.user.email }}
-            </p></a
-          >
+            </p> -->
+          </router-link>
 
           <a
             href=""

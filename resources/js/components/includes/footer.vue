@@ -26,13 +26,13 @@
                                 <p class="mb-2 font-weight-bold">Find Us On</p>
                                 <p>
                                     <a href="" class="mx-1 my-2 text-dark font-weight-bold text-decoration-none d-inline">
-                                        <img src="img/fb.png" class="img-fluid" alt="">
+                                        <img src="/img/fb.png" class="img-fluid" alt="">
                                     </a>
                                     <a href="" class="mx-1 my-2 text-dark font-weight-bold text-decoration-none d-inline">
-                                        <img src="img/discord.png" class="img-fluid" alt="">
+                                        <img src="/img/discord.png" class="img-fluid" alt="">
                                     </a>
                                     <a href="" class="mx-1 my-2 text-dark font-weight-bold text-decoration-none d-inline">
-                                        <img src="img/epvp.png" class="img-fluid" alt="">
+                                        <img src="/img/epvp.png" class="img-fluid" alt="">
                                     </a>
                                 </p>
                             </div>

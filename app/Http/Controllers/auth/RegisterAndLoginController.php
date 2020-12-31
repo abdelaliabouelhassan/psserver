@@ -60,6 +60,8 @@ class RegisterAndLoginController extends Controller
         return Auth::logout();
     }
 
+    
+
 
     public function verifyemail($email,$token){
          $user =   User::where('email',$email)->first();
@@ -68,12 +70,24 @@ class RegisterAndLoginController extends Controller
                     $user->email_verified_at = now();
                     $user->remember_token = "";
                     $user->save();
-                    return "Email Verified Successfully";
+                    return redirect('/home');
                }else{
                    return abort(404);
                }
          }else{
              return abort(404);
          }
+    }
+
+    public function Verification(){
+        $user =   User::findOrFail(auth('sanctum')->id());
+        $bytes = random_bytes(20);
+        $name    =   bin2hex($bytes) . '_' . uniqid() . '_' .  Carbon::now();
+        $token = $name;
+        $user->remember_token = $token;
+        $user->save();
+        Mail::to($user->email)->send(new VerificationEmail($token, $user->email, $user->username));
+
+        return response()->json('Verification email sent successfully', 200);
     }
 }

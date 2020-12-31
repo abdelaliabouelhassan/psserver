@@ -20,7 +20,7 @@ export default {
   methods: {
     loadUser() {
       this.axios
-        .get("api/user")
+        .get("/api/user")
         .then((response) => {
           console.log(response);
           this.$store.state.islogin = true;

@@ -2,13 +2,13 @@
             <div>
                  
                 <div class="card serverCard p-4 mb-3 mt-5">
-                    <img src="img/flags.png" class="img-fluid flag-img" alt="">
+                    <img src="/img/flags.png" class="img-fluid flag-img" alt="">
                     <div class="row">
                         <div class="col-sm-5">
                             <div class="row">
                                 <div class="col-2">
                                     <a href="">
-                                        <img src="img/down.png" alt="">
+                                        <img src="/img/down.png" alt="">
                                     </a>
                                 </div>
                                 <div class="col-10 m-auto">
@@ -27,7 +27,7 @@
                                     <p class="zuko-text">Zuko2.com - Comeback - 14.08.2020 Big International Server</p>
                                     <p class="mt-4">
                         <span>
-                          <img src="img/like.png" class="img-fluid" alt="">
+                          <img src="/img/like.png" class="img-fluid" alt="">
                         </span>
                                         <span class="text-success">22545</span>
                                         <span class="mx-3 text-secondary">|</span>
@@ -40,20 +40,20 @@
                             </div>
                         </div>
                         <div class="col-sm-7 m-auto">
-                            <img src="img/550120.jpg" class="img-fluid rounded" alt="">
+                            <img src="/img/550120.jpg" class="img-fluid rounded" alt="">
                         </div>
                     </div>
                 </div>
 
 
                 <div class="card serverCard p-4 my-3">
-                    <img src="img/flags.png" class="img-fluid flag-img" alt="">
+                    <img src="/img/flags.png" class="img-fluid flag-img" alt="">
                     <div class="row">
                         <div class="col-sm-5">
                             <div class="row">
                                 <div class="col-2">
                                     <a href="">
-                                        <img src="img/up.png" alt="">
+                                        <img src="/img/up.png" alt="">
                                     </a>
                                 </div>
                                 <div class="col-10 m-auto">
@@ -72,7 +72,7 @@
                                     <p class="zuko-text">Zuko2.com - Comeback - 14.08.2020 Big International Server</p>
                                     <p class="mt-4">
                         <span>
-                          <img src="img/like.png" class="img-fluid" alt="">
+                          <img src="/img/like.png" class="img-fluid" alt="">
                         </span>
                                         <span class="text-success">22545</span>
                                         <span class="mx-3 text-secondary">|</span>
@@ -85,20 +85,20 @@
                             </div>
                         </div>
                         <div class="col-sm-7 m-auto">
-                            <img src="img/550120.jpg" class="img-fluid rounded" alt="">
+                            <img src="/img/550120.jpg" class="img-fluid rounded" alt="">
                         </div>
                     </div>
                 </div>
 
 
                 <div class="card serverCard p-4 my-3">
-                    <img src="img/flags.png" class="img-fluid flag-img" alt="">
+                    <img src="/img/flags.png" class="img-fluid flag-img" alt="">
                     <div class="row">
                         <div class="col-sm-5">
                             <div class="row">
                                 <div class="col-2">
                                     <a href="">
-                                        <img src="img/down.png" alt="">
+                                        <img src="/img/down.png" alt="">
                                     </a>
                                 </div>
                                 <div class="col-10 m-auto">
@@ -117,7 +117,7 @@
                                     <p class="zuko-text">Zuko2.com - Comeback - 14.08.2020 Big International Server</p>
                                     <p class="mt-4">
                         <span>
-                          <img src="img/like.png" class="img-fluid" alt="">
+                          <img src="/img/like.png" class="img-fluid" alt="">
                         </span>
                                         <span class="text-success">22545</span>
                                         <span class="mx-3 text-secondary">|</span>
@@ -130,20 +130,20 @@
                             </div>
                         </div>
                         <div class="col-sm-7 m-auto">
-                            <img src="img/550120.jpg" class="img-fluid rounded" alt="">
+                            <img src="/img/550120.jpg" class="img-fluid rounded" alt="">
                         </div>
                     </div>
                 </div>
 
 
                 <div class="card serverCard p-4 my-3">
-                    <img src="img/flags.png" class="img-fluid flag-img" alt="">
+                    <img src="/img/flags.png" class="img-fluid flag-img" alt="">
                     <div class="row">
                         <div class="col-sm-5">
                             <div class="row">
                                 <div class="col-2">
                                     <a href="">
-                                        <img src="img/up.png" alt="">
+                                        <img src="/img/up.png" alt="">
                                     </a>
                                 </div>
                                 <div class="col-10 m-auto">
@@ -162,7 +162,7 @@
                                     <p class="zuko-text">Zuko2.com - Comeback - 14.08.2020 Big International Server</p>
                                     <p class="mt-4">
                         <span>
-                          <img src="img/like.png" class="img-fluid" alt="">
+                          <img src="/img/like.png" class="img-fluid" alt="">
                         </span>
                                         <span class="text-success">22545</span>
                                         <span class="mx-3 text-secondary">|</span>
@@ -175,20 +175,20 @@
                             </div>
                         </div>
                         <div class="col-sm-7 m-auto">
-                            <img src="img/550120.jpg" class="img-fluid rounded" alt="">
+                            <img src="/img/550120.jpg" class="img-fluid rounded" alt="">
                         </div>
                     </div>
                 </div>
 
 
                 <div class="card serverCard p-4 my-3">
-                    <img src="img/flags.png" class="img-fluid flag-img" alt="">
+                    <img src="/img/flags.png" class="img-fluid flag-img" alt="">
                     <div class="row">
                         <div class="col-sm-5">
                             <div class="row">
                                 <div class="col-2">
                                     <a href="">
-                                        <img src="img/up.png" alt="">
+                                        <img src="/img/up.png" alt="">
                                     </a>
                                 </div>
                                 <div class="col-10 m-auto">
@@ -207,7 +207,7 @@
                                     <p class="zuko-text">Zuko2.com - Comeback - 14.08.2020 Big International Server</p>
                                     <p class="mt-4">
                         <span>
-                          <img src="img/like.png" class="img-fluid" alt="">
+                          <img src="/img/like.png" class="img-fluid" alt="">
                         </span>
                                         <span class="text-success">22545</span>
                                         <span class="mx-3 text-secondary">|</span>
@@ -220,19 +220,19 @@
                             </div>
                         </div>
                         <div class="col-sm-7 m-auto">
-                            <img src="img/550120.jpg" class="img-fluid rounded" alt="">
+                            <img src="/img/550120.jpg" class="img-fluid rounded" alt="">
                         </div>
                     </div>
                 </div>
 
                 <div class="card serverCard p-4 my-3">
-                    <img src="img/flags.png" class="img-fluid flag-img" alt="">
+                    <img src="/img/flags.png" class="img-fluid flag-img" alt="">
                     <div class="row">
                         <div class="col-sm-5">
                             <div class="row">
                                 <div class="col-2">
                                     <a href="">
-                                        <img src="img/up.png" alt="">
+                                        <img src="/img/up.png" alt="">
                                     </a>
                                 </div>
                                 <div class="col-10 m-auto">
@@ -251,7 +251,7 @@
                                     <p class="zuko-text">Zuko2.com - Comeback - 14.08.2020 Big International Server</p>
                                     <p class="mt-4">
                         <span>
-                          <img src="img/like.png" class="img-fluid" alt="">
+                          <img src="/img/like.png" class="img-fluid" alt="">
                         </span>
                                         <span class="text-success">22545</span>
                                         <span class="mx-3 text-secondary">|</span>
@@ -264,7 +264,7 @@
                             </div>
                         </div>
                         <div class="col-sm-7 m-auto">
-                            <img src="img/550120.jpg" class="img-fluid rounded" alt="">
+                            <img src="/img/550120.jpg" class="img-fluid rounded" alt="">
                         </div>
                     </div>
                 </div>
@@ -273,7 +273,7 @@
 
                 <div class="text-center">
                     <a href="" class="text-decoration-none m-auto">
-                        <img src="img/2x.png" alt="">
+                        <img src="/img/2x.png" alt="">
                     </a>
                     <a href="" class="text-dark m-auto">
                         <i class="fa fa-angle-left mx-1"></i>
@@ -286,7 +286,7 @@
                         <i class="fa fa-angle-right mx-1"></i>
                     </a>
                     <a href="" class="text-decoration-none m-auto">
-                        <img src="img/2x-r.png" alt="">
+                        <img src="/img/2x-r.png" alt="">
                     </a>
                 </div>
             </div>
