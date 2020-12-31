@@ -20,6 +20,15 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('mainApp', require('./components/main').default);
+Vue.component('banner', require('./components/includes/banner').default);
+Vue.component('footer_app', require('./components/includes/footer').default);
+Vue.component('header_app', require('./components/includes/header').default);
+Vue.component('ad_app', require('./components/includes/ad').default);
+Vue.component('right', require('./components/includes/right').default);
+Vue.component('main_app', require('./components/includes/main').default);
+Vue.component('login', require('./components/app/auth/login').default);
+Vue.component('register', require('./components/app/auth/register').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

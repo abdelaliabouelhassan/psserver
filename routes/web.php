@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Spatie\Browsershot\Browsershot;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,8 +14,29 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/take',function (){
 
+//    Browsershot::url('https://freek.dev/881-introducing-browsershot-v3-the-best-way-to-convert-html-to-pdfs-and-images')
+//        ->setNodeBinary('C:\Program Files\nodejs\node.exe')
+//       ->save('test.png');
+
+    $pathToImage = public_path('/test.png');
+	$delayInMilliseconds = 20000;
+    Browsershot::url('https://sepherion2.biz/')
+        ->setNodeBinary('C:/node_testing/nodejs/node.exe')
+		 ->waitUntilNetworkIdle(false)
+        ->save($pathToImage);
+
+
+});
 Route::get('/verifyemail/{email}/{token}','auth\RegisterAndLoginController@verifyemail');
+
+Route::get('/app_login',function (){
+    return view('auth/login');
+});
+Route::get('/app_register',function (){
+    return view('auth/register');
+});
 
 Route::get('{path}',function (){
     return view('master');
