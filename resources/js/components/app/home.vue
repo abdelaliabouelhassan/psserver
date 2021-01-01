@@ -40,7 +40,7 @@
                             </div>
                         </div>
                         <div class="col-sm-7 m-auto">
-                            <img :src="Server.banner" class="img-fluid rounded" alt="">
+                            <img :src="Server.banner" onerror="this.src='/img/550120.jpg'" class="img-fluid rounded" :alt="Server.title">
                         </div>
                     </div>
                 </div>

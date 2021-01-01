@@ -44719,7 +44719,11 @@ var render = function() {
             _c("div", { staticClass: "col-sm-7 m-auto" }, [
               _c("img", {
                 staticClass: "img-fluid rounded",
-                attrs: { src: Server.banner, alt: "" }
+                attrs: {
+                  src: Server.banner,
+                  onerror: "this.src='/img/550120.jpg'",
+                  alt: Server.title
+                }
               })
             ])
           ])
