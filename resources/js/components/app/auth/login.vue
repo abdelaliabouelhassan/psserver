@@ -43,8 +43,7 @@
           <vue-recaptcha
             ref="recaptcha"
             @verify="onCaptchaVerified"
-            @expired="resetCaptcha"
-            
+            @expired="resetCaptcha"        
             sitekey="6LeCNhwaAAAAAHLVfJBdyleRSh7bRmYuvolBuycB">
         </vue-recaptcha>
           <input
@@ -71,7 +70,7 @@ export default {
       form: {
         username: "",
         password: "",
-        g_recaptcha_response:"",
+        recaptcha_response:"",
       },
       errors:"",
     };
@@ -120,5 +119,7 @@ export default {
 </script>
 
 <style scoped>
-
+ .grecaptcha-badge {
+        visibility: hidden !important;
+    }
 </style>
