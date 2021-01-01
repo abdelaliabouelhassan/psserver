@@ -2101,25 +2101,170 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      emailVrf: true
+      clicked: false,
+      emailVrf: true,
+      errors: [],
+      form: {
+        URL: "",
+        title: "",
+        Banner: "",
+        Category: "",
+        Language: [],
+        Level: "",
+        YouTube: "",
+        Rates: "",
+        Description: "",
+        isGif: false
+      }
     };
   },
   methods: {
-    SendEmailVerfication: function SendEmailVerfication() {
+    UploadBanner: function UploadBanner(e) {
       var _this = this;
+
+      var file = e.target.files[0];
+      var reader = new FileReader();
+
+      if (file['type'] === 'image/jpeg' || file['type'] === 'image/png' || file['type'] === 'image/gif') {
+        if (file['size'] < 1111775) {
+          if (file['type'] === 'image/gif') {
+            this.form.isGif = true;
+          }
+
+          reader.onloadend = function (file) {
+            _this.form.Banner = reader.result;
+          };
+
+          reader.readAsDataURL(file);
+        } else {
+          swalWithBootstrapButtons.fire('The Banner has not been uploaded.', 'The Banner Size > 1 mb .', 'error');
+        }
+      } else {
+        swalWithBootstrapButtons.fire('The image has not been uploaded.', 'The File You Selected Is Not Banner.', 'error');
+      }
+    },
+    createServer: function createServer() {
+      var _this2 = this;
+
+      this.clicked = true;
+      this.axios.post("/api/createserver", this.form).then(function (response) {
+        _this2.clicked = false;
+        Toast.fire({
+          icon: "success",
+          title: "Server Created Successfully"
+        });
+      })["catch"](function (errors) {
+        _this2.clicked = false;
+
+        if (errors.response.status == 422) {
+          _this2.errors = errors.response.data.errors;
+        } else {
+          Toast.fire({
+            icon: "error",
+            title: "Something went wrong please try again ."
+          });
+        }
+      });
+    },
+    SendEmailVerfication: function SendEmailVerfication() {
+      var _this3 = this;
 
       this.emailVrf = false;
       this.axios.post("/api/Verification", this.form).then(function (response) {
-        _this.emailVrf = true;
+        _this3.emailVrf = true;
         Toast.fire({
           icon: "success",
           title: "Verification email sent successfully"
         });
       })["catch"](function (errors) {
-        _this.emailVrf = true;
+        _this3.emailVrf = true;
         Toast.fire({
           icon: "error",
           title: "Something went wrong please try again ."
@@ -2134,7 +2279,11 @@ __webpack_require__.r(__webpack_exports__);
     checkuser: function checkuser() {
       if (this.$store.state.islogin) {
         if (this.$store.state.user.email_verified_at != null) {
-          return false;
+          if (this.clicked) {
+            return true;
+          } else {
+            return false;
+          }
         } else {
           return true;
         }
@@ -2221,7 +2370,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      disabel: true,
+      disabel: false,
       form: {
         username: "",
         password: ""
@@ -2230,7 +2379,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    test: function test(response) {
+    checkRecaptcha: function checkRecaptcha(response) {
       this.disabel = false;
     },
     login: function login() {
@@ -2272,6 +2421,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_recaptcha__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-recaptcha */ "./node_modules/vue-recaptcha/dist/vue-recaptcha.es.js");
 //
 //
 //
@@ -2349,10 +2499,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    VueRecaptcha: vue_recaptcha__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   data: function data() {
     return {
-      disabel: false,
+      disabel: true,
       tos: false,
       form: {
         username: "",
@@ -2365,6 +2520,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    checkRecaptcha: function checkRecaptcha(response) {
+      this.disabel = false;
+    },
     register: function register() {
       var _this = this;
 
@@ -43636,7 +43794,7 @@ var render = function() {
           { staticClass: "alert alert-dark", attrs: { role: "alert" } },
           [
             _vm._v(
-              "\n    You need to login in first then you can create a new server !.\n    "
+              "\n     You need to login in first then you can create a new server !.\n     "
             ),
             _c(
               "a",
@@ -43657,7 +43815,7 @@ var render = function() {
           { staticClass: "alert alert-dark", attrs: { role: "alert" } },
           [
             _vm._v(
-              "\n    You need to verify your email first then you can create a new server !.\n     "
+              "\n     You need to verify your email first then you can create a new server !.\n     "
             ),
             _c(
               "a",
@@ -43673,7 +43831,7 @@ var render = function() {
                 attrs: { href: "javascript:void(0)" },
                 on: { click: _vm.SendEmailVerfication }
               },
-              [_vm._v("click to send another verification email ")]
+              [_vm._v("click to send another verification email\n     ")]
             )
           ]
         )
@@ -43683,25 +43841,384 @@ var render = function() {
       _vm._v("Create New Server")
     ]),
     _vm._v(" "),
+    _vm._m(0),
+    _vm._v(" "),
     _c("div", { staticClass: "mt-4" }, [
-      _vm._m(0),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("label", { attrs: { for: "pageurl" } }, [_vm._v("Page URL :")]),
+          _vm._v(" "),
+          _vm.errors.URL
+            ? _c("span", { staticClass: "text-danger" }, [
+                _vm._v(_vm._s(this.errors.URL[0]))
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.URL,
+                expression: "form.URL"
+              }
+            ],
+            staticClass: "form-control rounded my-2",
+            class: { "is-invalid": _vm.errors.URL },
+            attrs: { type: "url", id: "pageurl", placeholder: "Page URL" },
+            domProps: { value: _vm.form.URL },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form, "URL", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("label", { attrs: { for: "title" } }, [_vm._v("Server title :")]),
+          _vm._v(" "),
+          _vm.errors.title
+            ? _c("span", { staticClass: "text-danger" }, [
+                _vm._v(_vm._s(this.errors.title[0]))
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.title,
+                expression: "form.title"
+              }
+            ],
+            staticClass: "form-control rounded my-2",
+            class: { "is-invalid": _vm.errors.title },
+            attrs: { type: "text", id: "title", placeholder: "Server title " },
+            domProps: { value: _vm.form.title },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form, "title", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("label", { attrs: { for: "Banner" } }, [_vm._v("Banner :")]),
+          _vm._v(" "),
+          _vm.errors.Banner
+            ? _c("span", { staticClass: "text-danger" }, [
+                _vm._v(_vm._s(this.errors.Banner[0]))
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c("div", { staticClass: "custom-file" }, [
+            _c("input", {
+              staticClass: "custom-file-input",
+              class: { "is-invalid": _vm.errors.Banner },
+              attrs: { type: "file", id: "validatedCustomFile", required: "" },
+              on: { change: _vm.UploadBanner }
+            }),
+            _vm._v(" "),
+            _c(
+              "label",
+              {
+                staticClass: "custom-file-label",
+                attrs: { for: "validatedCustomFile" }
+              },
+              [_vm._v("Banner Is displayed as 468x190 (max. 1 mb)")]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("label", { attrs: { for: "Category" } }, [_vm._v("Category :")]),
+          _vm._v(" "),
+          _vm.errors.Category
+            ? _c("span", { staticClass: "text-danger" }, [
+                _vm._v(_vm._s(this.errors.Category[0]))
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.Category,
+                  expression: "form.Category"
+                }
+              ],
+              staticClass: "form-control rounded my-2",
+              class: { "is-invalid": _vm.errors.Category },
+              attrs: { id: "Category" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.form,
+                    "Category",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                }
+              }
+            },
+            [
+              _c("option", { attrs: { value: "Oldschool Root" } }, [
+                _vm._v("Oldschool Root")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Oldschool Root" } }, [
+                _vm._v("Oldschool Root")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "NewSchool Root" } }, [
+                _vm._v("NewSchool Root")
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("label", { attrs: { for: "Language" } }, [_vm._v("Language :")]),
+          _vm._v(" "),
+          _vm.errors.Language
+            ? _c("span", { staticClass: "text-danger" }, [
+                _vm._v(_vm._s(this.errors.Language[0]))
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.Language,
+                  expression: "form.Language"
+                }
+              ],
+              staticClass: "form-control rounded my-2",
+              class: { "is-invalid": _vm.errors.Language },
+              attrs: {
+                id: "Language",
+                multiple: "",
+                "data-live-search": "true"
+              },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.$set(
+                    _vm.form,
+                    "Language",
+                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                  )
+                }
+              }
+            },
+            [
+              _c("option", { attrs: { value: "Deutsch" } }, [
+                _vm._v("Deutsch")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "English" } }, [
+                _vm._v("English")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Espanol" } }, [
+                _vm._v("Espanol")
+              ]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "France" } }, [_vm._v("France")]),
+              _vm._v(" "),
+              _c("option", { attrs: { value: "Roman" } }, [_vm._v("Roman")])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("label", { attrs: { for: "max" } }, [_vm._v("Max. Level :")]),
+          _vm._v(" "),
+          _vm.errors.Level
+            ? _c("span", { staticClass: "text-danger" }, [
+                _vm._v(_vm._s(this.errors.Level[0]))
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.Level,
+                expression: "form.Level"
+              }
+            ],
+            staticClass: "form-control rounded my-2",
+            class: { "is-invalid": _vm.errors.Level },
+            attrs: {
+              type: "number",
+              id: "max",
+              step: "any",
+              placeholder: "Max. Level "
+            },
+            domProps: { value: _vm.form.Level },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form, "Level", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("label", { attrs: { for: "youtube" } }, [
+            _vm._v("YouTube Trailer ID :")
+          ]),
+          _vm._v(" "),
+          _vm.errors.YouTube
+            ? _c("span", { staticClass: "text-danger" }, [
+                _vm._v(_vm._s(this.errors.YouTube[0]))
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.YouTube,
+                expression: "form.YouTube"
+              }
+            ],
+            staticClass: "form-control rounded my-2",
+            class: { "is-invalid": _vm.errors.YouTube },
+            attrs: {
+              type: "url",
+              step: "any",
+              id: "youtube",
+              placeholder: "YouTube Trailer ID "
+            },
+            domProps: { value: _vm.form.YouTube },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form, "YouTube", $event.target.value)
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("label", { attrs: { for: "Rates" } }, [_vm._v("Rates (%) :")]),
+          _vm._v(" "),
+          _vm.errors.Rates
+            ? _c("span", { staticClass: "text-danger" }, [
+                _vm._v(_vm._s(this.errors.Rates[0]))
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.Rates,
+                expression: "form.Rates"
+              }
+            ],
+            staticClass: "form-control rounded my-2",
+            class: { "is-invalid": _vm.errors.Rates },
+            attrs: {
+              type: "number",
+              step: "any",
+              id: "Rates",
+              placeholder: "Rates % "
+            },
+            domProps: { value: _vm.form.Rates },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form, "Rates", $event.target.value)
+              }
+            }
+          })
+        ])
+      ]),
       _vm._v(" "),
       _c("label", { attrs: { for: "Description" } }, [_vm._v("Description :")]),
       _vm._v(" "),
+      _vm.errors.Description
+        ? _c("span", { staticClass: "text-danger" }, [
+            _vm._v(_vm._s(this.errors.Description[0]))
+          ])
+        : _vm._e(),
+      _vm._v(" "),
       _c("textarea", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.form.Description,
+            expression: "form.Description"
+          }
+        ],
         staticClass: "form-control mt-2 rounded",
+        class: { "is-invalid": _vm.errors.Description },
         attrs: {
           name: "",
           id: "Description",
           cols: "30",
           rows: "5",
           placeholder: "Description"
+        },
+        domProps: { value: _vm.form.Description },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.form, "Description", $event.target.value)
+          }
         }
       }),
       _vm._v(" "),
       _c("input", {
         staticClass: "btn btn-dark d-block bg-dark mt-3",
-        attrs: { disabled: _vm.checkuser, type: "submit", value: "Create" }
+        attrs: { disabled: _vm.checkuser, type: "submit", value: "Create" },
+        on: { click: _vm.createServer }
       })
     ])
   ])
@@ -43711,124 +44228,49 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("label", { attrs: { for: "pageurl" } }, [_vm._v("Page URL :")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control rounded my-2",
-          attrs: { type: "url", id: "pageurl", placeholder: "Page URL" }
-        })
-      ]),
+    return _c("div", [
+      _c("b", [_vm._v("Rules :")]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("label", { attrs: { for: "title" } }, [_vm._v("Server title :")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control rounded my-2",
-          attrs: { type: "text", id: "title", placeholder: "Server title " }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("label", { attrs: { for: "Banner" } }, [_vm._v("Banner :")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control rounded my-2",
-          attrs: { type: "file", id: "Banner", placeholder: "Banner " }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("label", { attrs: { for: "Category" } }, [_vm._v("Category :")]),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            staticClass: "form-control rounded my-2",
-            attrs: { id: "Category" }
-          },
-          [
-            _c("option", { attrs: { value: "Oldschool Root" } }, [
-              _vm._v("Oldschool Root")
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "Oldschool Root" } }, [
-              _vm._v("Oldschool Root")
-            ]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "NewSchool Root" } }, [
-              _vm._v("NewSchool Root")
+      _c("div", { staticClass: "alert alert-info", attrs: { role: "alert" } }, [
+        _c("ul", [
+          _c("li", [
+            _vm._v(
+              "\n             Following pages are strictly prohibited from participating :\n               "
+            ),
+            _c("ol", [
+              _c("li", [
+                _vm._v("1. Sites with exaggerated much banner advertising or "),
+                _c("b", [_vm._v("malware")])
+              ]),
+              _vm._v(" "),
+              _c("li", [_vm._v("2. Pages which do not have Game content")]),
+              _vm._v(" "),
+              _c("li", [_vm._v("3. Toplists")]),
+              _vm._v(" "),
+              _c("li", [_vm._v("4. Sites that infringe applicable law")])
             ])
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("label", { attrs: { for: "Language" } }, [_vm._v("Language :")]),
-        _vm._v(" "),
-        _c(
-          "select",
-          {
-            staticClass: "form-control rounded my-2",
-            attrs: { id: "Language", multiple: "", "data-live-search": "true" }
-          },
-          [
-            _c("option", { attrs: { value: "Deutsch" } }, [_vm._v("Deutsch")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "English" } }, [_vm._v("English")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "Espanol" } }, [_vm._v("Espanol")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "France" } }, [_vm._v("France")]),
-            _vm._v(" "),
-            _c("option", { attrs: { value: "Roman" } }, [_vm._v("Roman")])
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("label", { attrs: { for: "max" } }, [_vm._v("Max. Level :")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control rounded my-2",
-          attrs: {
-            type: "number",
-            id: "max",
-            step: "any",
-            placeholder: "Max. Level "
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("label", { attrs: { for: "youtube" } }, [
-          _vm._v("YouTube Trailer ID :")
-        ]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control rounded my-2",
-          attrs: {
-            type: "url",
-            step: "any",
-            id: "youtube",
-            placeholder: "YouTube Trailer ID "
-          }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-md-12" }, [
-        _c("label", { attrs: { for: "Rates" } }, [_vm._v("Rates (%) :")]),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "form-control rounded my-2",
-          attrs: {
-            type: "number",
-            step: "any",
-            id: "Rates",
-            placeholder: "Rates % "
-          }
-        })
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _vm._v(
+              "\n           The title and description must be in accordance with the content of the page\n         "
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _vm._v(
+              "\n           Violations of these rules and fraud (so-called cheating) will result the suspension of your account\n         "
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("span", { staticClass: "text-danger" }, [
+              _vm._v(
+                "Your server will be displayed when approved by the administrators"
+              )
+            ])
+          ])
+        ])
       ])
     ])
   }
@@ -43941,8 +44383,8 @@ var render = function() {
             _vm._m(0),
             _vm._v(" "),
             _c("vue-recaptcha", {
-              attrs: { sitekey: "6LeCNhwaAAAAAHLVfJBdyleRSh7bRmYuvolBuycB" },
-              on: { verify: _vm.test }
+              attrs: { sitekey: _vm.$store.state.sitekey },
+              on: { verify: _vm.checkRecaptcha }
             }),
             _vm._v(" "),
             _c("input", {
@@ -44017,192 +44459,216 @@ var render = function() {
       _c("div", { staticClass: "col-2" }),
       _vm._v(" "),
       _c("div", { staticClass: "col-8" }, [
-        _c("div", { staticClass: "mt-4" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.username,
-                expression: "form.username"
-              }
-            ],
-            staticClass: "form-control my-3 rounded",
-            class: { "is-invalid": _vm.errors.username },
-            attrs: { type: "text", placeholder: "Username", name: "username" },
-            domProps: { value: _vm.form.username },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.form, "username", $event.target.value)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _vm.errors.username
-            ? _c("span", { staticClass: "text-danger" }, [
-                _vm._v(_vm._s(this.errors.username[0]))
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.email,
-                expression: "form.email"
-              }
-            ],
-            staticClass: "form-control my-3 rounded",
-            class: { "is-invalid": _vm.errors.email },
-            attrs: {
-              type: "email",
-              placeholder: "E-mail Address",
-              name: "email"
-            },
-            domProps: { value: _vm.form.email },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.form, "email", $event.target.value)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _vm.errors.email
-            ? _c("span", { staticClass: "text-danger" }, [
-                _vm._v(_vm._s(this.errors.email[0]))
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.password,
-                expression: "form.password"
-              }
-            ],
-            staticClass: "form-control my-3 rounded",
-            class: { "is-invalid": _vm.errors.password },
-            attrs: {
-              type: "password",
-              placeholder: "Password",
-              name: "password"
-            },
-            domProps: { value: _vm.form.password },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.form, "password", $event.target.value)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _vm.errors.password
-            ? _c("span", { staticClass: "text-danger" }, [
-                _vm._v(_vm._s(this.errors.password[0]))
-              ])
-            : _vm._e(),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.password_confirmation,
-                expression: "form.password_confirmation"
-              }
-            ],
-            staticClass: "form-control my-3 rounded",
-            attrs: {
-              type: "password",
-              placeholder: "Confirm Password",
-              name: "confirmPassword"
-            },
-            domProps: { value: _vm.form.password_confirmation },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.form, "password_confirmation", $event.target.value)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("div", { staticClass: "text-left" }, [
+        _c(
+          "div",
+          { staticClass: "mt-4" },
+          [
             _c("input", {
               directives: [
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.tos,
-                  expression: "tos"
+                  value: _vm.form.username,
+                  expression: "form.username"
                 }
               ],
-              attrs: { type: "checkbox" },
-              domProps: {
-                checked: Array.isArray(_vm.tos)
-                  ? _vm._i(_vm.tos, null) > -1
-                  : _vm.tos
+              staticClass: "form-control my-3 rounded",
+              class: { "is-invalid": _vm.errors.username },
+              attrs: {
+                type: "text",
+                placeholder: "Username",
+                name: "username"
               },
+              domProps: { value: _vm.form.username },
               on: {
-                change: function($event) {
-                  var $$a = _vm.tos,
-                    $$el = $event.target,
-                    $$c = $$el.checked ? true : false
-                  if (Array.isArray($$a)) {
-                    var $$v = null,
-                      $$i = _vm._i($$a, $$v)
-                    if ($$el.checked) {
-                      $$i < 0 && (_vm.tos = $$a.concat([$$v]))
-                    } else {
-                      $$i > -1 &&
-                        (_vm.tos = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
-                    }
-                  } else {
-                    _vm.tos = $$c
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
                   }
+                  _vm.$set(_vm.form, "username", $event.target.value)
                 }
               }
             }),
-            _c(
-              "label",
-              {
-                staticClass: "ml-2",
-                class: { "text-danger": _vm.errorTos },
-                attrs: { for: "check" }
+            _vm._v(" "),
+            _vm.errors.username
+              ? _c("span", { staticClass: "text-danger" }, [
+                  _vm._v(_vm._s(this.errors.username[0]))
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.email,
+                  expression: "form.email"
+                }
+              ],
+              staticClass: "form-control my-3 rounded",
+              class: { "is-invalid": _vm.errors.email },
+              attrs: {
+                type: "email",
+                placeholder: "E-mail Address",
+                name: "email"
               },
-              [
-                _c("span", [_vm._v("I have read and agree to the")]),
-                _vm._v(" "),
-                _c(
-                  "a",
+              domProps: { value: _vm.form.email },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "email", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors.email
+              ? _c("span", { staticClass: "text-danger" }, [
+                  _vm._v(_vm._s(this.errors.email[0]))
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.password,
+                  expression: "form.password"
+                }
+              ],
+              staticClass: "form-control my-3 rounded",
+              class: { "is-invalid": _vm.errors.password },
+              attrs: {
+                type: "password",
+                placeholder: "Password",
+                name: "password"
+              },
+              domProps: { value: _vm.form.password },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "password", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.errors.password
+              ? _c("span", { staticClass: "text-danger" }, [
+                  _vm._v(_vm._s(this.errors.password[0]))
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.password_confirmation,
+                  expression: "form.password_confirmation"
+                }
+              ],
+              staticClass: "form-control my-3 rounded",
+              attrs: {
+                type: "password",
+                placeholder: "Confirm Password",
+                name: "confirmPassword"
+              },
+              domProps: { value: _vm.form.password_confirmation },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(
+                    _vm.form,
+                    "password_confirmation",
+                    $event.target.value
+                  )
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "text-left" }, [
+              _c("input", {
+                directives: [
                   {
-                    staticClass: "text-success font-16",
-                    attrs: { href: "javascript:void(0)" }
-                  },
-                  [_vm._v("Terms of Use")]
-                )
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("input", {
-            staticClass: "btn btn-dark btn-block rounded",
-            attrs: { disabled: _vm.disabel, type: "submit", value: "Sign In" },
-            on: { click: _vm.register }
-          })
-        ])
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.tos,
+                    expression: "tos"
+                  }
+                ],
+                attrs: { type: "checkbox" },
+                domProps: {
+                  checked: Array.isArray(_vm.tos)
+                    ? _vm._i(_vm.tos, null) > -1
+                    : _vm.tos
+                },
+                on: {
+                  change: function($event) {
+                    var $$a = _vm.tos,
+                      $$el = $event.target,
+                      $$c = $$el.checked ? true : false
+                    if (Array.isArray($$a)) {
+                      var $$v = null,
+                        $$i = _vm._i($$a, $$v)
+                      if ($$el.checked) {
+                        $$i < 0 && (_vm.tos = $$a.concat([$$v]))
+                      } else {
+                        $$i > -1 &&
+                          (_vm.tos = $$a
+                            .slice(0, $$i)
+                            .concat($$a.slice($$i + 1)))
+                      }
+                    } else {
+                      _vm.tos = $$c
+                    }
+                  }
+                }
+              }),
+              _c(
+                "label",
+                {
+                  staticClass: "ml-2",
+                  class: { "text-danger": _vm.errorTos },
+                  attrs: { for: "check" }
+                },
+                [
+                  _c("span", [_vm._v("I have read and agree to the")]),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "text-success font-16",
+                      attrs: { href: "javascript:void(0)" }
+                    },
+                    [_vm._v("Terms of Use")]
+                  )
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("vue-recaptcha", {
+              attrs: { sitekey: _vm.$store.state.sitekey },
+              on: { verify: _vm.checkRecaptcha }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "btn btn-dark btn-block rounded",
+              attrs: {
+                disabled: _vm.disabel,
+                type: "submit",
+                value: "Sign In"
+              },
+              on: { click: _vm.register }
+            })
+          ],
+          1
+        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "col-2" })
@@ -63383,14 +63849,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!**************************************************!*\
   !*** ./resources/js/components/app/addserve.vue ***!
   \**************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _addserve_vue_vue_type_template_id_74e4e507_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./addserve.vue?vue&type=template&id=74e4e507&scoped=true& */ "./resources/js/components/app/addserve.vue?vue&type=template&id=74e4e507&scoped=true&");
 /* harmony import */ var _addserve_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./addserve.vue?vue&type=script&lang=js& */ "./resources/js/components/app/addserve.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _addserve_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _addserve_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -63420,7 +63887,7 @@ component.options.__file = "resources/js/components/app/addserve.vue"
 /*!***************************************************************************!*\
   !*** ./resources/js/components/app/addserve.vue?vue&type=script&lang=js& ***!
   \***************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -64399,6 +64866,7 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
+    sitekey: '6LeCNhwaAAAAAHLVfJBdyleRSh7bRmYuvolBuycB',
     islogin: false,
     user: []
   },

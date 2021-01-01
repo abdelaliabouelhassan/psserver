@@ -61,6 +61,7 @@
               ></label
             >
           </div>
+          <vue-recaptcha @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
           <input
             :disabled="disabel"
             type="submit"
@@ -76,10 +77,12 @@
 </template>
 
 <script>
+import VueRecaptcha from 'vue-recaptcha';
 export default {
+   components: { VueRecaptcha },
   data() {
     return {
-        disabel:false,
+        disabel:true,
         tos:false,
       form: {
         username: "",
@@ -92,6 +95,9 @@ export default {
     };
   },
   methods: {
+     checkRecaptcha(response){
+        this.disabel = false
+    },
     register() {
 
     if(!this.tos){

@@ -39,7 +39,7 @@
               >Remember Me</label
             >
           </div>
-            <vue-recaptcha @verify="test" sitekey="6LeCNhwaAAAAAHLVfJBdyleRSh7bRmYuvolBuycB"></vue-recaptcha>
+            <vue-recaptcha @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
 
           <input
            :disabled="disabel"
@@ -62,7 +62,7 @@ export default {
       components: { VueRecaptcha },
   data() {
     return {
-        disabel:true,
+      disabel:false,
       form: {
         username: "",
         password: "",
@@ -71,7 +71,7 @@ export default {
     };
   },
   methods: {
-    test(response){
+    checkRecaptcha(response){
         this.disabel = false
     },
     login() {

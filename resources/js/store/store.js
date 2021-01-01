@@ -7,6 +7,7 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
     state:{
+        sitekey:'6LeCNhwaAAAAAHLVfJBdyleRSh7bRmYuvolBuycB',
         islogin:false,
         user:[],
     },
