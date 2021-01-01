@@ -25,7 +25,7 @@
       </a>
     </div>
 
-    <h6 class="font-weight-bold">Create New Server</h6>
+    <h6 class="font-weight-bold">Add New Server</h6>
     <div>
  <b>Rules :</b>
     <div class="alert alert-info" role="alert">

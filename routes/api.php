@@ -36,5 +36,7 @@ Route::middleware('auth:sanctum')->post('/Verification', 'auth\RegisterAndLoginC
 
 //servers
 Route::middleware('auth:sanctum')->post('/createserver', 'serverController@CreateServer');
+Route::get('/GetServers', 'serverController@GetServers');
+
 
 

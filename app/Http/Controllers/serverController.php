@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Server;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
+use App\Http\Resources\ServersCollection;
+
 
 class serverController extends Controller
 {
@@ -61,5 +63,12 @@ class serverController extends Controller
             return response()->json('Server Created Successfully ', 200);
         }
         return response()->json('Something Went Wrong !', 500);
+    }
+
+
+
+    public function GetServers(){
+        $servers = Server::all();
+        return  ServersCollection::collection($servers);     
     }
 }

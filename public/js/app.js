@@ -2763,142 +2763,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    this.$modal.show('example');
+  data: function data() {
+    return {
+      Servers: []
+    };
+  },
+  methods: {
+    GetServers: function GetServers() {
+      var _this = this;
+
+      this.axios.get("/api/GetServers", this.form).then(function (response) {
+        _this.Servers = response.data.data;
+      })["catch"](function (errors) {});
+    }
+  },
+  created: function created() {
+    this.GetServers();
   }
 });
 
@@ -43837,9 +43718,7 @@ var render = function() {
         )
       : _vm._e(),
     _vm._v(" "),
-    _c("h6", { staticClass: "font-weight-bold" }, [
-      _vm._v("Create New Server")
-    ]),
+    _c("h6", { staticClass: "font-weight-bold" }, [_vm._v("Add New Server")]),
     _vm._v(" "),
     _vm._m(0),
     _vm._v(" "),
@@ -44781,615 +44660,351 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    [
+      _vm._l(_vm.Servers, function(Server, index) {
+        return _c("div", { staticClass: "card serverCard p-4 mb-3 mt-5" }, [
+          _c("img", {
+            staticClass: "img-fluid flag-img",
+            attrs: { src: "/img/flags.png", alt: "" }
+          }),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-sm-5" }, [
+              _c("div", { staticClass: "row" }, [
+                _vm._m(0, true),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-10 m-auto" }, [
+                  _c("div", { staticClass: "row" }, [
+                    _c("div", { staticClass: "col-3" }, [
+                      _c(
+                        "h5",
+                        {
+                          staticClass:
+                            "d-inline-block px-3 py-2 rounded text-white"
+                        },
+                        [_vm._v(_vm._s(index + 1))]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "col-9" }, [
+                      _c(
+                        "p",
+                        { staticClass: "hard text-danger bg-pink rounded" },
+                        [
+                          _vm._v(
+                            "\n                                    Hard\n                                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("h5", { staticClass: "font-weight-bold" }, [
+                        _vm._v(_vm._s(Server.url))
+                      ])
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "row" }),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "zuko-text" }, [
+                    _vm._v(_vm._s(Server.title))
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(1, true)
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-sm-7 m-auto" }, [
+              _c("img", {
+                staticClass: "img-fluid rounded",
+                attrs: { src: Server.banner, alt: "" }
+              })
+            ])
+          ])
+        ])
+      }),
+      _vm._v(" "),
+      _vm._m(2),
+      _vm._v(" "),
+      _vm._m(3),
+      _vm._v(" "),
+      _vm._m(4)
+    ],
+    2
+  )
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("div", { staticClass: "card serverCard p-4 mb-3 mt-5" }, [
-        _c("img", {
-          staticClass: "img-fluid flag-img",
-          attrs: { src: "/img/flags.png", alt: "" }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-5" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-2" }, [
-                _c("a", { attrs: { href: "" } }, [
-                  _c("img", { attrs: { src: "/img/down.png", alt: "" } })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-10 m-auto" }, [
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-3" }, [
-                    _c(
-                      "h5",
-                      {
-                        staticClass:
-                          "d-inline-block px-3 py-2 rounded text-white"
-                      },
-                      [_vm._v("1")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-9" }, [
-                    _c(
-                      "p",
-                      { staticClass: "hard text-danger bg-pink rounded" },
-                      [
-                        _vm._v(
-                          "\n                                    Hard\n                                "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("h5", { staticClass: "font-weight-bold" }, [
-                      _vm._v("Zuko2.com")
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }),
-                _vm._v(" "),
-                _c("p", { staticClass: "zuko-text" }, [
-                  _vm._v(
-                    "Zuko2.com - Comeback - 14.08.2020 Big International Server"
-                  )
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "mt-4" }, [
-                  _c("span", [
-                    _c("img", {
-                      staticClass: "img-fluid",
-                      attrs: { src: "/img/like.png", alt: "" }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-success" }, [
-                    _vm._v("22545")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "mx-3 text-secondary" }, [
-                    _vm._v("|")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", [
-                    _c("i", {
-                      staticClass:
-                        "fa fa-external-link-alt text-secondary font-13"
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-secondary font-13" }, [
-                    _vm._v("988")
-                  ])
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-7 m-auto" }, [
-            _c("img", {
-              staticClass: "img-fluid rounded",
-              attrs: { src: "/img/550120.jpg", alt: "" }
-            })
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card serverCard p-4 my-3" }, [
-        _c("img", {
-          staticClass: "img-fluid flag-img",
-          attrs: { src: "/img/flags.png", alt: "" }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-5" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-2" }, [
-                _c("a", { attrs: { href: "" } }, [
-                  _c("img", { attrs: { src: "/img/up.png", alt: "" } })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-10 m-auto" }, [
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-3" }, [
-                    _c(
-                      "h5",
-                      {
-                        staticClass:
-                          "d-inline-block px-3 py-2 rounded text-white"
-                      },
-                      [_vm._v("2")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-9" }, [
-                    _c(
-                      "p",
-                      { staticClass: "hard text-success bg-green rounded" },
-                      [
-                        _vm._v(
-                          "\n                                    Easy\n                                "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("h5", { staticClass: "font-weight-bold" }, [
-                      _vm._v("Aeldra2.to")
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }),
-                _vm._v(" "),
-                _c("p", { staticClass: "zuko-text" }, [
-                  _vm._v(
-                    "Zuko2.com - Comeback - 14.08.2020 Big International Server"
-                  )
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "mt-4" }, [
-                  _c("span", [
-                    _c("img", {
-                      staticClass: "img-fluid",
-                      attrs: { src: "/img/like.png", alt: "" }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-success" }, [
-                    _vm._v("22545")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "mx-3 text-secondary" }, [
-                    _vm._v("|")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", [
-                    _c("i", {
-                      staticClass:
-                        "fa fa-external-link-alt text-secondary font-13"
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-secondary font-13" }, [
-                    _vm._v("988")
-                  ])
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-7 m-auto" }, [
-            _c("img", {
-              staticClass: "img-fluid rounded",
-              attrs: { src: "/img/550120.jpg", alt: "" }
-            })
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card serverCard p-4 my-3" }, [
-        _c("img", {
-          staticClass: "img-fluid flag-img",
-          attrs: { src: "/img/flags.png", alt: "" }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-5" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-2" }, [
-                _c("a", { attrs: { href: "" } }, [
-                  _c("img", { attrs: { src: "/img/down.png", alt: "" } })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-10 m-auto" }, [
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-3" }, [
-                    _c(
-                      "h5",
-                      {
-                        staticClass:
-                          "d-inline-block px-3 py-2 rounded text-white"
-                      },
-                      [_vm._v("3")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-9" }, [
-                    _c(
-                      "p",
-                      { staticClass: "hard text-danger bg-pink rounded" },
-                      [
-                        _vm._v(
-                          "\n                                    Hard\n                                "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("h5", { staticClass: "font-weight-bold" }, [
-                      _vm._v("Asenis.eu")
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }),
-                _vm._v(" "),
-                _c("p", { staticClass: "zuko-text" }, [
-                  _vm._v(
-                    "Zuko2.com - Comeback - 14.08.2020 Big International Server"
-                  )
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "mt-4" }, [
-                  _c("span", [
-                    _c("img", {
-                      staticClass: "img-fluid",
-                      attrs: { src: "/img/like.png", alt: "" }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-success" }, [
-                    _vm._v("22545")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "mx-3 text-secondary" }, [
-                    _vm._v("|")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", [
-                    _c("i", {
-                      staticClass:
-                        "fa fa-external-link-alt text-secondary font-13"
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-secondary font-13" }, [
-                    _vm._v("988")
-                  ])
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-7 m-auto" }, [
-            _c("img", {
-              staticClass: "img-fluid rounded",
-              attrs: { src: "/img/550120.jpg", alt: "" }
-            })
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card serverCard p-4 my-3" }, [
-        _c("img", {
-          staticClass: "img-fluid flag-img",
-          attrs: { src: "/img/flags.png", alt: "" }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-5" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-2" }, [
-                _c("a", { attrs: { href: "" } }, [
-                  _c("img", { attrs: { src: "/img/up.png", alt: "" } })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-10 m-auto" }, [
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-3" }, [
-                    _c(
-                      "h5",
-                      {
-                        staticClass:
-                          "d-inline-block px-3 py-2 rounded text-white"
-                      },
-                      [_vm._v("4")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-9" }, [
-                    _c(
-                      "p",
-                      { staticClass: "hard text-success bg-green rounded" },
-                      [
-                        _vm._v(
-                          "\n                                    Easy\n                                "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("h5", { staticClass: "font-weight-bold" }, [
-                      _vm._v("Tastria.pl")
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }),
-                _vm._v(" "),
-                _c("p", { staticClass: "zuko-text" }, [
-                  _vm._v(
-                    "Zuko2.com - Comeback - 14.08.2020 Big International Server"
-                  )
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "mt-4" }, [
-                  _c("span", [
-                    _c("img", {
-                      staticClass: "img-fluid",
-                      attrs: { src: "/img/like.png", alt: "" }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-success" }, [
-                    _vm._v("22545")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "mx-3 text-secondary" }, [
-                    _vm._v("|")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", [
-                    _c("i", {
-                      staticClass:
-                        "fa fa-external-link-alt text-secondary font-13"
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-secondary font-13" }, [
-                    _vm._v("988")
-                  ])
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-7 m-auto" }, [
-            _c("img", {
-              staticClass: "img-fluid rounded",
-              attrs: { src: "/img/550120.jpg", alt: "" }
-            })
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card serverCard p-4 my-3" }, [
-        _c("img", {
-          staticClass: "img-fluid flag-img",
-          attrs: { src: "/img/flags.png", alt: "" }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-5" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-2" }, [
-                _c("a", { attrs: { href: "" } }, [
-                  _c("img", { attrs: { src: "/img/up.png", alt: "" } })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-10 m-auto" }, [
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-3" }, [
-                    _c(
-                      "h5",
-                      {
-                        staticClass:
-                          "d-inline-block px-3 py-2 rounded text-white"
-                      },
-                      [_vm._v("5")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-9" }, [
-                    _c(
-                      "p",
-                      { staticClass: "hard text-orange bg-orange rounded" },
-                      [
-                        _vm._v(
-                          "\n                                    Medium\n                                "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("h5", { staticClass: "font-weight-bold" }, [
-                      _vm._v("Zuko2.com")
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }),
-                _vm._v(" "),
-                _c("p", { staticClass: "zuko-text" }, [
-                  _vm._v(
-                    "Zuko2.com - Comeback - 14.08.2020 Big International Server"
-                  )
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "mt-4" }, [
-                  _c("span", [
-                    _c("img", {
-                      staticClass: "img-fluid",
-                      attrs: { src: "/img/like.png", alt: "" }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-success" }, [
-                    _vm._v("22545")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "mx-3 text-secondary" }, [
-                    _vm._v("|")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", [
-                    _c("i", {
-                      staticClass:
-                        "fa fa-external-link-alt text-secondary font-13"
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-secondary font-13" }, [
-                    _vm._v("988")
-                  ])
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-7 m-auto" }, [
-            _c("img", {
-              staticClass: "img-fluid rounded",
-              attrs: { src: "/img/550120.jpg", alt: "" }
-            })
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card serverCard p-4 my-3" }, [
-        _c("img", {
-          staticClass: "img-fluid flag-img",
-          attrs: { src: "/img/flags.png", alt: "" }
-        }),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-sm-5" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-2" }, [
-                _c("a", { attrs: { href: "" } }, [
-                  _c("img", { attrs: { src: "/img/up.png", alt: "" } })
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-10 m-auto" }, [
-                _c("div", { staticClass: "row" }, [
-                  _c("div", { staticClass: "col-3" }, [
-                    _c(
-                      "h5",
-                      {
-                        staticClass:
-                          "d-inline-block px-3 py-2 rounded text-white"
-                      },
-                      [_vm._v("5")]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "col-9" }, [
-                    _c(
-                      "p",
-                      { staticClass: "hard text-orange bg-orange rounded" },
-                      [
-                        _vm._v(
-                          "\n                                    Medium\n                                "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c("h5", { staticClass: "font-weight-bold" }, [
-                      _vm._v("Zuko2.com")
-                    ])
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row" }),
-                _vm._v(" "),
-                _c("p", { staticClass: "zuko-text" }, [
-                  _vm._v(
-                    "Zuko2.com - Comeback - 14.08.2020 Big International Server"
-                  )
-                ]),
-                _vm._v(" "),
-                _c("p", { staticClass: "mt-4" }, [
-                  _c("span", [
-                    _c("img", {
-                      staticClass: "img-fluid",
-                      attrs: { src: "/img/like.png", alt: "" }
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-success" }, [
-                    _vm._v("22545")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "mx-3 text-secondary" }, [
-                    _vm._v("|")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", [
-                    _c("i", {
-                      staticClass:
-                        "fa fa-external-link-alt text-secondary font-13"
-                    })
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-secondary font-13" }, [
-                    _vm._v("988")
-                  ])
-                ])
-              ])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-sm-7 m-auto" }, [
-            _c("img", {
-              staticClass: "img-fluid rounded",
-              attrs: { src: "/img/550120.jpg", alt: "" }
-            })
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "text-center" }, [
-        _c(
-          "a",
-          { staticClass: "text-decoration-none m-auto", attrs: { href: "" } },
-          [_c("img", { attrs: { src: "/img/2x.png", alt: "" } })]
-        ),
-        _vm._v(" "),
-        _c("a", { staticClass: "text-dark m-auto", attrs: { href: "" } }, [
-          _c("i", { staticClass: "fa fa-angle-left mx-1" })
-        ]),
-        _vm._v(" "),
-        _c(
-          "a",
-          { staticClass: "btn btn-outline-dark mx-1", attrs: { href: "" } },
-          [_vm._v("1")]
-        ),
-        _vm._v(" "),
-        _c(
-          "a",
-          { staticClass: "btn btn-outline-dark mx-1", attrs: { href: "" } },
-          [_vm._v("2")]
-        ),
-        _vm._v(" "),
-        _c("a", { staticClass: "btn btn-dark mx-1", attrs: { href: "" } }, [
-          _vm._v("3")
-        ]),
-        _vm._v(" "),
-        _c(
-          "a",
-          { staticClass: "btn btn-outline-dark mx-1", attrs: { href: "" } },
-          [_vm._v("4")]
-        ),
-        _vm._v(" "),
-        _c("a", { staticClass: "text-dark m-auto", attrs: { href: "" } }, [
-          _c("i", { staticClass: "fa fa-angle-right mx-1" })
-        ]),
-        _vm._v(" "),
-        _c(
-          "a",
-          { staticClass: "text-decoration-none m-auto", attrs: { href: "" } },
-          [_c("img", { attrs: { src: "/img/2x-r.png", alt: "" } })]
-        )
+    return _c("div", { staticClass: "col-2" }, [
+      _c("a", { attrs: { href: "" } }, [
+        _c("img", { attrs: { src: "/img/down.png", alt: "" } })
       ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", { staticClass: "mt-4" }, [
+      _c("span", [
+        _c("img", {
+          staticClass: "img-fluid",
+          attrs: { src: "/img/like.png", alt: "" }
+        })
+      ]),
+      _vm._v(" "),
+      _c("span", { staticClass: "text-success" }, [_vm._v("22545")]),
+      _vm._v(" "),
+      _c("span", { staticClass: "mx-3 text-secondary" }, [_vm._v("|")]),
+      _vm._v(" "),
+      _c("span", [
+        _c("i", {
+          staticClass: "fa fa-external-link-alt text-secondary font-13"
+        })
+      ]),
+      _vm._v(" "),
+      _c("span", { staticClass: "text-secondary font-13" }, [_vm._v("988")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card serverCard p-4 my-3" }, [
+      _c("img", {
+        staticClass: "img-fluid flag-img",
+        attrs: { src: "/img/flags.png", alt: "" }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-sm-5" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-2" }, [
+              _c("a", { attrs: { href: "" } }, [
+                _c("img", { attrs: { src: "/img/up.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-10 m-auto" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-3" }, [
+                  _c(
+                    "h5",
+                    {
+                      staticClass: "d-inline-block px-3 py-2 rounded text-white"
+                    },
+                    [_vm._v("2")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-9" }, [
+                  _c(
+                    "p",
+                    { staticClass: "hard text-success bg-green rounded" },
+                    [
+                      _vm._v(
+                        "\n                                    Easy\n                                "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("h5", { staticClass: "font-weight-bold" }, [
+                    _vm._v("Aeldra2.to")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }),
+              _vm._v(" "),
+              _c("p", { staticClass: "zuko-text" }, [
+                _vm._v(
+                  "Zuko2.com - Comeback - 14.08.2020 Big International Server"
+                )
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "mt-4" }, [
+                _c("span", [
+                  _c("img", {
+                    staticClass: "img-fluid",
+                    attrs: { src: "/img/like.png", alt: "" }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-success" }, [_vm._v("22545")]),
+                _vm._v(" "),
+                _c("span", { staticClass: "mx-3 text-secondary" }, [
+                  _vm._v("|")
+                ]),
+                _vm._v(" "),
+                _c("span", [
+                  _c("i", {
+                    staticClass:
+                      "fa fa-external-link-alt text-secondary font-13"
+                  })
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-secondary font-13" }, [
+                  _vm._v("988")
+                ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-7 m-auto" }, [
+          _c("img", {
+            staticClass: "img-fluid rounded",
+            attrs: { src: "/img/550120.jpg", alt: "" }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card serverCard p-4 my-3" }, [
+      _c("img", {
+        staticClass: "img-fluid flag-img",
+        attrs: { src: "/img/flags.png", alt: "" }
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-sm-5" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-2" }, [
+              _c("a", { attrs: { href: "" } }, [
+                _c("img", { attrs: { src: "/img/up.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-10 m-auto" }, [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-3" }, [
+                  _c(
+                    "h5",
+                    {
+                      staticClass: "d-inline-block px-3 py-2 rounded text-white"
+                    },
+                    [_vm._v("5")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-9" }, [
+                  _c(
+                    "p",
+                    { staticClass: "hard text-orange bg-orange rounded" },
+                    [
+                      _vm._v(
+                        "\n                                    Medium\n                                "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c("h5", { staticClass: "font-weight-bold" }, [
+                    _vm._v("Zuko2.com")
+                  ])
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }),
+              _vm._v(" "),
+              _c("p", { staticClass: "zuko-text" }, [
+                _vm._v(
+                  "Zuko2.com - Comeback - 14.08.2020 Big International Server"
+                )
+              ]),
+              _vm._v(" "),
+              _c("p", { staticClass: "mt-4" }, [
+                _c("span", [
+                  _c("img", {
+                    staticClass: "img-fluid",
+                    attrs: { src: "/img/like.png", alt: "" }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-success" }, [_vm._v("22545")]),
+                _vm._v(" "),
+                _c("span", { staticClass: "mx-3 text-secondary" }, [
+                  _vm._v("|")
+                ]),
+                _vm._v(" "),
+                _c("span", [
+                  _c("i", {
+                    staticClass:
+                      "fa fa-external-link-alt text-secondary font-13"
+                  })
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-secondary font-13" }, [
+                  _vm._v("988")
+                ])
+              ])
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-sm-7 m-auto" }, [
+          _c("img", {
+            staticClass: "img-fluid rounded",
+            attrs: { src: "/img/550120.jpg", alt: "" }
+          })
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-center" }, [
+      _c(
+        "a",
+        { staticClass: "text-decoration-none m-auto", attrs: { href: "" } },
+        [_c("img", { attrs: { src: "/img/2x.png", alt: "" } })]
+      ),
+      _vm._v(" "),
+      _c("a", { staticClass: "text-dark m-auto", attrs: { href: "" } }, [
+        _c("i", { staticClass: "fa fa-angle-left mx-1" })
+      ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        { staticClass: "btn btn-outline-dark mx-1", attrs: { href: "" } },
+        [_vm._v("1")]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        { staticClass: "btn btn-outline-dark mx-1", attrs: { href: "" } },
+        [_vm._v("2")]
+      ),
+      _vm._v(" "),
+      _c("a", { staticClass: "btn btn-dark mx-1", attrs: { href: "" } }, [
+        _vm._v("3")
+      ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        { staticClass: "btn btn-outline-dark mx-1", attrs: { href: "" } },
+        [_vm._v("4")]
+      ),
+      _vm._v(" "),
+      _c("a", { staticClass: "text-dark m-auto", attrs: { href: "" } }, [
+        _c("i", { staticClass: "fa fa-angle-right mx-1" })
+      ]),
+      _vm._v(" "),
+      _c(
+        "a",
+        { staticClass: "text-decoration-none m-auto", attrs: { href: "" } },
+        [_c("img", { attrs: { src: "/img/2x-r.png", alt: "" } })]
+      )
     ])
   }
 ]
@@ -63849,15 +63464,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!**************************************************!*\
   !*** ./resources/js/components/app/addserve.vue ***!
   \**************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _addserve_vue_vue_type_template_id_74e4e507_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./addserve.vue?vue&type=template&id=74e4e507&scoped=true& */ "./resources/js/components/app/addserve.vue?vue&type=template&id=74e4e507&scoped=true&");
 /* harmony import */ var _addserve_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./addserve.vue?vue&type=script&lang=js& */ "./resources/js/components/app/addserve.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _addserve_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _addserve_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -63887,7 +63501,7 @@ component.options.__file = "resources/js/components/app/addserve.vue"
 /*!***************************************************************************!*\
   !*** ./resources/js/components/app/addserve.vue?vue&type=script&lang=js& ***!
   \***************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
