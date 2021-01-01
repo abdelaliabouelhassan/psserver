@@ -43,13 +43,14 @@
           <vue-recaptcha
             ref="recaptcha"
             @verify="onCaptchaVerified"
-            @expired="resetCaptcha"        
+            @expired="resetCaptcha" 
+             size="invisible"       
             sitekey="6LeCNhwaAAAAAHLVfJBdyleRSh7bRmYuvolBuycB">
         </vue-recaptcha>
           <input
            :disabled="disabel"
             type="submit"
-            
+           
             class="btn btn-dark btn-block rounded"
             value="Sign In"
           />

@@ -2219,6 +2219,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -44610,7 +44611,10 @@ var render = function() {
             _vm._v(" "),
             _c("vue-recaptcha", {
               ref: "recaptcha",
-              attrs: { sitekey: "6LeCNhwaAAAAAHLVfJBdyleRSh7bRmYuvolBuycB" },
+              attrs: {
+                size: "invisible",
+                sitekey: "6LeCNhwaAAAAAHLVfJBdyleRSh7bRmYuvolBuycB"
+              },
               on: { verify: _vm.onCaptchaVerified, expired: _vm.resetCaptcha }
             }),
             _vm._v(" "),
