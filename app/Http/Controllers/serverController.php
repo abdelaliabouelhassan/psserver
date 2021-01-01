@@ -41,10 +41,8 @@ class serverController extends Controller
             Browsershot::url($request->URL)
                 // ->setNodeBinary('C:/node_testing/nodejs/node.exe')
                 // ->setNodeModulePath("C:/wamp/www/10k/psserver/node_modules")
-                ->setNodeBinary('/usr/local/bin/node')
                 ->waitUntilNetworkIdle()
-                ->setDelay($delayInMilliseconds)
-                ->setNpmBinary('/usr/local/bin/npm')
+                ->setDelay($delayInMilliseconds)    
                 ->save($pathToImage);
 
             //upload Banner  

@@ -20,12 +20,12 @@ Route::get('/take',function (){
     //        ->setNodeBinary('C:\Program Files\nodejs\node.exe')
     //       ->save('test.png');
 
-    // $pathToImage = public_path('/test.png');
-    // $delayInMilliseconds = 20000;
-    // Browsershot::url('https://sepherion2.biz/')
-    //     ->setNodeBinary('C:/node_testing/nodejs/node.exe')
-    // 	 ->waitUntilNetworkIdle(false)
-    //     ->save($pathToImage);
+    $pathToImage = public_path('/test.png');
+    $delayInMilliseconds = 20000;
+    Browsershot::url('https://sepherion2.biz/')
+        ->setNodeBinary('C:/node_testing/nodejs/node.exe')
+         ->noSandbox()->timeout(30)
+        ->save($pathToImage);
 
     // $pathToImage = public_path('/test.png');
     // $delayInMilliseconds = 20000;
