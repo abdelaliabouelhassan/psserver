@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-2"></div>
       <div class="col-8">
-        <div class="mt-4">
+        <form @submit.prevent="login($event)" class="mt-4">
           <span class="text-danger" v-if="errors">{{
             this.errors
           }}</span>
@@ -49,11 +49,11 @@
           <input
            :disabled="disabel"
             type="submit"
-            @click="login"
+            
             class="btn btn-dark btn-block rounded"
             value="Sign In"
           />
-        </div>
+        </form>
       </div>
       <div class="col-2"></div>
     </div>
@@ -67,6 +67,7 @@ export default {
   data() {
     return {
         disabel:false,
+         myForm: null,
       form: {
         username: "",
         password: "",
@@ -78,11 +79,13 @@ export default {
   methods: {
      onCaptchaVerified(token) {
             this.resetCaptcha()
+             let fData = new FormData(this.myForm.target)
+            fData.append('g-recaptcha-response', token)
 
-           this.g_recaptcha_response = token
+      
            this.disabel = true;
       this.axios
-        .post("/api/login", this.form)
+        .post("/api/login", this.myForm)
         .then((response) => {
           this.errors = [];
            this.disabel = false;
@@ -107,6 +110,7 @@ export default {
         },
  
     login() {
+       this.myForm = event
              this.disabel = true
             this.$refs.recaptcha.execute()
     },

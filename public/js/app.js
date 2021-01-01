@@ -2227,6 +2227,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       disabel: false,
+      myForm: null,
       form: {
         username: "",
         password: "",
@@ -2240,9 +2241,10 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.resetCaptcha();
-      this.g_recaptcha_response = token;
+      var fData = new FormData(this.myForm.target);
+      fData.append('g-recaptcha-response', token);
       this.disabel = true;
-      this.axios.post("/api/login", this.form).then(function (response) {
+      this.axios.post("/api/login", this.myForm).then(function (response) {
         _this.errors = [];
         _this.disabel = false;
         something.$emit("loaduser");
@@ -2263,6 +2265,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$refs.recaptcha.reset();
     },
     login: function login() {
+      this.myForm = event;
       this.disabel = true;
       this.$refs.recaptcha.execute();
     },
@@ -44532,8 +44535,16 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "col-8" }, [
         _c(
-          "div",
-          { staticClass: "mt-4" },
+          "form",
+          {
+            staticClass: "mt-4",
+            on: {
+              submit: function($event) {
+                $event.preventDefault()
+                return _vm.login($event)
+              }
+            }
+          },
           [
             _vm.errors
               ? _c("span", { staticClass: "text-danger" }, [
@@ -44605,12 +44616,7 @@ var render = function() {
             _vm._v(" "),
             _c("input", {
               staticClass: "btn btn-dark btn-block rounded",
-              attrs: {
-                disabled: _vm.disabel,
-                type: "submit",
-                value: "Sign In"
-              },
-              on: { click: _vm.login }
+              attrs: { disabled: _vm.disabel, type: "submit", value: "Sign In" }
             })
           ],
           1
