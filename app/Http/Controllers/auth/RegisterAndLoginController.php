@@ -44,12 +44,9 @@ class RegisterAndLoginController extends Controller
     }
     //login
     public function login(Request $request){
-            return $request->all();
-
            $request->validate([
             'username'=>['required'],
             'password'=>['required'],
-            'recaptcha_response'=>['required', 'captcha']
         ]);
 
         if(Auth::attempt($request->only('username','password'))){

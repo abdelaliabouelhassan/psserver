@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-2"></div>
       <div class="col-8">
-        <form @submit.prevent="login($event)" class="mt-4">
+        <div class="mt-4">
           <span class="text-danger" v-if="errors">{{
             this.errors
           }}</span>
@@ -39,22 +39,19 @@
               >Remember Me</label
             >
           </div>
+            <vue-recaptcha ref="recaptcha"
+          @verify="onVerify" sitekey="6LeCNhwaAAAAAHLVfJBdyleRSh7bRmYuvolBuycB">
+             </vue-recaptcha>
 
-          <vue-recaptcha
-            ref="recaptcha"
-            @verify="onCaptchaVerified"
-            @expired="resetCaptcha" 
-             size="invisible"       
-            sitekey="6LeCNhwaAAAAAHLVfJBdyleRSh7bRmYuvolBuycB">
-        </vue-recaptcha>
+        
           <input
            :disabled="disabel"
             type="submit"
-           
+            @click="login"
             class="btn btn-dark btn-block rounded"
             value="Sign In"
           />
-        </form>
+        </div>
       </div>
       <div class="col-2"></div>
     </div>
@@ -62,31 +59,30 @@
 </template>
 
 <script>
-import VueRecaptcha from 'vue-recaptcha'
+import VueRecaptcha from 'vue-recaptcha';
 export default {
-  components: {VueRecaptcha},
+   components: {
+     VueRecaptcha,
+  },
   data() {
     return {
         disabel:false,
-         myForm: null,
       form: {
         username: "",
         password: "",
-        recaptcha_response:"",
       },
       errors:"",
     };
   },
   methods: {
-     onCaptchaVerified(token) {
-            this.resetCaptcha()
-             let fData = new FormData(this.myForm.target)
-            fData.append('g-recaptcha-response', token)
-
-      
-           this.disabel = true;
+     onVerify: function (response) {
+      if (response) this.form.disabel = true;
+    },
+ 
+    login() {
+       this.disabel = true;
       this.axios
-        .post("/api/login", this.myForm)
+        .post("/api/login", this.form)
         .then((response) => {
           this.errors = [];
            this.disabel = false;
@@ -96,24 +92,16 @@ export default {
             title: "Signed in successfully",
           });
           this.$modal.hide('login')
+
           
         })
         .catch((errors) => {
-    
+      
           this.errors = errors.response.data
          this.$store.state.islogin = false
            this.$store.state.user = []
             this.disabel = false;
         });
-        },
-         resetCaptcha() {
-            this.$refs.recaptcha.reset()
-        },
- 
-    login() {
-       this.myForm = event
-             this.disabel = true
-            this.$refs.recaptcha.execute()
     },
      register_modal(){
        this.$modal.hide('login')
@@ -124,7 +112,4 @@ export default {
 </script>
 
 <style scoped>
- .grecaptcha-badge {
-        visibility: hidden !important;
-    }
 </style>
