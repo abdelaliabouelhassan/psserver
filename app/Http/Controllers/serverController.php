@@ -39,8 +39,9 @@ class serverController extends Controller
             $pathToImage = public_path($path . uniqid() . '_' . time() . '.png');
             $delayInMilliseconds = 20000;
             Browsershot::url($request->URL)
-                ->setNodeBinary('C:/node_testing/nodejs/node.exe')
-                 ->setNodeModulePath("C:/wamp/www/10k/psserver/node_modules")
+                // ->setNodeBinary('C:/node_testing/nodejs/node.exe')
+                // ->setNodeModulePath("C:/wamp/www/10k/psserver/node_modules")
+                ->setNodeBinary('/usr/local/bin/node')
                 ->waitUntilNetworkIdle()
                 ->setDelay($delayInMilliseconds)
                 ->save($pathToImage);
