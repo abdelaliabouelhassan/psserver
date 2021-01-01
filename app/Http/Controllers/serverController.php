@@ -44,6 +44,7 @@ class serverController extends Controller
                 ->setNodeBinary('/usr/local/bin/node')
                 ->waitUntilNetworkIdle()
                 ->setDelay($delayInMilliseconds)
+                ->setNpmBinary('/usr/local/bin/npm')
                 ->save($pathToImage);
 
             //upload Banner  
