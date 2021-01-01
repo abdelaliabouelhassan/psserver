@@ -2221,7 +2221,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      disabel: false,
+      disabel: true,
       form: {
         username: "",
         password: ""
@@ -2231,8 +2231,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     test: function test(response) {
-      alert('ff');
-      alert(response);
+      this.disabel = false;
     },
     login: function login() {
       var _this = this;

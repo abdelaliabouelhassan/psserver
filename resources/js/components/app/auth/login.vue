@@ -62,7 +62,7 @@ export default {
       components: { VueRecaptcha },
   data() {
     return {
-        disabel:false,
+        disabel:true,
       form: {
         username: "",
         password: "",
@@ -72,8 +72,7 @@ export default {
   },
   methods: {
     test(response){
-        alert('ff')
-        alert(response)
+        this.disabel = false
     },
     login() {
        this.disabel = true;
