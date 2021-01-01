@@ -40,7 +40,7 @@
             >
           </div>
             <vue-recaptcha ref="recaptcha"
-          @verify="onVerify" sitekey="6LeCNhwaAAAAAHLVfJBdyleRSh7bRmYuvolBuycB">
+            @verify="onVerify" sitekey="6LeCNhwaAAAAAHLVfJBdyleRSh7bRmYuvolBuycB">
              </vue-recaptcha>
 
         
@@ -66,7 +66,7 @@ export default {
   },
   data() {
     return {
-        disabel:false,
+        disabel:true,
       form: {
         username: "",
         password: "",
@@ -75,8 +75,8 @@ export default {
     };
   },
   methods: {
-     onVerify: function (response) {
-      if (response) this.form.disabel = true;
+     onVerify: function () {
+     this.form.disabel = false;
     },
  
     login() {
