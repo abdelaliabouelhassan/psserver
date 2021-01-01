@@ -39,6 +39,14 @@
               >Remember Me</label
             >
           </div>
+
+          <vue-recaptcha
+            ref="recaptcha"
+            @verify="onCaptchaVerified"
+            @expired="resetCaptcha"
+            
+            sitekey="6LeCNhwaAAAAAHLVfJBdyleRSh7bRmYuvolBuycB">
+        </vue-recaptcha>
           <input
            :disabled="disabel"
             type="submit"
@@ -54,21 +62,26 @@
 </template>
 
 <script>
+import VueRecaptcha from 'vue-recaptcha'
 export default {
+  components: {VueRecaptcha},
   data() {
     return {
         disabel:false,
       form: {
         username: "",
         password: "",
+        g_recaptcha_response:"",
       },
       errors:"",
     };
   },
   methods: {
- 
-    login() {
-       this.disabel = true;
+     onCaptchaVerified(token) {
+            this.resetCaptcha()
+
+           this.g_recaptcha_response = token
+           this.disabel = true;
       this.axios
         .post("/api/login", this.form)
         .then((response) => {
@@ -80,16 +93,23 @@ export default {
             title: "Signed in successfully",
           });
           this.$modal.hide('login')
-
           
         })
         .catch((errors) => {
-      
+    
           this.errors = errors.response.data
          this.$store.state.islogin = false
            this.$store.state.user = []
             this.disabel = false;
         });
+        },
+         resetCaptcha() {
+            this.$refs.recaptcha.reset()
+        },
+ 
+    login() {
+             this.disabel = true
+            this.$refs.recaptcha.execute()
     },
      register_modal(){
        this.$modal.hide('login')
@@ -100,4 +120,5 @@ export default {
 </script>
 
 <style scoped>
+
 </style>

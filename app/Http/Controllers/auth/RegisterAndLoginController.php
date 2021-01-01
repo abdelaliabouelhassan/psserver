@@ -47,6 +47,7 @@ class RegisterAndLoginController extends Controller
            $request->validate([
             'username'=>['required'],
             'password'=>['required'],
+            'g_recaptcha_response'=>['required', 'captcha']
         ]);
 
         if(Auth::attempt($request->only('username','password'))){

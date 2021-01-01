@@ -40,6 +40,11 @@
     <!-- style css -->
     <link rel="stylesheet" href="{{asset('style/style.css')}}">
 
+    {{-- recaptcha --}}
+<script src="https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit" async defer>
+</script>
+    
+
     <!-- responsive css -->
 
     <title>Metine2 TopList</title>
@@ -73,6 +78,7 @@
     src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/css.min.js"></script>
 <script
     src="{{asset('vgnav/vgnav.min.js')}}"></script>
+
 <!-- slick js -->
 <script src="{{asset('slick/slick.min.js')}}"></script>
 
