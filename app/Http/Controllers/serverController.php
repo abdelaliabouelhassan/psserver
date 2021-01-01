@@ -36,11 +36,12 @@ class serverController extends Controller
 
             //take screenshot
             $path = 'uploads/';
-            $pathToImage = public_path($path . uniqid() . '_' . time() . 'png');
+            $pathToImage = public_path($path . uniqid() . '_' . time() . '.png');
             $delayInMilliseconds = 20000;
             Browsershot::url($request->URL)
-            ->setNodeBinary('/usr/local/bin/node')
-            ->waitUntilNetworkIdle()
+                ->setNodeBinary('C:/node_testing/nodejs/node.exe')
+                 ->setNodeModulePath("C:/wamp/www/10k/psserver/node_modules")
+                ->waitUntilNetworkIdle()
                 ->setDelay($delayInMilliseconds)
                 ->save($pathToImage);
 
