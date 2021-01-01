@@ -39,9 +39,12 @@
 
     <!-- style css -->
     <link rel="stylesheet" href="{{asset('style/style.css')}}">
-
+{{-- recaptcha --}}
+ <script src='https://www.google.com/recaptcha/api.js'></script>
  
-
+        <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
+    async defer>
+</script>
 
     <!-- responsive css -->
 
@@ -84,11 +87,7 @@
 <!-- custom js -->
 <script src="{{asset('custom js/script.js')}}"></script>
 
-   {{-- recaptcha --}} 
-        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-        <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit"
-    async defer>
-</script>
+ 
 
 </body>
 </html>

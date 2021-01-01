@@ -39,6 +39,8 @@
               >Remember Me</label
             >
           </div>
+            <vue-recaptcha @verify="test" sitekey="6LeCNhwaAAAAAHLVfJBdyleRSh7bRmYuvolBuycB"></vue-recaptcha>
+
           <input
            :disabled="disabel"
             type="submit"
@@ -54,7 +56,10 @@
 </template>
 
 <script>
+  import VueRecaptcha from 'vue-recaptcha';
+
 export default {
+      components: { VueRecaptcha },
   data() {
     return {
         disabel:false,
@@ -66,7 +71,10 @@ export default {
     };
   },
   methods: {
- 
+    test(response){
+        alert('ff')
+        alert(response)
+    },
     login() {
        this.disabel = true;
       this.axios
