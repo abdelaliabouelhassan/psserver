@@ -16,16 +16,22 @@ use Spatie\Browsershot\Browsershot;
 
 Route::get('/take',function (){
 
-//    Browsershot::url('https://freek.dev/881-introducing-browsershot-v3-the-best-way-to-convert-html-to-pdfs-and-images')
-//        ->setNodeBinary('C:\Program Files\nodejs\node.exe')
-//       ->save('test.png');
+    //    Browsershot::url('https://freek.dev/881-introducing-browsershot-v3-the-best-way-to-convert-html-to-pdfs-and-images')
+    //        ->setNodeBinary('C:\Program Files\nodejs\node.exe')
+    //       ->save('test.png');
+
+    // $pathToImage = public_path('/test.png');
+    // $delayInMilliseconds = 20000;
+    // Browsershot::url('https://sepherion2.biz/')
+    //     ->setNodeBinary('C:/node_testing/nodejs/node.exe')
+    // 	 ->waitUntilNetworkIdle(false)
+    //     ->save($pathToImage);
 
     $pathToImage = public_path('/test.png');
-	$delayInMilliseconds = 20000;
+    $delayInMilliseconds = 20000;
     Browsershot::url('https://sepherion2.biz/')
-        ->setNodeBinary('C:/node_testing/nodejs/node.exe')
-		 ->waitUntilNetworkIdle(false)
-        ->save($pathToImage);
+    ->waitUntilNetworkIdle(false)
+    ->save($pathToImage);
 
 
 });
