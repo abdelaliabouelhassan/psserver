@@ -21,9 +21,10 @@ class CreateServersTable extends Migration
             $table->string('category');
             $table->string('language');
             $table->string('maxlevel');
-            $table->string('youtube_id');
+            $table->string('youtube_id')->nullable();
             $table->string('rates');
             $table->text('description');
+            $table->string('screen')->nullable();
             $table->integer('user_id');
             $table->string('status')->default('false');
             $table->timestamps();

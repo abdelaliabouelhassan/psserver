@@ -27,11 +27,11 @@ Route::get('/take',function (){
     // 	 ->waitUntilNetworkIdle(false)
     //     ->save($pathToImage);
 
-    $pathToImage = public_path('/test.png');
-    $delayInMilliseconds = 20000;
-    Browsershot::url('https://sepherion2.biz/')
-    ->waitUntilNetworkIdle(false)
-    ->save($pathToImage);
+    // $pathToImage = public_path('/test.png');
+    // $delayInMilliseconds = 20000;
+    // Browsershot::url('https://sepherion2.biz/')
+    // ->waitUntilNetworkIdle(false)
+    // ->save($pathToImage);
 
 
 });

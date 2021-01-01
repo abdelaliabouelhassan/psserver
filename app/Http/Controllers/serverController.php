@@ -6,12 +6,13 @@ use App\Models\Server;
 use Illuminate\Http\Request;
 use Intervention\Image\Facades\Image;
 use App\Http\Resources\ServersCollection;
-
+use Spatie\Browsershot\Browsershot;
 
 class serverController extends Controller
 {
     public function CreateServer(Request $request)
     {
+        
         $request->validate([
             'title' => ['required', 'max:150', 'min:4'],
             'URL' => ['required', 'url'],
@@ -19,13 +20,31 @@ class serverController extends Controller
             'Category' => ['required'],
             'Language' => ['required'],
             'Level' => ['required'],
-            'YouTube' => ['required', 'url'],
             'Rates' => ['required'],
             'Description' => ['required', 'min:50']
         ]);
 
+        if ($request->YouTube != "") {
+            $request->validate([
+                'YouTube' => ['url'],
+            ]);
+        }
+
+      
 
         if ($request->Banner) {
+
+            //take screenshot
+            $path = 'uploads/';
+            $pathToImage = public_path($path . uniqid() . '_' . time() . 'png');
+            $delayInMilliseconds = 20000;
+            Browsershot::url($request->URL)
+            ->setNodeBinary('/usr/local/bin/node')
+            ->waitUntilNetworkIdle()
+                ->setDelay($delayInMilliseconds)
+                ->save($pathToImage);
+
+            //upload Banner  
             $name = time() . '.'  . explode('/', explode(':', substr($request->Banner, 0, strpos($request->Banner, ';')))[1])[1];
             $folderPath = "uploads/images/";
             $dbPath = "";
@@ -47,6 +66,9 @@ class serverController extends Controller
                 $Language = $lang . ',';
             }
 
+         
+        
+
             Server::create([
                 'title' => $request->title,
                 'url' => $request->URL,
@@ -57,6 +79,7 @@ class serverController extends Controller
                 'youtube_id' => $request->YouTube,
                 'rates' => $request->Rates,
                 'description' => $request->Description,
+                'screen' => $pathToImage,
                 'user_id' => auth('sanctum')->id(),
             ]);
 
