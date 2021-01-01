@@ -35,15 +35,15 @@ class serverController extends Controller
         if ($request->Banner) {
 
             //take screenshot
-            $path = 'uploads/';
-            $pathToImage = public_path($path . uniqid() . '_' . time() . '.png');
-            $delayInMilliseconds = 20000;
-            Browsershot::url($request->URL)
-                // ->setNodeBinary('C:/node_testing/nodejs/node.exe')
-                // ->setNodeModulePath("C:/wamp/www/10k/psserver/node_modules")
-                ->waitUntilNetworkIdle()
-                ->setDelay($delayInMilliseconds)    
-                ->save($pathToImage);
+            // $path = 'uploads/';
+            // $pathToImage = public_path($path . uniqid() . '_' . time() . '.png');
+            // $delayInMilliseconds = 20000;
+            // Browsershot::url($request->URL)
+            //     // ->setNodeBinary('C:/node_testing/nodejs/node.exe')
+            //     // ->setNodeModulePath("C:/wamp/www/10k/psserver/node_modules")
+            //     ->waitUntilNetworkIdle()
+            //     ->setDelay($delayInMilliseconds)    
+            //     ->save($pathToImage);
 
             //upload Banner  
             $name = time() . '.'  . explode('/', explode(':', substr($request->Banner, 0, strpos($request->Banner, ';')))[1])[1];
