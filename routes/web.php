@@ -57,7 +57,7 @@ Route::get('/test', function () {
     
 });
 
-Route::get('/take/{url}',function ($url){
+Route::get('/take/',function (){
 
     //    Browsershot::url('https://freek.dev/881-introducing-browsershot-v3-the-best-way-to-convert-html-to-pdfs-and-images')
     //        ->setNodeBinary('C:\Program Files\nodejs\node.exe')
@@ -65,13 +65,15 @@ Route::get('/take/{url}',function ($url){
 
 
     
+$url = 'https://sepherion2.biz/';
 
+$imgname = uniqid() . '.png';
 
 $include_path = trim(shell_exec('npm bin'));
 
 $node_path = $include_path . DIRECTORY_SEPARATOR . 'node';
 $npm_path = $include_path . DIRECTORY_SEPARATOR . 'npm';
-    $pathToImage = public_path('/test.png');
+    $pathToImage = public_path('/' . $imgname);
     Browsershot::url($url)
         ->addChromiumArguments(['no-sandbox'])
         ->setIncludePath($include_path)
@@ -79,7 +81,7 @@ $npm_path = $include_path . DIRECTORY_SEPARATOR . 'npm';
         ->setNpmBinary($npm_path)
     ->save($pathToImage);
 
-    return '<img src="/test.png" />';
+    return '<img src="/ '. $imgname. '" />';
     // $pathToImage = public_path('/test.png');
     // $delayInMilliseconds = 20000;
     // Browsershot::url('https://sepherion2.biz/')
