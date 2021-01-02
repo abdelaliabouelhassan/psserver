@@ -20,7 +20,8 @@ use Illuminate\Http\Request;
 // });
 
 Route::get('/test', function (Request $request) {
-  return  $location_text = "The IP address {$request->ipinfo->ip}.";
+  return   'User IP Address - ' . $_SERVER['REMOTE_ADDR'];  
+
     
 });
 
