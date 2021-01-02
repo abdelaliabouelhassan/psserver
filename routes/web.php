@@ -16,7 +16,7 @@ use Spatie\Browsershot\Browsershot;
 
 
 Route::get('/test',function(){
-   return request()->ip();
+   return request()->getClientIp();
 });
 
 Route::get('/take',function (){
