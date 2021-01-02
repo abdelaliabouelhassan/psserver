@@ -94,12 +94,15 @@ class serverController extends Controller
 
 
     public function GetServers(){
-         $servers = Server::paginate(15);
+         $servers = Server::orderBy('realtimeVote', 'desc')->paginate(15);
         return  ServersCollection::collection($servers);     
     }
 
     public function GetServerBySlug($slug){
-             $servers = Server::where('slug',$slug)->get();
-             return  ServersCollection::collection($servers); 
+        $servers = Server:: where('slug', $slug)->firstOrFail();
+        $servers->viewd = $servers->viewd + 1;
+        $servers->save();
+        $servers = Server::where('slug',$slug)->get();
+         return  ServersCollection::collection($servers); 
     }
 }

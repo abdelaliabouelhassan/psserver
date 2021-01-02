@@ -1,6 +1,6 @@
 <template>
     <section class="main">
-        <div class="container">
+        <div class="container" style="max-width: 68% !important;">
             <div class="row">
                 <div class="col-md-8 my-1">
                     <div class="row">

@@ -39,5 +39,7 @@ Route::middleware('auth:sanctum')->post('/createserver', 'serverController@Creat
 Route::get('/GetServers', 'serverController@GetServers');
 Route::get('/GetServer/{slug}', 'serverController@GetServerBySlug');
 
+//vote
 
+Route::post('/Vote', 'VotesController@Vote');
 

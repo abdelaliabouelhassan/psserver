@@ -31,6 +31,8 @@ class ServersCollection extends JsonResource
             'status'=>$this->status,
             'is_international' => Str::containsAll($this->language, ['Deutsch,', 'English,', 'Espanol,', 'France,', 'Roman,']),
             'slug'=>$this->slug,
+            'realtimeVote'=>$this->realtimeVote,
+            'viewd'=>$this->viewd,
             'difficulty'=>$this->difficulty,
             'created_at' =>\Illuminate\Support\Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->diffForHumans(),
         ];

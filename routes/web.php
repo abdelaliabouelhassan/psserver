@@ -2,7 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use Spatie\Browsershot\Browsershot;
-use Illuminate\Http\Request;
+use Longman\IPTools\Ip;
+use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,26 +19,41 @@ use Illuminate\Http\Request;
 // Route::get('/test',function(){
 //    return request()->getClientIp();
 // });
+use  \Illuminate\Support\Carbon;
 
-Route::get('/test', function (Request $request) {
-    function getIPAddress()
-    {
-        //whether ip is from the share internet  
-        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-            $ip = $_SERVER['HTTP_CLIENT_IP'];
-        }
-        //whether ip is from the proxy  
-        elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-        }
-        //whether ip is from the remote address  
-        else {
-            $ip = $_SERVER['REMOTE_ADDR'];
-        }
-        return $ip;
-    }
-    $ip = getIPAddress();
-    return 'User Real IP Address - ' . $ip; 
+Route::get('/test', function () {
+    $date = new \DateTime();
+    $date->modify('-8 hours');
+    $formatted_date = $date->format('Y-m-d H:i:s');
+ 
+   return User::where('created_at', '>', $formatted_date)->get();
+        $time = auth()->user();
+    $now = Carbon::now();
+    return $time->created_at->diffInHours($now);
+
+    // function getIPAddress()
+    // {
+    //     //whether ip is from the share internet  
+    //     if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+    //         $ip = $_SERVER['HTTP_CLIENT_IP'];
+    //     }
+    //     //whether ip is from the proxy  
+    //     elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+    //         $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    //     }
+    //     //whether ip is from the remote address  
+    //     else {
+    //         $ip = $_SERVER['REMOTE_ADDR'];
+    //     }
+    //     return $ip;
+    // }
+
+
+   
+  
+
+
+  
     
 });
 
@@ -47,12 +63,27 @@ Route::get('/take',function (){
     //        ->setNodeBinary('C:\Program Files\nodejs\node.exe')
     //       ->save('test.png');
 
+
+    
+$url = 'https://sepherion2.biz/';
+
+$include_path = trim(shell_exec('npm bin'));
+
+$node_path = $include_path . DIRECTORY_SEPARATOR . 'node';
+$npm_path = $include_path . DIRECTORY_SEPARATOR . 'npm';
     $pathToImage = public_path('/test.png');
-    $delayInMilliseconds = 20000;
-    Browsershot::url('https://sepherion2.biz/')
-        ->setNodeBinary('C:/node_testing/nodejs/node.exe')
-         ->noSandbox()->timeout(30)
-        ->save($pathToImage);
+    Browsershot::url($url)
+        ->addChromiumArguments(['no-sandbox'])
+        ->setIncludePath($include_path)
+        ->setNodeBinary($node_path)
+        ->setNpmBinary($npm_path)
+    ->save($pathToImage);
+    // $pathToImage = public_path('/test.png');
+    // $delayInMilliseconds = 20000;
+    // Browsershot::url('https://sepherion2.biz/')
+    //     ->setNodeBinary('C:/node_testing/nodejs/node.exe')
+    //      ->noSandbox()->timeout(30)
+    //     ->save($pathToImage);
 
     // $pathToImage = public_path('/test.png');
     // $delayInMilliseconds = 20000;

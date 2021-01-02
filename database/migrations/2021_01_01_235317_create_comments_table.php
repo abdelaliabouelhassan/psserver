@@ -18,6 +18,7 @@ class CreateCommentsTable extends Migration
             $table->string('username');
             $table->string('email')->nullable();
             $table->text('comment');
+            $table->string('iam')->default('Warrior (m)');
             $table->string('rate');
             $table->timestamps();
         });

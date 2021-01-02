@@ -42,12 +42,12 @@
                 <span>
                   <img src="/img/like.png" class="img-fluid" alt="" />
                 </span>
-                <span class="text-success">22545</span>
+                <span class="text-success">{{Server.realtimeVote}}</span>
                 <span class="mx-3 text-secondary">|</span>
                 <span>
                   <i class="fa fa-external-link-alt text-secondary font-13"></i>
                 </span>
-                <span class="text-secondary font-13">988</span>
+                <span class="text-secondary font-13">{{Server.viewd}}</span>
               </p>
             </div>
           </div>

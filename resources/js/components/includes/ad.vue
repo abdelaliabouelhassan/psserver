@@ -1,6 +1,6 @@
 <template>
     <section class=" py-4">
-        <div class="container">
+        <div class="container" style="max-width: 68% !important;">
             <div class="row">
                 <div class="col-md-6 m-auto px-1 py-1">
                     <div class="bg-light text-center py-4">

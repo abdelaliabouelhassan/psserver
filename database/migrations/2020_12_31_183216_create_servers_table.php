@@ -31,6 +31,7 @@ class CreateServersTable extends Migration
             $table->integer('realtimeVote')->default(0);
             $table->integer('previousVote')->default(0);
             $table->string('upDown')->default('stable');
+            $table->integer('viewd')->unsigned()->default(0);
             $table->string('status')->default('false');
             $table->timestamps();
         });

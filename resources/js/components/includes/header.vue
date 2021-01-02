@@ -1,6 +1,6 @@
 <template>
   <div class="header bg-light m-0 bg-dark">
-    <div class="row">
+    <div class="row" style="margin-left: 11rem;">
       <div class="col-md-3">
         <div class="logo">
             <router-link to="/"><img src="/img/logo.png" style="width: 90px" alt="" /></router-link>
