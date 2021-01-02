@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Spatie\Browsershot\Browsershot;
-
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,8 +15,13 @@ use Spatie\Browsershot\Browsershot;
 */
 
 
-Route::get('/test',function(){
-   return request()->getClientIp();
+// Route::get('/test',function(){
+//    return request()->getClientIp();
+// });
+
+Route::get('/test', function (Request $request) {
+  return  $location_text = "The IP address {$request->ipinfo->ip}.";
+    
 });
 
 Route::get('/take',function (){
