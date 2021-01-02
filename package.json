@@ -26,14 +26,15 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "npm": "*",
         "node": "*",
+        "npm": "*",
         "puppeteer": "^5.5.0",
         "sweetalert2": "^10.12.6",
         "vue-axios": "^3.2.0",
         "vue-js-modal": "^2.0.0-rc.6",
         "vue-recaptcha": "^1.3.0",
         "vue-router": "^3.4.9",
+        "vuejs-paginate": "^2.1.0",
         "vuex": "^3.6.0",
         "vuex-multi-tab-state": "^1.0.16"
     }

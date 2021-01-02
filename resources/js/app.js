@@ -39,6 +39,9 @@ Vue.component('register', require('./components/app/auth/register').default);
 window.something = new Vue();
 
 /**********   packages   ***********/
+import Paginate from 'vuejs-paginate'
+Vue.component('paginate', Paginate)
+
 
 import VModal from 'vue-js-modal'
 Vue.use(VModal)

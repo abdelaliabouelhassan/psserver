@@ -22,13 +22,12 @@ export default {
       this.axios
         .get("/api/user")
         .then((response) => {
-          console.log(response);
-          this.$store.state.islogin = true;
+           this.$store.state.islogin = true;
           this.$store.state.user = response.data;
         })
         .catch((errors) => {
            this.$store.state.islogin = false;
-          this.$store.state.user = [];
+            this.$store.state.user = [];
         });
     },
   },

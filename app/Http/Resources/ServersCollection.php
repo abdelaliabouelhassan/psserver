@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Str;
 
 class ServersCollection extends JsonResource
 {
@@ -14,6 +15,7 @@ class ServersCollection extends JsonResource
      */
     public function toArray($request)
     {
+        
         return [
             'id' => $this->id,
             'user' => $this->user,
@@ -27,7 +29,10 @@ class ServersCollection extends JsonResource
             'rates'=>$this->rates,
             'description'=>$this->description,
             'status'=>$this->status,
-            'created_at' => $this->created_at,
+            'is_international' => Str::containsAll($this->language, ['Deutsch,', 'English,', 'Espanol,', 'France,', 'Roman,']),
+            'slug'=>$this->slug,
+            'difficulty'=>$this->difficulty,
+            'created_at' =>\Illuminate\Support\Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->diffForHumans(),
         ];
     }
 }

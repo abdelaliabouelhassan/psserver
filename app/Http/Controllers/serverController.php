@@ -21,7 +21,8 @@ class serverController extends Controller
             'Language' => ['required'],
             'Level' => ['required'],
             'Rates' => ['required'],
-            'Description' => ['required', 'min:50']
+            'Description' => ['required', 'min:50'],
+            'Difficulty'=>['required'],
         ]);
 
         if ($request->YouTube != "") {
@@ -59,12 +60,12 @@ class serverController extends Controller
                 $dbPath =   $folderPath . $name;
             } else {
                 $img =   Image::make($request->Banner);
-                $img->save(public_path($folderPath) . $name);
+                $img->resize(468, 190)->save(public_path($folderPath) . $name);
                 $dbPath =   $folderPath . $name;
             }
             $Language = "";
             foreach ($request->Language as $lang) {
-                $Language = $lang . ',';
+                $Language .= $lang . ',';
             }
 
          
@@ -80,7 +81,8 @@ class serverController extends Controller
                 'youtube_id' => $request->YouTube,
                 'rates' => $request->Rates,
                 'description' => $request->Description,
-                'screen' => $pathToImage,
+                'difficulty'=>$request->Difficulty,
+                // 'screen' => null,
                 'user_id' => auth('sanctum')->id(),
             ]);
 
@@ -92,7 +94,12 @@ class serverController extends Controller
 
 
     public function GetServers(){
-        $servers = Server::all();
+         $servers = Server::paginate(15);
         return  ServersCollection::collection($servers);     
+    }
+
+    public function GetServerBySlug($slug){
+             $servers = Server::where('slug',$slug)->get();
+             return  ServersCollection::collection($servers); 
     }
 }

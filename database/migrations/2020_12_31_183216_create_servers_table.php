@@ -26,6 +26,11 @@ class CreateServersTable extends Migration
             $table->text('description');
             $table->string('screen')->nullable();
             $table->integer('user_id');
+            $table->string('slug');
+            $table->string('difficulty');
+            $table->integer('realtimeVote')->default(0);
+            $table->integer('previousVote')->default(0);
+            $table->string('upDown')->default('stable');
             $table->string('status')->default('false');
             $table->timestamps();
         });

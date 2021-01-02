@@ -109,6 +109,22 @@
             <option value="NewSchool Root">NewSchool Root</option>
           </select>
         </div>
+         <div class="col-md-12">
+          <label for="Category">Difficulty :</label>
+           <span class="text-danger" v-if="errors.Difficulty">{{
+            this.errors.Difficulty[0]
+          }}</span>
+          <select
+           :class="{ 'is-invalid': errors.Difficulty }"
+            id="Category"
+            class="form-control rounded my-2"
+            v-model="form.Difficulty"
+          >
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+          </select>
+        </div>
         <div class="col-md-12">
           <label for="Language">Language :</label>
            <span class="text-danger" v-if="errors.Language">{{
@@ -219,6 +235,7 @@ export default {
         YouTube: "",
         Rates: "",
         Description: "",
+        Difficulty:"",
         isGif:false,
       },
     };
@@ -270,6 +287,10 @@ export default {
           this.clicked = false 
            if (errors.response.status == 422) {
             this.errors = errors.response.data.errors;
+             Toast.fire({
+            icon: "error",
+            title: "Please check the error above .",
+          });
           }else{
             Toast.fire({
             icon: "error",

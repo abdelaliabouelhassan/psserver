@@ -77,7 +77,7 @@
        
          <router-link to="/myprofile"  style="font-size: 0px"  class="btn btn-link text-white hidbtn text-decoration-none" >
 
-            <img src="/img/Ellipse 1655.png" alt="" />
+            <img src="/img/avatar.png" alt="" style="width: 32px;" />
             <h6>{{ $store.state.user.username }}</h6>
             <!-- <br />
             <p class="user-mail" style="left: 0px">

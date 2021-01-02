@@ -1,7 +1,7 @@
 <template>
         <div>
               <div class="card serverCard p-4 mb-3 mt-5">
-                <img src="/img/flags.png" class="img-fluid flag-img" alt="">
+                <img src="/img/flags.png" class="img-fluid flag-img" alt="international server"  v-if="Server.is_international">
               <div class="row">
                 <div class="col-sm-5">
                   <div class="row">
@@ -16,14 +16,18 @@
                           <h5 class="d-inline-block px-3 py-2 rounded text-white">1</h5>
                         </div>
                         <div class="col-9">
-                          <p class="hard text-danger bg-pink rounded">
-                           Hard
-                          </p>
-                          <h5 class="font-weight-bold">Zuko2.com</h5>
+                            <p class="hard text-danger bg-pink rounded" v-if="Server.difficulty == 'Hard'" style="cursor:pointer"  @click="goDetails(Server.slug)">Hard</p>
+                                           <p class="hard text-success bg-green rounded"  v-if="Server.difficulty == 'Easy'"  >
+                                                Easy
+                                            </p>
+                                             <p class="hard text-orange bg-orange rounded"  v-if="Server.difficulty == 'Medium'" >
+                                                Medium
+                                            </p>
+                          <h5 class="font-weight-bold">{{ url }}</h5>
                         </div>
                       </div>
                       <div class="row"></div>
-                      <p class="zuko-text">Zuko2.com - Comeback - 14.08.2020 Big International Server</p>
+                      <p class="zuko-text">{{ Server.title }}</p>
                       <p class="mt-4">
                         <span>
                           <img src="/img/like.png" class="img-fluid" alt="">
@@ -39,7 +43,7 @@
                   </div>
                 </div>
                 <div class="col-sm-7 m-auto">
-                  <img src="/img/550120.jpg" class="img-fluid rounded" alt="">
+                  <img :src="'/'+ Server.banner"  onerror="this.src='/img/550120.jpg'" class="img-fluid rounded" alt="">
                 </div>
               </div>
             </div>
@@ -53,13 +57,17 @@
                     <div class="col-md-6">
                         <div class="row">
                             <div class="col-4 m-auto">
-                                <p>Server type:</p>
+                                <p>Server Type:</p>
                             </div>
                             <div class="col-7">
-                                <p class="hard text-danger d-inline bg-pink rounded">
-                                    Hard
-                                   </p>
-                                   <p class="d-inline text-muted ml-2">Middleschool</p>
+                                          <p class="hard text-danger bg-pink rounded" v-if="Server.difficulty == 'Hard'" style="cursor:pointer"  @click="goDetails(Server.slug)">Hard</p>
+                                           <p class="hard text-success bg-green rounded"  v-if="Server.difficulty == 'Easy'"  >
+                                                Easy
+                                            </p>
+                                             <p class="hard text-orange bg-orange rounded"  v-if="Server.difficulty == 'Medium'" >
+                                                Medium
+                                            </p>
+                                   <p class="d-inline text-muted ml-2">{{Server.category}}</p>
                             </div>
                         </div>
                         <hr>
@@ -68,7 +76,7 @@
                                 <p>Max LvL:</p>
                             </div>
                             <div class="col-7">
-                                   <p class="d-inline text-muted ml-2">250</p>
+                                   <p class="d-inline text-muted ml-2">{{Server.maxlevel}}</p>
                             </div>
                         </div>
                         <hr>
@@ -77,13 +85,13 @@
                                 <p>Rates:</p>
                             </div>
                             <div class="col-7">
-                                   <p class="d-inline text-muted ml-2">500%</p>
+                                   <p class="d-inline text-muted ml-2">{{Server.rates}}%</p>
                             </div>
                         </div>
                         <hr>
                         <div class="row">
                             <div class="col-4 m-auto">
-                                <p>Likes:</p>
+                                <p>Votes:</p>
                             </div>
                             <div class="col-7">
                                    <p class="d-inline text-success ml-2">22 545</p>
@@ -97,7 +105,7 @@
                                 <p>Website:</p>
                             </div>
                             <div class="col-7">
-                                   <p class="d-inline text-muted ml-2"><a href="" class="text-muted">https://www.zuko2.com</a> <i class="fa fa-external-link-alt"></i></p>
+                                   <p class="d-inline text-muted ml-2"><a :href="Server.url" target="_blank" class="text-muted">{{url}}</a> <i class="fa fa-external-link-alt"></i></p>
                             </div>
                         </div>
                         <hr>
@@ -124,14 +132,14 @@
                                 <p>Server start:</p>
                             </div>
                             <div class="col-7">
-                                   <p class="d-inline text-muted ml-2">22.02.2020</p>
+                                   <p class="d-inline text-muted ml-2">{{Server.created_at}}</p>
                             </div>
                         </div>
                         <hr>
                     </div>
                 </div>
                 <div class="text-center mt-4">
-                    <a href="" class="text-dark text-decoration-none font-weight-bold">ADD COMMENT</a>
+                    <a href="" class="text-dark text-decoration-none font-weight-bold">Rate Server</a>
                 </div>
             </div>
 
@@ -224,7 +232,31 @@
 
 <script>
 export default {
- 
+        data(){
+            return{
+                Server:[],
+                url:''
+            }
+        },
+        methods:{
+            getServer(){
+          this.axios
+        .get("/api/GetServer/" + this.$route.params.slug)
+        .then((response) => { 
+                this.Server = response.data.data[0]
+                this.url = this.Server.url.replace(/[http:// https://]/g, "")
+               console.log(response)
+         
+        })
+        .catch((errors) => { 
+
+        });
+            }
+        },
+        created(){
+           this.getServer();
+            
+        }
 };
 </script>
 
