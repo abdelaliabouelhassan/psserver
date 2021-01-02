@@ -14,6 +14,11 @@ use Spatie\Browsershot\Browsershot;
 |
 */
 
+
+Route::get('/test',function(){
+   return request()->ip();
+});
+
 Route::get('/take',function (){
 
     //    Browsershot::url('https://freek.dev/881-introducing-browsershot-v3-the-best-way-to-convert-html-to-pdfs-and-images')
