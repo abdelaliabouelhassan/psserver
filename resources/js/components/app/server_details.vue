@@ -62,7 +62,7 @@
         </div>
         <div class="col-sm-7 m-auto">
           <img
-            :src="'/' + Server.banner"
+            :src="'/' + Server.screen"
             onerror="this.src='/img/550120.jpg'"
             class="img-fluid rounded"
             alt=""

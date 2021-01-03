@@ -45209,7 +45209,7 @@ var render = function() {
             _c("img", {
               staticClass: "img-fluid rounded",
               attrs: {
-                src: "/" + _vm.Server.banner,
+                src: "/" + _vm.Server.screen,
                 onerror: "this.src='/img/550120.jpg'",
                 alt: ""
               }

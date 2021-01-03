@@ -81,7 +81,7 @@ $npm_path = $include_path . DIRECTORY_SEPARATOR . 'npm';
         ->setNpmBinary($npm_path)
     ->save($pathToImage);
 
-    return '<img src="/ '. $imgname. '" />';
+    return '<img src="/'. $imgname. '" />';
     // $pathToImage = public_path('/test.png');
     // $delayInMilliseconds = 20000;
     // Browsershot::url('https://sepherion2.biz/')

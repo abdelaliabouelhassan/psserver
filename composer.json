@@ -20,7 +20,8 @@
         "laravel/ui": "^3.1",
         "longman/ip-tools": "^1.2",
         "spatie/browsershot": "^3.41",
-        "spatie/laravel-sluggable": "^2.6"
+        "spatie/laravel-sluggable": "^2.6",
+        "ext-gd": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

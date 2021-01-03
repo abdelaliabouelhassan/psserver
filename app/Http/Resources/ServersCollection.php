@@ -34,6 +34,7 @@ class ServersCollection extends JsonResource
             'realtimeVote'=>$this->realtimeVote,
             'viewd'=>$this->viewd,
             'difficulty'=>$this->difficulty,
+            'screen'=>$this->screen,
             'created_at' =>\Illuminate\Support\Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->diffForHumans(),
         ];
     }

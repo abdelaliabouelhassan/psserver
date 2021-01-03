@@ -36,20 +36,27 @@ class serverController extends Controller
         if ($request->Banner) {
 
             //take screenshot
-            // $path = 'uploads/';
-            // $pathToImage = public_path($path . uniqid() . '_' . time() . '.png');
-            // $delayInMilliseconds = 20000;
-            // Browsershot::url($request->URL)
-            //     // ->setNodeBinary('C:/node_testing/nodejs/node.exe')
-            //     // ->setNodeModulePath("C:/wamp/www/10k/psserver/node_modules")
-            //     ->waitUntilNetworkIdle()
-            //     ->setDelay($delayInMilliseconds)    
-            //     ->save($pathToImage);
+            $imgname = uniqid() .'_'. time() . '.png';
+
+            $include_path = trim(shell_exec('npm bin'));
+            $delayInMilliseconds = 15000;
+            $node_path = $include_path . DIRECTORY_SEPARATOR . 'node';
+            $npm_path = $include_path . DIRECTORY_SEPARATOR . 'npm';
+            $pathToImage = public_path('uploads/images/' . $imgname);
+            Browsershot::url($request->URL)
+            ->addChromiumArguments(['no-sandbox'])
+            ->setIncludePath($include_path)
+                ->setNodeBinary($node_path)
+                ->setNpmBinary($npm_path)
+                ->waitUntilNetworkIdle()
+                ->setDelay($delayInMilliseconds)
+                ->save($pathToImage);
 
             //upload Banner  
             $name = time() . '.'  . explode('/', explode(':', substr($request->Banner, 0, strpos($request->Banner, ';')))[1])[1];
             $folderPath = "uploads/images/";
             $dbPath = "";
+
             if ($request->isGif) {
 
                 $image_parts = explode(";base64,", $request->Banner);
@@ -68,9 +75,6 @@ class serverController extends Controller
                 $Language .= $lang . ',';
             }
 
-         
-        
-
             Server::create([
                 'title' => $request->title,
                 'url' => $request->URL,
@@ -82,7 +86,7 @@ class serverController extends Controller
                 'rates' => $request->Rates,
                 'description' => $request->Description,
                 'difficulty'=>$request->Difficulty,
-                // 'screen' => null,
+                'screen' => $pathToImage,
                 'user_id' => auth('sanctum')->id(),
             ]);
 
