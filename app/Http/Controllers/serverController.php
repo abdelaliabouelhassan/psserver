@@ -43,14 +43,14 @@ class serverController extends Controller
             $node_path = $include_path . DIRECTORY_SEPARATOR . 'node';
             $npm_path = $include_path . DIRECTORY_SEPARATOR . 'npm';
             $pathToImage = public_path('uploads/images/' . $imgname);
-            Browsershot::url($request->URL)
-            ->addChromiumArguments(['no-sandbox'])
-            ->setIncludePath($include_path)
-                ->setNodeBinary($node_path)
-                ->setNpmBinary($npm_path)
-                ->waitUntilNetworkIdle()
-                ->setDelay($delayInMilliseconds)
-                ->save($pathToImage);
+            // Browsershot::url($request->URL)
+            // ->addChromiumArguments(['no-sandbox'])
+            // ->setIncludePath($include_path)
+            //     ->setNodeBinary($node_path)
+            //     ->setNpmBinary($npm_path)
+            //     ->waitUntilNetworkIdle()
+            //     ->setDelay($delayInMilliseconds)
+            //     ->save($pathToImage);
 
             //upload Banner  
             $name = time() . '.'  . explode('/', explode(':', substr($request->Banner, 0, strpos($request->Banner, ';')))[1])[1];
