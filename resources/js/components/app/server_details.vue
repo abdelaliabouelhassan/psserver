@@ -66,6 +66,7 @@
             onerror="this.src='/img/550120.jpg'"
             class="img-fluid rounded"
             alt=""
+            style="height: 183px; width: 100%;"
           />
         </div>
       </div>

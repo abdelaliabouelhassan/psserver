@@ -57,19 +57,15 @@ class serverController extends Controller
             $folderPath = "uploads/images/";
             $dbPath = "";
 
-            if ($request->isGif) {
+           
 
-                $image_parts = explode(";base64,", $request->Banner);
-                $image_type_aux = explode("image/", $image_parts[0]);
-                $image_type = $image_type_aux[1];
-                $image_base64 = base64_decode($image_parts[1]);
-                file_put_contents($folderPath . $name, $image_base64);
-                $dbPath =   $folderPath . $name;
-            } else {
-                $img =   Image::make($request->Banner);
-                $img->resize(468, 190)->save(public_path($folderPath) . $name);
-                $dbPath =   $folderPath . $name;
-            }
+            $image_parts = explode(";base64,", $request->Banner);
+            $image_type_aux = explode("image/", $image_parts[0]);
+            $image_type = $image_type_aux[1];
+            $image_base64 = base64_decode($image_parts[1]);
+            file_put_contents($folderPath . $name, $image_base64);
+            $dbPath =   $folderPath . $name;
+          
             $Language = "";
             foreach ($request->Language as $lang) {
                 $Language .= $lang . ',';
@@ -86,7 +82,7 @@ class serverController extends Controller
                 'rates' => $request->Rates,
                 'description' => $request->Description,
                 'difficulty'=>$request->Difficulty,
-                'screen' => $pathToImage,
+                'screen' => $folderPath . $imgname ,
                 'user_id' => auth('sanctum')->id(),
             ]);
 

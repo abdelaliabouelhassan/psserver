@@ -2709,6 +2709,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2756,6 +2757,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -45035,7 +45037,11 @@ var render = function() {
               _c("a", { attrs: { href: Server.url, target: "_blank" } }, [
                 _c("img", {
                   staticClass: "img-fluid rounded",
-                  staticStyle: { cursor: "pointer" },
+                  staticStyle: {
+                    cursor: "pointer",
+                    height: "183px",
+                    width: "100%"
+                  },
                   attrs: {
                     src: Server.banner,
                     alt: Server.title,
@@ -45208,6 +45214,7 @@ var render = function() {
           _c("div", { staticClass: "col-sm-7 m-auto" }, [
             _c("img", {
               staticClass: "img-fluid rounded",
+              staticStyle: { height: "183px", width: "100%" },
               attrs: {
                 src: "/" + _vm.Server.screen,
                 onerror: "this.src='/img/550120.jpg'",

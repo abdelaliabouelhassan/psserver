@@ -57,9 +57,10 @@
             <img
               :src="Server.banner"
               class="img-fluid rounded"
-              style="cursor: pointer"
+              style="cursor: pointer;height: 183px; width: 100%"
               :alt="Server.title"
               onerror="this.src='/img/550120.jpg'"
+              
             />
           </a>
         </div>
