@@ -64,22 +64,6 @@ class serverController extends Controller
 
         if ($request->Banner) {
 
-            //take screenshot
-            // $imgname = uniqid() .'_'. time() . '.png';
-
-            // $include_path = trim(shell_exec('npm bin'));
-            // $delayInMilliseconds = 15000;
-            // $node_path = $include_path . DIRECTORY_SEPARATOR . 'node';
-            // $npm_path = $include_path . DIRECTORY_SEPARATOR . 'npm';
-            // $pathToImage = public_path('uploads/images/' . $imgname);
-            // Browsershot::url($request->URL)
-            // ->addChromiumArguments(['no-sandbox'])
-            // ->setIncludePath($include_path)
-            //     ->setNodeBinary($node_path)
-            //     ->setNpmBinary($npm_path)
-            //     ->waitUntilNetworkIdle()
-            //     // ->setDelay($delayInMilliseconds)
-            //     ->save($pathToImage);
 
             //upload Banner  
             $name = time() . '.'  . explode('/', explode(':', substr($request->Banner, 0, strpos($request->Banner, ';')))[1])[1];
@@ -191,8 +175,6 @@ class serverController extends Controller
 
 
             $image_parts = explode(";base64,", $request->banner);
-            $image_type_aux = explode("image/", $image_parts[0]);
-            $image_type = $image_type_aux[1];
             $image_base64 = base64_decode($image_parts[1]);
             file_put_contents($folderPath . $name, $image_base64);
             $dbPath =   $folderPath . $name;

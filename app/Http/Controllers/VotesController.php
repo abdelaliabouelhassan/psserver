@@ -82,7 +82,7 @@ class VotesController extends Controller
 
             //check if alredy voted (validation) =>  3 time in 8h  , 1 time in 24h for each server    
 
-
+          
             //check if already 3 in 8h
 
             $date = new \DateTime();
@@ -96,52 +96,38 @@ class VotesController extends Controller
                     $time = $vote->created_at;
                     $now = Carbon::now();
                     $time =   $time->diff($now)->days;
-                    if ($time >= 1) {
-                        $server =    Server::findOrFail($request->server_id);
-                        $server->realtimeVote  =  $server->realtimeVote + 1;
-                        $server->save();
-                        Vote::create([
-                            'server_id' => $request->server_id,
-                            'ip' =>  $my_Ip,
-                        ]);
-                        Comment::create([
-                            'user_id' => $user_id,
-                            'comment' => $request->comment,
-                            'iam' => $request->iam,
-                            'rate' => $request->rating,
-                        ]);
-                        return response()->json('You have voted successfully', 200);
-                    } else {
+                    if ($time < 1) {
                         return response()->json('You have already voted on this server, you must wait 24 hours to vote again', 403);
-
-                    }
-                } else{
-                    //vote
-                    $server =    Server::findOrFail($request->server_id);
-                    $server->realtimeVote  =  $server->realtimeVote + 1;
-                    $server->save();
-                    Vote::create([
-                        'server_id' => $request->server_id,
-                        'ip' =>  $my_Ip,
-                    ]);
-                    Comment::create([
-                        'user_id' => $user_id,
-                        'comment' => $request->comment,
-                        'iam' => $request->iam,
-                        'rate' => $request->rating,
-                    ]);
-                    return response()->json('You have voted successfully', 200);
-
-                }   
+                    } 
+                } 
              }else{
                 //you cant
                 return response()->json('You can only vote 3 servers in 8 hours', 403);
             }
           }else{
-            //ip is not the same 
+              //ip is not the same 
             return response()->json('You can\'t Vote ', 403);
-    } 
+             }
 
+    //vote 
+        $server =    Server::findOrFail($request->server_id);
+        $server->realtimeVote  =  $server->realtimeVote + 1;
+        $server->save();
+        Vote::create([
+            'server_id' => $request->server_id,
+            'ip' =>  $my_Ip,
+        ]);
+        Comment::create([
+            'user_id' => $user_id,
+            'comment' => $request->comment,
+            'iam' => $request->iam,
+            'server_id'=>$request->server_id,
+            'rate' => $request->rating,
+        ]);
+        return response()->json('You have voted successfully', 200);
+
+        
+       
 }
 
     public function GetComments($slug){
