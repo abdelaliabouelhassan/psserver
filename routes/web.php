@@ -7,6 +7,7 @@ use App\Models\User;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
+use App\Models\Server;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,21 +27,40 @@ use  \Illuminate\Support\Carbon;
 
 Route::get('/test', function () {
 
-    // $response = Http::get('https://stackoverflow.com/questions/46652851/sending-post-request-with-guzzle-in-laravel');
+   
 
+  $current_servers = Server::orderBy('realtimeVote', 'desc')->where('status', 'true')->get();
+$previous_servers = Server::orderBy('previousVote', 'desc')->where('status', 'true')->get();
 
+foreach ($current_servers as $current_server_pos => $current_server)
+{
+    $up_down = 'down';
 
-    // $response = Http::get('https://sepherion2.biz/');
+    foreach ($previous_servers as $previous_server_pos => $previous_server)
+    {
+        // If the current position of the server is lower than the
+        // positions of the previous servers, which do not have the same ID,
+        // we can assume that the server is now at a higher position.
+        if ($current_server_pos < $previous_server_pos)
+        {
+            $up_down = 'up';
+            break;
+        }
 
-    // dd($response->body());
-    // $data = $response->body();
-//  return   $response =   Browsershot::url('https://sepherion2.biz/')->setNodeBinary('C:/node_testing/nodejs/node.exe')->bodyHtml();
+        // If we found the current server in the array of previous servers.
+        if ($current_server->id === $previous_server->id)
+        {
+            // We can assume that it is lower or the same.
+            $up_down = $current_server_pos > $previous_server_pos  ? 'down' : 'stable';
+            
+            break;
+        }
+    }
 
-
-//    return $contains = Str::contains($data, ['<a href="/">Packagist0</a>']);
-       
-
-return '<a href="http://127.0.0.1:8000/serverdetails/http1270018000" title="Metin2 P Server">Metin2 P Server</a>  '; 
+    $current_server->upDown = $up_down;
+    $current_server->previousVote = $current_server->realtimeVote;
+    $current_server->save();
+}
 
   
 

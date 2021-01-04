@@ -120,7 +120,7 @@ class serverController extends Controller
 
 
     public function GetServers(){
-          $servers = Server::orderBy('realtimeVote', 'desc')->where('status','true')->paginate(15);
+          $servers = Server::orderBy('previousVote', 'desc')->where('status','true')->paginate(15);
           return  ServersCollection::collection($servers);     
     }
 
@@ -219,7 +219,7 @@ class serverController extends Controller
     }
 
     public function getserverbyserver($server){
-        $servers = Server::orderBy('realtimeVote', 'desc')->where('language','like' , '%' .$server . '%')->where('status', 'true')->paginate(15);
+        $servers = Server::orderBy('previousVote', 'desc')->where('language','like' , '%' .$server . '%')->where('status', 'true')->paginate(15);
         return  ServersCollection::collection($servers);    
     }
 

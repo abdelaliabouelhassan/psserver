@@ -8,6 +8,7 @@
       class="card serverCard p-4 mb-3 mt-5"
       v-for="(Server, index) in Servers"
     >
+    
       <img
         src="/img/flags.png"
         class="img-fluid flag-img"
@@ -20,11 +21,13 @@
             <div class="col-2">
                 <img src="/img/down.png" alt="" />
             </div>
+            {{ Server.upDown }}
             <div class="col-10 m-auto" >
               <div class="row">
                 <div class="col-3">
                   <h5 class="d-inline-block px-3 py-2 rounded text-white" style="cursor:pointer"  @click="goDetails(Server.slug)">
                     {{ index + 1 }}
+                      
                   </h5>
                 </div>
                 <div class="col-9">

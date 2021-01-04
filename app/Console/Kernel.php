@@ -24,7 +24,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        $schedule->command('vote:update')->everyTenMinutes();
+        $schedule->command('vote:reset')->cron('0 0 1,14 * *');
+        $schedule->command('take:screen')->everyMonth();
     }
 
     /**
