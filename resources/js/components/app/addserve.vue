@@ -51,24 +51,36 @@
         </ul>
     </div>
     </div>
-     
-    <div class="mt-4">
+<!-- Steps -->
+    <div class="mt-4" v-if="ndStep">
       <div class="row">
         <div class="col-md-12">
-          <label for="pageurl">Page URL :</label>
-          <span class="text-danger" v-if="errors.URL">{{
-            this.errors.URL[0]
-          }}</span>
-          <input
-            :class="{ 'is-invalid': errors.URL }"
-            type="url"
-            id="pageurl"
-            class="form-control rounded my-2"
-            placeholder="Page URL"
-            v-model="form.URL"
-          />
-        </div>
-        <div class="col-md-12">
+      <label for="Description">Your Backlink You need to add them in your website :</label>  
+      <textarea
+        name=""
+        id="Description"
+        cols="30"
+        rows="5"
+        class="form-control mt-2 rounded"
+        placeholder="Your Backlink You need to add them in your website "  
+      >
+       <a href="{{link}}" title="Metin2 P Server">Metin2 P Server</a>
+      </textarea>
+         <input
+        :disabled="checkuser"
+        type="submit"
+        class="btn btn-dark d-block bg-dark mt-3"
+        value="Done"
+        @click="ndStep = false;endStep = true"
+      />
+       </div>
+       
+       </div>
+    </div>    
+
+    <div class="mt-4" v-if="firstStep">
+      <div class="row">
+         <div class="col-md-12">
           <label for="title">Server title :</label>
             <span class="text-danger" v-if="errors.title">{{
             this.errors.title[0]
@@ -82,6 +94,35 @@
             v-model="form.title"
           />
         </div>
+        <div class="col-md-12">
+              <label for="pageurl">Page URL :</label>
+          <span class="text-danger" v-if="errors.URL">{{
+            this.errors.URL[0]
+          }}</span>
+          <input
+            :class="{ 'is-invalid': errors.URL }"
+            type="url"
+            id="pageurl"
+            class="form-control rounded my-2"
+            placeholder="Page URL"
+            v-model="form.URL"
+          />
+           <input
+        :disabled="checkuser"
+        type="submit"
+        class="btn btn-dark d-block bg-dark mt-3"
+        value="Generate Backlink"
+        @click="GenerateLink"
+      />
+       </div>
+       
+       </div>
+    </div>    
+     
+    <div class="mt-4" v-if="endStep">
+      <div class="row">
+       
+      
         <div class="col-md-12">
           <label for="Banner">Banner :</label>
            <span class="text-danger" v-if="errors.Banner">{{
@@ -212,7 +253,15 @@
         type="submit"
         class="btn btn-dark d-block bg-dark mt-3"
         value="Create"
+         style="display:inline-block" 
         @click="createServer"
+      />
+       <input 
+       style="display:inline-block" 
+        type="submit"
+        class="btn btn-dark d-block bg-dark mt-3"
+        value="Back"
+        @click="ndStep = true; endStep = false"
       />
     </div>
   </div>
@@ -224,8 +273,13 @@ export default {
     return {
       clicked:false,
       emailVrf: true,
+      firstStep:true,
+      endStep:false,
+      ndStep:false,
+      link:'',
       errors:[],
       form: {
+        id:"",
         URL: "",
         title: "",
         Banner: "",
@@ -241,6 +295,39 @@ export default {
     };
   },
   methods: {
+    GenerateLink(){
+     this.clicked = true
+      this.axios
+        .post("/api/GenerateLink", this.form)
+        .then((response) => { 
+          console.log(response)
+           this.clicked = false   
+           this.firstStep = false  
+           this.ndStep = true  
+           this.link = response.data.link  
+           this.form.id  = response.data.id,
+          Toast.fire({
+            icon: "success",
+            title: "Backlink Geneated Successfully",
+          });
+        })
+        .catch((errors) => {  
+          this.clicked = false 
+           if (errors.response.status == 422) {
+            this.errors = errors.response.data.errors;
+           Toast.fire({
+            icon: "error",
+            title: "Please check the error above .",
+          });
+          }else{
+            Toast.fire({
+            icon: "error",
+            title: "Something went wrong please try again .",
+          });
+          }      
+          
+        });
+    },
     UploadBanner(e){
            
                 let file = e.target.files[0];
@@ -277,7 +364,7 @@ export default {
       this.axios
         .post("/api/createserver", this.form)
         .then((response) => { 
-           this.clicked = false      
+           this.clicked = false 
           Toast.fire({
             icon: "success",
             title: "Server Created Successfully",
@@ -291,7 +378,13 @@ export default {
             icon: "error",
             title: "Please check the error above .",
           });
-          }else{
+          }else if(errors.response.status == 403){
+            Toast.fire({
+            icon: "error",
+            title: errors.response.data,
+          });
+          }
+          else{
             Toast.fire({
             icon: "error",
             title: "Something went wrong please try again .",

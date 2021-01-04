@@ -24,11 +24,14 @@ class RegisterAndLoginController extends Controller
 
         ]);
 
+        $my_Ip =  getIPAddress();
+      
 
        $user =  User::create([
            'username'=>$request->username,
            'email'=>$request->email,
            'password'=>Hash::make($request->password),
+           'ip'=> $my_Ip,
         ]);
 
         $user =   User::findOrFail($user->id);
@@ -89,5 +92,30 @@ class RegisterAndLoginController extends Controller
         Mail::to($user->email)->send(new VerificationEmail($token, $user->email, $user->username));
 
         return response()->json('Verification email sent successfully', 200);
+    }
+
+
+    public function changepassword(Request $request){
+        $request->validate([
+            'old_password' => ['required'],
+            'password' => ['required', 'min:8', 'confirmed']
+
+        ]);
+            
+     if( !Hash::check($request->old_password, auth('sanctum')->user()->password)){
+            return response()->json('The password you entered does not match', 403); 
+     }else{
+            User::findOrFail(auth('sanctum')->user()->id)->update([
+                'password' => Hash::make($request->password),
+            ]);
+            return response()->json('Password Updated Successfully', 200); 
+
+     }
+
+
+
+
+
+
     }
 }

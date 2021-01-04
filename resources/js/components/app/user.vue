@@ -14,48 +14,21 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="py-5">
-                    <td><span class="border bg-white" style="width: 20px !important;height: 20px; border: 1px solid black;">1</span></td>
-                    <td>Zuko2</td>
-                    <td>https://www.metin2-toplist.info/server/in/1157/</td>
+                  <tr class="py-5" v-for="(myserve,index) in myservers">
+                    <td><span class="border bg-white" style="width: 20px !important;height: 20px; border: 1px solid black;">{{index +1}}</span></td>
+                    <td>{{myserve.title}}</td>
+                    <td>{{myserve.url}}</td>
                     <td>
-                        <img src="img/like.png" class="img-fluid" alt="">22545
+                        <img src="img/like.png" class="img-fluid" alt="">{{myserve.realtimeVote}}
                     </td>
                     <td>
-                        <i class="fa fa-external-link-alt text-dark font-10 mr-1"></i>988
+                        <i class="fa fa-external-link-alt text-dark font-10 mr-1"></i>{{myserve.viewd}}
                     </td>
                     <td class="text-center">
-                        <button class="btn btn-dark px-3 py-0 rounded m-0" style="font-size: 12px;">edit</button>
+                        <button class="btn btn-dark px-3 py-0 rounded m-0" style="font-size: 12px;" @click="editServer(myserve.slug)">edit</button>
                     </td>
                   </tr>
-                  <tr class="py-5">
-                    <td><span class="border py-1 px-2 bg-dark text-white">2</span></td>
-                    <td>Zuko2</td>
-                    <td>https://www.metin2-toplist.info/server/in/1157/</td>
-                    <td>
-                        <img src="img/like.png" class="img-fluid" alt="">22545
-                    </td>
-                    <td>
-                        <i class="fa fa-external-link-alt text-dark font-10 mr-1"></i>988
-                    </td>
-                    <td class="text-center">
-                        <button class="btn btn-light px-3 py-0 rounded m-0" style="font-size: 12px;">edit</button>
-                    </td>
-                  </tr>
-                  <tr class="py-5">
-                    <td><span class="border py-1 px-2 bg-white">3</span></td>
-                    <td>Zuko2</td>
-                    <td>https://www.metin2-toplist.info/server/in/1157/</td>
-                    <td>
-                        <img src="img/like.png" class="img-fluid" alt="">22545
-                    </td>
-                    <td>
-                        <i class="fa fa-external-link-alt text-dark font-10 mr-1"></i>988
-                    </td>
-                    <td class="text-center">
-                        <button class="btn btn-dark px-3 py-0 rounded m-0" style="font-size: 12px;">edit</button>
-                    </td>
-                  </tr>
+                
                 </tbody>
               </table>
         </div>
@@ -70,14 +43,20 @@
         <div class="row mt-4">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <form action="">
-                    <input type="text" class="form-control rounded my-3" placeholder="Old password">
-                    <input type="password" class="form-control rounded my-3" placeholder="New password">
-                    <input type="password" class="form-control rounded my-3" placeholder="Confirm password">
+                <div action="">
+             <span class="text-danger" v-if="errors.old_password">{{
+            this.errors.old_password[0]
+          }}</span>
+               <input type="password" class="form-control rounded my-3" :class="{ 'is-invalid': errors.old_password }" v-model="user.old_password" placeholder="Old password">
+                     <span class="text-danger" v-if="errors.password">{{
+            this.errors.password[0]
+          }}</span>
+                    <input type="password" class="form-control rounded my-3" :class="{ 'is-invalid': errors.password }" v-model="user.password" placeholder="New password">
+                    <input type="password" class="form-control rounded my-3" v-model="user.password_confirmation" placeholder="Confirm password">
                     <div class="text-center">
-                        <input type="submit" class="btn btn-danger rounded font-14 mt-4" value="CHANGE PASSWORD">
+                        <input type="submit" class="btn btn-danger rounded font-14 mt-4" @click="changepassword" :disabled="clicked" value="CHANGE PASSWORD">
                     </div>
-                </form>
+                </div>
             </div>
             <div class="col-md-3"></div>
         </div>
@@ -86,25 +65,88 @@
 
 <script>
 export default {
+  data(){
+    return {
+      myservers:[],
+      errors:[],
+      clicked:false,
+      user:{
+        old_password:'',
+        password:'',
+        password_confirmation:''
+      }
+    }
+  },
+  beforeRouteEnter (to, from, next) {
+  next(vm => {
+        if (vm.$store.state.islogin) {
+              next();
+            }else{
+          vm.$router.push({path:'/home'});
+            }
+           
+    });
+    
+  },
+   created(){
+     this.getMyServers();
+   },
   methods: {
-      login_modal(){
-           something.$emit("login_modal");
-      },
-      login_register(){
-            something.$emit("login_register");
-      },
-    logout() {
-      this.axios
-        .get("api/logout")
-        .then((response) => {
-          console.log(response);
-          this.$store.state.islogin = false
-          this.$store.state.user = []
+    editServer(slug){
+      this.$router.push({path:'/edit/'+ slug});
+    },
+    getMyServers(){
+           this.axios
+        .get("/api/getMyServers")
+        .then((response) => { 
+         this.myservers = response.data   
         })
-        .catch((errors) => {
-          console.log(errors.response);
+        .catch((errors) => {  
+
         });
     },
+     changepassword(){
+        this.clicked = true 
+        var vm = this
+         this.axios
+        .post("/api/changepassword", this.user)
+        .then((response) => { 
+          console.log(response)
+           this.clicked = false   
+            Toast.fire({
+            icon: "success",
+            title: "Password Updated Successfully",
+          });
+           vm.errors = []
+        })
+        .catch((errors) => {  
+          vm.clicked = false 
+           if (errors.response.status == 422) {
+              vm.clicked = false 
+               vm.errors = errors.response.data.errors;
+           Toast.fire({
+            icon: "error",
+            title: "Please check the error above .",
+          });
+          }
+           else if (errors.response.status == 403) {
+            vm.clicked = false 
+             vm.errors = []
+           Toast.fire({
+            icon: "error",
+            title:  errors.response.data,
+          });
+          }else{
+             vm.clicked = false 
+              vm.errors = []
+            Toast.fire({
+            icon: "error",
+            title: "Something went wrong please try again .",
+          });
+          }      
+          
+        });
+     },
   },
 };
 </script>

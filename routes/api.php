@@ -28,6 +28,7 @@ return response()->json('not logged in',401);
 Route::post('/register','auth\RegisterAndLoginController@register');
 Route::post('/login','auth\RegisterAndLoginController@login');
 Route::get('/logout','auth\RegisterAndLoginController@logout');
+Route::post('/changepassword', 'auth\RegisterAndLoginController@changepassword');
 
 
 //Verification email
@@ -36,10 +37,21 @@ Route::middleware('auth:sanctum')->post('/Verification', 'auth\RegisterAndLoginC
 
 //servers
 Route::middleware('auth:sanctum')->post('/createserver', 'serverController@CreateServer');
+Route::middleware('auth:sanctum')->post('/GenerateLink', 'serverController@GenerateLink');
 Route::get('/GetServers', 'serverController@GetServers');
 Route::get('/GetServer/{slug}', 'serverController@GetServerBySlug');
+Route::get('/getMyServers', 'serverController@getMyServers');
+Route::get('/getServerInfo/{slug}', 'serverController@getServerInfo');
+Route::post('/updateServer', 'serverController@updateServer');
+Route::get('/GetServers/{server}', 'serverController@getserverbyserver');
 
 //vote
-
 Route::post('/Vote', 'VotesController@Vote');
+
+
+
+//comments
+Route::get('/getComments/{slug}', 'VotesController@GetComments');
+Route::post('/replay', 'VotesController@Replay');
+
 

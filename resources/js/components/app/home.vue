@@ -1,5 +1,9 @@
 <template>
   <div>
+    <div v-if="Servers.length == 0" style="text-align: center; margin-top: 100px;">
+        <b>No Records Found</b>
+    </div>
+
     <div
       class="card serverCard p-4 mb-3 mt-5"
       v-for="(Server, index) in Servers"
@@ -119,6 +123,21 @@ export default {
   },
   created() {
     this.GetServers();
+     something.$on("search", (value) => {
+       if(value == ""){
+this.GetServers();
+       }else{
+            this.axios
+        .get("/api/GetServers/" + value)
+        .then((response) => {
+          this.Servers = response.data.data;
+          this.total = response.data.meta.last_page;
+        })
+        .catch((errors) => {});
+       }
+
+     
+    });
   },
 };
 </script>

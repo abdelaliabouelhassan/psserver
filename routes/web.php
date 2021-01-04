@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use Spatie\Browsershot\Browsershot;
 use Longman\IPTools\Ip;
 use App\Models\User;
+use GuzzleHttp\Client;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,34 +25,23 @@ use App\Models\User;
 use  \Illuminate\Support\Carbon;
 
 Route::get('/test', function () {
-    $date = new \DateTime();
-    $date->modify('-8 hours');
-    $formatted_date = $date->format('Y-m-d H:i:s');
- 
-   return User::where('created_at', '>', $formatted_date)->get();
-        $time = auth()->user();
-    $now = Carbon::now();
-    return $time->created_at->diffInHours($now);
 
-    // function getIPAddress()
-    // {
-    //     //whether ip is from the share internet  
-    //     if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-    //         $ip = $_SERVER['HTTP_CLIENT_IP'];
-    //     }
-    //     //whether ip is from the proxy  
-    //     elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-    //         $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    //     }
-    //     //whether ip is from the remote address  
-    //     else {
-    //         $ip = $_SERVER['REMOTE_ADDR'];
-    //     }
-    //     return $ip;
-    // }
+    // $response = Http::get('https://stackoverflow.com/questions/46652851/sending-post-request-with-guzzle-in-laravel');
 
 
-   
+
+    // $response = Http::get('https://sepherion2.biz/');
+
+    // dd($response->body());
+    // $data = $response->body();
+//  return   $response =   Browsershot::url('https://sepherion2.biz/')->setNodeBinary('C:/node_testing/nodejs/node.exe')->bodyHtml();
+
+
+//    return $contains = Str::contains($data, ['<a href="/">Packagist0</a>']);
+       
+
+return '<a href="http://127.0.0.1:8000/serverdetails/http1270018000" title="Metin2 P Server">Metin2 P Server</a>  '; 
+
   
 
 

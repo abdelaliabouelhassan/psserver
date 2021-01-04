@@ -66,7 +66,7 @@
             onerror="this.src='/img/550120.jpg'"
             class="img-fluid rounded"
             alt=""
-            style="height: 183px; width: 100%;"
+            style="height: 183px; width: 100%"
           />
         </div>
       </div>
@@ -196,9 +196,11 @@
 
     <!--  -->
 
-    <h3 class="my-5 font-weight-bold">Feedback & Comments: <span>67</span></h3>
+    <h3 class="my-5 font-weight-bold">
+      Feedback & Comments: <span>{{ comments.length }}</span>
+    </h3>
 
-    <div class="card my-3">
+    <div class="card my-3" v-if="!showReplay" v-for="comment in comments">
       <div class="row p-3">
         <div class="col-1 p-0 m-auto">
           <img src="/img/avatar.png" class="img-fluid" alt="" />
@@ -206,54 +208,18 @@
         <div class="col-11 p-0 pl-2">
           <div class="row">
             <div class="col-3">
-              <h6 class="font-14 m-0">StrongWarrior69</h6>
+              <h6 class="font-14 m-0">{{ comment.username }}</h6>
             </div>
             <div class="col-3">
-              <p>January 25, 18:33 pm</p>
-            </div>
-            <div class="col-2">
-              <i class="fa fa-heart text-danger font-14"></i
-              ><span class="font-14 ml-1">34 likes</span>
-            </div>
-            <div class="col-4 text-right pr-3">
-              <button
-                class="btn btn-success p-0 px-2 mr-2 rounded"
-                style="font-size: 10px"
-              >
-                REPLY
-              </button>
-            </div>
-          </div>
-          <p class="font-14">
-            Grursus mal suada faci lisis Lorem ipsum dolarorit more a ametion
-            consectetur is elit. Vesti at bulum nec odio aea the dumm ipsumm.
-            Dolocons rsus mal suada and fad olorit to the consectetur elit.
-          </p>
-        </div>
-      </div>
-    </div>
-
-    <!--  -->
-
-    <div class="card my-3">
-      <div class="row p-3">
-        <div class="col-1 p-0 m-auto">
-          <img src="/img/avatar.png" class="img-fluid" alt="" />
-        </div>
-        <div class="col-11 p-0 pl-2">
-          <div class="row">
-            <div class="col-3">
-              <h6 class="font-14 m-0">StrongWarrior69</h6>
-            </div>
-            <div class="col-3">
-              <p>January 25, 18:33 pm</p>
+              <p>{{ comment.created_at }}</p>
             </div>
             <div class="col-2">
               <i class="fa fa-heart text-muted font-14"></i
-              ><span class="font-14 ml-1">0 likes</span>
+              ><span class="font-14 ml-1">{{ comment.rate }}</span>
             </div>
             <div class="col-4 text-right pr-3">
               <button
+                @click="openReplayModal(comment.id)"
                 class="btn btn-dark bg-dark p-0 px-2 mr-2 rounded"
                 style="font-size: 10px"
               >
@@ -262,32 +228,98 @@
             </div>
           </div>
           <p class="font-14">
-            Grursus mal suada faci lisis Lorem ipsum dolarorit more a ametion
-            consectetur is elit. Vesti at bulum nec odio aea the dumm ipsumm.
-            Dolocons rsus mal suada and fad olorit to the consectetur elit.
+            {{ comment.comment }}
           </p>
+          <a href="javascript:void(0)" v-if="comment.replay.length != 0" @click="showReplays(comment.replay)">show replays</a>
+        </div>
+      </div>
+    </div>
+    <a href="javascript:void(0)" v-if="showReplay" @click="showReplay = false">Hide Replays</a>
+     <div class="card my-3" v-if="showReplay" v-for="comment in replays">
+      <div class="row p-3">
+        <div class="col-1 p-0 m-auto">
+          <img src="/img/avatar.png" class="img-fluid" alt="" />
+        </div>
+        <div class="col-11 p-0 pl-2">
+          <div class="row">
+            <div class="col-3">
+              <h6 class="font-14 m-0">{{ comment.username }}</h6>
+            </div>
+            <div class="col-3">
+              <p>{{ comment.created_at }}</p>
+            </div>
+          </div>
+          <p class="font-14">
+            {{ comment.comment }}
+          </p>
+         
         </div>
       </div>
     </div>
 
+    <modal name="replay" :height="400">
+      <div class="my-3 px-4 py-5 bg-white">
+        <h6 class="font-weight-bold">Add Your Replay</h6>
+        <span class="text-danger" v-if="errors.username"
+          >{{ this.errors.username[0] }}
+        </span>
+        <div class="mt-4">
+          <div class="row">
+            <div class="col-md-6">
+              <input
+                type="text"
+                class="form-control rounded my-2"
+                placeholder="E-mail address"
+                v-model="replayForm.email"
+                :class="{ 'is-invalid': errors.email }"
+              />
+            </div>
+            <div class="col-md-6">
+              <input
+                type="text"
+                class="form-control rounded my-2"
+                placeholder="Your User Name"
+                v-model="replayForm.username"
+                :class="{ 'is-invalid': errors.username }"
+              />
+            </div>
+          </div>
+          <textarea
+            :class="{ 'is-invalid': errors.comment }"
+            name=""
+            id=""
+            cols="30"
+            rows="5"
+            class="form-control mt-2 rounded"
+            placeholder="I think..."
+            v-model="replayForm.comment"
+          ></textarea>
+          <input
+            type="submit"
+            class="btn btn-dark d-block bg-dark mt-3"
+            value="Replay"
+            @click="Replay"
+            :disabled="clicked"
+          />
+        </div>
+      </div>
+    </modal>
+
     <modal name="Comment" :height="500">
       <div class="my-3 px-4 py-5 bg-white">
         <h6 class="font-weight-bold">Rate Server</h6>
-         <span class="text-danger" v-if="errors.username">{{
-            this.errors.username[0]
-          }}
+        <span class="text-danger" v-if="errors.username"
+          >{{ this.errors.username[0] }}
         </span>
-        <div  class="mt-4">
-            
+        <div class="mt-4">
           <div class="row">
             <div class="col-md-6">
-                
               <select
                 class="form-control rounded my-2"
                 placeholder="Your rating "
                 id="rating"
                 v-model="form.rating"
-                  :class="{ 'is-invalid': errors.rating }"
+                :class="{ 'is-invalid': errors.rating }"
               >
                 <option value="" selected>Select Your rating</option>
                 <option value="Very bad">Very bad</option>
@@ -298,22 +330,22 @@
                 <option value="Very Good">Very Good</option>
               </select>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" v-if="!$store.state.islogin">
               <input
                 type="text"
                 class="form-control rounded my-2"
                 placeholder="E-mail address"
                 v-model="form.email"
-                 :class="{ 'is-invalid': errors.email }"
+                :class="{ 'is-invalid': errors.email }"
               />
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" v-if="!$store.state.islogin">
               <input
                 type="text"
                 class="form-control rounded my-2"
                 placeholder="Your User Name"
                 v-model="form.username"
-                  :class="{ 'is-invalid': errors.username }"
+                :class="{ 'is-invalid': errors.username }"
               />
             </div>
             <div class="col-md-6">
@@ -322,8 +354,7 @@
                 placeholder="I am "
                 id="Iam"
                 v-model="form.iam"
-                  :class="{ 'is-invalid': errors.iam }"
-                  
+                :class="{ 'is-invalid': errors.iam }"
               >
                 <option value="Warrior (m)">Warrior (m)</option>
                 <option value="Warrior (f)">Warrior (f)</option>
@@ -346,16 +377,27 @@
             placeholder="I think..."
             v-model="form.comment"
           ></textarea>
-          <input type="checkbox"  :class="{ 'is-invalid': errorTos }"  v-model="tos" /><label for="check" class="ml-2 my-2 terms"
-            ><span class="" :class="{ 'text-danger': errorTos }" >I have read and agree to the</span>
-            <a href="" class="text-success font-16" :class="{ 'text-danger': errorTos }">Terms of Use</a></label
+          <input
+            type="checkbox"
+            :class="{ 'is-invalid': errorTos }"
+            v-model="tos"
+          /><label for="check" class="ml-2 my-2 terms"
+            ><span class="" :class="{ 'text-danger': errorTos }"
+              >I have read and agree to the</span
+            >
+            <a
+              href=""
+              class="text-success font-16"
+              :class="{ 'text-danger': errorTos }"
+              >Terms of Use</a
+            ></label
           >
           <input
             type="submit"
             class="btn btn-dark d-block bg-dark mt-3"
             value="Enter"
             @click="Rate"
-             :disabled="clicked"
+            :disabled="clicked"
           />
         </div>
       </div>
@@ -369,58 +411,104 @@ export default {
     return {
       Server: [],
       url: "",
-      clicked:false,
-      form:{
-            comment:'',
-            rating:'',
-            email:'',
-            username:'',
-            iam:'',
-            server_id:'',
+      clicked: false,
+      form: {
+        comment: "",
+        rating: "",
+        email: "",
+        username: "",
+        iam: "Warrior (m)",
+        server_id: "",
       },
-      errorTos:false,
-      tos:false,
-      errors:[],
+      replayForm: {
+        comment: "",
+        email: "",
+        username: "",
+        comment_id: "",
+      },
+      errorTos: false,
+      tos: false,
+      errors: [],
+      comments: [],
+      replays:[],
+      showReplay:false,
     };
   },
   methods: {
-      Rate(){
-            
-          if(!this.tos){
-              this.errorTos = true
-              return;
-          }
-           this.form.server_id = this.Server.id; 
-           this.errorTos = false  
-          this.clicked = true
-           this.axios
-        .post("/api/Vote", this.form)
-        .then((response) => { 
-           this.clicked = false  
-            Toast.fire({
-                icon: "success",
-                title: "You have voted successfully",
-            });
+    showReplays(replays){
+      this.replays = replays
+      this.showReplay = true
+    },
+    Replay() {
+      this.clicked = true;
+      this.clicked = true;
+      this.axios
+        .post("/api/replay", this.replayForm)
+        .then((response) => {
+          this.clicked = false;
+          Toast.fire({
+            icon: "success",
+            title: "You have voted successfully",
+          });
         })
-        .catch((errors) => {  
-          this.clicked = false 
-           if (errors.response.status == 422) {
-            this.errors = errors.response.data.errors;  
-          }else if(errors.response.status == 403){
+        .catch((errors) => {
+          this.clicked = false;
+          if (errors.response.status == 422) {
+            this.errors = errors.response.data.errors;
+          } else {
             Toast.fire({
-            icon: "error",
-            title: errors.response.data,
-          });
+              icon: "error",
+              title: "Something went wrong please try again .",
+            });
           }
-          else{
-            Toast.fire({
-            icon: "error",
-            title: "Something went wrong please try again .",
-          });
-          }      
-          
         });
-      },
+    },
+    openReplayModal(id) {
+      this.replayForm.comment_id = id;
+      this.$modal.show("replay");
+    },
+    getComments() {
+      this.axios
+        .get("/api/getComments/" + this.$route.params.slug)
+        .then((response) => {
+          this.comments = response.data.data;
+        })
+        .catch((error) => {});
+    },
+    Rate() {
+      if (!this.tos) {
+        this.errorTos = true;
+        return;
+      }
+      this.form.server_id = this.Server.id;
+      this.errorTos = false;
+      this.clicked = true;
+      this.axios
+        .post("/api/Vote", this.form)
+        .then((response) => {
+          this.clicked = false;
+          Toast.fire({
+            icon: "success",
+            title: "You have voted successfully",
+          });
+        })
+        .catch((errors) => {
+          this.clicked = false;
+          if (errors.response.status == 422) {
+            this.errors = errors.response.data.errors;
+          } else if (errors.response.status == 403) {
+            Toast.fire({
+              icon: "error",
+              title: errors.response.data,
+            });
+          } else {
+            Toast.fire({
+              icon: "error",
+              title: "Something went wrong please try again .",
+            });
+          }
+        });
+    },
     modalRate() {
       this.$modal.show("Comment");
     },
@@ -437,6 +525,7 @@ export default {
   },
   created() {
     this.getServer();
+    this.getComments();
   },
 };
 </script>

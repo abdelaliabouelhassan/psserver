@@ -16,18 +16,18 @@ class CreateServersTable extends Migration
         Schema::create('servers', function (Blueprint $table) {
             $table->id();
             $table->string('url');
-            $table->string('title');
-            $table->string('banner');
-            $table->string('category');
-            $table->string('language');
-            $table->string('maxlevel');
+            $table->string('title')->nullable();
+            $table->string('banner')->nullable();
+            $table->string('category')->nullable();
+            $table->string('language')->nullable();
+            $table->string('maxlevel')->nullable();
             $table->string('youtube_id')->nullable();
-            $table->string('rates');
-            $table->text('description');
+            $table->string('rates')->nullable();
+            $table->text('description')->nullable();
             $table->string('screen')->nullable();
             $table->integer('user_id');
-            $table->string('slug');
-            $table->string('difficulty');
+            $table->string('slug')->nullable();
+            $table->string('difficulty')->nullable();
             $table->integer('realtimeVote')->default(0);
             $table->integer('previousVote')->default(0);
             $table->string('upDown')->default('stable');

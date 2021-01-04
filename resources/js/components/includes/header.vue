@@ -19,11 +19,12 @@
               <li class="dropdown">
                 <a href="" class="text-white">SERVERS</a>
                 <ul class="left">
-                  <li><a href="" class="text-dark">SERVER 1</a></li>
-                  <li><a href="" class="text-dark">SERVER 2</a></li>
-                  <li><a href="" class="text-dark">SERVER 3</a></li>
-                  <li><a href="" class="text-dark">SERVER 4</a></li>
-                    <li><a href="" class="text-dark">SERVER 5</a></li>
+                  <li><a href="javascript:void(0)" @click="search('')" class="text-dark">All Servers</a></li>
+                  <li><a href="javascript:void(0)" @click="search('Deutsch')" class="text-dark">Deutsch</a></li>
+                  <li><a href="javascript:void(0)" @click="search('English')" class="text-dark">English</a></li>
+                  <li><a href="javascript:void(0)" @click="search('Espanol')" class="text-dark">Espanol</a></li>
+                    <li><a href="javascript:void(0)" @click="search('France')" class="text-dark">France</a></li>
+                    <li><a href="javascript:void(0)" @click="search('Roman')" class="text-dark">Roman</a></li>
                 </ul>
               </li>
               <li>
@@ -102,6 +103,13 @@
 <script>
 export default {
   methods: {
+    search(server) {
+      something.$emit("search", server);
+      if(this.$route.path != '/'){
+            this.$router.push({ path: "/" });
+     }
+      
+    },
       login_modal(){
            something.$emit("login_modal");
       },
@@ -109,12 +117,14 @@ export default {
             something.$emit("login_register");
       },
     logout() {
+      var vm = this
       this.axios
-        .get("api/logout")
+        .get("/api/logout")
         .then((response) => {
           console.log(response);
           this.$store.state.islogin = false
           this.$store.state.user = []
+          vm.$router.push({path:'/'});
         })
         .catch((errors) => {
           console.log(errors.response);
