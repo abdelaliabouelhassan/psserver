@@ -2700,7 +2700,103 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      form: {
+        email: "",
+        message: "",
+        username: ""
+      },
+      tos: false,
+      errors: [],
+      clicked: false,
+      etos: false
+    };
+  },
+  methods: {
+    ContactUs: function ContactUs() {
+      var _this = this;
+
+      if (!this.tos) {
+        this.etos = true;
+        return;
+      }
+
+      this.clicked = true;
+      this.etos = false;
+      this.axios.post("/api/Contactus", this.form).then(function (response) {
+        _this.clicked = false;
+        console.log(response);
+        Toast.fire({
+          icon: "success",
+          title: "Message Sent Successfully"
+        });
+      })["catch"](function (errors) {
+        _this.clicked = false;
+
+        if (errors.response.status == 422) {
+          _this.errors = errors.response.data.errors;
+          Toast.fire({
+            icon: "error",
+            title: "Please check the error above ."
+          });
+        } else {
+          Toast.fire({
+            icon: "error",
+            title: "Something went wrong please try again ."
+          });
+        }
+      });
+    }
+  }
+});
 
 /***/ }),
 
@@ -46121,69 +46217,162 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card mt-5 px-4 py-5 bg-white" }, [
-      _c("h6", { staticClass: "font-weight-bold" }, [
-        _vm._v("Send us message")
-      ]),
-      _vm._v(" "),
-      _c("form", { staticClass: "mt-4", attrs: { action: "" } }, [
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-md-6" }, [
-            _c("input", {
-              staticClass: "form-control rounded my-2",
-              attrs: { type: "text", placeholder: "Name" }
-            })
-          ]),
+  return _c("div", { staticClass: "card mt-5 px-4 py-5 bg-white" }, [
+    _c("h6", { staticClass: "font-weight-bold" }, [_vm._v("Send us message")]),
+    _vm._v(" "),
+    _c("div", { staticClass: "mt-4" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-6" }, [
+          _vm.errors.username
+            ? _c("span", { staticClass: "text-danger" }, [
+                _vm._v(_vm._s(this.errors.username[0]))
+              ])
+            : _vm._e(),
           _vm._v(" "),
-          _c("div", { staticClass: "col-md-6" }, [
-            _c("input", {
-              staticClass: "form-control rounded my-2",
-              attrs: { type: "text", placeholder: "E-mail address" }
-            })
-          ])
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.username,
+                expression: "form.username"
+              }
+            ],
+            staticClass: "form-control rounded my-2",
+            class: { "is-invalid": _vm.errors.username },
+            attrs: { type: "text", placeholder: "User Name" },
+            domProps: { value: _vm.form.username },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form, "username", $event.target.value)
+              }
+            }
+          })
         ]),
         _vm._v(" "),
-        _c("textarea", {
-          staticClass: "form-control mt-2 rounded",
-          attrs: {
-            name: "",
-            id: "",
-            cols: "30",
-            rows: "5",
-            placeholder: "I think"
+        _c("div", { staticClass: "col-md-6" }, [
+          _vm.errors.email
+            ? _c("span", { staticClass: "text-danger" }, [
+                _vm._v(_vm._s(this.errors.email[0]))
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.email,
+                expression: "form.email"
+              }
+            ],
+            staticClass: "form-control rounded my-2",
+            class: { "is-invalid": _vm.errors.email },
+            attrs: { type: "text", placeholder: "E-mail address" },
+            domProps: { value: _vm.form.email },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.form, "email", $event.target.value)
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _vm.errors.message
+        ? _c("span", { staticClass: "text-danger" }, [
+            _vm._v(_vm._s(this.errors.message[0]))
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _c("textarea", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.form.message,
+            expression: "form.message"
           }
-        }),
+        ],
+        staticClass: "form-control mt-2 rounded",
+        class: { "is-invalid": _vm.errors.message },
+        attrs: {
+          name: "",
+          id: "",
+          cols: "30",
+          rows: "5",
+          placeholder: "I think"
+        },
+        domProps: { value: _vm.form.message },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.$set(_vm.form, "message", $event.target.value)
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.tos,
+            expression: "tos"
+          }
+        ],
+        class: { "is-invalid": _vm.etos },
+        attrs: { type: "checkbox" },
+        domProps: {
+          checked: Array.isArray(_vm.tos) ? _vm._i(_vm.tos, null) > -1 : _vm.tos
+        },
+        on: {
+          change: function($event) {
+            var $$a = _vm.tos,
+              $$el = $event.target,
+              $$c = $$el.checked ? true : false
+            if (Array.isArray($$a)) {
+              var $$v = null,
+                $$i = _vm._i($$a, $$v)
+              if ($$el.checked) {
+                $$i < 0 && (_vm.tos = $$a.concat([$$v]))
+              } else {
+                $$i > -1 &&
+                  (_vm.tos = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+              }
+            } else {
+              _vm.tos = $$c
+            }
+          }
+        }
+      }),
+      _c("label", { staticClass: "ml-2 my-2 terms", attrs: { for: "check" } }, [
+        _c("span", { class: { "text-danger": _vm.etos } }, [
+          _vm._v("I have read and agree to the")
+        ]),
         _vm._v(" "),
-        _c("input", { attrs: { type: "checkbox" } }),
-        _c(
-          "label",
-          { staticClass: "ml-2 my-2 terms", attrs: { for: "check" } },
-          [
-            _c("span", [_vm._v("I have read and agree to the")]),
-            _vm._v(" "),
-            _c(
-              "a",
-              { staticClass: "text-success font-16", attrs: { href: "" } },
-              [_vm._v("Terms of Use")]
-            )
-          ]
-        ),
-        _vm._v(" "),
-        _c("input", {
-          staticClass: "btn btn-dark d-block bg-dark mt-3",
-          attrs: { type: "submit", value: "ADD A COMMENT" }
-        })
-      ])
+        _c("a", { staticClass: "text-success font-16", attrs: { href: "" } }, [
+          _vm._v("Terms of Use")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        staticClass: "btn btn-dark d-block bg-dark mt-3",
+        attrs: { disabled: _vm.clicked, type: "submit", value: "Contact Us" },
+        on: { click: _vm.ContactUs }
+      })
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

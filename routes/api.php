@@ -55,3 +55,8 @@ Route::get('/getComments/{slug}', 'VotesController@GetComments');
 Route::post('/replay', 'VotesController@Replay');
 
 
+//cotactus
+Route::post('/Contactus', 'ContactUsController@Contactus');
+
+
+

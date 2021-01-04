@@ -30,7 +30,7 @@ Route::get('/test', function () {
    
 
   $current_servers = Server::orderBy('realtimeVote', 'desc')->where('status', 'true')->get();
-$previous_servers = Server::orderBy('previousVote', 'desc')->where('status', 'true')->get();
+  $previous_servers = Server::orderBy('previousVote', 'desc')->where('status', 'true')->get();
 
 foreach ($current_servers as $current_server_pos => $current_server)
 {
