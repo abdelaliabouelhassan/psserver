@@ -31,7 +31,7 @@ class ServersCollection extends JsonResource
             'status'=>$this->status,
             'is_international' => Str::containsAll($this->language, ['Deutsch,', 'English,', 'Espanol,', 'France,', 'Roman,']),
             'slug'=>$this->slug,
-            'realtimeVote'=>$this->previousVote,
+            'realtimeVote'=>$this->vote_amount,
             'viewd'=>$this->viewd,
             'difficulty'=>$this->difficulty,
             'upDown'=>$this->upDown,

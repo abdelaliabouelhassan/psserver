@@ -53,6 +53,7 @@ Route::post('/Vote', 'VotesController@Vote');
 //comments
 Route::get('/getComments/{slug}', 'VotesController@GetComments');
 Route::post('/replay', 'VotesController@Replay');
+Route::post('/addComment', 'VotesController@addComment');
 
 
 //cotactus

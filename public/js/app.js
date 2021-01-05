@@ -3720,6 +3720,57 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3727,6 +3778,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
+      show: false,
       Server: [],
       url: "",
       clicked: false,
@@ -3775,6 +3827,8 @@ __webpack_require__.r(__webpack_exports__);
           icon: "success",
           title: "You have voted successfully"
         });
+
+        _this.getComments();
       })["catch"](function (errors) {
         _this.clicked = false;
 
@@ -3821,6 +3875,8 @@ __webpack_require__.r(__webpack_exports__);
           icon: "success",
           title: "You have voted successfully"
         });
+
+        _this3.getComments();
       })["catch"](function (errors) {
         _this3.clicked = false;
 
@@ -3850,11 +3906,45 @@ __webpack_require__.r(__webpack_exports__);
         _this4.url = _this4.Server.url.replace(/[http:// https://]/g, "");
         console.log(response);
       })["catch"](function (errors) {});
+    },
+    addcomment: function addcomment() {
+      var _this5 = this;
+
+      this.form.server_id = this.Server.id;
+      this.axios.post("/api/addComment", this.form).then(function (response) {
+        _this5.clicked = false;
+        Toast.fire({
+          icon: "success",
+          title: "Comment Added successfully"
+        });
+
+        _this5.getComments();
+      })["catch"](function (errors) {
+        _this5.clicked = false;
+
+        if (errors.response.status == 422) {
+          _this5.errors = errors.response.data.errors;
+        } else if (errors.response.status == 403) {
+          Toast.fire({
+            icon: "error",
+            title: errors.response.data
+          });
+        } else {
+          Toast.fire({
+            icon: "error",
+            title: "Something went wrong please try again ."
+          });
+        }
+      });
     }
   },
   created: function created() {
+    var vm = this;
     this.getServer();
     this.getComments();
+    setTimeout(function () {
+      vm.show = true;
+    }, 1000);
   }
 });
 
@@ -47493,9 +47583,11 @@ var render = function() {
                     ]),
                     _vm._v(" "),
                     _c("div", { staticClass: "col-2" }, [
-                      _c("i", {
-                        staticClass: "fa fa-heart text-muted font-14"
-                      }),
+                      comment.rate
+                        ? _c("i", {
+                            staticClass: "fa fa-heart text-muted font-14"
+                          })
+                        : _vm._e(),
                       _c("span", { staticClass: "font-14 ml-1" }, [
                         _vm._v(_vm._s(comment.rate))
                       ])
@@ -48026,6 +48118,121 @@ var render = function() {
             1
           )
         ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "my-3 px-4 py-5 bg-white" }, [
+        _c("h6", { staticClass: "font-weight-bold" }, [_vm._v("Add Comment")]),
+        _vm._v(" "),
+        _vm.errors.username
+          ? _c("span", { staticClass: "text-danger" }, [
+              _vm._v(_vm._s(this.errors.username[0]) + "\n      ")
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "mt-4" },
+          [
+            _c("div", { staticClass: "row" }, [
+              !_vm.$store.state.islogin
+                ? _c("div", { staticClass: "col-md-6" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.email,
+                          expression: "form.email"
+                        }
+                      ],
+                      staticClass: "form-control rounded my-2",
+                      class: { "is-invalid": _vm.errors.email },
+                      attrs: { type: "text", placeholder: "E-mail address" },
+                      domProps: { value: _vm.form.email },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "email", $event.target.value)
+                        }
+                      }
+                    })
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              !_vm.$store.state.islogin
+                ? _c("div", { staticClass: "col-md-6" }, [
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.username,
+                          expression: "form.username"
+                        }
+                      ],
+                      staticClass: "form-control rounded my-2",
+                      class: { "is-invalid": _vm.errors.username },
+                      attrs: { type: "text", placeholder: "Your User Name" },
+                      domProps: { value: _vm.form.username },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(_vm.form, "username", $event.target.value)
+                        }
+                      }
+                    })
+                  ])
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _c("textarea", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.comment,
+                  expression: "form.comment"
+                }
+              ],
+              staticClass: "form-control mt-2 rounded",
+              class: { "is-invalid": _vm.errors.comment },
+              attrs: {
+                name: "",
+                id: "",
+                cols: "30",
+                rows: "5",
+                placeholder: "I think..."
+              },
+              domProps: { value: _vm.form.comment },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "comment", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.show
+              ? _c("vue-recaptcha", {
+                  attrs: { sitekey: _vm.$store.state.sitekey },
+                  on: { verify: _vm.checkRecaptcha }
+                })
+              : _vm._e(),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "btn btn-dark d-block bg-dark mt-3",
+              attrs: { type: "submit", value: "Enter" },
+              on: { click: _vm.addcomment }
+            })
+          ],
+          1
+        )
       ])
     ],
     2

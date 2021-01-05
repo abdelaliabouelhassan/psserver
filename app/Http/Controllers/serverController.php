@@ -96,6 +96,7 @@ class serverController extends Controller
                 'rates' => $request->Rates,
                 'description' => $request->Description,
                 'difficulty'=>$request->Difficulty,
+                'hasBacklink'=>true,
                 'screen' => null ,     
             ]);
 
@@ -107,7 +108,7 @@ class serverController extends Controller
 
 
     public function GetServers(){
-          $servers = Server::orderBy('previousVote', 'desc')->where('status','true')->paginate(15);
+          $servers = Server::orderBy('vote_amount', 'desc')->where('status','true')->where('admin_active', true)->where('server_owner_active', true)->paginate(15);
           return  ServersCollection::collection($servers);     
     }
 
@@ -155,6 +156,14 @@ class serverController extends Controller
 
 
      $server =    Server::findOrFail($request->id);
+        //check backlink
+
+        $url =  request()->server('SERVER_NAME') . '/' . $server->slug;
+        if (!checkBackLink($server->url, $url)) {
+            return response()->json('You Need To Add BackLink to your website (' . $server->url . ')!', 403);
+        }
+
+
         $banner = $server->banner;
 
         if($request->banner == $banner){
@@ -168,6 +177,7 @@ class serverController extends Controller
                 'description' => $request->description,
                 'difficulty' => $request->difficulty,
                 'status' => 'false',
+                'hasBacklink' => true,
             ]);
 
         }else{
@@ -192,6 +202,7 @@ class serverController extends Controller
                 'description' => $request->description,
                 'difficulty' => $request->difficulty,
                 'status' => 'false',
+                'hasBacklink' => true,
             ]);
 
         }
@@ -204,7 +215,7 @@ class serverController extends Controller
     }
 
     public function getserverbyserver($server){
-        $servers = Server::orderBy('previousVote', 'desc')->where('language','like' , '%' .$server . '%')->where('status', 'true')->paginate(15);
+        $servers = Server::orderBy('vote_amount', 'desc')->where('language','like' , '%' .$server . '%')->where('status', 'true')->paginate(15);
         return  ServersCollection::collection($servers);    
     }
 

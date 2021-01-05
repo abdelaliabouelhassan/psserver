@@ -18,7 +18,7 @@ class CreateCommentsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->text('comment');
             $table->string('iam')->default('Warrior (m)');
-            $table->string('rate');
+            $table->string('rate')->nullable();
             $table->integer('server_id')->unsigned();
             $table->timestamps();
         });

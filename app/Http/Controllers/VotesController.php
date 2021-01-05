@@ -117,7 +117,7 @@ class VotesController extends Controller
 
     //vote 
         $server =    Server::findOrFail($request->server_id);
-        $server->realtimeVote  =  $server->realtimeVote + 1;
+        $server->real_vote_amount  =  $server->real_vote_amount + 1;
         $server->save();
         Vote::create([
             'server_id' => $request->server_id,
@@ -178,6 +178,63 @@ class VotesController extends Controller
         
 
         return response()->json('You Replayed successfully', 200);
+
+    }
+
+
+
+    public function addComment(Request $request){
+        //check recaptcha 
+        // if (!checkRecaptcha(env('INVISIBLE_RECAPTCHA_SECRETKEY', '6LeCNhwaAAAAACh31QVu_Fve05EQqn7p9iOWNQmU'), $request->ReqResponse)) {
+        //     return response()->json('invalid recaptcha.', 403);
+        // }
+        $my_Ip = getIPAddress();
+       
+
+       $user =   User::where('ip',$my_Ip)->first();
+
+       if(!$user){
+            $request->validate([
+                'comment' => ['required', 'min:3'],
+                'username' => ['required', 'min:3'],
+            ]);
+
+            $email = uniqid() . '_' . 'guest.mt2';
+            $user =  User::create([
+                'username' => $request->username,
+                'email' => $email,
+                'password' => 'guest',
+                'ip' => $my_Ip,
+            ]);
+            return response()->json('Comment Created successfully', 200);
+
+       }
+        $request->validate([
+            'comment' => ['required', 'min:3'],
+        ]);
+
+            //check time each 5min
+        $date = new \DateTime();
+        $date->modify('-5 minutes');
+        $formatted_date = $date->format('Y-m-d H:i:s');
+        $comment = Comment::where('user_id', $user->id)->where('created_at', '>', $formatted_date)->first();
+
+    
+            if($comment){
+            return response()->json('You have already commented you have to wait 5 minutes to comment again.', 403); 
+            }
+
+        Comment::create([
+            'user_id' => $user->id,
+            'comment' => $request->comment,
+            'server_id' => $request->server_id,
+            'rate' => "",
+        ]);
+        return response()->json('Comment Created successfully', 200);
+
+
+
+         
 
     }
 

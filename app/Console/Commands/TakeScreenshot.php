@@ -39,7 +39,7 @@ class TakeScreenshot extends Command
      */
     public function handle()
     {
-      $servers =  Server::where('status','true')->get();
+      $servers =  Server::where('status','true')->where('admin_active', true)->where('hasBacklink', true)->where('server_owner_active', true)->get();
        
         $now = Carbon::now();
        

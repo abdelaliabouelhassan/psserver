@@ -214,7 +214,7 @@
               <p>{{ comment.created_at }}</p>
             </div>
             <div class="col-2">
-              <i class="fa fa-heart text-muted font-14"></i
+              <i class="fa fa-heart text-muted font-14" v-if=" comment.rate"></i
               ><span class="font-14 ml-1">{{ comment.rate }}</span>
             </div>
             <div class="col-4 text-right pr-3">
@@ -406,6 +406,57 @@
         </div>
       </div>
     </modal>
+
+     <div class="my-3 px-4 py-5 bg-white">
+        <h6 class="font-weight-bold">Add Comment</h6>
+        <span class="text-danger" v-if="errors.username"
+          >{{ this.errors.username[0] }}
+        </span>
+        <div class="mt-4">
+          <div class="row">
+           
+            <div class="col-md-6" v-if="!$store.state.islogin">
+              <input
+                type="text"
+                class="form-control rounded my-2"
+                placeholder="E-mail address"
+                v-model="form.email"
+                :class="{ 'is-invalid': errors.email }"
+              />
+            </div>
+            <div class="col-md-6" v-if="!$store.state.islogin">
+              <input
+                type="text"
+                class="form-control rounded my-2"
+                placeholder="Your User Name"
+                v-model="form.username"
+                :class="{ 'is-invalid': errors.username }"
+              />
+            </div>
+           
+          </div>
+          <textarea
+            :class="{ 'is-invalid': errors.comment }"
+            name=""
+            id=""
+            cols="30"
+            rows="5"
+            class="form-control mt-2 rounded"
+            placeholder="I think..."
+            v-model="form.comment"
+          ></textarea>
+      
+            <vue-recaptcha v-if="show" @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
+
+          <input
+            type="submit"
+            class="btn btn-dark d-block bg-dark mt-3"
+            value="Enter"
+            @click="addcomment"
+            
+          />
+        </div>
+      </div>
   </div>
 </template>
 
@@ -416,6 +467,7 @@ export default {
    components: { VueRecaptcha },
   data() {
     return {
+      show:false,
       Server: [],
       url: "",
       clicked: false,
@@ -464,6 +516,7 @@ export default {
             icon: "success",
             title: "You have voted successfully",
           });
+            this.getComments();
         })
         .catch((errors) => {
           this.clicked = false;
@@ -510,6 +563,7 @@ export default {
             icon: "success",
             title: "You have voted successfully",
           });
+           this.getComments();
         })
         .catch((errors) => {
           this.clicked = false;
@@ -541,10 +595,43 @@ export default {
         })
         .catch((errors) => {});
     },
+    addcomment(){
+       this.form.server_id = this.Server.id;
+          this.axios
+        .post("/api/addComment", this.form)
+        .then((response) => {
+          this.clicked = false;
+          Toast.fire({
+            icon: "success",
+            title: "Comment Added successfully",
+          });
+           this.getComments();
+        })
+        .catch((errors) => {
+          this.clicked = false;
+          if (errors.response.status == 422) {
+            this.errors = errors.response.data.errors;
+          } else if (errors.response.status == 403) {
+            Toast.fire({
+              icon: "error",
+              title: errors.response.data,
+            });
+          } else {
+            Toast.fire({
+              icon: "error",
+              title: "Something went wrong please try again .",
+            });
+          }
+        });
+    }
   },
   created() {
+    var vm = this
      this.getServer();
     this.getComments();
+    setTimeout(() => {
+      vm.show = true
+    }, 1000);
   },
 };
 </script>

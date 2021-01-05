@@ -27,6 +27,8 @@ class Kernel extends ConsoleKernel
         $schedule->command('vote:update')->everyTenMinutes();
         $schedule->command('vote:reset')->cron('0 0 1,14 * *');
         $schedule->command('take:screen')->everyMonth();
+        $schedule->command('backlinks:check')->everyFourHours();
+        $schedule->command('backlink:active')->everyFourHours();
     }
 
     /**

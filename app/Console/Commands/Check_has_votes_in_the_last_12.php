@@ -3,23 +3,22 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 
-class RestVote extends Command
+class Check_has_votes_in_the_last_12 extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'vote:reset';
+    protected $signature = 'command:name';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Reset Votes Every 14days';
+    protected $description = 'Command description';
 
     /**
      * Create a new command instance.
@@ -38,9 +37,6 @@ class RestVote extends Command
      */
     public function handle()
     {
-        
-        DB::table('servers')->update(['real_vote_amount' => 0, 'vote_amount' => 0, 'upDown' => 'stable']);
-        DB::table('votes')->delete();
-        
+        return 0;
     }
 }

@@ -28,8 +28,12 @@ class CreateServersTable extends Migration
             $table->integer('user_id');
             $table->string('slug')->nullable();
             $table->string('difficulty')->nullable();
-            $table->integer('realtimeVote')->default(0);
-            $table->integer('previousVote')->default(0);
+            $table->integer('real_vote_amount')->default(0);
+            $table->integer('vote_amount')->default(0);
+            $table->boolean('has_votes_in_the_last_12')->default(true);
+            $table->boolean('admin_active')->default(true);
+            $table->boolean('server_owner_active')->default(true);
+            $table->boolean('hasBacklink')->default(false);
             $table->string('upDown')->default('stable');
             $table->integer('viewd')->unsigned()->default(0);
             $table->string('status')->default('false');

@@ -38,8 +38,8 @@ class updateVote extends Command
     public function handle()
     {
 
-        $current_servers = Server::orderBy('realtimeVote', 'desc')->where('status', 'true')->get();
-        $previous_servers = Server::orderBy('previousVote', 'desc')->where('status', 'true')->get();
+        $current_servers = Server::orderBy('real_vote_amount', 'desc')->where('status', 'true')->get();
+        $previous_servers = Server::orderBy('vote_amount', 'desc')->where('status', 'true')->get();
 
         foreach ($current_servers as $current_server_pos => $current_server) {
             $up_down = 'down';
@@ -63,7 +63,7 @@ class updateVote extends Command
             }
 
             $current_server->upDown = $up_down;
-            $current_server->previousVote = $current_server->realtimeVote;
+            $current_server->vote_amount = $current_server->real_vote_amount;
             $current_server->save();
         }
 
