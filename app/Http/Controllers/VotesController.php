@@ -13,6 +13,12 @@ use  \Illuminate\Support\Carbon;
 class VotesController extends Controller
 {
     public function Vote(Request $request){
+
+        //check recaptcha 
+        if (!checkRecaptcha(env('INVISIBLE_RECAPTCHA_SECRETKEY', '6LeCNhwaAAAAACh31QVu_Fve05EQqn7p9iOWNQmU'), $request->ReqResponse)) {
+            return response()->json('invalid recaptcha.', 403);
+        }
+
         //get my ip
         $my_Ip = getIPAddress();
        $user_id ="";
@@ -137,6 +143,11 @@ class VotesController extends Controller
 
 
     public function Replay(Request $request){
+        //check recaptcha
+        if (!checkRecaptcha(env('INVISIBLE_RECAPTCHA_SECRETKEY', '6LeCNhwaAAAAACh31QVu_Fve05EQqn7p9iOWNQmU'), $request->ReqResponse)) {
+            return response()->json('invalid recaptcha.', 403);
+        }
+
         $user_id = "";
         if(auth('sanctum')->check()){
             $request->validate([

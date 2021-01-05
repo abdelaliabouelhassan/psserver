@@ -82,13 +82,14 @@ export default {
    components: { VueRecaptcha },
   data() {
     return {
-        disabel:true,
+        disabel:false,
         tos:false,
       form: {
         username: "",
         password: "",
         email: "",
         password_confirmation: "",
+        ReqResponse:'',
       },
       errors: [],
       errorTos:false,
@@ -96,6 +97,7 @@ export default {
   },
   methods: {
      checkRecaptcha(response){
+         this.form.ReqResponse = response
         this.disabel = false
     },
     register() {
@@ -122,6 +124,12 @@ export default {
         .catch((errors) => {
           if (errors.response.status == 422) {
             this.errors = errors.response.data.errors;
+          }
+          else if(errors.response.status == 403){
+               Toast.fire({
+            icon: "error",
+            title: errors.response.data,
+          });
           }
 
            this.disabel = false;

@@ -54,6 +54,12 @@ class serverController extends Controller
             ]);
         }
 
+        //check recaptcha
+        if(!checkRecaptcha(env('INVISIBLE_RECAPTCHA_SECRETKEY', '6LeCNhwaAAAAACh31QVu_Fve05EQqn7p9iOWNQmU'),$request->ReqResponse)){
+            return response()->json('invalid recaptcha.', 403);
+        }
+
+
         //check backlink
         
         $server =  Server::findOrFail($request->id);

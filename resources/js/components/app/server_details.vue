@@ -257,7 +257,7 @@
       </div>
     </div>
 
-    <modal name="replay" :height="400">
+    <modal name="replay" :height="500">
       <div class="my-3 px-4 py-5 bg-white">
         <h6 class="font-weight-bold">Add Your Replay</h6>
         <span class="text-danger" v-if="errors.username"
@@ -294,6 +294,8 @@
             placeholder="I think..."
             v-model="replayForm.comment"
           ></textarea>
+           <vue-recaptcha @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
+
           <input
             type="submit"
             class="btn btn-dark d-block bg-dark mt-3"
@@ -392,6 +394,8 @@
               >Terms of Use</a
             ></label
           >
+            <vue-recaptcha @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
+
           <input
             type="submit"
             class="btn btn-dark d-block bg-dark mt-3"
@@ -406,7 +410,10 @@
 </template>
 
 <script>
+
+import VueRecaptcha from 'vue-recaptcha';
 export default {
+   components: { VueRecaptcha },
   data() {
     return {
       Server: [],
@@ -419,12 +426,14 @@ export default {
         username: "",
         iam: "Warrior (m)",
         server_id: "",
+        ReqResponse:'',
       },
       replayForm: {
         comment: "",
         email: "",
         username: "",
         comment_id: "",
+        ReqResponse:'',
       },
       errorTos: false,
       tos: false,
@@ -436,6 +445,10 @@ export default {
     };
   },
   methods: {
+     checkRecaptcha(response){
+      this.form.ReqResponse = response
+        this.disabel = false
+    },
     showReplays(replays){
       this.replays = replays
       this.showReplay = true
@@ -456,7 +469,12 @@ export default {
           this.clicked = false;
           if (errors.response.status == 422) {
             this.errors = errors.response.data.errors;
-          } else {
+          } else if(errors.response.status == 403){
+               Toast.fire({
+            icon: "error",
+            title: errors.response.data,
+          });
+          }else {
             Toast.fire({
               icon: "error",
               title: "Something went wrong please try again .",

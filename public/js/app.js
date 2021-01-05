@@ -1981,6 +1981,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_recaptcha__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-recaptcha */ "./node_modules/vue-recaptcha/dist/vue-recaptcha.es.js");
 //
 //
 //
@@ -2250,7 +2251,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    VueRecaptcha: vue_recaptcha__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   data: function data() {
     return {
       clicked: false,
@@ -2272,11 +2286,15 @@ __webpack_require__.r(__webpack_exports__);
         Rates: "",
         Description: "",
         Difficulty: "",
-        isGif: false
+        isGif: false,
+        ReqResponse: ''
       }
     };
   },
   methods: {
+    checkRecaptcha: function checkRecaptcha(response) {
+      this.form.ReqResponse = response;
+    },
     GenerateLink: function GenerateLink() {
       var _this = this;
 
@@ -2624,13 +2642,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      disabel: true,
+      disabel: false,
       tos: false,
       form: {
         username: "",
         password: "",
         email: "",
-        password_confirmation: ""
+        password_confirmation: "",
+        ReqResponse: ''
       },
       errors: [],
       errorTos: false
@@ -2638,6 +2657,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     checkRecaptcha: function checkRecaptcha(response) {
+      this.form.ReqResponse = response;
       this.disabel = false;
     },
     register: function register() {
@@ -2663,6 +2683,11 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (errors) {
         if (errors.response.status == 422) {
           _this.errors = errors.response.data.errors;
+        } else if (errors.response.status == 403) {
+          Toast.fire({
+            icon: "error",
+            title: errors.response.data
+          });
         }
 
         _this.disabel = false;
@@ -3259,6 +3284,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_recaptcha__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-recaptcha */ "./node_modules/vue-recaptcha/dist/vue-recaptcha.es.js");
 //
 //
 //
@@ -3666,7 +3692,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    VueRecaptcha: vue_recaptcha__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
   data: function data() {
     return {
       Server: [],
@@ -3678,13 +3712,15 @@ __webpack_require__.r(__webpack_exports__);
         email: "",
         username: "",
         iam: "Warrior (m)",
-        server_id: ""
+        server_id: "",
+        ReqResponse: ''
       },
       replayForm: {
         comment: "",
         email: "",
         username: "",
-        comment_id: ""
+        comment_id: "",
+        ReqResponse: ''
       },
       errorTos: false,
       tos: false,
@@ -3696,6 +3732,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    checkRecaptcha: function checkRecaptcha(response) {
+      this.form.ReqResponse = response;
+      this.disabel = false;
+    },
     showReplays: function showReplays(replays) {
       this.replays = replays;
       this.showReplay = true;
@@ -3716,6 +3756,11 @@ __webpack_require__.r(__webpack_exports__);
 
         if (errors.response.status == 422) {
           _this.errors = errors.response.data.errors;
+        } else if (errors.response.status == 403) {
+          Toast.fire({
+            icon: "error",
+            title: errors.response.data
+          });
         } else {
           Toast.fire({
             icon: "error",
@@ -45219,7 +45264,7 @@ var render = function() {
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-md-12" }, [
               _c("label", { attrs: { for: "Description" } }, [
-                _vm._v("Your Backlink You need to add them in your website :")
+                _vm._v("Your Backlink. You need to add them in your website :")
               ]),
               _vm._v(" "),
               _c(
@@ -45733,24 +45778,41 @@ var render = function() {
             }
           }),
           _vm._v(" "),
-          _c("input", {
-            staticClass: "btn btn-dark d-block bg-dark mt-3",
-            staticStyle: { display: "inline-block" },
-            attrs: { disabled: _vm.checkuser, type: "submit", value: "Create" },
-            on: { click: _vm.createServer }
-          }),
+          _c(
+            "div",
+            [
+              _c("vue-recaptcha", {
+                attrs: { sitekey: _vm.$store.state.sitekey },
+                on: { verify: _vm.checkRecaptcha }
+              })
+            ],
+            1
+          ),
           _vm._v(" "),
-          _c("input", {
-            staticClass: "btn btn-dark d-block bg-dark mt-3",
-            staticStyle: { display: "inline-block" },
-            attrs: { type: "submit", value: "Back" },
-            on: {
-              click: function($event) {
-                _vm.ndStep = true
-                _vm.endStep = false
+          _c("div", [
+            _c("input", {
+              staticClass: "btn btn-dark d-block bg-dark mt-3",
+              staticStyle: { display: "inline-block" },
+              attrs: {
+                disabled: _vm.checkuser,
+                type: "submit",
+                value: "Create"
+              },
+              on: { click: _vm.createServer }
+            }),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "btn btn-dark d-block bg-dark mt-3",
+              staticStyle: { display: "inline-block" },
+              attrs: { type: "submit", value: "Back" },
+              on: {
+                click: function($event) {
+                  _vm.ndStep = true
+                  _vm.endStep = false
+                }
               }
-            }
-          })
+            })
+          ])
         ])
       : _vm._e()
   ])
@@ -47484,7 +47546,7 @@ var render = function() {
           : _vm._e()
       }),
       _vm._v(" "),
-      _c("modal", { attrs: { name: "replay", height: 400 } }, [
+      _c("modal", { attrs: { name: "replay", height: 500 } }, [
         _c("div", { staticClass: "my-3 px-4 py-5 bg-white" }, [
           _c("h6", { staticClass: "font-weight-bold" }, [
             _vm._v("Add Your Replay")
@@ -47496,94 +47558,112 @@ var render = function() {
               ])
             : _vm._e(),
           _vm._v(" "),
-          _c("div", { staticClass: "mt-4" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-6" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.replayForm.email,
-                      expression: "replayForm.email"
-                    }
-                  ],
-                  staticClass: "form-control rounded my-2",
-                  class: { "is-invalid": _vm.errors.email },
-                  attrs: { type: "text", placeholder: "E-mail address" },
-                  domProps: { value: _vm.replayForm.email },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+          _c(
+            "div",
+            { staticClass: "mt-4" },
+            [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.replayForm.email,
+                        expression: "replayForm.email"
                       }
-                      _vm.$set(_vm.replayForm, "email", $event.target.value)
+                    ],
+                    staticClass: "form-control rounded my-2",
+                    class: { "is-invalid": _vm.errors.email },
+                    attrs: { type: "text", placeholder: "E-mail address" },
+                    domProps: { value: _vm.replayForm.email },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.replayForm, "email", $event.target.value)
+                      }
                     }
-                  }
-                })
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.replayForm.username,
+                        expression: "replayForm.username"
+                      }
+                    ],
+                    staticClass: "form-control rounded my-2",
+                    class: { "is-invalid": _vm.errors.username },
+                    attrs: { type: "text", placeholder: "Your User Name" },
+                    domProps: { value: _vm.replayForm.username },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.replayForm,
+                          "username",
+                          $event.target.value
+                        )
+                      }
+                    }
+                  })
+                ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "col-md-6" }, [
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.replayForm.username,
-                      expression: "replayForm.username"
-                    }
-                  ],
-                  staticClass: "form-control rounded my-2",
-                  class: { "is-invalid": _vm.errors.username },
-                  attrs: { type: "text", placeholder: "Your User Name" },
-                  domProps: { value: _vm.replayForm.username },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.replayForm, "username", $event.target.value)
-                    }
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.replayForm.comment,
+                    expression: "replayForm.comment"
                   }
-                })
-              ])
-            ]),
-            _vm._v(" "),
-            _c("textarea", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.replayForm.comment,
-                  expression: "replayForm.comment"
-                }
-              ],
-              staticClass: "form-control mt-2 rounded",
-              class: { "is-invalid": _vm.errors.comment },
-              attrs: {
-                name: "",
-                id: "",
-                cols: "30",
-                rows: "5",
-                placeholder: "I think..."
-              },
-              domProps: { value: _vm.replayForm.comment },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+                ],
+                staticClass: "form-control mt-2 rounded",
+                class: { "is-invalid": _vm.errors.comment },
+                attrs: {
+                  name: "",
+                  id: "",
+                  cols: "30",
+                  rows: "5",
+                  placeholder: "I think..."
+                },
+                domProps: { value: _vm.replayForm.comment },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.replayForm, "comment", $event.target.value)
                   }
-                  _vm.$set(_vm.replayForm, "comment", $event.target.value)
                 }
-              }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "btn btn-dark d-block bg-dark mt-3",
-              attrs: { type: "submit", value: "Replay", disabled: _vm.clicked },
-              on: { click: _vm.Replay }
-            })
-          ])
+              }),
+              _vm._v(" "),
+              _c("vue-recaptcha", {
+                attrs: { sitekey: _vm.$store.state.sitekey },
+                on: { verify: _vm.checkRecaptcha }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "btn btn-dark d-block bg-dark mt-3",
+                attrs: {
+                  type: "submit",
+                  value: "Replay",
+                  disabled: _vm.clicked
+                },
+                on: { click: _vm.Replay }
+              })
+            ],
+            1
+          )
         ])
       ]),
       _vm._v(" "),
@@ -47599,290 +47679,308 @@ var render = function() {
               ])
             : _vm._e(),
           _vm._v(" "),
-          _c("div", { staticClass: "mt-4" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-md-6" }, [
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.rating,
-                        expression: "form.rating"
-                      }
-                    ],
-                    staticClass: "form-control rounded my-2",
-                    class: { "is-invalid": _vm.errors.rating },
-                    attrs: { placeholder: "Your rating ", id: "rating" },
-                    on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.$set(
-                          _vm.form,
-                          "rating",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        )
-                      }
-                    }
-                  },
-                  [
-                    _c("option", { attrs: { value: "", selected: "" } }, [
-                      _vm._v("Select Your rating")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "Very bad" } }, [
-                      _vm._v("Very bad")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "Bad" } }, [_vm._v("Bad")]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "Acceptable" } }, [
-                      _vm._v("Acceptable")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "Satisfactory" } }, [
-                      _vm._v("Satisfactory")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "Good" } }, [
-                      _vm._v("Good")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "Very Good" } }, [
-                      _vm._v("Very Good")
-                    ])
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              !_vm.$store.state.islogin
-                ? _c("div", { staticClass: "col-md-6" }, [
-                    _c("input", {
+          _c(
+            "div",
+            { staticClass: "mt-4" },
+            [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c(
+                    "select",
+                    {
                       directives: [
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form.email,
-                          expression: "form.email"
+                          value: _vm.form.rating,
+                          expression: "form.rating"
                         }
                       ],
                       staticClass: "form-control rounded my-2",
-                      class: { "is-invalid": _vm.errors.email },
-                      attrs: { type: "text", placeholder: "E-mail address" },
-                      domProps: { value: _vm.form.email },
+                      class: { "is-invalid": _vm.errors.rating },
+                      attrs: { placeholder: "Your rating ", id: "rating" },
                       on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.form, "email", $event.target.value)
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.form,
+                            "rating",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
                         }
                       }
-                    })
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              !_vm.$store.state.islogin
-                ? _c("div", { staticClass: "col-md-6" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.username,
-                          expression: "form.username"
-                        }
-                      ],
-                      staticClass: "form-control rounded my-2",
-                      class: { "is-invalid": _vm.errors.username },
-                      attrs: { type: "text", placeholder: "Your User Name" },
-                      domProps: { value: _vm.form.username },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.form, "username", $event.target.value)
-                        }
-                      }
-                    })
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-6" }, [
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.iam,
-                        expression: "form.iam"
-                      }
-                    ],
-                    staticClass: "form-control rounded my-2",
-                    class: { "is-invalid": _vm.errors.iam },
-                    attrs: { placeholder: "I am ", id: "Iam" },
-                    on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.$set(
-                          _vm.form,
-                          "iam",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        )
-                      }
-                    }
-                  },
-                  [
-                    _c("option", { attrs: { value: "Warrior (m)" } }, [
-                      _vm._v("Warrior (m)")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "Warrior (f)" } }, [
-                      _vm._v("Warrior (f)")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "Assasin (m)" } }, [
-                      _vm._v("Assasin (m)")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "Assasin (f)" } }, [
-                      _vm._v("Assasin (f)")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "Sura (m)" } }, [
-                      _vm._v("Sura (m)")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "Sura (f)" } }, [
-                      _vm._v("Sura (f)")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "Shaman (m)" } }, [
-                      _vm._v("Shaman (m)")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "Shaman (f)" } }, [
-                      _vm._v("Shaman (f)")
-                    ])
-                  ]
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("textarea", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.comment,
-                  expression: "form.comment"
-                }
-              ],
-              staticClass: "form-control mt-2 rounded",
-              class: { "is-invalid": _vm.errors.comment },
-              attrs: {
-                name: "",
-                id: "",
-                cols: "30",
-                rows: "5",
-                placeholder: "I think..."
-              },
-              domProps: { value: _vm.form.comment },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "comment", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.tos,
-                  expression: "tos"
-                }
-              ],
-              class: { "is-invalid": _vm.errorTos },
-              attrs: { type: "checkbox" },
-              domProps: {
-                checked: Array.isArray(_vm.tos)
-                  ? _vm._i(_vm.tos, null) > -1
-                  : _vm.tos
-              },
-              on: {
-                change: function($event) {
-                  var $$a = _vm.tos,
-                    $$el = $event.target,
-                    $$c = $$el.checked ? true : false
-                  if (Array.isArray($$a)) {
-                    var $$v = null,
-                      $$i = _vm._i($$a, $$v)
-                    if ($$el.checked) {
-                      $$i < 0 && (_vm.tos = $$a.concat([$$v]))
-                    } else {
-                      $$i > -1 &&
-                        (_vm.tos = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
-                    }
-                  } else {
-                    _vm.tos = $$c
-                  }
-                }
-              }
-            }),
-            _c(
-              "label",
-              { staticClass: "ml-2 my-2 terms", attrs: { for: "check" } },
-              [
-                _c("span", { class: { "text-danger": _vm.errorTos } }, [
-                  _vm._v("I have read and agree to the")
+                    },
+                    [
+                      _c("option", { attrs: { value: "", selected: "" } }, [
+                        _vm._v("Select Your rating")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Very bad" } }, [
+                        _vm._v("Very bad")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Bad" } }, [
+                        _vm._v("Bad")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Acceptable" } }, [
+                        _vm._v("Acceptable")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Satisfactory" } }, [
+                        _vm._v("Satisfactory")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Good" } }, [
+                        _vm._v("Good")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Very Good" } }, [
+                        _vm._v("Very Good")
+                      ])
+                    ]
+                  )
                 ]),
                 _vm._v(" "),
-                _c(
-                  "a",
+                !_vm.$store.state.islogin
+                  ? _c("div", { staticClass: "col-md-6" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.email,
+                            expression: "form.email"
+                          }
+                        ],
+                        staticClass: "form-control rounded my-2",
+                        class: { "is-invalid": _vm.errors.email },
+                        attrs: { type: "text", placeholder: "E-mail address" },
+                        domProps: { value: _vm.form.email },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "email", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                !_vm.$store.state.islogin
+                  ? _c("div", { staticClass: "col-md-6" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.form.username,
+                            expression: "form.username"
+                          }
+                        ],
+                        staticClass: "form-control rounded my-2",
+                        class: { "is-invalid": _vm.errors.username },
+                        attrs: { type: "text", placeholder: "Your User Name" },
+                        domProps: { value: _vm.form.username },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(_vm.form, "username", $event.target.value)
+                          }
+                        }
+                      })
+                    ])
+                  : _vm._e(),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.iam,
+                          expression: "form.iam"
+                        }
+                      ],
+                      staticClass: "form-control rounded my-2",
+                      class: { "is-invalid": _vm.errors.iam },
+                      attrs: { placeholder: "I am ", id: "Iam" },
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.form,
+                            "iam",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        }
+                      }
+                    },
+                    [
+                      _c("option", { attrs: { value: "Warrior (m)" } }, [
+                        _vm._v("Warrior (m)")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Warrior (f)" } }, [
+                        _vm._v("Warrior (f)")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Assasin (m)" } }, [
+                        _vm._v("Assasin (m)")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Assasin (f)" } }, [
+                        _vm._v("Assasin (f)")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Sura (m)" } }, [
+                        _vm._v("Sura (m)")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Sura (f)" } }, [
+                        _vm._v("Sura (f)")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Shaman (m)" } }, [
+                        _vm._v("Shaman (m)")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "Shaman (f)" } }, [
+                        _vm._v("Shaman (f)")
+                      ])
+                    ]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
                   {
-                    staticClass: "text-success font-16",
-                    class: { "text-danger": _vm.errorTos },
-                    attrs: { href: "" }
-                  },
-                  [_vm._v("Terms of Use")]
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "btn btn-dark d-block bg-dark mt-3",
-              attrs: { type: "submit", value: "Enter", disabled: _vm.clicked },
-              on: { click: _vm.Rate }
-            })
-          ])
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.comment,
+                    expression: "form.comment"
+                  }
+                ],
+                staticClass: "form-control mt-2 rounded",
+                class: { "is-invalid": _vm.errors.comment },
+                attrs: {
+                  name: "",
+                  id: "",
+                  cols: "30",
+                  rows: "5",
+                  placeholder: "I think..."
+                },
+                domProps: { value: _vm.form.comment },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "comment", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.tos,
+                    expression: "tos"
+                  }
+                ],
+                class: { "is-invalid": _vm.errorTos },
+                attrs: { type: "checkbox" },
+                domProps: {
+                  checked: Array.isArray(_vm.tos)
+                    ? _vm._i(_vm.tos, null) > -1
+                    : _vm.tos
+                },
+                on: {
+                  change: function($event) {
+                    var $$a = _vm.tos,
+                      $$el = $event.target,
+                      $$c = $$el.checked ? true : false
+                    if (Array.isArray($$a)) {
+                      var $$v = null,
+                        $$i = _vm._i($$a, $$v)
+                      if ($$el.checked) {
+                        $$i < 0 && (_vm.tos = $$a.concat([$$v]))
+                      } else {
+                        $$i > -1 &&
+                          (_vm.tos = $$a
+                            .slice(0, $$i)
+                            .concat($$a.slice($$i + 1)))
+                      }
+                    } else {
+                      _vm.tos = $$c
+                    }
+                  }
+                }
+              }),
+              _c(
+                "label",
+                { staticClass: "ml-2 my-2 terms", attrs: { for: "check" } },
+                [
+                  _c("span", { class: { "text-danger": _vm.errorTos } }, [
+                    _vm._v("I have read and agree to the")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass: "text-success font-16",
+                      class: { "text-danger": _vm.errorTos },
+                      attrs: { href: "" }
+                    },
+                    [_vm._v("Terms of Use")]
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("vue-recaptcha", {
+                attrs: { sitekey: _vm.$store.state.sitekey },
+                on: { verify: _vm.checkRecaptcha }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "btn btn-dark d-block bg-dark mt-3",
+                attrs: {
+                  type: "submit",
+                  value: "Enter",
+                  disabled: _vm.clicked
+                },
+                on: { click: _vm.Rate }
+              })
+            ],
+            1
+          )
         ])
       ])
     ],

@@ -55,7 +55,7 @@
     <div class="mt-4" v-if="ndStep">
       <div class="row">
         <div class="col-md-12">
-      <label for="Description">Your Backlink You need to add them in your website :</label>  
+      <label for="Description">Your Backlink. You need to add them in your website :</label>  
       <textarea
         name=""
         id="Description"
@@ -107,6 +107,8 @@
             placeholder="Page URL"
             v-model="form.URL"
           />
+        
+
            <input
         :disabled="checkuser"
         type="submit"
@@ -247,8 +249,13 @@
         placeholder="Description"
         v-model="form.Description"
       ></textarea>
+      <div>
+  <vue-recaptcha @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
+      </div>
+      
 
-      <input
+  <div>
+ <input
         :disabled="checkuser"
         type="submit"
         class="btn btn-dark d-block bg-dark mt-3"
@@ -265,10 +272,15 @@
       />
     </div>
   </div>
+     
+  </div>
 </template>
 
 <script>
+import VueRecaptcha from 'vue-recaptcha';
+
 export default {
+   components: { VueRecaptcha },
   data() {
     return {
       clicked:false,
@@ -291,10 +303,14 @@ export default {
         Description: "",
         Difficulty:"",
         isGif:false,
+        ReqResponse:''
       },
     };
   },
   methods: {
+     checkRecaptcha(response){
+         this.form.ReqResponse = response   
+    },
     GenerateLink(){
      this.clicked = true
       this.axios
