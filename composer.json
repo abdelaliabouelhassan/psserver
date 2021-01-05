@@ -8,6 +8,7 @@
     ],
     "license": "MIT",
     "require": {
+        "ext-mbstring": "*",
         "php": "^7.3|^8.0",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
@@ -19,6 +20,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.1",
         "longman/ip-tools": "^1.2",
+        "nesk/puphpeteer": "^2.0",
         "spatie/browsershot": "^3.41",
         "spatie/laravel-sluggable": "^2.6"
     },
@@ -53,7 +55,8 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Tests\\": "tests/",
+            "App\\": "app/"
         }
     },
     "minimum-stability": "dev",

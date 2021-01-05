@@ -1,7 +1,7 @@
 <?php
 
 use Longman\IPTools\Ip;
-
+use App\BacklinkChecker;
 function get_ip_version_from_ip_address(string $ip)
 {
     if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
@@ -49,6 +49,36 @@ function getIPAddress()
         $ip = $_SERVER['REMOTE_ADDR'];
     }
     return $ip;
+}
+
+
+
+function checkBackLink($url, $url_name){
+    $checker = new BacklinkChecker\SimpleBacklinkChecker();
+    $pattern = "@https?://(www\.)?" . $url_name. "\.com.*@";
+    $scan_Back_links = true;
+    $scan_Hot_links = false;
+    $make_Screenshot = false;
+
+    try {
+        $result = $checker->getBacklinks($url, $pattern, $scan_Back_links, $scan_Hot_links, $make_Screenshot);
+        $response = $result->getResponse();
+        if ($response->getSuccess()) {
+             $links = $result->getBacklinks();
+            if (sizeof($links) > 0) {
+                //Backlinks found
+                return true;
+            } else {
+                //No backlinks found
+                return false;
+            }
+        } else {
+            //Error, usually network error, or server error
+            die("Error, HTTP Code " . $response->getStatusCode());
+        }
+    } catch (RuntimeException $e) {
+        die("Error: " . $e->getMessage());
+    }
 }
 
 
