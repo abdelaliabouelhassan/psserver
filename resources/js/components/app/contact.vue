@@ -53,6 +53,8 @@
         >
         <a href="" class="text-success font-16">Terms of Use</a></label
       >
+         <vue-recaptcha v-if="show" @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
+
       <input
         :disabled="clicked"
         type="submit"
@@ -65,13 +67,17 @@
 </template>
 
 <script>
+ import VueRecaptcha from 'vue-recaptcha';
 export default {
+   components: { VueRecaptcha },
   data() {
     return {
+      show:false,
       form: {
         email: "",
         message: "",
         username: "",
+        ReqResponse:'',
       },
       tos: false,
       errors: [],
@@ -79,8 +85,17 @@ export default {
       etos: false,
     };
   },
+  created(){
+    var vm = this
+    setTimeout(()=>{
+        vm.show = true
+    },1000);
+  },
   methods: {
-      
+     checkRecaptcha(response){
+      this.form.ReqResponse = response
+        this.disabel = false
+    },
     ContactUs() {
       if (!this.tos) {
         this.etos = true;
@@ -106,7 +121,12 @@ export default {
               icon: "error",
               title: "Please check the error above .",
             });
-          } else {
+          } else if(errors.response.status == 403){
+               Toast.fire({
+            icon: "error",
+            title: errors.response.data,
+          });
+          }else {
             Toast.fire({
               icon: "error",
               title: "Something went wrong please try again .",
