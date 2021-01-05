@@ -2470,10 +2470,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -45856,12 +45852,6 @@ var render = function() {
           "div",
           { staticClass: "mt-4" },
           [
-            _vm.errors
-              ? _c("span", { staticClass: "text-danger" }, [
-                  _vm._v(_vm._s(this.errors))
-                ])
-              : _vm._e(),
-            _vm._v(" "),
             _c("input", {
               directives: [
                 {
@@ -45872,7 +45862,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control my-3 rounded",
-              class: { "is-invalid": _vm.errors },
+              class: { "is-invalid": _vm.errors.username },
               attrs: {
                 type: "text",
                 placeholder: "Username",
@@ -45899,7 +45889,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control my-3 rounded",
-              class: { "is-invalid": _vm.errors },
+              class: { "is-invalid": _vm.errors.password },
               attrs: {
                 type: "password",
                 placeholder: "Password",

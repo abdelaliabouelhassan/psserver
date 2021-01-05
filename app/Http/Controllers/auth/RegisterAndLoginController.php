@@ -50,7 +50,7 @@ class RegisterAndLoginController extends Controller
            $request->validate([
             'username'=>['required'],
             'password'=>['required'],
-        ]);
+         ]);
 
         if(!checkRecaptcha(env('INVISIBLE_RECAPTCHA_SECRETKEY', '6LeCNhwaAAAAACh31QVu_Fve05EQqn7p9iOWNQmU'),$request->ReqResponse)){
             return response()->json('invalid recaptcha.', 403);
@@ -60,7 +60,7 @@ class RegisterAndLoginController extends Controller
             return response()->json(Auth::user(),200);
         }
 
-        return response()->json('The Provided Cerdentials Are Incorrect.',422);
+        return response()->json('The Provided Cerdentials Are Incorrect.',403);
     }
     //logout
     public function logout(){

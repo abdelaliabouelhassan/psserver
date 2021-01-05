@@ -13,22 +13,18 @@
       <div class="col-2"></div>
       <div class="col-8">
         <div class="mt-4">
-          <span class="text-danger" v-if="errors">{{
-            this.errors
-          }}</span>
           <input
             type="text"
             class="form-control my-3 rounded"
-            :class="{ 'is-invalid': errors }"
+            :class="{ 'is-invalid': errors.username }"
             placeholder="Username"
             name="username"
             v-model="form.username"
           />
-
           <input
             type="password"
             class="form-control my-3 rounded"
-            :class="{ 'is-invalid': errors }"
+            :class="{ 'is-invalid': errors.password }"
             placeholder="Password"
             name="password"
             v-model="form.password"
@@ -93,15 +89,15 @@ export default {
           
         })
         .catch((errors) => {
-       if (errors.response.status == 422) {
-          this.errors = errors.response.data.errors
-       }else if(errors.response.status == 403){
-           Toast.fire({
+          if(errors.response.status == 422){
+             this.errors = errors.response.data.errors;
+          }else if(errors.response.status == 403){
+               Toast.fire({
             icon: "error",
             title: errors.response.data,
           });
-       }
-         
+          }
+      
          this.$store.state.islogin = false
            this.$store.state.user = []
             this.disabel = false;
