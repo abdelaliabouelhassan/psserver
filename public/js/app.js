@@ -2511,7 +2511,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.$modal.hide('login');
       })["catch"](function (errors) {
         if (errors.response.status == 422) {
-          _this.errors = errors.response.data;
+          _this.errors = errors.response.data.errors;
         } else if (errors.response.status == 403) {
           Toast.fire({
             icon: "error",

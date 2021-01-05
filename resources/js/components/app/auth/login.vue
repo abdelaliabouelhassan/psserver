@@ -94,7 +94,7 @@ export default {
         })
         .catch((errors) => {
        if (errors.response.status == 422) {
-          this.errors = errors.response.data
+          this.errors = errors.response.data.errors
        }else if(errors.response.status == 403){
            Toast.fire({
             icon: "error",
