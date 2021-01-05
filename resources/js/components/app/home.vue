@@ -19,9 +19,9 @@
         <div class="col-sm-5">
           <div class="row">
             <div class="col-2">
-                <img src="/img/down.png" alt="down" v-if="Server.upDown == 'down'" />
-                <img src="/img/up.png" alt="up" v-if="Server.upDown == 'up'" />
-                <span style=" margin-left: 10px" v-if="Server.upDown == 'stable'"> <i class="fas fa-pause 3x" ></i></span>
+                <img src="/img/down.png" alt="down" v-if="Server.upDown == 0" />
+                <img src="/img/up.png" alt="up" v-if="Server.upDown == 2" />
+                <span style=" margin-left: 10px" v-if="Server.upDown == 1"> <i class="fas fa-pause 3x" ></i></span>
                 
                  
             </div>

@@ -4,6 +4,8 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\Server;
+use App\Enums\ServerRanking;
+
 class updateVote extends Command
 {
     /**
@@ -38,25 +40,25 @@ class updateVote extends Command
     public function handle()
     {
 
-        $current_servers = Server::orderBy('real_vote_amount', 'desc')->where('status', 'true')->get();
-        $previous_servers = Server::orderBy('vote_amount', 'desc')->where('status', 'true')->get();
+        $current_servers = Server::orderBy('real_vote_amount', 'desc')->where('status', true)->get();
+        $previous_servers = Server::orderBy('vote_amount', 'desc')->where('status', true)->get();
 
         foreach ($current_servers as $current_server_pos => $current_server) {
-            $up_down = 'down';
+            $up_down = ServerRanking::Down;
 
             foreach ($previous_servers as $previous_server_pos => $previous_server) {
                 // If the current position of the server is lower than the
                 // positions of the previous servers, which do not have the same ID,
                 // we can assume that the server is now at a higher position.
                 if ($current_server_pos < $previous_server_pos) {
-                    $up_down = 'up';
+                    $up_down = ServerRanking::Up;
                     break;
                 }
 
                 // If we found the current server in the array of previous servers.
                 if ($current_server->id === $previous_server->id) {
                     // We can assume that it is lower or the same.
-                    $up_down = $current_server_pos > $previous_server_pos  ? 'down' : 'stable';
+                    $up_down = $current_server_pos > $previous_server_pos  ? ServerRanking::Down :  ServerRanking::Stable;
 
                     break;
                 }

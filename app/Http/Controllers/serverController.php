@@ -108,7 +108,7 @@ class serverController extends Controller
 
 
     public function GetServers(){
-          $servers = Server::orderBy('vote_amount', 'desc')->where('status','true')->where('admin_active', true)->where('server_owner_active', true)->paginate(15);
+          $servers = Server::orderBy('vote_amount', 'desc')->where('status',true)->where('admin_active', true)->where('server_owner_active', true)->paginate(15);
           return  ServersCollection::collection($servers);     
     }
 
@@ -176,7 +176,7 @@ class serverController extends Controller
                 'rates' => $request->rates,
                 'description' => $request->description,
                 'difficulty' => $request->difficulty,
-                'status' => 'false',
+                'status' => false,
                 'hasBacklink' => true,
             ]);
 
@@ -201,7 +201,7 @@ class serverController extends Controller
                 'rates' => $request->rates,
                 'description' => $request->description,
                 'difficulty' => $request->difficulty,
-                'status' => 'false',
+                'status' => false,
                 'hasBacklink' => true,
             ]);
 
@@ -215,7 +215,7 @@ class serverController extends Controller
     }
 
     public function getserverbyserver($server){
-        $servers = Server::orderBy('vote_amount', 'desc')->where('language','like' , '%' .$server . '%')->where('status', 'true')->paginate(15);
+        $servers = Server::orderBy('vote_amount', 'desc')->where('language','like' , '%' .$server . '%')->where('status', true)->paginate(15);
         return  ServersCollection::collection($servers);    
     }
 

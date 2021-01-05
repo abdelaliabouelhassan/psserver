@@ -47044,17 +47044,17 @@ var render = function() {
             _c("div", { staticClass: "col-sm-5" }, [
               _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-2" }, [
-                  Server.upDown == "down"
+                  Server.upDown == 0
                     ? _c("img", {
                         attrs: { src: "/img/down.png", alt: "down" }
                       })
                     : _vm._e(),
                   _vm._v(" "),
-                  Server.upDown == "up"
+                  Server.upDown == 2
                     ? _c("img", { attrs: { src: "/img/up.png", alt: "up" } })
                     : _vm._e(),
                   _vm._v(" "),
-                  Server.upDown == "stable"
+                  Server.upDown == 1
                     ? _c("span", { staticStyle: { "margin-left": "10px" } }, [
                         _c("i", { staticClass: "fas fa-pause 3x" })
                       ])

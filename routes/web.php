@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
 use App\Models\Server;
 use App\BacklinkChecker;
+use App\Enums\ServerRanking;
 use App\Mail\ServerBackLink;
 use Illuminate\Support\Facades\Mail;
 /*
@@ -29,24 +30,7 @@ use Illuminate\Support\Facades\Mail;
 use  \Illuminate\Support\Carbon;
 
 Route::get('/test', function () {
-    $servers = Server::all();
-       foreach($servers as $server){
-            //check backlinks
-            $url =  request()->server('SERVER_NAME') . '/' . $server->slug;
-            if (!checkBackLink($server->url, $url)) {
-                //status => false
-                    $server->status = "false";
-                    $server->save();
-                //send email 
-                $back_link = url('/serverdetails/' . $server->slug);
-                Mail::to($server->user->email)->send(new ServerBackLink($back_link));
-            }else{
-                //status => true
-                $server->status = "true";
-                $server->save();
-            }
-
-       }
+  return ServerRanking::Down;
     
 });
 

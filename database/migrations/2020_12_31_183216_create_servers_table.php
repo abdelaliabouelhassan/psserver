@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Enums\ServerRanking;
 
 class CreateServersTable extends Migration
 {
@@ -34,9 +35,9 @@ class CreateServersTable extends Migration
             $table->boolean('admin_active')->default(true);
             $table->boolean('server_owner_active')->default(true);
             $table->boolean('hasBacklink')->default(false);
-            $table->string('upDown')->default('stable');
+            $table->string('upDown')->default(ServerRanking::Stable);
             $table->integer('viewd')->unsigned()->default(0);
-            $table->string('status')->default('false');
+            $table->boolean('status')->default(false);
             $table->timestamps();
         });
     }

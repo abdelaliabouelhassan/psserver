@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use App\Enums\ServerRanking;
 
 class RestVote extends Command
 {
@@ -39,7 +40,7 @@ class RestVote extends Command
     public function handle()
     {
         
-        DB::table('servers')->update(['real_vote_amount' => 0, 'vote_amount' => 0, 'upDown' => 'stable']);
+        DB::table('servers')->update(['real_vote_amount' => 0, 'vote_amount' => 0, 'upDown' => ServerRanking::Stable]);
         DB::table('votes')->delete();
         
     }
