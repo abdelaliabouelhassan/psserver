@@ -1,8 +1,29 @@
 <template>
   <div>
+
+
+  <modal name="warm" :height="200">
+    <div class="my-3 px-4 py-5 bg-white">
+        <h6 class="font-weight-bold"> this server is inactive and not online anymore. are you sure you want to continue ?</h6>
+          <button
+            class="btn btn-dark "
+            @click="visit"
+          >Yes</button>
+           <button
+            class="btn btn-dark "
+            @click="$modal.hide('warm')"
+          >No</button>
+      </div>
+</modal>
+
+
+
+
     <div v-if="Servers.length == 0" style="text-align: center; margin-top: 100px;">
         <b>No Records Found</b>
     </div>
+
+
 
     <div
       class="card serverCard p-4 mb-3 mt-5"
@@ -64,8 +85,9 @@
           </div>
         </div>
         <div class="col-sm-7 m-auto">
-          <a :href="Server.url" target="_blank">
+          <a>
             <img
+             @click="Check_last_vote(Server.url,Server.has_vote_in_12)"
               :src="Server.banner"
               class="img-fluid rounded"
               style="cursor: pointer;height: 183px; width: 100%"
@@ -100,12 +122,26 @@
 export default {
   data() {
     return {
+      visit_url:'',
       Servers: [],
       page: 1,
       total: 1,
     };
   },
   methods: {
+    visit(){
+      window.open(this.visit_url, '_blank')
+    },
+    Check_last_vote(url,status){
+      if(status){
+      window.open(url, '_blank');
+      }else{
+        this.visit_url = url
+        this.$modal.show('warm')
+      }
+   
+
+    },
     goDetails(slug,index){
        something.$emit("index",index);
       

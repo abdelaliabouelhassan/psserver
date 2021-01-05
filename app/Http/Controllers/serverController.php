@@ -219,4 +219,23 @@ class serverController extends Controller
         return  ServersCollection::collection($servers);    
     }
 
+
+    public function Active(Request $request){
+              $server =   Server::findOrFail($request->id);
+              if($server->user_id == auth('sanctum')->id() && $server->admin_active && $server->status){
+                    $server->server_owner_active = true;
+                    $server->save();
+            return response()->json('Server Activated  Successfully ', 200);
+              }
+    }
+
+      public function Deactivate(Request $request){
+        $server =   Server::findOrFail($request->id);
+        if ($server->user_id == auth('sanctum')->id() && $server->admin_active && $server->status) {
+            $server->server_owner_active = false;
+            $server->save();
+            return response()->json('Server Deactivated Successfully', 200);
+        }
+    }
+
 }

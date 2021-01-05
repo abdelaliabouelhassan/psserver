@@ -61,3 +61,7 @@ Route::post('/Contactus', 'ContactUsController@Contactus');
 
 
 
+//active & Deactivate server owner 
+
+Route::post('/Deactivate', 'serverController@Deactivate');
+Route::post('/Active', 'serverController@Active');

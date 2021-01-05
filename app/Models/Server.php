@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use App\Models\User;
+use App\Models\Vote;
 class Server extends Model
 {
     use HasSlug;
@@ -18,7 +19,9 @@ class Server extends Model
     public function user(){
         return $this->belongsTo(User::class,'user_id');
     }
-
+    public function vote(){
+        return $this->hasMany(Vote::class, 'server_id');
+    }
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()

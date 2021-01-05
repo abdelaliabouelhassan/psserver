@@ -1,5 +1,20 @@
 <template>
   <div>
+
+     <modal name="warm" :height="200">
+    <div class="my-3 px-4 py-5 bg-white">
+        <h6 class="font-weight-bold"> this server is inactive and not online anymore. are you sure you want to continue ?</h6>
+          <button
+            class="btn btn-dark "
+            @click="visit"
+          >Yes</button>
+           <button
+            class="btn btn-dark "
+            @click="$modal.hide('warm')"
+          >No</button>
+      </div>
+</modal>
+
     <div class="card serverCard p-4 mb-3 mt-5">
       <img
         src="/img/flags.png"
@@ -76,7 +91,7 @@
 
     <div class="card my-3 p-3">
       <a
-        :href="Server.url"
+        @click="Check_last_vote(Server.url,Server.has_vote_in_12)"
         target="_blank"
         class="btn btn-dark bg-dark btn-block rounded font-weight-normal"
         >{{ url }} - Server details</a
@@ -147,7 +162,7 @@
             </div>
             <div class="col-7">
               <p class="d-inline text-muted ml-2">
-                <a :href="Server.url" target="_blank" class="text-muted">{{
+                <a  @click="Check_last_vote(Server.url,Server.has_vote_in_12)" target="_blank" class="text-muted">{{
                   url
                 }}</a>
                 <i class="fa fa-external-link-alt"></i>
@@ -470,6 +485,7 @@ export default {
       show:false,
       Server: [],
       url: "",
+      viUrl:'',
       clicked: false,
       form: {
         comment: "",
@@ -497,6 +513,18 @@ export default {
     };
   },
   methods: {
+     visit(){
+      window.open(this.viUrl, '_blank')
+    },
+        Check_last_vote(url,status){
+      if(status){
+      window.open(url, '_blank');
+      }else{
+        this.viUrl = url
+        this.$modal.show('warm')
+      }
+  
+    },
      checkRecaptcha(response){
       this.form.ReqResponse = response
         this.disabel = false

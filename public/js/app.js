@@ -3248,15 +3248,49 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      visit_url: '',
       Servers: [],
       page: 1,
       total: 1
     };
   },
   methods: {
+    visit: function visit() {
+      window.open(this.visit_url, '_blank');
+    },
+    Check_last_vote: function Check_last_vote(url, status) {
+      if (status) {
+        window.open(url, '_blank');
+      } else {
+        this.visit_url = url;
+        this.$modal.show('warm');
+      }
+    },
     goDetails: function goDetails(slug, index) {
       something.$emit("index", index);
       this.$router.push({
@@ -3771,6 +3805,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3781,6 +3830,7 @@ __webpack_require__.r(__webpack_exports__);
       show: false,
       Server: [],
       url: "",
+      viUrl: '',
       clicked: false,
       form: {
         comment: "",
@@ -3808,6 +3858,17 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    visit: function visit() {
+      window.open(this.viUrl, '_blank');
+    },
+    Check_last_vote: function Check_last_vote(url, status) {
+      if (status) {
+        window.open(url, '_blank');
+      } else {
+        this.viUrl = url;
+        this.$modal.show('warm');
+      }
+    },
     checkRecaptcha: function checkRecaptcha(response) {
       this.form.ReqResponse = response;
       this.disabel = false;
@@ -4024,12 +4085,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       myservers: [],
       errors: [],
       clicked: false,
+      server: {
+        id: ''
+      },
       user: {
         old_password: '',
         password: '',
@@ -4052,26 +4118,53 @@ __webpack_require__.r(__webpack_exports__);
     this.getMyServers();
   },
   methods: {
+    deactive: function deactive(id) {
+      var _this = this;
+
+      this.server.id = id;
+      this.axios.post("/api/Deactivate", this.server).then(function (response) {
+        _this.getMyServers();
+
+        Toast.fire({
+          icon: "success",
+          title: "Server Deactivated Successfully"
+        });
+      })["catch"](function (errors) {});
+    },
+    active: function active(id) {
+      var _this2 = this;
+
+      this.server.id = id;
+      this.axios.post("/api/Active", this.server).then(function (response) {
+        _this2.getMyServers();
+
+        console.log(response);
+        Toast.fire({
+          icon: "success",
+          title: "Server Activated  Successfully"
+        });
+      })["catch"](function (errors) {});
+    },
     editServer: function editServer(slug) {
       this.$router.push({
         path: '/edit/' + slug
       });
     },
     getMyServers: function getMyServers() {
-      var _this = this;
+      var _this3 = this;
 
       this.axios.get("/api/getMyServers").then(function (response) {
-        _this.myservers = response.data;
+        _this3.myservers = response.data;
       })["catch"](function (errors) {});
     },
     changepassword: function changepassword() {
-      var _this2 = this;
+      var _this4 = this;
 
       this.clicked = true;
       var vm = this;
       this.axios.post("/api/changepassword", this.user).then(function (response) {
         console.log(response);
-        _this2.clicked = false;
+        _this4.clicked = false;
         Toast.fire({
           icon: "success",
           title: "Password Updated Successfully"
@@ -45905,8 +45998,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", [
             _c("input", {
-              staticClass: "btn btn-dark d-block bg-dark mt-3",
-              staticStyle: { display: "inline-block" },
+              staticClass: "btn btn-dark  bg-dark mt-3",
               attrs: {
                 disabled: _vm.checkuser,
                 type: "submit",
@@ -45916,8 +46008,7 @@ var render = function() {
             }),
             _vm._v(" "),
             _c("input", {
-              staticClass: "btn btn-dark d-block bg-dark mt-3",
-              staticStyle: { display: "inline-block" },
+              staticClass: "btn btn-dark bg-dark mt-3",
               attrs: { type: "submit", value: "Back" },
               on: {
                 click: function($event) {
@@ -47023,6 +47114,35 @@ var render = function() {
   return _c(
     "div",
     [
+      _c("modal", { attrs: { name: "warm", height: 200 } }, [
+        _c("div", { staticClass: "my-3 px-4 py-5 bg-white" }, [
+          _c("h6", { staticClass: "font-weight-bold" }, [
+            _vm._v(
+              " this server is inactive and not online anymore. are you sure you want to continue ?"
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "btn btn-dark ", on: { click: _vm.visit } },
+            [_vm._v("Yes")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-dark ",
+              on: {
+                click: function($event) {
+                  return _vm.$modal.hide("warm")
+                }
+              }
+            },
+            [_vm._v("No")]
+          )
+        ])
+      ]),
+      _vm._v(" "),
       _vm.Servers.length == 0
         ? _c(
             "div",
@@ -47078,9 +47198,9 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                  " +
+                            "\n                    " +
                               _vm._s(index + 1) +
-                              "\n                    \n                "
+                              "\n                      \n                  "
                           )
                         ]
                       )
@@ -47111,7 +47231,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                              Easy\n                                          "
+                                "\n                                                Easy\n                                            "
                               )
                             ]
                           )
@@ -47125,7 +47245,7 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                              Medium\n                                          "
+                                "\n                                                Medium\n                                            "
                               )
                             ]
                           )
@@ -47144,11 +47264,11 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                  " +
+                            "\n                    " +
                               _vm._s(
                                 Server.url.replace(/[http:// https://]/g, "")
                               ) +
-                              "\n                "
+                              "\n                  "
                           )
                         ]
                       )
@@ -47193,7 +47313,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-sm-7 m-auto" }, [
-              _c("a", { attrs: { href: Server.url, target: "_blank" } }, [
+              _c("a", [
                 _c("img", {
                   staticClass: "img-fluid rounded",
                   staticStyle: {
@@ -47205,6 +47325,14 @@ var render = function() {
                     src: Server.banner,
                     alt: Server.title,
                     onerror: "this.src='/img/550120.jpg'"
+                  },
+                  on: {
+                    click: function($event) {
+                      return _vm.Check_last_vote(
+                        Server.url,
+                        Server.has_vote_in_12
+                      )
+                    }
                   }
                 })
               ])
@@ -47291,6 +47419,35 @@ var render = function() {
   return _c(
     "div",
     [
+      _c("modal", { attrs: { name: "warm", height: 200 } }, [
+        _c("div", { staticClass: "my-3 px-4 py-5 bg-white" }, [
+          _c("h6", { staticClass: "font-weight-bold" }, [
+            _vm._v(
+              " this server is inactive and not online anymore. are you sure you want to continue ?"
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "btn btn-dark ", on: { click: _vm.visit } },
+            [_vm._v("Yes")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-dark ",
+              on: {
+                click: function($event) {
+                  return _vm.$modal.hide("warm")
+                }
+              }
+            },
+            [_vm._v("No")]
+          )
+        ])
+      ]),
+      _vm._v(" "),
       _c("div", { staticClass: "card serverCard p-4 mb-3 mt-5" }, [
         _vm.Server.is_international
           ? _c("img", {
@@ -47321,7 +47478,11 @@ var render = function() {
                               }
                             }
                           },
-                          [_vm._v("\n                  Hard\n                ")]
+                          [
+                            _vm._v(
+                              "\n                    Hard\n                  "
+                            )
+                          ]
                         )
                       : _vm._e(),
                     _vm._v(" "),
@@ -47329,7 +47490,11 @@ var render = function() {
                       ? _c(
                           "p",
                           { staticClass: "hard text-success bg-green rounded" },
-                          [_vm._v("\n                  Easy\n                ")]
+                          [
+                            _vm._v(
+                              "\n                    Easy\n                  "
+                            )
+                          ]
                         )
                       : _vm._e(),
                     _vm._v(" "),
@@ -47339,7 +47504,7 @@ var render = function() {
                           { staticClass: "hard text-orange bg-orange rounded" },
                           [
                             _vm._v(
-                              "\n                  Medium\n                "
+                              "\n                    Medium\n                  "
                             )
                           ]
                         )
@@ -47398,7 +47563,15 @@ var render = function() {
           {
             staticClass:
               "btn btn-dark bg-dark btn-block rounded font-weight-normal",
-            attrs: { href: _vm.Server.url, target: "_blank" }
+            attrs: { target: "_blank" },
+            on: {
+              click: function($event) {
+                return _vm.Check_last_vote(
+                  _vm.Server.url,
+                  _vm.Server.has_vote_in_12
+                )
+              }
+            }
           },
           [_vm._v(_vm._s(_vm.url) + " - Server details")]
         ),
@@ -47421,7 +47594,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("\n              Hard\n            ")]
+                      [_vm._v("\n                Hard\n              ")]
                     )
                   : _vm._e(),
                 _vm._v(" "),
@@ -47429,7 +47602,7 @@ var render = function() {
                   ? _c(
                       "p",
                       { staticClass: "hard text-success bg-green rounded" },
-                      [_vm._v("\n              Easy\n            ")]
+                      [_vm._v("\n                Easy\n              ")]
                     )
                   : _vm._e(),
                 _vm._v(" "),
@@ -47437,7 +47610,7 @@ var render = function() {
                   ? _c(
                       "p",
                       { staticClass: "hard text-orange bg-orange rounded" },
-                      [_vm._v("\n              Medium\n            ")]
+                      [_vm._v("\n                Medium\n              ")]
                     )
                   : _vm._e(),
                 _vm._v(" "),
@@ -47496,7 +47669,15 @@ var render = function() {
                     "a",
                     {
                       staticClass: "text-muted",
-                      attrs: { href: _vm.Server.url, target: "_blank" }
+                      attrs: { target: "_blank" },
+                      on: {
+                        click: function($event) {
+                          return _vm.Check_last_vote(
+                            _vm.Server.url,
+                            _vm.Server.has_vote_in_12
+                          )
+                        }
+                      }
                     },
                     [_vm._v(_vm._s(_vm.url))]
                   ),
@@ -47560,7 +47741,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("h3", { staticClass: "my-5 font-weight-bold" }, [
-        _vm._v("\n    Feedback & Comments: "),
+        _vm._v("\n      Feedback & Comments: "),
         _c("span", [_vm._v(_vm._s(_vm.comments.length))])
       ]),
       _vm._v(" "),
@@ -47606,14 +47787,16 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v("\n              REPLY\n            ")]
+                        [_vm._v("\n                REPLY\n              ")]
                       )
                     ])
                   ]),
                   _vm._v(" "),
                   _c("p", { staticClass: "font-14" }, [
                     _vm._v(
-                      "\n          " + _vm._s(comment.comment) + "\n        "
+                      "\n            " +
+                        _vm._s(comment.comment) +
+                        "\n          "
                     )
                   ]),
                   _vm._v(" "),
@@ -47673,7 +47856,9 @@ var render = function() {
                   _vm._v(" "),
                   _c("p", { staticClass: "font-14" }, [
                     _vm._v(
-                      "\n          " + _vm._s(comment.comment) + "\n        "
+                      "\n            " +
+                        _vm._s(comment.comment) +
+                        "\n          "
                     )
                   ])
                 ])
@@ -47690,7 +47875,7 @@ var render = function() {
           _vm._v(" "),
           _vm.errors.username
             ? _c("span", { staticClass: "text-danger" }, [
-                _vm._v(_vm._s(this.errors.username[0]) + "\n      ")
+                _vm._v(_vm._s(this.errors.username[0]) + "\n        ")
               ])
             : _vm._e(),
           _vm._v(" "),
@@ -47811,7 +47996,7 @@ var render = function() {
           _vm._v(" "),
           _vm.errors.username
             ? _c("span", { staticClass: "text-danger" }, [
-                _vm._v(_vm._s(this.errors.username[0]) + "\n      ")
+                _vm._v(_vm._s(this.errors.username[0]) + "\n        ")
               ])
             : _vm._e(),
           _vm._v(" "),
@@ -48125,7 +48310,7 @@ var render = function() {
         _vm._v(" "),
         _vm.errors.username
           ? _c("span", { staticClass: "text-danger" }, [
-              _vm._v(_vm._s(this.errors.username[0]) + "\n      ")
+              _vm._v(_vm._s(this.errors.username[0]) + "\n        ")
             ])
           : _vm._e(),
         _vm._v(" "),
@@ -48444,7 +48629,43 @@ var render = function() {
                     }
                   },
                   [_vm._v("edit")]
-                )
+                ),
+                _vm._v(" "),
+                myserve.status &&
+                myserve.admin_active &&
+                myserve.server_owner_active
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-danger px-3 py-0 rounded m-0",
+                        staticStyle: { "font-size": "12px" },
+                        on: {
+                          click: function($event) {
+                            return _vm.deactive(myserve.id)
+                          }
+                        }
+                      },
+                      [_vm._v("Deactivate")]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                myserve.status &&
+                myserve.admin_active &&
+                !myserve.server_owner_active
+                  ? _c(
+                      "button",
+                      {
+                        staticClass: "btn btn-success px-3 py-0 rounded m-0",
+                        staticStyle: { "font-size": "12px" },
+                        on: {
+                          click: function($event) {
+                            return _vm.active(myserve.id)
+                          }
+                        }
+                      },
+                      [_vm._v("Active")]
+                    )
+                  : _vm._e()
               ])
             ])
           }),

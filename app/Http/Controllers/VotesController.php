@@ -118,6 +118,7 @@ class VotesController extends Controller
     //vote 
         $server =    Server::findOrFail($request->server_id);
         $server->real_vote_amount  =  $server->real_vote_amount + 1;
+        $server->has_votes_in_the_last_12  =  true;
         $server->save();
         Vote::create([
             'server_id' => $request->server_id,

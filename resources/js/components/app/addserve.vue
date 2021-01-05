@@ -258,15 +258,15 @@
  <input
         :disabled="checkuser"
         type="submit"
-        class="btn btn-dark d-block bg-dark mt-3"
+        class="btn btn-dark  bg-dark mt-3"
         value="Create"
-         style="display:inline-block" 
+        
         @click="createServer"
       />
        <input 
-       style="display:inline-block" 
+     
         type="submit"
-        class="btn btn-dark d-block bg-dark mt-3"
+        class="btn btn-dark bg-dark mt-3"
         value="Back"
         @click="ndStep = true; endStep = false"
       />

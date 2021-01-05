@@ -26,6 +26,8 @@
                     </td>
                     <td class="text-center">
                         <button class="btn btn-dark px-3 py-0 rounded m-0" style="font-size: 12px;" @click="editServer(myserve.slug)">edit</button>
+                        <button v-if="myserve.status  && myserve.admin_active && myserve.server_owner_active" @click="deactive(myserve.id)" class="btn btn-danger px-3 py-0 rounded m-0" style="font-size: 12px;" >Deactivate</button>
+                        <button v-if="myserve.status  && myserve.admin_active && !myserve.server_owner_active" @click="active(myserve.id)" class="btn btn-success px-3 py-0 rounded m-0" style="font-size: 12px;" >Active</button>
                     </td>
                   </tr>
                 
@@ -70,6 +72,9 @@ export default {
       myservers:[],
       errors:[],
       clicked:false,
+      server:{
+        id:'',
+      },
       user:{
         old_password:'',
         password:'',
@@ -92,6 +97,37 @@ export default {
      this.getMyServers();
    },
   methods: {
+    deactive(id){
+      this.server.id = id
+         this.axios
+        .post("/api/Deactivate",this.server)
+        .then((response) => { 
+           this.getMyServers();
+         Toast.fire({
+            icon: "success",
+            title: "Server Deactivated Successfully",
+          });
+        })
+        .catch((errors) => {  
+
+        });
+    },
+    active(id){
+      this.server.id = id
+      this.axios
+        .post("/api/Active",this.server)
+        .then((response) => { 
+           this.getMyServers();
+          console.log(response)
+           Toast.fire({
+            icon: "success",
+            title: "Server Activated  Successfully",
+          });
+        })
+        .catch((errors) => {  
+
+        });
+    },  
     editServer(slug){
       this.$router.push({path:'/edit/'+ slug});
     },

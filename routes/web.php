@@ -30,7 +30,7 @@ use Illuminate\Support\Facades\Mail;
 use  \Illuminate\Support\Carbon;
 
 Route::get('/test', function () {
-  return ServerRanking::Down;
+  return Server::find(1)->vote;
     
 });
 

@@ -29,6 +29,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('take:screen')->everyMonth();
         $schedule->command('backlinks:check')->everyFourHours();
         $schedule->command('backlink:active')->everyFourHours();
+        $schedule->command('Server:check_last_vote')->cron('* */12 * * *');
     }
 
     /**
