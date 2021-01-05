@@ -2484,13 +2484,15 @@ __webpack_require__.r(__webpack_exports__);
       disabel: false,
       form: {
         username: "",
-        password: ""
+        password: "",
+        ReqResponse: ''
       },
       errors: ""
     };
   },
   methods: {
     checkRecaptcha: function checkRecaptcha(response) {
+      this.form.ReqResponse = response;
       this.disabel = false;
     },
     login: function login() {
@@ -2508,7 +2510,15 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.$modal.hide('login');
       })["catch"](function (errors) {
-        _this.errors = errors.response.data;
+        if (errors.response.status == 422) {
+          _this.errors = errors.response.data;
+        } else if (errors.response.status == 403) {
+          Toast.fire({
+            icon: "error",
+            title: errors.response.data
+          });
+        }
+
         _this.$store.state.islogin = false;
         _this.$store.state.user = [];
         _this.disabel = false;
@@ -3189,6 +3199,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3198,7 +3212,8 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
-    goDetails: function goDetails(slug) {
+    goDetails: function goDetails(slug, index) {
+      something.$emit("index", index);
       this.$router.push({
         path: "/serverdetails/".concat(slug)
       });
@@ -3680,7 +3695,8 @@ __webpack_require__.r(__webpack_exports__);
       errors: [],
       comments: [],
       replays: [],
-      showReplay: false
+      showReplay: false,
+      index: 0
     };
   },
   methods: {
@@ -46841,8 +46857,24 @@ var render = function() {
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-sm-5" }, [
               _c("div", { staticClass: "row" }, [
-                _vm._m(0, true),
-                _vm._v("\n          " + _vm._s(Server.upDown) + "\n          "),
+                _c("div", { staticClass: "col-2" }, [
+                  Server.upDown == "down"
+                    ? _c("img", {
+                        attrs: { src: "/img/down.png", alt: "down" }
+                      })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  Server.upDown == "up"
+                    ? _c("img", { attrs: { src: "/img/up.png", alt: "up" } })
+                    : _vm._e(),
+                  _vm._v(" "),
+                  Server.upDown == "stable"
+                    ? _c("span", { staticStyle: { "margin-left": "10px" } }, [
+                        _c("i", { staticClass: "fas fa-pause 3x" })
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
                 _c("div", { staticClass: "col-10 m-auto" }, [
                   _c("div", { staticClass: "row" }, [
                     _c("div", { staticClass: "col-3" }, [
@@ -46854,7 +46886,7 @@ var render = function() {
                           staticStyle: { cursor: "pointer" },
                           on: {
                             click: function($event) {
-                              return _vm.goDetails(Server.slug)
+                              return _vm.goDetails(Server.slug, index)
                             }
                           }
                         },
@@ -46877,7 +46909,7 @@ var render = function() {
                               staticStyle: { cursor: "pointer" },
                               on: {
                                 click: function($event) {
-                                  return _vm.goDetails(Server.slug)
+                                  return _vm.goDetails(Server.slug, index)
                                 }
                               }
                             },
@@ -46920,7 +46952,7 @@ var render = function() {
                           staticStyle: { cursor: "pointer" },
                           on: {
                             click: function($event) {
-                              return _vm.goDetails(Server.slug)
+                              return _vm.goDetails(Server.slug, index)
                             }
                           }
                         },
@@ -46946,7 +46978,7 @@ var render = function() {
                       staticStyle: { cursor: "pointer" },
                       on: {
                         click: function($event) {
-                          return _vm.goDetails(Server.slug)
+                          return _vm.goDetails(Server.slug, index)
                         }
                       }
                     },
@@ -46954,7 +46986,7 @@ var render = function() {
                   ),
                   _vm._v(" "),
                   _c("p", { staticClass: "mt-4" }, [
-                    _vm._m(1, true),
+                    _vm._m(0, true),
                     _vm._v(" "),
                     _c("span", { staticClass: "text-success" }, [
                       _vm._v(_vm._s(Server.realtimeVote))
@@ -46964,7 +46996,7 @@ var render = function() {
                       _vm._v("|")
                     ]),
                     _vm._v(" "),
-                    _vm._m(2, true),
+                    _vm._m(1, true),
                     _vm._v(" "),
                     _c("span", { staticClass: "text-secondary font-13" }, [
                       _vm._v(_vm._s(Server.viewd))
@@ -47029,14 +47061,6 @@ var render = function() {
   )
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-2" }, [
-      _c("img", { attrs: { src: "/img/down.png", alt: "" } })
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -47147,7 +47171,23 @@ var render = function() {
                   _vm._v(_vm._s(_vm.Server.title))
                 ]),
                 _vm._v(" "),
-                _vm._m(2)
+                _c("p", { staticClass: "mt-4" }, [
+                  _vm._m(2),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "text-success" }, [
+                    _vm._v(_vm._s(_vm.Server.realtimeVote))
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "mx-3 text-secondary" }, [
+                    _vm._v("|")
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(3),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "text-secondary font-13" }, [
+                    _vm._v(_vm._s(_vm.Server.viewd))
+                  ])
+                ])
               ])
             ])
           ]),
@@ -47180,7 +47220,7 @@ var render = function() {
         _c("div", { staticClass: "row mt-3" }, [
           _c("div", { staticClass: "col-md-6" }, [
             _c("div", { staticClass: "row" }, [
-              _vm._m(3),
+              _vm._m(4),
               _vm._v(" "),
               _c("div", { staticClass: "col-7" }, [
                 _vm.Server.difficulty == "Hard"
@@ -47224,7 +47264,7 @@ var render = function() {
             _c("hr"),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
-              _vm._m(4),
+              _vm._m(5),
               _vm._v(" "),
               _c("div", { staticClass: "col-7" }, [
                 _c("p", { staticClass: "d-inline text-muted ml-2" }, [
@@ -47236,7 +47276,7 @@ var render = function() {
             _c("hr"),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
-              _vm._m(5),
+              _vm._m(6),
               _vm._v(" "),
               _c("div", { staticClass: "col-7" }, [
                 _c("p", { staticClass: "d-inline text-muted ml-2" }, [
@@ -47247,14 +47287,22 @@ var render = function() {
             _vm._v(" "),
             _c("hr"),
             _vm._v(" "),
-            _vm._m(6),
+            _c("div", { staticClass: "row" }, [
+              _vm._m(7),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-7" }, [
+                _c("p", { staticClass: "d-inline text-success ml-2" }, [
+                  _vm._v(_vm._s(_vm.Server.realtimeVote))
+                ])
+              ])
+            ]),
             _vm._v(" "),
             _c("hr")
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "col-md-6" }, [
             _c("div", { staticClass: "row" }, [
-              _vm._m(7),
+              _vm._m(8),
               _vm._v(" "),
               _c("div", { staticClass: "col-7" }, [
                 _c("p", { staticClass: "d-inline text-muted ml-2" }, [
@@ -47274,16 +47322,32 @@ var render = function() {
             _vm._v(" "),
             _c("hr"),
             _vm._v(" "),
-            _vm._m(8),
-            _vm._v(" "),
-            _c("hr"),
-            _vm._v(" "),
-            _vm._m(9),
+            _c("div", { staticClass: "row" }, [
+              _vm._m(9),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-7" }, [
+                _c("p", { staticClass: "d-inline text-muted ml-2" }, [
+                  _vm._v(_vm._s(_vm.comments.length))
+                ])
+              ])
+            ]),
             _vm._v(" "),
             _c("hr"),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
               _vm._m(10),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-7" }, [
+                _c("p", { staticClass: "d-inline text-muted ml-2" }, [
+                  _vm._v(_vm._s(_vm.Server.viewd))
+                ])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("hr"),
+            _vm._v(" "),
+            _c("div", { staticClass: "row" }, [
+              _vm._m(11),
               _vm._v(" "),
               _c("div", { staticClass: "col-7" }, [
                 _c("p", { staticClass: "d-inline text-muted ml-2" }, [
@@ -47318,7 +47382,7 @@ var render = function() {
         return !_vm.showReplay
           ? _c("div", { staticClass: "card my-3" }, [
               _c("div", { staticClass: "row p-3" }, [
-                _vm._m(11, true),
+                _vm._m(12, true),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-11 p-0 pl-2" }, [
                   _c("div", { staticClass: "row" }, [
@@ -47404,7 +47468,7 @@ var render = function() {
         return _vm.showReplay
           ? _c("div", { staticClass: "card my-3" }, [
               _c("div", { staticClass: "row p-3" }, [
-                _vm._m(12, true),
+                _vm._m(13, true),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-11 p-0 pl-2" }, [
                   _c("div", { staticClass: "row" }, [
@@ -47860,25 +47924,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", { staticClass: "mt-4" }, [
-      _c("span", [
-        _c("img", {
-          staticClass: "img-fluid",
-          attrs: { src: "/img/like.png", alt: "" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("span", { staticClass: "text-success" }, [_vm._v("22545")]),
-      _vm._v(" "),
-      _c("span", { staticClass: "mx-3 text-secondary" }, [_vm._v("|")]),
-      _vm._v(" "),
-      _c("span", [
-        _c("i", {
-          staticClass: "fa fa-external-link-alt text-secondary font-13"
-        })
-      ]),
-      _vm._v(" "),
-      _c("span", { staticClass: "text-secondary font-13" }, [_vm._v("988")])
+    return _c("span", [
+      _c("img", {
+        staticClass: "img-fluid",
+        attrs: { src: "/img/like.png", alt: "" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", [
+      _c("i", { staticClass: "fa fa-external-link-alt text-secondary font-13" })
     ])
   },
   function() {
@@ -47909,14 +47967,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-4 m-auto" }, [_c("p", [_vm._v("Votes:")])]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-7" }, [
-        _c("p", { staticClass: "d-inline text-success ml-2" }, [
-          _vm._v("22 545")
-        ])
-      ])
+    return _c("div", { staticClass: "col-4 m-auto" }, [
+      _c("p", [_vm._v("Votes:")])
     ])
   },
   function() {
@@ -47931,28 +47983,16 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-4 m-auto" }, [
-        _c("p", [_vm._v("Comments:")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-7" }, [
-        _c("p", { staticClass: "d-inline text-muted ml-2" }, [_vm._v("54")])
-      ])
+    return _c("div", { staticClass: "col-4 m-auto" }, [
+      _c("p", [_vm._v("Comments:")])
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-4 m-auto" }, [
-        _c("p", [_vm._v("Clicks:")])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-7" }, [
-        _c("p", { staticClass: "d-inline text-muted ml-2" }, [_vm._v("988")])
-      ])
+    return _c("div", { staticClass: "col-4 m-auto" }, [
+      _c("p", [_vm._v("Clicks:")])
     ])
   },
   function() {

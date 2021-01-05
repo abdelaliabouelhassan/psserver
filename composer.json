@@ -8,11 +8,11 @@
     ],
     "license": "MIT",
     "require": {
-        "ext-mbstring": "*",
         "php": "^7.3|^8.0",
+        "ext-mbstring": "*",
         "fideloper/proxy": "^4.4",
         "fruitcake/laravel-cors": "^2.0",
-        "google/recaptcha": "^1.2",
+        "google/recaptcha": "1.2",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.5",
         "laravel/framework": "^8.12",

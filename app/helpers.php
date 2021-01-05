@@ -55,7 +55,7 @@ function getIPAddress()
 
 function checkBackLink($url, $url_name){
     $checker = new BacklinkChecker\SimpleBacklinkChecker();
-    $pattern = "@https?://(www\.)?" . $url_name. "\.com.*@";
+    $pattern = "@https?://(www\.)?" . $url_name. ".*@";
     $scan_Back_links = true;
     $scan_Hot_links = false;
     $make_Screenshot = false;
@@ -79,6 +79,20 @@ function checkBackLink($url, $url_name){
     } catch (RuntimeException $e) {
         die("Error: " . $e->getMessage());
     }
+}
+
+function checkRecaptcha($key,$response){
+    $recaptcha = new \ReCaptcha\ReCaptcha($key);
+    $gRecaptchaResponse = $response;
+    $remoteIp = getIPAddress();
+    $resp = $recaptcha
+        ->verify($gRecaptchaResponse, $remoteIp);
+    if ($resp->isSuccess()) {
+        return true;
+    } else {
+         return false;
+    }
+
 }
 
 

@@ -50,12 +50,12 @@
                 <span>
                   <img src="/img/like.png" class="img-fluid" alt="" />
                 </span>
-                <span class="text-success">22545</span>
+                <span class="text-success">{{Server.realtimeVote}}</span>
                 <span class="mx-3 text-secondary">|</span>
                 <span>
                   <i class="fa fa-external-link-alt text-secondary font-13"></i>
                 </span>
-                <span class="text-secondary font-13">988</span>
+                <span class="text-secondary font-13">{{Server.viewd}}</span>
               </p>
             </div>
           </div>
@@ -135,7 +135,7 @@
               <p>Votes:</p>
             </div>
             <div class="col-7">
-              <p class="d-inline text-success ml-2">22 545</p>
+              <p class="d-inline text-success ml-2">{{Server.realtimeVote}}</p>
             </div>
           </div>
           <hr />
@@ -160,7 +160,7 @@
               <p>Comments:</p>
             </div>
             <div class="col-7">
-              <p class="d-inline text-muted ml-2">54</p>
+              <p class="d-inline text-muted ml-2">{{comments.length}}</p>
             </div>
           </div>
           <hr />
@@ -169,7 +169,7 @@
               <p>Clicks:</p>
             </div>
             <div class="col-7">
-              <p class="d-inline text-muted ml-2">988</p>
+              <p class="d-inline text-muted ml-2">{{Server.viewd}}</p>
             </div>
           </div>
           <hr />
@@ -432,6 +432,7 @@ export default {
       comments: [],
       replays:[],
       showReplay:false,
+      index:0,
     };
   },
   methods: {
@@ -524,7 +525,7 @@ export default {
     },
   },
   created() {
-    this.getServer();
+     this.getServer();
     this.getComments();
   },
 };

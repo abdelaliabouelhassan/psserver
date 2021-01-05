@@ -52,6 +52,10 @@ class RegisterAndLoginController extends Controller
             'password'=>['required'],
         ]);
 
+        if(!checkRecaptcha(env('INVISIBLE_RECAPTCHA_SECRETKEY'),$request->ReqResponse)){
+            return response()->json('invalid recaptcha.', 403);
+        }
+
         if(Auth::attempt($request->only('username','password'))){
             return response()->json(Auth::user(),200);
         }

@@ -27,18 +27,10 @@ use App\BacklinkChecker;
 use  \Illuminate\Support\Carbon;
 
 Route::get('/test', function () {
+    
+   return checkRecaptcha('sfdsf', env('INVISIBLE_RECAPTCHA_SECRETKEY'));
 
-   return request()->server('SERVER_NAME');
-
-   return checkBackLink('https://www.youtube.com/', 'https://www.youtube.com/');
-
- 
-
-
-  
-
-
-  
+//    return checkBackLink('https://sepherion2.biz/', 'sepherion2'); 
     
 });
 

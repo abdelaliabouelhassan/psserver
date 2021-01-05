@@ -55,27 +55,19 @@ class serverController extends Controller
         }
 
         //check backlink
-       
+        
         $server =  Server::findOrFail($request->id);
-        $response = Http::get($server->url);
-        $data = $response->body();
-        if (!Str::contains($data, ['<a href="' . url('/serverdetails/' . $server->slug) . '" title="Metin2 P Server">Metin2 P Server</a>'])) {
-            return response()->json('You Need To Add BackLink to your website (' . $server->url . ')!', 403);
-        }
-        if (!checkBackLink($server->url, 'youtube')) {
+        $url =  request()->server('SERVER_NAME') . '/'. $server->slug;
+        if (!checkBackLink($server->url, $url)) {
             return response()->json('You Need To Add BackLink to your website (' . $server->url . ')!', 403);
         }
 
 
         if ($request->Banner) {
-
-
             //upload Banner  
             $name = time() . '.'  . explode('/', explode(':', substr($request->Banner, 0, strpos($request->Banner, ';')))[1])[1];
             $folderPath = "uploads/images/";
             $dbPath = "";
-
-           
 
             $image_parts = explode(";base64,", $request->Banner);
             $image_type_aux = explode("image/", $image_parts[0]);
