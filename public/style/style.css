@@ -39,6 +39,10 @@
     background-color: white !important;
 } */
 
+.vg-nav-main-container{
+    margin-left: -6rem;
+}
+
 /* .vg-nav-main-container {
 margin-left: 100px;
 } */
@@ -511,3 +515,7 @@ table {
         font-size: 10px;
     }
 }
+
+
+
+

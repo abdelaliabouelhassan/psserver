@@ -1,6 +1,6 @@
 <template>
   <div class="header bg-light m-0 bg-dark">
-    <div class="row" style="margin-left: 11rem;">
+    <div class="row"  :class="{'fr':$store.state.lang == 'fr','en':$store.state.lang != 'fr','login':$store.state.islogin && $store.state.lang == 'fr','login_en':$store.state.islogin && $store.state.lang != 'fr'}">
       <div class="col-md-3">
         <div class="logo">
             <router-link to="/"><img src="/img/logo.png" style="width: 90px" alt="" /></router-link>
@@ -27,7 +27,7 @@
                     <li><a href="javascript:void(0)" @click="search('Roman')" class="text-dark">Roman</a></li>
                 </ul>
               </li>
-              <li>
+              <li id="part">
                 <a href="" class="text-white">{{$t('message.PARTNERS')}}</a>
               </li>
               <li >
@@ -50,19 +50,19 @@
                  <router-link to="/contact"  class="text-white">{{$t('message.CONTACT')}}</router-link>
             
               </li>
-              <li>
-                <select name="lang" id="" @change="changeLang" v-model="$store.state.lang" class="form-control d-inline mx-2" style="width: 115px">
+              <li id="last">
+                <select name="lang" id="" @change="changeLang" v-model="$store.state.lang" class="form-control d-inline mx-2 langSelect">
                   <option value="en">English</option>
                    <option value="de">Deutsch</option>
-                    <option value="fr">french</option>
-                     <option value=it>italy</option>
+                    <option value="fr">French</option>
+                     <option value=it>Italy</option>
                      <option value="ro">Roman</option>
                 </select>
               </li>
             </ul>
           </nav>
         </div>
-        <p class="d-inline my-auto headerbtns" v-if="!$store.state.islogin">
+        <p class="d-inline my-auto headerbtns" :class="{'fr_headerbtns':$store.state.lang == 'fr'}" v-if="!$store.state.islogin">
           <a
             @click="login_modal"
             class="btn btn-link text-white ml-5 hidbtn dropdown-toggle text-decoration-none"
@@ -158,4 +158,153 @@ export default {
 </script>
 
 <style scoped>
+
+.fr{
+  margin-left: 4rem;;
+}
+.en{
+  margin-left: 9rem;
+}
+.fr_headerbtns{
+  margin-left: -2rem;
+}
+
+.login{
+  margin-left: 8rem;
+}
+.login_en{
+  margin-left: 14rem;
+
+}
+
+.langSelect{
+    cursor: pointer;
+     background-color: black;
+    color: white;
+    border: black;
+    width: 115px
+}
+
+@media only screen and (max-width: 1646px){
+  .row{
+    margin-left: -2rem;
+  }
+
+}
+
+@media only screen and (max-width: 1646px){
+  .row{
+    margin-left: -6rem;
+  }
+
+}
+
+@media only screen and (max-width: 1461px){
+  .logo{
+    margin-left: 8rem;
+  }
+.row{
+      margin-left: -10rem;
+}
+}
+
+@media only screen and (max-width: 1378px){
+  #last{
+    display: none;
+  }
+   .logo{
+    margin-left: 0rem;
+  }
+  .row{
+      margin-left: -2rem;
+}
+}
+
+@media only screen and (max-width: 1378px){
+  #last{
+    display: none;
+  }
+   .logo{
+    margin-left: 0rem;
+  }
+  .row{
+      margin-left: -2rem;
+}
+}
+
+
+
+@media only screen and (max-width: 1262px){
+  
+  #last{
+    display: none;
+  }
+   .logo{
+   margin-left: -10rem;
+  }
+  .row{
+      margin-left: -4rem;
+}
+
+
+}
+
+
+@media only screen and (max-width: 1262px){
+  .logo{
+     margin-left: 1rem;
+}
+
+}
+
+
+@media only screen and (max-width: 1209px) and (max-width: 1218px){
+  .row{
+    margin-left: 2rem
+  }
+  #part{
+    display: none;
+  }
+  .logo{
+      margin-left: -4rem;
+}
+
+
+}
+
+
+@media only screen and (max-width: 1199px){
+ ul{
+   margin-left: 1rem;
+ }
+  #part{
+    display: block;
+  }
+  #last{
+    display: block;
+  }
+
+
+@media only screen and (max-width: 767px){
+  .align-items-center{
+    margin-bottom: 1rem;
+  }
+}
+
+@media only screen and (max-width: 474px){
+  .navigation{
+    margin-bottom: -4rem;
+  }
+}
+@media only screen and (max-width: 475px){
+  .navigation{
+    margin-left: -4rem;
+    margin-top: -2rem;
+  }
+  .align-items-center{
+    margin-bottom: 4rem;
+  }
+}
+
+}
 </style>

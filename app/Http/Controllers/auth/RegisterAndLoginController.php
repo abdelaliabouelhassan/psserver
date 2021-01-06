@@ -5,13 +5,12 @@ namespace App\Http\Controllers\auth;
 use App\Http\Controllers\Controller;
 use App\Mail\VerificationEmail;
 use App\Models\User;
-use Dotenv\Exception\ValidationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
-use  \Illuminate\Support\Facades\App;
+
 
 
 class RegisterAndLoginController extends Controller
@@ -60,9 +59,9 @@ class RegisterAndLoginController extends Controller
             'password'=>['required'],
          ]);
 
-        if(!checkRecaptcha(env('INVISIBLE_RECAPTCHA_SECRETKEY', '6LeCNhwaAAAAACh31QVu_Fve05EQqn7p9iOWNQmU'),$request->ReqResponse)){
-            return response()->json(trans('message.invalid_recaptcha'), 403);
-        }
+        // if(!checkRecaptcha(env('INVISIBLE_RECAPTCHA_SECRETKEY', '6LeCNhwaAAAAACh31QVu_Fve05EQqn7p9iOWNQmU'),$request->ReqResponse)){
+        //     return response()->json(trans('message.invalid_recaptcha'), 403);
+        // }
 
         if(Auth::attempt($request->only('username','password'))){
             return response()->json(Auth::user(),200);
