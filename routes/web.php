@@ -79,6 +79,15 @@ Route::get('/take',function (){
 Route::get('/verifyemail/{email}/{token}','auth\RegisterAndLoginController@verifyemail');
 
 
+
+//admins
+Route::get('/admin', function () {
+    return view('admin.pages.index');
+});
+
+
+
+//clients 
 Route::get('/', function () {
     return view('master');
 });
