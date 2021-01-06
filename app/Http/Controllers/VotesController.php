@@ -16,7 +16,7 @@ class VotesController extends Controller
 
         //check recaptcha 
         if (!checkRecaptcha(env('INVISIBLE_RECAPTCHA_SECRETKEY', '6LeCNhwaAAAAACh31QVu_Fve05EQqn7p9iOWNQmU'), $request->ReqResponse)) {
-            return response()->json('invalid recaptcha.', 403);
+            return response()->json(trans('message.invalid_recaptcha'), 403);
         }
 
         //get my ip
@@ -57,13 +57,13 @@ class VotesController extends Controller
                     $db_ip = $user->ip;
                     }else{
                        
-                        return response()->json('You Can\'t Vote With Multiple Usernames', 403); 
+                        return response()->json(trans('message.Multiple'), 403); 
                     }
             }else{
                 $user =  User::where('username', $request->username)->first();  
                 if($user){
                    
-                    return response()->json('The Username Already Taken', 403); 
+                    return response()->json(trans('message.Already'), 403); 
                 }else {
                     //create guest user
                     $email = uniqid() .'_' . 'guest.mt2';
@@ -103,16 +103,16 @@ class VotesController extends Controller
                     $now = Carbon::now();
                     $time =   $time->diff($now)->days;
                     if ($time < 1) {
-                        return response()->json('You have already voted on this server, you must wait 24 hours to vote again', 403);
+                        return response()->json(trans('message.vote24'), 403);
                     } 
                 } 
              }else{
                 //you cant
-                return response()->json('You can only vote 3 servers in 8 hours', 403);
+                return response()->json(trans('message.vote3'), 403);
             }
           }else{
               //ip is not the same 
-            return response()->json('You can\'t Vote ', 403);
+            return response()->json(trans('message.cant'), 403);
              }
 
     //vote 
@@ -146,7 +146,7 @@ class VotesController extends Controller
     public function Replay(Request $request){
         //check recaptcha
         if (!checkRecaptcha(env('INVISIBLE_RECAPTCHA_SECRETKEY', '6LeCNhwaAAAAACh31QVu_Fve05EQqn7p9iOWNQmU'), $request->ReqResponse)) {
-            return response()->json('invalid recaptcha.', 403);
+            return response()->json(trans('message.invalid_recaptcha'), 403);
         }
 
         $user_id = "";
@@ -222,7 +222,7 @@ class VotesController extends Controller
 
     
             if($comment){
-            return response()->json('You have already commented you have to wait 5 minutes to comment again.', 403); 
+            return response()->json(trans('message.invalid_recaptcha'), 403); 
             }
 
         Comment::create([

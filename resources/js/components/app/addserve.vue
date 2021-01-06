@@ -324,7 +324,7 @@ export default {
            this.form.id  = response.data.id,
           Toast.fire({
             icon: "success",
-            title: $t('message.Backlink_Geneated_Successfully'),
+            title: this.$t('message.Backlink_Geneated_Successfully'),
           });
         })
         .catch((errors) => {  
@@ -333,12 +333,12 @@ export default {
             this.errors = errors.response.data.errors;
            Toast.fire({
             icon: "error",
-            title: $t('message.Please_errors'),
+            title: this.$t('message.Please_errors'),
           });
           }else{
             Toast.fire({
             icon: "error",
-            title: $t('message.Something_went_wrong'),
+            title: this.$t('message.Something_went_wrong'),
           });
           }      
           
@@ -383,7 +383,7 @@ export default {
            this.clicked = false 
           Toast.fire({
             icon: "success",
-            title: $t('message.Created_Successfully'),
+            title: this.$t('message.Created_Successfully'),
           });
         })
         .catch((errors) => {  
@@ -392,7 +392,7 @@ export default {
             this.errors = errors.response.data.errors;
              Toast.fire({
             icon: "error",
-            title: $t('message.Please_errors'),
+            title: this.$t('message.Please_errors'),
           });
           }else if(errors.response.status == 403){
             Toast.fire({
@@ -403,7 +403,7 @@ export default {
           else{
             Toast.fire({
             icon: "error",
-            title: $t('message.Something_went_wrong'),
+            title: this.$t('message.Something_went_wrong'),
           });
           }      
           
@@ -417,14 +417,14 @@ export default {
           this.emailVrf = true;
           Toast.fire({
             icon: "success",
-            title: $t('message.Verification_email_sent_successfully'),
+            title: this.$t('message.Verification_email_sent_successfully'),
           });
         })
         .catch((errors) => {
           this.emailVrf = true;
           Toast.fire({
             icon: "error",
-            title: $t('message.Something_went_wrong'),
+            title: this.$t('message.Something_went_wrong'),
           });
         });
     },

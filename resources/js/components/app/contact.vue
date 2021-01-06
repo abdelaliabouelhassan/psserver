@@ -1,6 +1,6 @@
 <template>
   <div class="card mt-5 px-4 py-5 bg-white">
-    <h6 class="font-weight-bold">Send us message</h6>
+    <h6 class="font-weight-bold">{{$t('message.Send_us_message')}}</h6>
     <div  class="mt-4">
       <div class="row">
         
@@ -13,7 +13,7 @@
             :class="{ 'is-invalid': errors.username }"
             class="form-control rounded my-2"
             v-model="form.username"
-            placeholder="User Name"
+            :placeholder="$t('message.Username')"
           />
         </div>
        
@@ -26,7 +26,7 @@
             :class="{ 'is-invalid': errors.email }"
             class="form-control rounded my-2"
             v-model="form.email"
-            placeholder="E-mail address"
+            :placeholder="$t('message.Email')"
           />
         </div>
       </div>
@@ -49,7 +49,7 @@
         :class="{ 'is-invalid': etos }"
       /><label for="check" class="ml-2 my-2 terms"
         ><span :class="{ 'text-danger': etos }"
-          >I have read and agree to the</span
+          >{{$t('message.I_have_read')}}</span
         >
         <a href="" class="text-success font-16">Terms of Use</a></label
       >
@@ -110,7 +110,7 @@ export default {
           console.log(response);
           Toast.fire({
             icon: "success",
-            title: "Message Sent Successfully",
+            title: this.$t('message.Message_Sent_Successfully'),
           });
         })
         .catch((errors) => {
@@ -119,7 +119,7 @@ export default {
             this.errors = errors.response.data.errors;
             Toast.fire({
               icon: "error",
-              title: "Please check the error above .",
+              title: this.$t('message.Please_errors'),
             });
           } else if(errors.response.status == 403){
                Toast.fire({
@@ -129,7 +129,7 @@ export default {
           }else {
             Toast.fire({
               icon: "error",
-              title: "Something went wrong please try again .",
+              title: this.$t('message.Something_went_wrong'),
             });
           }
         });

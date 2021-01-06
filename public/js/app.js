@@ -2307,7 +2307,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.link = response.data.link;
         _this.form.id = response.data.id, Toast.fire({
           icon: "success",
-          title: $t('message.Backlink_Geneated_Successfully')
+          title: _this.$t('message.Backlink_Geneated_Successfully')
         });
       })["catch"](function (errors) {
         _this.clicked = false;
@@ -2316,12 +2316,12 @@ __webpack_require__.r(__webpack_exports__);
           _this.errors = errors.response.data.errors;
           Toast.fire({
             icon: "error",
-            title: $t('message.Please_errors')
+            title: _this.$t('message.Please_errors')
           });
         } else {
           Toast.fire({
             icon: "error",
-            title: $t('message.Something_went_wrong')
+            title: _this.$t('message.Something_went_wrong')
           });
         }
       });
@@ -2358,7 +2358,7 @@ __webpack_require__.r(__webpack_exports__);
         _this3.clicked = false;
         Toast.fire({
           icon: "success",
-          title: $t('message.Created_Successfully')
+          title: _this3.$t('message.Created_Successfully')
         });
       })["catch"](function (errors) {
         _this3.clicked = false;
@@ -2367,7 +2367,7 @@ __webpack_require__.r(__webpack_exports__);
           _this3.errors = errors.response.data.errors;
           Toast.fire({
             icon: "error",
-            title: $t('message.Please_errors')
+            title: _this3.$t('message.Please_errors')
           });
         } else if (errors.response.status == 403) {
           Toast.fire({
@@ -2377,7 +2377,7 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           Toast.fire({
             icon: "error",
-            title: $t('message.Something_went_wrong')
+            title: _this3.$t('message.Something_went_wrong')
           });
         }
       });
@@ -2390,13 +2390,13 @@ __webpack_require__.r(__webpack_exports__);
         _this4.emailVrf = true;
         Toast.fire({
           icon: "success",
-          title: $t('message.Verification_email_sent_successfully')
+          title: _this4.$t('message.Verification_email_sent_successfully')
         });
       })["catch"](function (errors) {
         _this4.emailVrf = true;
         Toast.fire({
           icon: "error",
-          title: $t('message.Something_went_wrong')
+          title: _this4.$t('message.Something_went_wrong')
         });
       });
     },
@@ -2519,7 +2519,7 @@ __webpack_require__.r(__webpack_exports__);
         something.$emit("loaduser");
         Toast.fire({
           icon: "success",
-          title: $t('message.Signed_in_successfully')
+          title: _this.$t('message.Signed_in_successfully')
         });
 
         _this.$modal.hide('login');
@@ -2673,7 +2673,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.errors = [];
         Toast.fire({
           icon: "success",
-          title: $t('message.Account_created')
+          title: _this.$t('message.Account_created')
         });
 
         _this.$modal.hide('register');
@@ -2826,7 +2826,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response);
         Toast.fire({
           icon: "success",
-          title: "Message Sent Successfully"
+          title: _this.$t('message.Message_Sent_Successfully')
         });
       })["catch"](function (errors) {
         _this.clicked = false;
@@ -2835,7 +2835,7 @@ __webpack_require__.r(__webpack_exports__);
           _this.errors = errors.response.data.errors;
           Toast.fire({
             icon: "error",
-            title: "Please check the error above ."
+            title: _this.$t('message.Please_errors')
           });
         } else if (errors.response.status == 403) {
           Toast.fire({
@@ -2845,7 +2845,7 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           Toast.fire({
             icon: "error",
-            title: "Something went wrong please try again ."
+            title: _this.$t('message.Something_went_wrong')
           });
         }
       });
@@ -3076,7 +3076,7 @@ __webpack_require__.r(__webpack_exports__);
         _this3.clicked = false;
         Toast.fire({
           icon: "success",
-          title: "Server Created Successfully"
+          title: _this3.$t('message.Server_Updated_Successfully')
         });
       })["catch"](function (errors) {
         _this3.clicked = false;
@@ -3085,7 +3085,7 @@ __webpack_require__.r(__webpack_exports__);
           _this3.errors = errors.response.data.errors;
           Toast.fire({
             icon: "error",
-            title: "Please check the error above ."
+            title: _this3.$t('message.Please_errors')
           });
         } else if (errors.response.status == 403) {
           Toast.fire({
@@ -3095,7 +3095,7 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           Toast.fire({
             icon: "error",
-            title: "Something went wrong please try again ."
+            title: _this3.$t('message.Something_went_wrong')
           });
         }
       });
@@ -3832,6 +3832,12 @@ __webpack_require__.r(__webpack_exports__);
       url: "",
       viUrl: '',
       clicked: false,
+      comment: {
+        email: '',
+        comment: '',
+        username: '',
+        server_id: ''
+      },
       form: {
         comment: "",
         rating: "",
@@ -3886,7 +3892,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.clicked = false;
         Toast.fire({
           icon: "success",
-          title: "You have voted successfully"
+          title: _this.$t('message.You_have_replayed')
         });
 
         _this.getComments();
@@ -3903,7 +3909,7 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           Toast.fire({
             icon: "error",
-            title: "Something went wrong please try again ."
+            title: _this.$t('message.Something_went_wrong')
           });
         }
       });
@@ -3934,7 +3940,7 @@ __webpack_require__.r(__webpack_exports__);
         _this3.clicked = false;
         Toast.fire({
           icon: "success",
-          title: "You have voted successfully"
+          title: _this3.$t('message.You_have_voted_successfully')
         });
 
         _this3.getComments();
@@ -3951,7 +3957,7 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           Toast.fire({
             icon: "error",
-            title: "Something went wrong please try again ."
+            title: _this3.$t('message.Something_went_wrong')
           });
         }
       });
@@ -3971,12 +3977,12 @@ __webpack_require__.r(__webpack_exports__);
     addcomment: function addcomment() {
       var _this5 = this;
 
-      this.form.server_id = this.Server.id;
-      this.axios.post("/api/addComment", this.form).then(function (response) {
+      this.comment.server_id = this.Server.id;
+      this.axios.post("/api/addComment", this.comment).then(function (response) {
         _this5.clicked = false;
         Toast.fire({
           icon: "success",
-          title: "Comment Added successfully"
+          title: _this5.$t('message.Comment_Added_successfully')
         });
 
         _this5.getComments();
@@ -3993,7 +3999,7 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           Toast.fire({
             icon: "error",
-            title: "Something went wrong please try again ."
+            title: _this5.$t('message.Something_went_wrong')
           });
         }
       });
@@ -4127,7 +4133,7 @@ __webpack_require__.r(__webpack_exports__);
 
         Toast.fire({
           icon: "success",
-          title: "Server Deactivated Successfully"
+          title: _this.$t('message.Server_Deactivated_Successfully')
         });
       })["catch"](function (errors) {});
     },
@@ -4141,7 +4147,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response);
         Toast.fire({
           icon: "success",
-          title: "Server Activated  Successfully"
+          title: _this2.$t('message.Server_Activated_Successfully')
         });
       })["catch"](function (errors) {});
     },
@@ -4167,7 +4173,7 @@ __webpack_require__.r(__webpack_exports__);
         _this4.clicked = false;
         Toast.fire({
           icon: "success",
-          title: "Password Updated Successfully"
+          title: _this4.$t('message.Password_Updated_Successfully')
         });
         vm.errors = [];
       })["catch"](function (errors) {
@@ -4178,7 +4184,7 @@ __webpack_require__.r(__webpack_exports__);
           vm.errors = errors.response.data.errors;
           Toast.fire({
             icon: "error",
-            title: "Please check the error above ."
+            title: _this4.$t('message.Please_errors')
           });
         } else if (errors.response.status == 403) {
           vm.clicked = false;
@@ -4192,7 +4198,7 @@ __webpack_require__.r(__webpack_exports__);
           vm.errors = [];
           Toast.fire({
             icon: "error",
-            title: "Something went wrong please try again ."
+            title: _this4.$t('message.Something_went_wrong')
           });
         }
       });
@@ -4444,8 +4450,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {};
+  },
   methods: {
+    changeLang: function changeLang() {
+      this.$i18n.locale = this.$store.state.lang;
+      this.axios.post("/api/changLang", {
+        lang: this.$store.state.lang
+      }).then(function (response) {})["catch"](function (errors) {});
+    },
     search: function search(server) {
       something.$emit("search", server);
 
@@ -4652,30 +4676,39 @@ __webpack_require__.r(__webpack_exports__);
     return {};
   },
   methods: {
-    loadUser: function loadUser() {
+    getLang: function getLang() {
       var _this = this;
 
+      this.axios.get("/api/getLang").then(function (response) {
+        _this.$store.state.lang = response.data;
+        _this.$i18n.locale = _this.$store.state.lang;
+      })["catch"](function (errors) {});
+    },
+    loadUser: function loadUser() {
+      var _this2 = this;
+
       this.axios.get("/api/user").then(function (response) {
-        _this.$store.state.islogin = true;
-        _this.$store.state.user = response.data;
+        _this2.$store.state.islogin = true;
+        _this2.$store.state.user = response.data;
       })["catch"](function (errors) {
-        _this.$store.state.islogin = false;
-        _this.$store.state.user = [];
+        _this2.$store.state.islogin = false;
+        _this2.$store.state.user = [];
       });
     }
   },
   created: function created() {
-    var _this2 = this;
+    var _this3 = this;
 
+    this.getLang();
     this.loadUser();
     something.$on("loaduser", function () {
-      _this2.loadUser();
+      _this3.loadUser();
     });
     something.$on("login_modal", function () {
-      _this2.$modal.show('login');
+      _this3.$modal.show('login');
     });
     something.$on("login_register", function () {
-      _this2.$modal.show('register');
+      _this3.$modal.show('register');
     });
   }
 });
@@ -48694,7 +48727,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card mt-5 px-4 py-5 bg-white" }, [
-    _c("h6", { staticClass: "font-weight-bold" }, [_vm._v("Send us message")]),
+    _c("h6", { staticClass: "font-weight-bold" }, [
+      _vm._v(_vm._s(_vm.$t("message.Send_us_message")))
+    ]),
     _vm._v(" "),
     _c(
       "div",
@@ -48719,7 +48754,7 @@ var render = function() {
               ],
               staticClass: "form-control rounded my-2",
               class: { "is-invalid": _vm.errors.username },
-              attrs: { type: "text", placeholder: "User Name" },
+              attrs: { type: "text", placeholder: _vm.$t("message.Username") },
               domProps: { value: _vm.form.username },
               on: {
                 input: function($event) {
@@ -48750,7 +48785,7 @@ var render = function() {
               ],
               staticClass: "form-control rounded my-2",
               class: { "is-invalid": _vm.errors.email },
-              attrs: { type: "text", placeholder: "E-mail address" },
+              attrs: { type: "text", placeholder: _vm.$t("message.Email") },
               domProps: { value: _vm.form.email },
               on: {
                 input: function($event) {
@@ -48840,7 +48875,7 @@ var render = function() {
           { staticClass: "ml-2 my-2 terms", attrs: { for: "check" } },
           [
             _c("span", { class: { "text-danger": _vm.etos } }, [
-              _vm._v("I have read and agree to the")
+              _vm._v(_vm._s(_vm.$t("message.I_have_read")))
             ]),
             _vm._v(" "),
             _c(
@@ -48891,7 +48926,9 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card mt-5 px-4 py-5 bg-white" }, [
-    _c("h6", { staticClass: "font-weight-bold" }, [_vm._v("Edit Server")]),
+    _c("h6", { staticClass: "font-weight-bold" }, [
+      _vm._v(_vm._s(_vm.$t("message.Edit_Server")))
+    ]),
     _vm._v(" "),
     _c("div", { staticClass: "mt-4" }, [
       _c("div", { staticClass: "row" }, [
@@ -48929,7 +48966,9 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-12" }, [
-          _c("label", { attrs: { for: "title" } }, [_vm._v("Server title :")]),
+          _c("label", { attrs: { for: "title" } }, [
+            _vm._v(_vm._s(_vm.$t("message.Server_title")) + " :")
+          ]),
           _vm._v(" "),
           _vm.errors.title
             ? _c("span", { staticClass: "text-danger" }, [
@@ -48962,7 +49001,9 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-12" }, [
-          _c("label", { attrs: { for: "Banner" } }, [_vm._v("Banner :")]),
+          _c("label", { attrs: { for: "Banner" } }, [
+            _vm._v(_vm._s(_vm.$t("message.Banner")) + " :")
+          ]),
           _vm._v(" "),
           _vm.errors.banner
             ? _c("span", { staticClass: "text-danger" }, [
@@ -48990,7 +49031,9 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-12" }, [
-          _c("label", { attrs: { for: "Category" } }, [_vm._v("Category :")]),
+          _c("label", { attrs: { for: "Category" } }, [
+            _vm._v(_vm._s(_vm.$t("message.Category")) + " :")
+          ]),
           _vm._v(" "),
           _vm.errors.category
             ? _c("span", { staticClass: "text-danger" }, [
@@ -49047,7 +49090,9 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-12" }, [
-          _c("label", { attrs: { for: "Category" } }, [_vm._v("Difficulty :")]),
+          _c("label", { attrs: { for: "Category" } }, [
+            _vm._v(_vm._s(_vm.$t("message.Difficulty")) + "  :")
+          ]),
           _vm._v(" "),
           _vm.errors.difficulty
             ? _c("span", { staticClass: "text-danger" }, [
@@ -49088,17 +49133,25 @@ var render = function() {
               }
             },
             [
-              _c("option", { attrs: { value: "Easy" } }, [_vm._v("Easy")]),
+              _c("option", { attrs: { value: "Easy" } }, [
+                _vm._v(_vm._s(_vm.$t("message.Easy")) + " ")
+              ]),
               _vm._v(" "),
-              _c("option", { attrs: { value: "Medium" } }, [_vm._v("Medium")]),
+              _c("option", { attrs: { value: "Medium" } }, [
+                _vm._v(_vm._s(_vm.$t("message.Medium")) + " ")
+              ]),
               _vm._v(" "),
-              _c("option", { attrs: { value: "Hard" } }, [_vm._v("Hard")])
+              _c("option", { attrs: { value: "Hard" } }, [
+                _vm._v(_vm._s(_vm.$t("message.Hard")) + " ")
+              ])
             ]
           )
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-md-12" }, [
-          _c("label", { attrs: { for: "max" } }, [_vm._v("Max. Level :")]),
+          _c("label", { attrs: { for: "max" } }, [
+            _vm._v(_vm._s(_vm.$t("message.Max_Level")) + " :")
+          ]),
           _vm._v(" "),
           _vm.errors.maxlevel
             ? _c("span", { staticClass: "text-danger" }, [
@@ -49121,7 +49174,7 @@ var render = function() {
               type: "number",
               id: "max",
               step: "any",
-              placeholder: "Max. Level "
+              placeholder: _vm.$t("message.Max_Level")
             },
             domProps: { value: _vm.form.maxlevel },
             on: {
@@ -49137,7 +49190,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "col-md-12" }, [
           _c("label", { attrs: { for: "youtube" } }, [
-            _vm._v("YouTube Trailer ID :")
+            _vm._v(_vm._s(_vm.$t("message.YouTube")) + ":")
           ]),
           _vm._v(" "),
           _vm.errors.youtube_id
@@ -49161,7 +49214,7 @@ var render = function() {
               type: "url",
               step: "any",
               id: "youtube",
-              placeholder: "YouTube Trailer ID "
+              placeholder: _vm.$t("message.YouTube")
             },
             domProps: { value: _vm.form.youtube_id },
             on: {
@@ -49214,7 +49267,9 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("label", { attrs: { for: "Description" } }, [_vm._v("Description :")]),
+      _c("label", { attrs: { for: "Description" } }, [
+        _vm._v(_vm._s(_vm.$t("message.Description")) + " :")
+      ]),
       _vm._v(" "),
       _vm.errors.description
         ? _c("span", { staticClass: "text-danger" }, [
@@ -49238,7 +49293,7 @@ var render = function() {
           id: "Description",
           cols: "30",
           rows: "5",
-          placeholder: "Description"
+          placeholder: _vm.$t("message.Description")
         },
         domProps: { value: _vm.form.description },
         on: {
@@ -49320,15 +49375,13 @@ var render = function() {
       _c("modal", { attrs: { name: "warm", height: 200 } }, [
         _c("div", { staticClass: "my-3 px-4 py-5 bg-white" }, [
           _c("h6", { staticClass: "font-weight-bold" }, [
-            _vm._v(
-              " this server is inactive and not online anymore. are you sure you want to continue ?"
-            )
+            _vm._v(" " + _vm._s(_vm.$t("message.server_is_inactive")))
           ]),
           _vm._v(" "),
           _c(
             "button",
             { staticClass: "btn btn-dark ", on: { click: _vm.visit } },
-            [_vm._v("Yes")]
+            [_vm._v(_vm._s(_vm.$t("message.Yes")))]
           ),
           _vm._v(" "),
           _c(
@@ -49341,7 +49394,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("No")]
+            [_vm._v(_vm._s(_vm.$t("message.No")))]
           )
         ])
       ]),
@@ -49350,7 +49403,11 @@ var render = function() {
         ? _c(
             "div",
             { staticStyle: { "text-align": "center", "margin-top": "100px" } },
-            [_c("b", [_vm._v("No Records Found ")])]
+            [
+              _c("b", [
+                _vm._v(_vm._s(_vm.$t("message.No_Records_Found")) + " ")
+              ])
+            ]
           )
         : _vm._e(),
       _vm._v(" "),
@@ -49422,7 +49479,7 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v("Hard")]
+                            [_vm._v(_vm._s(_vm.$t("message.Hard")))]
                           )
                         : _vm._e(),
                       _vm._v(" "),
@@ -49434,7 +49491,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                                Easy\n                                            "
+                                "\n                                                " +
+                                  _vm._s(_vm.$t("message.Easy")) +
+                                  "\n                                            "
                               )
                             ]
                           )
@@ -49448,7 +49507,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                                Medium\n                                            "
+                                "\n                                                " +
+                                  _vm._s(_vm.$t("message.Medium")) +
+                                  "\n                                            "
                               )
                             ]
                           )
@@ -49625,15 +49686,13 @@ var render = function() {
       _c("modal", { attrs: { name: "warm", height: 200 } }, [
         _c("div", { staticClass: "my-3 px-4 py-5 bg-white" }, [
           _c("h6", { staticClass: "font-weight-bold" }, [
-            _vm._v(
-              " this server is inactive and not online anymore. are you sure you want to continue ?"
-            )
+            _vm._v(" " + _vm._s(_vm.$t("message.server_is_inactive")))
           ]),
           _vm._v(" "),
           _c(
             "button",
             { staticClass: "btn btn-dark ", on: { click: _vm.visit } },
-            [_vm._v("Yes")]
+            [_vm._v(_vm._s(_vm.$t("message.Yes")))]
           ),
           _vm._v(" "),
           _c(
@@ -49646,7 +49705,7 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("No")]
+            [_vm._v(_vm._s(_vm.$t("message.No")))]
           )
         ])
       ]),
@@ -49683,7 +49742,9 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                    Hard\n                  "
+                              "\n                    " +
+                                _vm._s(_vm.$t("message.Hard")) +
+                                "\n                  "
                             )
                           ]
                         )
@@ -49695,7 +49756,9 @@ var render = function() {
                           { staticClass: "hard text-success bg-green rounded" },
                           [
                             _vm._v(
-                              "\n                    Easy\n                  "
+                              "\n                    " +
+                                _vm._s(_vm.$t("message.Easy")) +
+                                "\n                  "
                             )
                           ]
                         )
@@ -49707,7 +49770,9 @@ var render = function() {
                           { staticClass: "hard text-orange bg-orange rounded" },
                           [
                             _vm._v(
-                              "\n                    Medium\n                  "
+                              "\n                    " +
+                                _vm._s(_vm.$t("message.Medium")) +
+                                "\n                  "
                             )
                           ]
                         )
@@ -49776,13 +49841,19 @@ var render = function() {
               }
             }
           },
-          [_vm._v(_vm._s(_vm.url) + " - Server details")]
+          [
+            _vm._v(
+              _vm._s(_vm.url) + " - " + _vm._s(_vm.$t("message.Server_details"))
+            )
+          ]
         ),
         _vm._v(" "),
         _c("div", { staticClass: "row mt-3" }, [
           _c("div", { staticClass: "col-md-6" }, [
             _c("div", { staticClass: "row" }, [
-              _vm._m(4),
+              _c("div", { staticClass: "col-4 m-auto" }, [
+                _c("p", [_vm._v(_vm._s(_vm.$t("message.Server_Type")) + ":")])
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-7" }, [
                 _vm.Server.difficulty == "Hard"
@@ -49797,7 +49868,13 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("\n                Hard\n              ")]
+                      [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(_vm.$t("message.Hard")) +
+                            "\n              "
+                        )
+                      ]
                     )
                   : _vm._e(),
                 _vm._v(" "),
@@ -49805,7 +49882,13 @@ var render = function() {
                   ? _c(
                       "p",
                       { staticClass: "hard text-success bg-green rounded" },
-                      [_vm._v("\n                Easy\n              ")]
+                      [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(_vm.$t("message.Easy")) +
+                            "\n              "
+                        )
+                      ]
                     )
                   : _vm._e(),
                 _vm._v(" "),
@@ -49813,7 +49896,13 @@ var render = function() {
                   ? _c(
                       "p",
                       { staticClass: "hard text-orange bg-orange rounded" },
-                      [_vm._v("\n                Medium\n              ")]
+                      [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(_vm.$t("message.Medium")) +
+                            "\n              "
+                        )
+                      ]
                     )
                   : _vm._e(),
                 _vm._v(" "),
@@ -49826,7 +49915,9 @@ var render = function() {
             _c("hr"),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
-              _vm._m(5),
+              _c("div", { staticClass: "col-4 m-auto" }, [
+                _c("p", [_vm._v(_vm._s(_vm.$t("message.Max_Level")) + ":")])
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-7" }, [
                 _c("p", { staticClass: "d-inline text-muted ml-2" }, [
@@ -49838,7 +49929,7 @@ var render = function() {
             _c("hr"),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
-              _vm._m(6),
+              _vm._m(4),
               _vm._v(" "),
               _c("div", { staticClass: "col-7" }, [
                 _c("p", { staticClass: "d-inline text-muted ml-2" }, [
@@ -49850,7 +49941,9 @@ var render = function() {
             _c("hr"),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
-              _vm._m(7),
+              _c("div", { staticClass: "col-4 m-auto" }, [
+                _c("p", [_vm._v(_vm._s(_vm.$t("message.Votes")) + ":")])
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-7" }, [
                 _c("p", { staticClass: "d-inline text-success ml-2" }, [
@@ -49864,7 +49957,9 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "col-md-6" }, [
             _c("div", { staticClass: "row" }, [
-              _vm._m(8),
+              _c("div", { staticClass: "col-4 m-auto" }, [
+                _c("p", [_vm._v(_vm._s(_vm.$t("message.Website")) + ":")])
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-7" }, [
                 _c("p", { staticClass: "d-inline text-muted ml-2" }, [
@@ -49893,7 +49988,9 @@ var render = function() {
             _c("hr"),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
-              _vm._m(9),
+              _c("div", { staticClass: "col-4 m-auto" }, [
+                _c("p", [_vm._v(_vm._s(_vm.$t("message.Comments")) + ":")])
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-7" }, [
                 _c("p", { staticClass: "d-inline text-muted ml-2" }, [
@@ -49905,7 +50002,9 @@ var render = function() {
             _c("hr"),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
-              _vm._m(10),
+              _c("div", { staticClass: "col-4 m-auto" }, [
+                _c("p", [_vm._v(_vm._s(_vm.$t("message.Clicks")) + ":")])
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-7" }, [
                 _c("p", { staticClass: "d-inline text-muted ml-2" }, [
@@ -49917,7 +50016,9 @@ var render = function() {
             _c("hr"),
             _vm._v(" "),
             _c("div", { staticClass: "row" }, [
-              _vm._m(11),
+              _c("div", { staticClass: "col-4 m-auto" }, [
+                _c("p", [_vm._v(_vm._s(_vm.$t("message.Server_start")) + ":")])
+              ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-7" }, [
                 _c("p", { staticClass: "d-inline text-muted ml-2" }, [
@@ -49938,13 +50039,19 @@ var render = function() {
               attrs: { href: "javascript:void(0)" },
               on: { click: _vm.modalRate }
             },
-            [_vm._v("Rate Server")]
+            [_vm._v(_vm._s(_vm.$t("message.Rate_Server")))]
           )
         ])
       ]),
       _vm._v(" "),
       _c("h3", { staticClass: "my-5 font-weight-bold" }, [
-        _vm._v("\n      Feedback & Comments: "),
+        _vm._v(
+          "\n      " +
+            _vm._s(_vm.$t("message.Feedback")) +
+            " & " +
+            _vm._s(_vm.$t("message.Comments")) +
+            ": "
+        ),
         _c("span", [_vm._v(_vm._s(_vm.comments.length))])
       ]),
       _vm._v(" "),
@@ -49952,7 +50059,7 @@ var render = function() {
         return !_vm.showReplay
           ? _c("div", { staticClass: "card my-3" }, [
               _c("div", { staticClass: "row p-3" }, [
-                _vm._m(12, true),
+                _vm._m(5, true),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-11 p-0 pl-2" }, [
                   _c("div", { staticClass: "row" }, [
@@ -49990,7 +50097,13 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v("\n                REPLY\n              ")]
+                        [
+                          _vm._v(
+                            "\n                " +
+                              _vm._s(_vm.$t("message.REPLY")) +
+                              "\n              "
+                          )
+                        ]
                       )
                     ])
                   ]),
@@ -50042,7 +50155,7 @@ var render = function() {
         return _vm.showReplay
           ? _c("div", { staticClass: "card my-3" }, [
               _c("div", { staticClass: "row p-3" }, [
-                _vm._m(13, true),
+                _vm._m(6, true),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-11 p-0 pl-2" }, [
                   _c("div", { staticClass: "row" }, [
@@ -50073,7 +50186,7 @@ var render = function() {
       _c("modal", { attrs: { name: "replay", height: 500 } }, [
         _c("div", { staticClass: "my-3 px-4 py-5 bg-white" }, [
           _c("h6", { staticClass: "font-weight-bold" }, [
-            _vm._v("Add Your Replay")
+            _vm._v(_vm._s(_vm.$t("message.Add_Your_Replay")))
           ]),
           _vm._v(" "),
           _vm.errors.username
@@ -50099,7 +50212,10 @@ var render = function() {
                     ],
                     staticClass: "form-control rounded my-2",
                     class: { "is-invalid": _vm.errors.email },
-                    attrs: { type: "text", placeholder: "E-mail address" },
+                    attrs: {
+                      type: "text",
+                      placeholder: _vm.$t("message.Email")
+                    },
                     domProps: { value: _vm.replayForm.email },
                     on: {
                       input: function($event) {
@@ -50124,7 +50240,10 @@ var render = function() {
                     ],
                     staticClass: "form-control rounded my-2",
                     class: { "is-invalid": _vm.errors.username },
-                    attrs: { type: "text", placeholder: "Your User Name" },
+                    attrs: {
+                      type: "text",
+                      placeholder: _vm.$t("message.Username")
+                    },
                     domProps: { value: _vm.replayForm.username },
                     on: {
                       input: function($event) {
@@ -50191,7 +50310,7 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("modal", { attrs: { name: "Comment", height: 500 } }, [
+      _c("modal", { attrs: { name: "Comment", height: 600 } }, [
         _c("div", { staticClass: "my-3 px-4 py-5 bg-white" }, [
           _c("h6", { staticClass: "font-weight-bold" }, [
             _vm._v("Rate Server")
@@ -50245,7 +50364,9 @@ var render = function() {
                     },
                     [
                       _c("option", { attrs: { value: "", selected: "" } }, [
-                        _vm._v("Select Your rating")
+                        _vm._v(
+                          _vm._s(_vm.$t("message.Select_Your_rating")) + " "
+                        )
                       ]),
                       _vm._v(" "),
                       _c("option", { attrs: { value: "Very bad" } }, [
@@ -50473,7 +50594,7 @@ var render = function() {
                 { staticClass: "ml-2 my-2 terms", attrs: { for: "check" } },
                 [
                   _c("span", { class: { "text-danger": _vm.errorTos } }, [
-                    _vm._v("I have read and agree to the")
+                    _vm._v(_vm._s(_vm.$t("message.I_have_read")) + " ")
                   ]),
                   _vm._v(" "),
                   _c(
@@ -50509,7 +50630,9 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "my-3 px-4 py-5 bg-white" }, [
-        _c("h6", { staticClass: "font-weight-bold" }, [_vm._v("Add Comment")]),
+        _c("h6", { staticClass: "font-weight-bold" }, [
+          _vm._v(_vm._s(_vm.$t("message.Add_Comment")) + " ")
+        ]),
         _vm._v(" "),
         _vm.errors.username
           ? _c("span", { staticClass: "text-danger" }, [
@@ -50529,20 +50652,23 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form.email,
-                          expression: "form.email"
+                          value: _vm.comment.email,
+                          expression: "comment.email"
                         }
                       ],
                       staticClass: "form-control rounded my-2",
                       class: { "is-invalid": _vm.errors.email },
-                      attrs: { type: "text", placeholder: "E-mail address" },
-                      domProps: { value: _vm.form.email },
+                      attrs: {
+                        type: "text",
+                        placeholder: _vm.$t("message.Email")
+                      },
+                      domProps: { value: _vm.comment.email },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(_vm.form, "email", $event.target.value)
+                          _vm.$set(_vm.comment, "email", $event.target.value)
                         }
                       }
                     })
@@ -50556,20 +50682,23 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.form.username,
-                          expression: "form.username"
+                          value: _vm.comment.username,
+                          expression: "comment.username"
                         }
                       ],
                       staticClass: "form-control rounded my-2",
                       class: { "is-invalid": _vm.errors.username },
-                      attrs: { type: "text", placeholder: "Your User Name" },
-                      domProps: { value: _vm.form.username },
+                      attrs: {
+                        type: "text",
+                        placeholder: _vm.$t("message.Username")
+                      },
+                      domProps: { value: _vm.comment.username },
                       on: {
                         input: function($event) {
                           if ($event.target.composing) {
                             return
                           }
-                          _vm.$set(_vm.form, "username", $event.target.value)
+                          _vm.$set(_vm.comment, "username", $event.target.value)
                         }
                       }
                     })
@@ -50582,8 +50711,8 @@ var render = function() {
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.form.comment,
-                  expression: "form.comment"
+                  value: _vm.comment.comment,
+                  expression: "comment.comment"
                 }
               ],
               staticClass: "form-control mt-2 rounded",
@@ -50595,13 +50724,13 @@ var render = function() {
                 rows: "5",
                 placeholder: "I think..."
               },
-              domProps: { value: _vm.form.comment },
+              domProps: { value: _vm.comment.comment },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.$set(_vm.form, "comment", $event.target.value)
+                  _vm.$set(_vm.comment, "comment", $event.target.value)
                 }
               }
             }),
@@ -50671,63 +50800,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-4 m-auto" }, [
-      _c("p", [_vm._v("Server Type:")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-4 m-auto" }, [
-      _c("p", [_vm._v("Max LvL:")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-4 m-auto" }, [
       _c("p", [_vm._v("Rates:")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-4 m-auto" }, [
-      _c("p", [_vm._v("Votes:")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-4 m-auto" }, [
-      _c("p", [_vm._v("Website:")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-4 m-auto" }, [
-      _c("p", [_vm._v("Comments:")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-4 m-auto" }, [
-      _c("p", [_vm._v("Clicks:")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-4 m-auto" }, [
-      _c("p", [_vm._v("Server start:")])
     ])
   },
   function() {
@@ -50777,7 +50850,21 @@ var render = function() {
   return _c("div", [
     _c("div", { staticClass: "card mt-4 px-3 py-4" }, [
       _c("table", { staticClass: "table table-striped rounded" }, [
-        _vm._m(0),
+        _c("thead", { staticClass: "thead-dark bg-dark" }, [
+          _c("tr", [
+            _c("th", [_vm._v("#")]),
+            _vm._v(" "),
+            _c("th", [_vm._v(_vm._s(_vm.$t("message.Servername")) + " ")]),
+            _vm._v(" "),
+            _c("th", [_vm._v(_vm._s(_vm.$t("message.Votelink")))]),
+            _vm._v(" "),
+            _c("th", [_vm._v(_vm._s(_vm.$t("message.Votes")) + " ")]),
+            _vm._v(" "),
+            _c("th", [_vm._v(_vm._s(_vm.$t("message.Clicks")) + " ")]),
+            _vm._v(" "),
+            _c("th", [_vm._v(_vm._s(_vm.$t("message.Actions")) + " ")])
+          ])
+        ]),
         _vm._v(" "),
         _c(
           "tbody",
@@ -50831,7 +50918,7 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v("edit")]
+                  [_vm._v(_vm._s(_vm.$t("message.edit")) + " ")]
                 ),
                 _vm._v(" "),
                 myserve.status &&
@@ -50848,7 +50935,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Deactivate")]
+                      [_vm._v(_vm._s(_vm.$t("message.Deactivate")) + " ")]
                     )
                   : _vm._e(),
                 _vm._v(" "),
@@ -50866,7 +50953,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Active")]
+                      [_vm._v(_vm._s(_vm.$t("message.Active")) + " ")]
                     )
                   : _vm._e()
               ])
@@ -50877,7 +50964,24 @@ var render = function() {
       ])
     ]),
     _vm._v(" "),
-    _vm._m(1),
+    _c("div", { staticClass: "card py-1 mt-2" }, [
+      _c("div", { staticClass: "text-center" }, [
+        _c(
+          "a",
+          {
+            staticClass: "font-weight-bold text-dark text-decoration-none",
+            attrs: { href: "" }
+          },
+          [
+            _vm._v(
+              "\r\n                    " +
+                _vm._s(_vm.$t("message.Add_New_Server")) +
+                "\r\n                "
+            )
+          ]
+        )
+      ])
+    ]),
     _vm._v(" "),
     _c(
       "button",
@@ -50885,7 +50989,7 @@ var render = function() {
         staticClass:
           "btn btn-dark bg-dark btn-block rounded text-white font-14 mt-5"
       },
-      [_vm._v("Change your password")]
+      [_vm._v(_vm._s(_vm.$t("message.Change_your_password")))]
     ),
     _vm._v(" "),
     _c("div", { staticClass: "row mt-4" }, [
@@ -50910,7 +51014,10 @@ var render = function() {
             ],
             staticClass: "form-control rounded my-3",
             class: { "is-invalid": _vm.errors.old_password },
-            attrs: { type: "password", placeholder: "Old password" },
+            attrs: {
+              type: "password",
+              placeholder: _vm.$t("message.Old_password")
+            },
             domProps: { value: _vm.user.old_password },
             on: {
               input: function($event) {
@@ -50939,7 +51046,10 @@ var render = function() {
             ],
             staticClass: "form-control rounded my-3",
             class: { "is-invalid": _vm.errors.password },
-            attrs: { type: "password", placeholder: "New password" },
+            attrs: {
+              type: "password",
+              placeholder: _vm.$t("message.New_password")
+            },
             domProps: { value: _vm.user.password },
             on: {
               input: function($event) {
@@ -50961,7 +51071,10 @@ var render = function() {
               }
             ],
             staticClass: "form-control rounded my-3",
-            attrs: { type: "password", placeholder: "Confirm password" },
+            attrs: {
+              type: "password",
+              placeholder: _vm.$t("message.Confirm_Password")
+            },
             domProps: { value: _vm.user.password_confirmation },
             on: {
               input: function($event) {
@@ -50976,11 +51089,8 @@ var render = function() {
           _c("div", { staticClass: "text-center" }, [
             _c("input", {
               staticClass: "btn btn-danger rounded font-14 mt-4",
-              attrs: {
-                type: "submit",
-                disabled: _vm.clicked,
-                value: "CHANGE PASSWORD"
-              },
+              attrs: { type: "submit", disabled: _vm.clicked },
+              domProps: { value: _vm.$t("message.CHANGE_PASSWORD") },
               on: { click: _vm.changepassword }
             })
           ])
@@ -50991,45 +51101,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("thead", { staticClass: "thead-dark bg-dark" }, [
-      _c("tr", [
-        _c("th", [_vm._v("#")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Servername")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Votelink")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Likes")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Clicks")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Actions")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card py-1 mt-2" }, [
-      _c("div", { staticClass: "text-center" }, [
-        _c(
-          "a",
-          {
-            staticClass: "font-weight-bold text-dark text-decoration-none",
-            attrs: { href: "" }
-          },
-          [_vm._v("\r\n                    ADD NEW SERVER\r\n                ")]
-        )
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -51516,7 +51588,7 @@ var render = function() {
               _vm._v(" "),
               _c("li", [
                 _c("a", { staticClass: "text-white", attrs: { href: "" } }, [
-                  _vm._v(_vm._s(_vm.$t("message.All_Servers")))
+                  _vm._v(_vm._s(_vm.$t("message.PARTNERS")))
                 ])
               ]),
               _vm._v(" "),
@@ -51542,7 +51614,65 @@ var render = function() {
                   )
                 ],
                 1
-              )
+              ),
+              _vm._v(" "),
+              _c("li", [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.$store.state.lang,
+                        expression: "$store.state.lang"
+                      }
+                    ],
+                    staticClass: "form-control d-inline mx-2",
+                    staticStyle: { width: "115px" },
+                    attrs: { name: "lang", id: "" },
+                    on: {
+                      change: [
+                        function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.$set(
+                            _vm.$store.state,
+                            "lang",
+                            $event.target.multiple
+                              ? $$selectedVal
+                              : $$selectedVal[0]
+                          )
+                        },
+                        _vm.changeLang
+                      ]
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { value: "en" } }, [
+                      _vm._v("English")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "de" } }, [
+                      _vm._v("Deutsch")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "fr" } }, [
+                      _vm._v("french")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "it" } }, [_vm._v("italy")]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "ro" } }, [_vm._v("Roman")])
+                  ]
+                )
+              ])
             ])
           ])
         ]),
@@ -51960,7 +52090,7 @@ var render = function() {
       _vm._v(" "),
       _c(
         "modal",
-        { attrs: { name: "register", height: 500 } },
+        { attrs: { name: "register", height: 600 } },
         [_c("register")],
         1
       ),
@@ -68801,12 +68931,6 @@ Vue.component('paginate', vuejs_paginate__WEBPACK_IMPORTED_MODULE_0___default.a)
 
 Vue.use(vue_i18n__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
-var i18n = new vue_i18n__WEBPACK_IMPORTED_MODULE_1__["default"]({
-  locale: 'en',
-  // set locale
-  messages: _lang_all_js__WEBPACK_IMPORTED_MODULE_2__["default"] // set locale messages
-
-});
 /**end VueI18n */
 
 
@@ -68862,6 +68986,12 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_7__["default"]({
 
 /********** End  packages  ***********/
 
+var i18n = new vue_i18n__WEBPACK_IMPORTED_MODULE_1__["default"]({
+  locale: _store_store__WEBPACK_IMPORTED_MODULE_9__["default"].state.lang,
+  // set locale
+  messages: _lang_all_js__WEBPACK_IMPORTED_MODULE_2__["default"] // set locale messages
+
+});
 var app = new Vue({
   el: '#app',
   store: _store_store__WEBPACK_IMPORTED_MODULE_9__["default"],
@@ -70149,10 +70279,41 @@ var messages = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+var _message;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var de = {
-  message: {
-    test: 'test'
-  }
+  message: (_message = {
+    HOME: 'HOME',
+    SERVERS: 'SERVERS',
+    All_Servers: 'All Servers',
+    PARTNERS: 'PARTNERS',
+    FAQ: 'FAQ',
+    CONTACT: 'CONTACT',
+    Create_Account: 'Create Account',
+    Sign_in: 'Sign in',
+    ADD_SERVER: 'ADD SERVER',
+    LOG_OUT: 'LOG OUT',
+    Footer_Right: '© 2020 Metin2-Toplist.com All rights reserved.',
+    Footer_text: 'It is unclear whether it was greed for profit or pure joy in experimentation, which prompted the first server administrators to make their projects, which were initially running via the VPN client "LogMeIn Hamachi" and "Windows Virtual PC", publicly accessible and thus.',
+    Footer_text1: 'Further content used here are',
+    Footer_text2: 'trademarks',
+    Footer_text3: 'of their',
+    Footer_text4: 'respective owners',
+    HOMEPAGE: 'HOMEPAGE',
+    METIN2_SERVICE: 'METIN2 SERVICE',
+    BECOME_A_PARTNER: 'BECOME A PARTNER',
+    Find_Us_On: 'Find Us On',
+    ADD_SERVERS: 'ADD SERVERS',
+    FEATURED_SERVER: 'FEATURED SERVER',
+    ADD_YOUR_SERVER: 'ADD YOUR SERVER',
+    VISIT_WEBSITE: 'VISIT WEBSITE',
+    Promoted_server_trailer: 'Promoted server trailer',
+    Welcome: 'Welcome at Metin2-Toplist.com!',
+    Largest_private_server_list: 'Largest private server list!',
+    Welcome_back: 'Welcome back!'
+  }, _defineProperty(_message, "Create_Account", 'Create Account'), _defineProperty(_message, "account", 'Don\'t have an account?'), _defineProperty(_message, "Username", 'User name'), _defineProperty(_message, "Password", 'Password'), _defineProperty(_message, "Remember_Me", 'Remember Me'), _defineProperty(_message, "Sign_In", 'Sign In'), _defineProperty(_message, "Signed_in_successfully", 'Signed in successfully'), _defineProperty(_message, "Create_Account", 'Create Account'), _defineProperty(_message, "Already", 'Already have an account?'), _defineProperty(_message, "Email", 'E-mail Address'), _defineProperty(_message, "Confirm_Password", 'Confirm Password'), _defineProperty(_message, "I_have_read", 'I have read and agree to the'), _defineProperty(_message, "Terms_of_Use", 'Terms of Use'), _defineProperty(_message, "Sign_Up", 'Sign Up'), _defineProperty(_message, "Account_created", 'Account created successfully.'), _defineProperty(_message, "You_need_to_login", ' You need to login in first then you can create a new server !.'), _defineProperty(_message, "click_to_login", 'click to login'), _defineProperty(_message, "verify_your_email", 'You need to verify your email first then you can create a new server !.'), _defineProperty(_message, "send_another", 'click to send another verification email'), _defineProperty(_message, "Add_New_Server", 'Add New Server'), _defineProperty(_message, "Rules", 'Rules :'), _defineProperty(_message, "Following_participating", 'Following pages are strictly prohibited from participating :'), _defineProperty(_message, "rule1", '1. Sites with exaggerated much banner advertising or'), _defineProperty(_message, "rule2", '2. Pages which do not have Game content'), _defineProperty(_message, "rule3", '3. Toplists'), _defineProperty(_message, "rule4", '4. Sites that infringe applicable law'), _defineProperty(_message, "rule5", 'The title and description must be in accordance with the content of the page'), _defineProperty(_message, "rule6", 'Violations of these rules and fraud (so-called cheating) will result the suspension of your account'), _defineProperty(_message, "rule7", 'Your server will be displayed when approved by the administrators'), _defineProperty(_message, "backlink", 'Your Backlink. You need to add them in your website :'), _defineProperty(_message, "Backlink_website", 'Your Backlink You need to add them in your website'), _defineProperty(_message, "Server_title", 'Server title '), _defineProperty(_message, "Generate_Backlink", 'Generate Backlink'), _defineProperty(_message, "Banner", 'Banner'), _defineProperty(_message, "Category", 'Category'), _defineProperty(_message, "Difficulty", 'Difficulty'), _defineProperty(_message, "Easy", 'Easy'), _defineProperty(_message, "Medium", 'Medium'), _defineProperty(_message, "Hard", 'Hard'), _defineProperty(_message, "Language", 'Language'), _defineProperty(_message, "Max_Level", 'Max. Level'), _defineProperty(_message, "YouTube", 'YouTube Trailer Url'), _defineProperty(_message, "Rates", 'Rates (%)'), _defineProperty(_message, "Description", 'Description'), _defineProperty(_message, "Create", 'Create'), _defineProperty(_message, "Back", 'Back'), _defineProperty(_message, "Backlink_Geneated_Successfully", 'Backlink Geneated Successfully'), _defineProperty(_message, "Please_errors", 'Please check the error above .'), _defineProperty(_message, "Something_went_wrong", 'Something went wrong please try again .'), _defineProperty(_message, "Created_Successfully", 'Server Created Successfully'), _defineProperty(_message, "Verification_email_sent_successfully", 'Verification email sent successfully'), _defineProperty(_message, "Send_us_message", 'Send us message'), _defineProperty(_message, "Message_Sent_Successfully", 'Message Sent Successfully'), _defineProperty(_message, "Edit_Server", 'Edit Server'), _defineProperty(_message, "Server_Updated_Successfully", 'Server Updated Successfully'), _defineProperty(_message, "server_is_inactive", 'this server is inactive and not online anymore. are you sure you want to continue ?'), _defineProperty(_message, "Yes", 'Yes'), _defineProperty(_message, "No", 'No'), _defineProperty(_message, "No_Records_Found", 'No Records Found'), _defineProperty(_message, "Server_details", 'Server details'), _defineProperty(_message, "Server_Type", 'Server Type'), _defineProperty(_message, "Votes", 'Votes'), _defineProperty(_message, "Website", 'Website'), _defineProperty(_message, "Comments", 'Comments'), _defineProperty(_message, "Clicks", 'Clicks'), _defineProperty(_message, "Server_start", 'Server start'), _defineProperty(_message, "Rate_Server", 'Rate Server'), _defineProperty(_message, "Feedback", 'Feedback'), _defineProperty(_message, "REPLY", 'REPLY'), _defineProperty(_message, "Add_Your_Replay", 'Add Your Replay'), _defineProperty(_message, "Add_Comment", 'Add Comment'), _defineProperty(_message, "Select_Your_rating", 'Select Your rating'), _defineProperty(_message, "You_have_voted_successfully", 'You have voted successfully'), _defineProperty(_message, "You_have_replayed", 'You Have Replayed Successfully'), _defineProperty(_message, "Comment_Added_successfully", 'Comment Added successfully'), _defineProperty(_message, "Servername", 'Servername'), _defineProperty(_message, "Votelink", 'Votelink'), _defineProperty(_message, "Actions", 'Actions'), _defineProperty(_message, "edit", 'edit'), _defineProperty(_message, "Deactivate", 'Deactivate'), _defineProperty(_message, "Active", 'Active'), _defineProperty(_message, "Change_your_password", 'Change your password'), _defineProperty(_message, "Old_password", 'Old password'), _defineProperty(_message, "CHANGE_PASSWORD", 'CHANGE PASSWORD'), _defineProperty(_message, "New_password", 'New password'), _defineProperty(_message, "Server_Deactivated_Successfully", 'Server Deactivated Successfully'), _defineProperty(_message, "Server_Activated_Successfully", 'Server Activated  Successfully'), _defineProperty(_message, "Password_Updated_Successfully", 'Password Updated Successfully'), _message)
 };
 /* harmony default export */ __webpack_exports__["default"] = (de);
 
@@ -70201,7 +70362,7 @@ var en = {
     Welcome: 'Welcome at Metin2-Toplist.com!',
     Largest_private_server_list: 'Largest private server list!',
     Welcome_back: 'Welcome back!'
-  }, _defineProperty(_message, "Create_Account", 'Create Account'), _defineProperty(_message, "account", 'Don\'t have an account?'), _defineProperty(_message, "Username", 'User name'), _defineProperty(_message, "Password", 'Password'), _defineProperty(_message, "Remember_Me", 'Remember Me'), _defineProperty(_message, "Sign_In", 'Sign In'), _defineProperty(_message, "Signed_in_successfully", 'Signed in successfully'), _defineProperty(_message, "Create_Account", 'Create Account'), _defineProperty(_message, "Already", 'Already have an account?'), _defineProperty(_message, "Email", 'E-mail Address'), _defineProperty(_message, "Confirm_Password", 'Confirm Password'), _defineProperty(_message, "I_have_read", 'I have read and agree to the'), _defineProperty(_message, "Terms_of_Use", 'Terms of Use'), _defineProperty(_message, "Sign_Up", 'Sign Up'), _defineProperty(_message, "Account_created", 'Account created successfully.'), _defineProperty(_message, "You_need_to_login", ' You need to login in first then you can create a new server !.'), _defineProperty(_message, "click_to_login", 'click to login'), _defineProperty(_message, "verify_your_email", 'You need to verify your email first then you can create a new server !.'), _defineProperty(_message, "send_another", 'click to send another verification email'), _defineProperty(_message, "Add_New_Server", 'Add New Server'), _defineProperty(_message, "Rules", 'Rules :'), _defineProperty(_message, "Following_participating", 'Following pages are strictly prohibited from participating :'), _defineProperty(_message, "rule1", '1. Sites with exaggerated much banner advertising or'), _defineProperty(_message, "rule2", '2. Pages which do not have Game content'), _defineProperty(_message, "rule3", '3. Toplists'), _defineProperty(_message, "rule4", '4. Sites that infringe applicable law'), _defineProperty(_message, "rule5", 'The title and description must be in accordance with the content of the page'), _defineProperty(_message, "rule6", 'Violations of these rules and fraud (so-called cheating) will result the suspension of your account'), _defineProperty(_message, "rule7", 'Your server will be displayed when approved by the administrators'), _defineProperty(_message, "backlink", 'Your Backlink. You need to add them in your website :'), _defineProperty(_message, "Backlink_website", 'Your Backlink You need to add them in your website'), _defineProperty(_message, "Server_title", 'Server title '), _defineProperty(_message, "Generate_Backlink", 'Generate Backlink'), _defineProperty(_message, "Banner", 'Banner'), _defineProperty(_message, "Category", 'Category'), _defineProperty(_message, "Difficulty", 'Difficulty'), _defineProperty(_message, "Easy", 'Easy'), _defineProperty(_message, "Medium", 'Medium'), _defineProperty(_message, "Hard", 'Hard'), _defineProperty(_message, "Language", 'Language'), _defineProperty(_message, "Max_Level", 'Max. Level'), _defineProperty(_message, "YouTube", 'YouTube Trailer Url'), _defineProperty(_message, "Rates", 'Rates (%)'), _defineProperty(_message, "Description", 'Description'), _defineProperty(_message, "Create", 'Create'), _defineProperty(_message, "Back", 'Back'), _defineProperty(_message, "Backlink_Geneated_Successfully", 'Backlink Geneated Successfully'), _defineProperty(_message, "Please_errors", 'Please check the error above .'), _defineProperty(_message, "Something_went_wrong", 'Something went wrong please try again .'), _defineProperty(_message, "Created_Successfully", 'Server Created Successfully'), _defineProperty(_message, "Verification_email_sent_successfully", 'Verification email sent successfully'), _message)
+  }, _defineProperty(_message, "Create_Account", 'Create Account'), _defineProperty(_message, "account", 'Don\'t have an account?'), _defineProperty(_message, "Username", 'User name'), _defineProperty(_message, "Password", 'Password'), _defineProperty(_message, "Remember_Me", 'Remember Me'), _defineProperty(_message, "Sign_In", 'Sign In'), _defineProperty(_message, "Signed_in_successfully", 'Signed in successfully'), _defineProperty(_message, "Create_Account", 'Create Account'), _defineProperty(_message, "Already", 'Already have an account?'), _defineProperty(_message, "Email", 'E-mail Address'), _defineProperty(_message, "Confirm_Password", 'Confirm Password'), _defineProperty(_message, "I_have_read", 'I have read and agree to the'), _defineProperty(_message, "Terms_of_Use", 'Terms of Use'), _defineProperty(_message, "Sign_Up", 'Sign Up'), _defineProperty(_message, "Account_created", 'Account created successfully.'), _defineProperty(_message, "You_need_to_login", ' You need to login in first then you can create a new server !.'), _defineProperty(_message, "click_to_login", 'click to login'), _defineProperty(_message, "verify_your_email", 'You need to verify your email first then you can create a new server !.'), _defineProperty(_message, "send_another", 'click to send another verification email'), _defineProperty(_message, "Add_New_Server", 'Add New Server'), _defineProperty(_message, "Rules", 'Rules :'), _defineProperty(_message, "Following_participating", 'Following pages are strictly prohibited from participating :'), _defineProperty(_message, "rule1", '1. Sites with exaggerated much banner advertising or'), _defineProperty(_message, "rule2", '2. Pages which do not have Game content'), _defineProperty(_message, "rule3", '3. Toplists'), _defineProperty(_message, "rule4", '4. Sites that infringe applicable law'), _defineProperty(_message, "rule5", 'The title and description must be in accordance with the content of the page'), _defineProperty(_message, "rule6", 'Violations of these rules and fraud (so-called cheating) will result the suspension of your account'), _defineProperty(_message, "rule7", 'Your server will be displayed when approved by the administrators'), _defineProperty(_message, "backlink", 'Your Backlink. You need to add them in your website :'), _defineProperty(_message, "Backlink_website", 'Your Backlink You need to add them in your website'), _defineProperty(_message, "Server_title", 'Server title '), _defineProperty(_message, "Generate_Backlink", 'Generate Backlink'), _defineProperty(_message, "Banner", 'Banner'), _defineProperty(_message, "Category", 'Category'), _defineProperty(_message, "Difficulty", 'Difficulty'), _defineProperty(_message, "Easy", 'Easy'), _defineProperty(_message, "Medium", 'Medium'), _defineProperty(_message, "Hard", 'Hard'), _defineProperty(_message, "Language", 'Language'), _defineProperty(_message, "Max_Level", 'Max. Level'), _defineProperty(_message, "YouTube", 'YouTube Trailer Url'), _defineProperty(_message, "Rates", 'Rates (%)'), _defineProperty(_message, "Description", 'Description'), _defineProperty(_message, "Create", 'Create'), _defineProperty(_message, "Back", 'Back'), _defineProperty(_message, "Backlink_Geneated_Successfully", 'Backlink Generated Successfully'), _defineProperty(_message, "Please_errors", 'Please check the error above .'), _defineProperty(_message, "Something_went_wrong", 'Something went wrong please try again .'), _defineProperty(_message, "Created_Successfully", 'Server Created Successfully'), _defineProperty(_message, "Verification_email_sent_successfully", 'Verification email sent successfully'), _defineProperty(_message, "Send_us_message", 'Send us message'), _defineProperty(_message, "Message_Sent_Successfully", 'Message Sent Successfully'), _defineProperty(_message, "Edit_Server", 'Edit Server'), _defineProperty(_message, "Server_Updated_Successfully", 'Server Updated Successfully'), _defineProperty(_message, "server_is_inactive", 'this server is inactive and not online anymore. are you sure you want to continue ?'), _defineProperty(_message, "Yes", 'Yes'), _defineProperty(_message, "No", 'No'), _defineProperty(_message, "No_Records_Found", 'No Records Found'), _defineProperty(_message, "Server_details", 'Server details'), _defineProperty(_message, "Server_Type", 'Server Type'), _defineProperty(_message, "Votes", 'Votes'), _defineProperty(_message, "Website", 'Website'), _defineProperty(_message, "Comments", 'Comments'), _defineProperty(_message, "Clicks", 'Clicks'), _defineProperty(_message, "Server_start", 'Server start'), _defineProperty(_message, "Rate_Server", 'Rate Server'), _defineProperty(_message, "Feedback", 'Feedback'), _defineProperty(_message, "REPLY", 'REPLY'), _defineProperty(_message, "Add_Your_Replay", 'Add Your Replay'), _defineProperty(_message, "Add_Comment", 'Add Comment'), _defineProperty(_message, "Select_Your_rating", 'Select Your rating'), _defineProperty(_message, "You_have_voted_successfully", 'You have voted successfully'), _defineProperty(_message, "You_have_replayed", 'You Have Replayed Successfully'), _defineProperty(_message, "Comment_Added_successfully", 'Comment Added successfully'), _defineProperty(_message, "Servername", 'Server name'), _defineProperty(_message, "Votelink", 'Votelink'), _defineProperty(_message, "Actions", 'Actions'), _defineProperty(_message, "edit", 'edit'), _defineProperty(_message, "Deactivate", 'Deactivate'), _defineProperty(_message, "Active", 'Active'), _defineProperty(_message, "Change_your_password", 'Change your password'), _defineProperty(_message, "Old_password", 'Old password'), _defineProperty(_message, "CHANGE_PASSWORD", 'CHANGE PASSWORD'), _defineProperty(_message, "New_password", 'New password'), _defineProperty(_message, "Server_Deactivated_Successfully", 'Server Deactivated Successfully'), _defineProperty(_message, "Server_Activated_Successfully", 'Server Activated  Successfully'), _defineProperty(_message, "Password_Updated_Successfully", 'Password Updated Successfully'), _message)
 };
 /* harmony default export */ __webpack_exports__["default"] = (en);
 
@@ -70216,13 +70377,41 @@ var en = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+var _message;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var fr = {
-  message: {
-    HOME: 'PAGE PRINCIPALE',
+  message: (_message = {
+    HOME: 'ACCUEIL',
     SERVERS: 'LES SERVEURS',
     All_Servers: 'Tous les serveurs',
-    PARTNERS: 'LES PARTENAIRES'
-  }
+    PARTNERS: 'LES PARTENAIRES',
+    FAQ: 'FAQ',
+    CONTACT: 'CONTACT',
+    Create_Account: 'Créer un compte',
+    Sign_in: 'se connecter',
+    ADD_SERVER: 'AJOUTER UN SERVEUR',
+    LOG_OUT: 'SE DÉCONNECTER',
+    Footer_Right: '© 2020 Metin2-Toplist.com Tous droits réservés.',
+    Footer_text: "On ne sait pas s'il s'agissait de la cupidité du profit ou de la pure joie d'expérimentation, qui a incité les premiers administrateurs de serveurs à réaliser leurs projets, qui étaient initialement exécutés via le client VPN «LogMeIn Hamachi» et «Windows Virtual PC», accessibles au public et donc.",
+    Footer_text1: "D'autres contenus utilisés ici sont",
+    Footer_text2: 'marques déposées',
+    Footer_text3: 'de leur',
+    Footer_text4: 'propriétaires respectifs',
+    HOMEPAGE: 'ACCUEIL',
+    METIN2_SERVICE: 'METIN2 SERVICE',
+    BECOME_A_PARTNER: 'DEVENIR UN PARTENAIRE',
+    Find_Us_On: 'Trouvez-nous sur',
+    ADD_SERVERS: 'AJOUTER DES SERVEURS',
+    FEATURED_SERVER: 'SERVEUR EN VEDETTE',
+    ADD_YOUR_SERVER: 'AJOUTEZ VOTRE SERVEUR',
+    VISIT_WEBSITE: 'VISITEZ LE SITE',
+    Promoted_server_trailer: 'Bande-annonce de serveur promue',
+    Welcome: 'Bienvenue sur Metin2-Toplist.com!',
+    Largest_private_server_list: 'La plus grande liste de serveurs privés!',
+    Welcome_back: 'Nous saluons le retour!'
+  }, _defineProperty(_message, "Create_Account", 'Créer un compte'), _defineProperty(_message, "account", "Vous n'avez pas de compte?"), _defineProperty(_message, "Username", "Nom d'utilisateur"), _defineProperty(_message, "Password", 'Mot de passe'), _defineProperty(_message, "Remember_Me", 'Souviens-toi de moi'), _defineProperty(_message, "Sign_In", 'Se connecter'), _defineProperty(_message, "Signed_in_successfully", 'Connexion réussie'), _defineProperty(_message, "Create_Account", 'Créer un compte'), _defineProperty(_message, "Already", 'Vous avez déjà un compte?'), _defineProperty(_message, "Email", 'Adresse e-mail'), _defineProperty(_message, "Confirm_Password", 'Confirmez le mot de passe'), _defineProperty(_message, "I_have_read", "j'ai lu et accepté les"), _defineProperty(_message, "Terms_of_Use", "Conditions d'utilisation"), _defineProperty(_message, "Sign_Up", "S'inscrire"), _defineProperty(_message, "Account_created", 'Compte créé avec succès.'), _defineProperty(_message, "You_need_to_login", "Vous devez d'abord vous connecter, puis vous pouvez créer un nouveau serveur!."), _defineProperty(_message, "click_to_login", 'cliquez pour vous connecter'), _defineProperty(_message, "verify_your_email", "Vous devez d'abord vérifier votre e-mail, puis vous pouvez créer un nouveau serveur!."), _defineProperty(_message, "send_another", 'cliquez pour envoyer un autre e-mail de vérification'), _defineProperty(_message, "Add_New_Server", 'Ajouter un nouveau serveur'), _defineProperty(_message, "Rules", 'Règles :'), _defineProperty(_message, "Following_participating", 'Les pages suivantes sont strictement interdites de participer :'), _defineProperty(_message, "rule1", '1. Sites avec beaucoup de bannières publicitaires ou'), _defineProperty(_message, "rule2", "2. Pages qui n'ont pas de contenu de jeu"), _defineProperty(_message, "rule3", '3. Top listes'), _defineProperty(_message, "rule4", '4. Sites qui enfreignent la loi applicable'), _defineProperty(_message, "rule5", 'Le titre et la description doivent être en accord avec le contenu de la page'), _defineProperty(_message, "rule6", 'Les violations de ces règles et la fraude (soi-disant tricherie) entraîneront la suspension de votre compte'), _defineProperty(_message, "rule7", 'Votre serveur sera affiché une fois approuvé par les administrateurs'), _defineProperty(_message, "backlink", 'Votre backlink. Vous devez les ajouter dans votre site Web :'), _defineProperty(_message, "Backlink_website", 'Votre backlink Vous devez les ajouter dans votre site Web'), _defineProperty(_message, "Server_title", 'Titre du serveur '), _defineProperty(_message, "Generate_Backlink", 'Générer un backlink'), _defineProperty(_message, "Banner", 'Bannière'), _defineProperty(_message, "Category", 'Catégorie'), _defineProperty(_message, "Difficulty", 'Difficulté'), _defineProperty(_message, "Easy", 'Facile'), _defineProperty(_message, "Medium", 'Moyen'), _defineProperty(_message, "Hard", 'Difficile'), _defineProperty(_message, "Language", 'Langue'), _defineProperty(_message, "Max_Level", 'Max. Niveau'), _defineProperty(_message, "YouTube", 'URL de la bande-annonce YouTube'), _defineProperty(_message, "Rates", 'Les taux (%)'), _defineProperty(_message, "Description", 'La description'), _defineProperty(_message, "Create", 'Créer'), _defineProperty(_message, "Back", 'Retour'), _defineProperty(_message, "Backlink_Geneated_Successfully", 'Backlink généré avec succès'), _defineProperty(_message, "Please_errors", "Veuillez vérifier l'erreur ci-dessus."), _defineProperty(_message, "Something_went_wrong", "Une erreur s'est produite. Veuillez réessayer ."), _defineProperty(_message, "Created_Successfully", 'Le serveur a été créé avec succès'), _defineProperty(_message, "Verification_email_sent_successfully", 'E-mail de vérification envoyé avec succès'), _defineProperty(_message, "Send_us_message", 'Envoyez-nous un message'), _defineProperty(_message, "Message_Sent_Successfully", 'Message envoyé avec succès'), _defineProperty(_message, "Edit_Server", 'Modifier le serveur'), _defineProperty(_message, "Server_Updated_Successfully", 'Serveur mis à jour avec succès'), _defineProperty(_message, "server_is_inactive", "ce serveur est inactif et n'est plus en ligne. Es-tu sur de vouloir continuer ?"), _defineProperty(_message, "Yes", 'Oui'), _defineProperty(_message, "No", 'Non'), _defineProperty(_message, "No_Records_Found", 'Aucun enregistrement trouvé'), _defineProperty(_message, "Server_details", 'Détails du serveur'), _defineProperty(_message, "Server_Type", 'Type de serveur'), _defineProperty(_message, "Votes", 'Votes'), _defineProperty(_message, "Website", 'Site Internet'), _defineProperty(_message, "Comments", 'commentaires'), _defineProperty(_message, "Clicks", 'Clics'), _defineProperty(_message, "Server_start", 'Démarrage du serveur'), _defineProperty(_message, "Rate_Server", 'Évaluer le serveur'), _defineProperty(_message, "Feedback", "Retour d'information"), _defineProperty(_message, "REPLY", 'RÉPONSE'), _defineProperty(_message, "Add_Your_Replay", "Ajoutez votre réponse"), _defineProperty(_message, "Add_Comment", 'Ajouter un commentaire'), _defineProperty(_message, "Select_Your_rating", 'Sélectionnez votre note'), _defineProperty(_message, "You_have_voted_successfully", 'Vous avez voté avec succès'), _defineProperty(_message, "You_have_replayed", 'Vous avez rejoué avec succès'), _defineProperty(_message, "Comment_Added_successfully", 'Commentaire ajouté avec succès'), _defineProperty(_message, "Servername", 'Nom du serveur'), _defineProperty(_message, "Votelink", 'Lien de vote'), _defineProperty(_message, "Actions", 'Actions'), _defineProperty(_message, "edit", 'Éditer'), _defineProperty(_message, "Deactivate", 'Désactiver'), _defineProperty(_message, "Active", 'actif'), _defineProperty(_message, "Change_your_password", 'changez votre mot de passe'), _defineProperty(_message, "Old_password", 'Ancien mot de passe'), _defineProperty(_message, "CHANGE_PASSWORD", 'CHANGER LE MOT DE PASSE'), _defineProperty(_message, "New_password", 'Nouveau mot de passe'), _defineProperty(_message, "Server_Deactivated_Successfully", 'Serveur désactivé avec succès'), _defineProperty(_message, "Server_Activated_Successfully", 'Serveur activé avec succès'), _defineProperty(_message, "Password_Updated_Successfully", 'Mot de passe mis à jour avec succès'), _message)
 };
 /* harmony default export */ __webpack_exports__["default"] = (fr);
 
@@ -70237,10 +70426,41 @@ var fr = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+var _message;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var it = {
-  message: {
-    test: 'test'
-  }
+  message: (_message = {
+    HOME: 'HOME',
+    SERVERS: 'SERVERS',
+    All_Servers: 'All Servers',
+    PARTNERS: 'PARTNERS',
+    FAQ: 'FAQ',
+    CONTACT: 'CONTACT',
+    Create_Account: 'Create Account',
+    Sign_in: 'Sign in',
+    ADD_SERVER: 'ADD SERVER',
+    LOG_OUT: 'LOG OUT',
+    Footer_Right: '© 2020 Metin2-Toplist.com All rights reserved.',
+    Footer_text: 'It is unclear whether it was greed for profit or pure joy in experimentation, which prompted the first server administrators to make their projects, which were initially running via the VPN client "LogMeIn Hamachi" and "Windows Virtual PC", publicly accessible and thus.',
+    Footer_text1: 'Further content used here are',
+    Footer_text2: 'trademarks',
+    Footer_text3: 'of their',
+    Footer_text4: 'respective owners',
+    HOMEPAGE: 'HOMEPAGE',
+    METIN2_SERVICE: 'METIN2 SERVICE',
+    BECOME_A_PARTNER: 'BECOME A PARTNER',
+    Find_Us_On: 'Find Us On',
+    ADD_SERVERS: 'ADD SERVERS',
+    FEATURED_SERVER: 'FEATURED SERVER',
+    ADD_YOUR_SERVER: 'ADD YOUR SERVER',
+    VISIT_WEBSITE: 'VISIT WEBSITE',
+    Promoted_server_trailer: 'Promoted server trailer',
+    Welcome: 'Welcome at Metin2-Toplist.com!',
+    Largest_private_server_list: 'Largest private server list!',
+    Welcome_back: 'Welcome back!'
+  }, _defineProperty(_message, "Create_Account", 'Create Account'), _defineProperty(_message, "account", 'Don\'t have an account?'), _defineProperty(_message, "Username", 'User name'), _defineProperty(_message, "Password", 'Password'), _defineProperty(_message, "Remember_Me", 'Remember Me'), _defineProperty(_message, "Sign_In", 'Sign In'), _defineProperty(_message, "Signed_in_successfully", 'Signed in successfully'), _defineProperty(_message, "Create_Account", 'Create Account'), _defineProperty(_message, "Already", 'Already have an account?'), _defineProperty(_message, "Email", 'E-mail Address'), _defineProperty(_message, "Confirm_Password", 'Confirm Password'), _defineProperty(_message, "I_have_read", 'I have read and agree to the'), _defineProperty(_message, "Terms_of_Use", 'Terms of Use'), _defineProperty(_message, "Sign_Up", 'Sign Up'), _defineProperty(_message, "Account_created", 'Account created successfully.'), _defineProperty(_message, "You_need_to_login", ' You need to login in first then you can create a new server !.'), _defineProperty(_message, "click_to_login", 'click to login'), _defineProperty(_message, "verify_your_email", 'You need to verify your email first then you can create a new server !.'), _defineProperty(_message, "send_another", 'click to send another verification email'), _defineProperty(_message, "Add_New_Server", 'Add New Server'), _defineProperty(_message, "Rules", 'Rules :'), _defineProperty(_message, "Following_participating", 'Following pages are strictly prohibited from participating :'), _defineProperty(_message, "rule1", '1. Sites with exaggerated much banner advertising or'), _defineProperty(_message, "rule2", '2. Pages which do not have Game content'), _defineProperty(_message, "rule3", '3. Toplists'), _defineProperty(_message, "rule4", '4. Sites that infringe applicable law'), _defineProperty(_message, "rule5", 'The title and description must be in accordance with the content of the page'), _defineProperty(_message, "rule6", 'Violations of these rules and fraud (so-called cheating) will result the suspension of your account'), _defineProperty(_message, "rule7", 'Your server will be displayed when approved by the administrators'), _defineProperty(_message, "backlink", 'Your Backlink. You need to add them in your website :'), _defineProperty(_message, "Backlink_website", 'Your Backlink You need to add them in your website'), _defineProperty(_message, "Server_title", 'Server title '), _defineProperty(_message, "Generate_Backlink", 'Generate Backlink'), _defineProperty(_message, "Banner", 'Banner'), _defineProperty(_message, "Category", 'Category'), _defineProperty(_message, "Difficulty", 'Difficulty'), _defineProperty(_message, "Easy", 'Easy'), _defineProperty(_message, "Medium", 'Medium'), _defineProperty(_message, "Hard", 'Hard'), _defineProperty(_message, "Language", 'Language'), _defineProperty(_message, "Max_Level", 'Max. Level'), _defineProperty(_message, "YouTube", 'YouTube Trailer Url'), _defineProperty(_message, "Rates", 'Rates (%)'), _defineProperty(_message, "Description", 'Description'), _defineProperty(_message, "Create", 'Create'), _defineProperty(_message, "Back", 'Back'), _defineProperty(_message, "Backlink_Geneated_Successfully", 'Backlink Geneated Successfully'), _defineProperty(_message, "Please_errors", 'Please check the error above .'), _defineProperty(_message, "Something_went_wrong", 'Something went wrong please try again .'), _defineProperty(_message, "Created_Successfully", 'Server Created Successfully'), _defineProperty(_message, "Verification_email_sent_successfully", 'Verification email sent successfully'), _defineProperty(_message, "Send_us_message", 'Send us message'), _defineProperty(_message, "Message_Sent_Successfully", 'Message Sent Successfully'), _defineProperty(_message, "Edit_Server", 'Edit Server'), _defineProperty(_message, "Server_Updated_Successfully", 'Server Updated Successfully'), _defineProperty(_message, "server_is_inactive", 'this server is inactive and not online anymore. are you sure you want to continue ?'), _defineProperty(_message, "Yes", 'Yes'), _defineProperty(_message, "No", 'No'), _defineProperty(_message, "No_Records_Found", 'No Records Found'), _defineProperty(_message, "Server_details", 'Server details'), _defineProperty(_message, "Server_Type", 'Server Type'), _defineProperty(_message, "Votes", 'Votes'), _defineProperty(_message, "Website", 'Website'), _defineProperty(_message, "Comments", 'Comments'), _defineProperty(_message, "Clicks", 'Clicks'), _defineProperty(_message, "Server_start", 'Server start'), _defineProperty(_message, "Rate_Server", 'Rate Server'), _defineProperty(_message, "Feedback", 'Feedback'), _defineProperty(_message, "REPLY", 'REPLY'), _defineProperty(_message, "Add_Your_Replay", 'Add Your Replay'), _defineProperty(_message, "Add_Comment", 'Add Comment'), _defineProperty(_message, "Select_Your_rating", 'Select Your rating'), _defineProperty(_message, "You_have_voted_successfully", 'You have voted successfully'), _defineProperty(_message, "You_have_replayed", 'You Have Replayed Successfully'), _defineProperty(_message, "Comment_Added_successfully", 'Comment Added successfully'), _defineProperty(_message, "Servername", 'Servername'), _defineProperty(_message, "Votelink", 'Votelink'), _defineProperty(_message, "Actions", 'Actions'), _defineProperty(_message, "edit", 'edit'), _defineProperty(_message, "Deactivate", 'Deactivate'), _defineProperty(_message, "Active", 'Active'), _defineProperty(_message, "Change_your_password", 'Change your password'), _defineProperty(_message, "Old_password", 'Old password'), _defineProperty(_message, "CHANGE_PASSWORD", 'CHANGE PASSWORD'), _defineProperty(_message, "New_password", 'New password'), _defineProperty(_message, "Server_Deactivated_Successfully", 'Server Deactivated Successfully'), _defineProperty(_message, "Server_Activated_Successfully", 'Server Activated  Successfully'), _defineProperty(_message, "Password_Updated_Successfully", 'Password Updated Successfully'), _message)
 };
 /* harmony default export */ __webpack_exports__["default"] = (it);
 
@@ -70255,10 +70475,41 @@ var it = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+var _message;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var pl = {
-  message: {
-    test: 'test'
-  }
+  message: (_message = {
+    HOME: 'HOME',
+    SERVERS: 'SERVERS',
+    All_Servers: 'All Servers',
+    PARTNERS: 'PARTNERS',
+    FAQ: 'FAQ',
+    CONTACT: 'CONTACT',
+    Create_Account: 'Create Account',
+    Sign_in: 'Sign in',
+    ADD_SERVER: 'ADD SERVER',
+    LOG_OUT: 'LOG OUT',
+    Footer_Right: '© 2020 Metin2-Toplist.com All rights reserved.',
+    Footer_text: 'It is unclear whether it was greed for profit or pure joy in experimentation, which prompted the first server administrators to make their projects, which were initially running via the VPN client "LogMeIn Hamachi" and "Windows Virtual PC", publicly accessible and thus.',
+    Footer_text1: 'Further content used here are',
+    Footer_text2: 'trademarks',
+    Footer_text3: 'of their',
+    Footer_text4: 'respective owners',
+    HOMEPAGE: 'HOMEPAGE',
+    METIN2_SERVICE: 'METIN2 SERVICE',
+    BECOME_A_PARTNER: 'BECOME A PARTNER',
+    Find_Us_On: 'Find Us On',
+    ADD_SERVERS: 'ADD SERVERS',
+    FEATURED_SERVER: 'FEATURED SERVER',
+    ADD_YOUR_SERVER: 'ADD YOUR SERVER',
+    VISIT_WEBSITE: 'VISIT WEBSITE',
+    Promoted_server_trailer: 'Promoted server trailer',
+    Welcome: 'Welcome at Metin2-Toplist.com!',
+    Largest_private_server_list: 'Largest private server list!',
+    Welcome_back: 'Welcome back!'
+  }, _defineProperty(_message, "Create_Account", 'Create Account'), _defineProperty(_message, "account", 'Don\'t have an account?'), _defineProperty(_message, "Username", 'User name'), _defineProperty(_message, "Password", 'Password'), _defineProperty(_message, "Remember_Me", 'Remember Me'), _defineProperty(_message, "Sign_In", 'Sign In'), _defineProperty(_message, "Signed_in_successfully", 'Signed in successfully'), _defineProperty(_message, "Create_Account", 'Create Account'), _defineProperty(_message, "Already", 'Already have an account?'), _defineProperty(_message, "Email", 'E-mail Address'), _defineProperty(_message, "Confirm_Password", 'Confirm Password'), _defineProperty(_message, "I_have_read", 'I have read and agree to the'), _defineProperty(_message, "Terms_of_Use", 'Terms of Use'), _defineProperty(_message, "Sign_Up", 'Sign Up'), _defineProperty(_message, "Account_created", 'Account created successfully.'), _defineProperty(_message, "You_need_to_login", ' You need to login in first then you can create a new server !.'), _defineProperty(_message, "click_to_login", 'click to login'), _defineProperty(_message, "verify_your_email", 'You need to verify your email first then you can create a new server !.'), _defineProperty(_message, "send_another", 'click to send another verification email'), _defineProperty(_message, "Add_New_Server", 'Add New Server'), _defineProperty(_message, "Rules", 'Rules :'), _defineProperty(_message, "Following_participating", 'Following pages are strictly prohibited from participating :'), _defineProperty(_message, "rule1", '1. Sites with exaggerated much banner advertising or'), _defineProperty(_message, "rule2", '2. Pages which do not have Game content'), _defineProperty(_message, "rule3", '3. Toplists'), _defineProperty(_message, "rule4", '4. Sites that infringe applicable law'), _defineProperty(_message, "rule5", 'The title and description must be in accordance with the content of the page'), _defineProperty(_message, "rule6", 'Violations of these rules and fraud (so-called cheating) will result the suspension of your account'), _defineProperty(_message, "rule7", 'Your server will be displayed when approved by the administrators'), _defineProperty(_message, "backlink", 'Your Backlink. You need to add them in your website :'), _defineProperty(_message, "Backlink_website", 'Your Backlink You need to add them in your website'), _defineProperty(_message, "Server_title", 'Server title '), _defineProperty(_message, "Generate_Backlink", 'Generate Backlink'), _defineProperty(_message, "Banner", 'Banner'), _defineProperty(_message, "Category", 'Category'), _defineProperty(_message, "Difficulty", 'Difficulty'), _defineProperty(_message, "Easy", 'Easy'), _defineProperty(_message, "Medium", 'Medium'), _defineProperty(_message, "Hard", 'Hard'), _defineProperty(_message, "Language", 'Language'), _defineProperty(_message, "Max_Level", 'Max. Level'), _defineProperty(_message, "YouTube", 'YouTube Trailer Url'), _defineProperty(_message, "Rates", 'Rates (%)'), _defineProperty(_message, "Description", 'Description'), _defineProperty(_message, "Create", 'Create'), _defineProperty(_message, "Back", 'Back'), _defineProperty(_message, "Backlink_Geneated_Successfully", 'Backlink Geneated Successfully'), _defineProperty(_message, "Please_errors", 'Please check the error above .'), _defineProperty(_message, "Something_went_wrong", 'Something went wrong please try again .'), _defineProperty(_message, "Created_Successfully", 'Server Created Successfully'), _defineProperty(_message, "Verification_email_sent_successfully", 'Verification email sent successfully'), _defineProperty(_message, "Send_us_message", 'Send us message'), _defineProperty(_message, "Message_Sent_Successfully", 'Message Sent Successfully'), _defineProperty(_message, "Edit_Server", 'Edit Server'), _defineProperty(_message, "Server_Updated_Successfully", 'Server Updated Successfully'), _defineProperty(_message, "server_is_inactive", 'this server is inactive and not online anymore. are you sure you want to continue ?'), _defineProperty(_message, "Yes", 'Yes'), _defineProperty(_message, "No", 'No'), _defineProperty(_message, "No_Records_Found", 'No Records Found'), _defineProperty(_message, "Server_details", 'Server details'), _defineProperty(_message, "Server_Type", 'Server Type'), _defineProperty(_message, "Votes", 'Votes'), _defineProperty(_message, "Website", 'Website'), _defineProperty(_message, "Comments", 'Comments'), _defineProperty(_message, "Clicks", 'Clicks'), _defineProperty(_message, "Server_start", 'Server start'), _defineProperty(_message, "Rate_Server", 'Rate Server'), _defineProperty(_message, "Feedback", 'Feedback'), _defineProperty(_message, "REPLY", 'REPLY'), _defineProperty(_message, "Add_Your_Replay", 'Add Your Replay'), _defineProperty(_message, "Add_Comment", 'Add Comment'), _defineProperty(_message, "Select_Your_rating", 'Select Your rating'), _defineProperty(_message, "You_have_voted_successfully", 'You have voted successfully'), _defineProperty(_message, "You_have_replayed", 'You Have Replayed Successfully'), _defineProperty(_message, "Comment_Added_successfully", 'Comment Added successfully'), _defineProperty(_message, "Servername", 'Servername'), _defineProperty(_message, "Votelink", 'Votelink'), _defineProperty(_message, "Actions", 'Actions'), _defineProperty(_message, "edit", 'edit'), _defineProperty(_message, "Deactivate", 'Deactivate'), _defineProperty(_message, "Active", 'Active'), _defineProperty(_message, "Change_your_password", 'Change your password'), _defineProperty(_message, "Old_password", 'Old password'), _defineProperty(_message, "CHANGE_PASSWORD", 'CHANGE PASSWORD'), _defineProperty(_message, "New_password", 'New password'), _defineProperty(_message, "Server_Deactivated_Successfully", 'Server Deactivated Successfully'), _defineProperty(_message, "Server_Activated_Successfully", 'Server Activated  Successfully'), _defineProperty(_message, "Password_Updated_Successfully", 'Password Updated Successfully'), _message)
 };
 /* harmony default export */ __webpack_exports__["default"] = (pl);
 
@@ -70273,10 +70524,41 @@ var pl = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+var _message;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var ro = {
-  message: {
-    test: 'test'
-  }
+  message: (_message = {
+    HOME: 'HOME',
+    SERVERS: 'SERVERS',
+    All_Servers: 'All Servers',
+    PARTNERS: 'PARTNERS',
+    FAQ: 'FAQ',
+    CONTACT: 'CONTACT',
+    Create_Account: 'Create Account',
+    Sign_in: 'Sign in',
+    ADD_SERVER: 'ADD SERVER',
+    LOG_OUT: 'LOG OUT',
+    Footer_Right: '© 2020 Metin2-Toplist.com All rights reserved.',
+    Footer_text: 'It is unclear whether it was greed for profit or pure joy in experimentation, which prompted the first server administrators to make their projects, which were initially running via the VPN client "LogMeIn Hamachi" and "Windows Virtual PC", publicly accessible and thus.',
+    Footer_text1: 'Further content used here are',
+    Footer_text2: 'trademarks',
+    Footer_text3: 'of their',
+    Footer_text4: 'respective owners',
+    HOMEPAGE: 'HOMEPAGE',
+    METIN2_SERVICE: 'METIN2 SERVICE',
+    BECOME_A_PARTNER: 'BECOME A PARTNER',
+    Find_Us_On: 'Find Us On',
+    ADD_SERVERS: 'ADD SERVERS',
+    FEATURED_SERVER: 'FEATURED SERVER',
+    ADD_YOUR_SERVER: 'ADD YOUR SERVER',
+    VISIT_WEBSITE: 'VISIT WEBSITE',
+    Promoted_server_trailer: 'Promoted server trailer',
+    Welcome: 'Welcome at Metin2-Toplist.com!',
+    Largest_private_server_list: 'Largest private server list!',
+    Welcome_back: 'Welcome back!'
+  }, _defineProperty(_message, "Create_Account", 'Create Account'), _defineProperty(_message, "account", 'Don\'t have an account?'), _defineProperty(_message, "Username", 'User name'), _defineProperty(_message, "Password", 'Password'), _defineProperty(_message, "Remember_Me", 'Remember Me'), _defineProperty(_message, "Sign_In", 'Sign In'), _defineProperty(_message, "Signed_in_successfully", 'Signed in successfully'), _defineProperty(_message, "Create_Account", 'Create Account'), _defineProperty(_message, "Already", 'Already have an account?'), _defineProperty(_message, "Email", 'E-mail Address'), _defineProperty(_message, "Confirm_Password", 'Confirm Password'), _defineProperty(_message, "I_have_read", 'I have read and agree to the'), _defineProperty(_message, "Terms_of_Use", 'Terms of Use'), _defineProperty(_message, "Sign_Up", 'Sign Up'), _defineProperty(_message, "Account_created", 'Account created successfully.'), _defineProperty(_message, "You_need_to_login", ' You need to login in first then you can create a new server !.'), _defineProperty(_message, "click_to_login", 'click to login'), _defineProperty(_message, "verify_your_email", 'You need to verify your email first then you can create a new server !.'), _defineProperty(_message, "send_another", 'click to send another verification email'), _defineProperty(_message, "Add_New_Server", 'Add New Server'), _defineProperty(_message, "Rules", 'Rules :'), _defineProperty(_message, "Following_participating", 'Following pages are strictly prohibited from participating :'), _defineProperty(_message, "rule1", '1. Sites with exaggerated much banner advertising or'), _defineProperty(_message, "rule2", '2. Pages which do not have Game content'), _defineProperty(_message, "rule3", '3. Toplists'), _defineProperty(_message, "rule4", '4. Sites that infringe applicable law'), _defineProperty(_message, "rule5", 'The title and description must be in accordance with the content of the page'), _defineProperty(_message, "rule6", 'Violations of these rules and fraud (so-called cheating) will result the suspension of your account'), _defineProperty(_message, "rule7", 'Your server will be displayed when approved by the administrators'), _defineProperty(_message, "backlink", 'Your Backlink. You need to add them in your website :'), _defineProperty(_message, "Backlink_website", 'Your Backlink You need to add them in your website'), _defineProperty(_message, "Server_title", 'Server title '), _defineProperty(_message, "Generate_Backlink", 'Generate Backlink'), _defineProperty(_message, "Banner", 'Banner'), _defineProperty(_message, "Category", 'Category'), _defineProperty(_message, "Difficulty", 'Difficulty'), _defineProperty(_message, "Easy", 'Easy'), _defineProperty(_message, "Medium", 'Medium'), _defineProperty(_message, "Hard", 'Hard'), _defineProperty(_message, "Language", 'Language'), _defineProperty(_message, "Max_Level", 'Max. Level'), _defineProperty(_message, "YouTube", 'YouTube Trailer Url'), _defineProperty(_message, "Rates", 'Rates (%)'), _defineProperty(_message, "Description", 'Description'), _defineProperty(_message, "Create", 'Create'), _defineProperty(_message, "Back", 'Back'), _defineProperty(_message, "Backlink_Geneated_Successfully", 'Backlink Geneated Successfully'), _defineProperty(_message, "Please_errors", 'Please check the error above .'), _defineProperty(_message, "Something_went_wrong", 'Something went wrong please try again .'), _defineProperty(_message, "Created_Successfully", 'Server Created Successfully'), _defineProperty(_message, "Verification_email_sent_successfully", 'Verification email sent successfully'), _defineProperty(_message, "Send_us_message", 'Send us message'), _defineProperty(_message, "Message_Sent_Successfully", 'Message Sent Successfully'), _defineProperty(_message, "Edit_Server", 'Edit Server'), _defineProperty(_message, "Server_Updated_Successfully", 'Server Updated Successfully'), _defineProperty(_message, "server_is_inactive", 'this server is inactive and not online anymore. are you sure you want to continue ?'), _defineProperty(_message, "Yes", 'Yes'), _defineProperty(_message, "No", 'No'), _defineProperty(_message, "No_Records_Found", 'No Records Found'), _defineProperty(_message, "Server_details", 'Server details'), _defineProperty(_message, "Server_Type", 'Server Type'), _defineProperty(_message, "Votes", 'Votes'), _defineProperty(_message, "Website", 'Website'), _defineProperty(_message, "Comments", 'Comments'), _defineProperty(_message, "Clicks", 'Clicks'), _defineProperty(_message, "Server_start", 'Server start'), _defineProperty(_message, "Rate_Server", 'Rate Server'), _defineProperty(_message, "Feedback", 'Feedback'), _defineProperty(_message, "REPLY", 'REPLY'), _defineProperty(_message, "Add_Your_Replay", 'Add Your Replay'), _defineProperty(_message, "Add_Comment", 'Add Comment'), _defineProperty(_message, "Select_Your_rating", 'Select Your rating'), _defineProperty(_message, "You_have_voted_successfully", 'You have voted successfully'), _defineProperty(_message, "You_have_replayed", 'You Have Replayed Successfully'), _defineProperty(_message, "Comment_Added_successfully", 'Comment Added successfully'), _defineProperty(_message, "Servername", 'Servername'), _defineProperty(_message, "Votelink", 'Votelink'), _defineProperty(_message, "Actions", 'Actions'), _defineProperty(_message, "edit", 'edit'), _defineProperty(_message, "Deactivate", 'Deactivate'), _defineProperty(_message, "Active", 'Active'), _defineProperty(_message, "Change_your_password", 'Change your password'), _defineProperty(_message, "Old_password", 'Old password'), _defineProperty(_message, "CHANGE_PASSWORD", 'CHANGE PASSWORD'), _defineProperty(_message, "New_password", 'New password'), _defineProperty(_message, "Server_Deactivated_Successfully", 'Server Deactivated Successfully'), _defineProperty(_message, "Server_Activated_Successfully", 'Server Activated  Successfully'), _defineProperty(_message, "Password_Updated_Successfully", 'Password Updated Successfully'), _message)
 };
 /* harmony default export */ __webpack_exports__["default"] = (ro);
 
@@ -70345,6 +70627,7 @@ __webpack_require__.r(__webpack_exports__);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vuex__WEBPACK_IMPORTED_MODULE_1__["default"]);
 /* harmony default export */ __webpack_exports__["default"] = (new vuex__WEBPACK_IMPORTED_MODULE_1__["default"].Store({
   state: {
+    lang: 'en',
     sitekey: '6LeCNhwaAAAAAHLVfJBdyleRSh7bRmYuvolBuycB',
     islogin: false,
     user: []

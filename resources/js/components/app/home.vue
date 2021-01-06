@@ -4,15 +4,15 @@
 
   <modal name="warm" :height="200">
     <div class="my-3 px-4 py-5 bg-white">
-        <h6 class="font-weight-bold"> this server is inactive and not online anymore. are you sure you want to continue ?</h6>
+        <h6 class="font-weight-bold"> {{$t('message.server_is_inactive')}}</h6>
           <button
             class="btn btn-dark "
             @click="visit"
-          >Yes</button>
+          >{{$t('message.Yes')}}</button>
            <button
             class="btn btn-dark "
             @click="$modal.hide('warm')"
-          >No</button>
+          >{{$t('message.No')}}</button>
       </div>
 </modal>
 
@@ -20,7 +20,7 @@
 
 
     <div v-if="Servers.length == 0" style="text-align: center; margin-top: 100px;">
-        <b>No Records Found </b>
+        <b>{{$t('message.No_Records_Found')}} </b>
     </div>
 
 
@@ -56,12 +56,12 @@
                   </h5>
                 </div>
                 <div class="col-9">
-                    <p class="hard text-danger bg-pink rounded" v-if="Server.difficulty == 'Hard'" style="cursor:pointer"  @click="goDetails(Server.slug,index)">Hard</p>
+                    <p class="hard text-danger bg-pink rounded" v-if="Server.difficulty == 'Hard'" style="cursor:pointer"  @click="goDetails(Server.slug,index)">{{$t('message.Hard')}}</p>
                                            <p class="hard text-success bg-green rounded"  v-if="Server.difficulty == 'Easy'"  >
-                                                Easy
+                                                {{$t('message.Easy')}}
                                             </p>
                                              <p class="hard text-orange bg-orange rounded"  v-if="Server.difficulty == 'Medium'" >
-                                                Medium
+                                                {{$t('message.Medium')}}
                                             </p>
                   <h5 class="font-weight-bold" style="cursor:pointer" @click="goDetails(Server.slug,index)">
                     {{ Server.url.replace(/[http:// https://]/g, "") }}

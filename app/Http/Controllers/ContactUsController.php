@@ -21,7 +21,7 @@ class ContactUsController extends Controller
 
         //check recaptcha
         if (!checkRecaptcha(env('INVISIBLE_RECAPTCHA_SECRETKEY', '6LeCNhwaAAAAACh31QVu_Fve05EQqn7p9iOWNQmU'), $request->ReqResponse)) {
-            return response()->json('invalid recaptcha.', 403);
+            return response()->json(trans('message.comment5'), 403);
         }
 
         Mail::to(env('App_email'))->send(new Contactus($request->email, $request->username, $request->message));

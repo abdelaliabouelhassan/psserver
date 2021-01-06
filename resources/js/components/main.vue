@@ -1,7 +1,7 @@
 <template>
   <div>
        <modal name="login"  :height="400" ><login></login></modal>
-       <modal name="register"    :height="500"><register></register></modal>
+       <modal name="register"    :height="600"><register></register></modal>
     <header_app></header_app>
     <banner></banner>
     <ad_app></ad_app>
@@ -18,6 +18,16 @@ export default {
     return {};
   },
   methods: {
+    getLang(){
+      this.axios
+        .get("/api/getLang")
+        .then((response) => {
+        this.$store.state.lang =  response.data;
+        this.$i18n.locale = this.$store.state.lang
+        })
+        .catch((errors) => {
+        });
+    },
     loadUser() {
       this.axios
         .get("/api/user")
@@ -32,6 +42,7 @@ export default {
     },
   },
   created() {
+    this.getLang();
     this.loadUser();
     something.$on("loaduser", () => {
       this.loadUser();

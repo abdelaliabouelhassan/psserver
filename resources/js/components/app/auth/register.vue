@@ -115,7 +115,7 @@ export default {
         
           Toast.fire({
             icon: "success",
-            title: $t('message.Account_created'),
+            title: this.$t('message.Account_created'),
           });
            this.$modal.hide('register')
            this.disabel = false;

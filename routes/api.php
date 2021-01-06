@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+route::group(['middleware'=> 'check_lang'],function () {
+
 Route::get('/user', function (Request $request) {
 
 if(auth('sanctum')->check()){
@@ -65,3 +67,12 @@ Route::post('/Contactus', 'ContactUsController@Contactus');
 
 Route::post('/Deactivate', 'serverController@Deactivate');
 Route::post('/Active', 'serverController@Active');
+
+
+//change lang
+
+Route::post('/changLang', 'AppSettingsController@changLang');
+Route::get('/getLang', 'AppSettingsController@getLang');
+
+
+});

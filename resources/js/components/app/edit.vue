@@ -3,7 +3,7 @@
     
    
 
-    <h6 class="font-weight-bold">Edit Server</h6>
+    <h6 class="font-weight-bold">{{$t('message.Edit_Server')}}</h6>
   
     
      
@@ -24,7 +24,7 @@
           />
         </div>
         <div class="col-md-12">
-          <label for="title">Server title :</label>
+          <label for="title">{{$t('message.Server_title')}} :</label>
             <span class="text-danger" v-if="errors.title">{{
             this.errors.title[0]
           }}</span>
@@ -38,7 +38,7 @@
           />
         </div>
         <div class="col-md-12">
-          <label for="Banner">Banner :</label>
+          <label for="Banner">{{$t('message.Banner')}} :</label>
            <span class="text-danger" v-if="errors.banner">{{
             this.errors.banner[0]
           }}</span>
@@ -49,7 +49,7 @@
   </div>
         </div>
         <div class="col-md-12">
-          <label for="Category">Category :</label>
+          <label for="Category">{{$t('message.Category')}} :</label>
            <span class="text-danger" v-if="errors.category">{{
             this.errors.category[0]
           }}</span>
@@ -65,7 +65,7 @@
           </select>
         </div>
          <div class="col-md-12">
-          <label for="Category">Difficulty :</label>
+          <label for="Category">{{$t('message.Difficulty')}}  :</label>
            <span class="text-danger" v-if="errors.difficulty">{{
             this.errors.difficulty[0]
           }}</span>
@@ -75,14 +75,14 @@
             class="form-control rounded my-2"
             v-model="form.difficulty"
           >
-            <option value="Easy">Easy</option>
-            <option value="Medium">Medium</option>
-            <option value="Hard">Hard</option>
+            <option value="Easy">{{$t('message.Easy')}} </option>
+            <option value="Medium">{{$t('message.Medium')}} </option>
+            <option value="Hard">{{$t('message.Hard')}} </option>
           </select>
         </div>
         
         <div class="col-md-12">
-          <label for="max">Max. Level :</label>
+          <label for="max">{{$t('message.Max_Level')}} :</label>
            <span class="text-danger" v-if="errors.maxlevel">{{
             this.errors.maxlevel[0]
           }}</span>
@@ -93,12 +93,12 @@
             id="max"
             step="any"
             class="form-control rounded my-2"
-            placeholder="Max. Level "
+            :placeholder="$t('message.Max_Level')"
           />
         </div>
 
         <div class="col-md-12">
-          <label for="youtube">YouTube Trailer ID :</label>
+          <label for="youtube">{{$t('message.YouTube')}}:</label>
            <span class="text-danger" v-if="errors.youtube_id">{{
             this.errors.youtube_id[0]
           }}</span>
@@ -108,7 +108,7 @@
             step="any"
             id="youtube"
             class="form-control rounded my-2"
-            placeholder="YouTube Trailer ID "
+            :placeholder="$t('message.YouTube') "
             v-model="form.youtube_id"
           />
         </div>
@@ -128,7 +128,7 @@
           />
         </div>
       </div>
-      <label for="Description">Description :</label>
+      <label for="Description">{{$t('message.Description')}} :</label>
         <span class="text-danger" v-if="errors.description">{{
             this.errors.description[0]
           }}</span>
@@ -139,7 +139,7 @@
         cols="30"
         rows="5"
         class="form-control mt-2 rounded"
-        placeholder="Description"
+        :placeholder="$t('message.Description')"
         v-model="form.description"
       ></textarea>
 
@@ -220,7 +220,7 @@ export default {
            this.clicked = false 
           Toast.fire({
             icon: "success",
-            title: "Server Created Successfully",
+            title: this.$t('message.Server_Updated_Successfully'),
           });
         })
         .catch((errors) => {  
@@ -229,7 +229,7 @@ export default {
             this.errors = errors.response.data.errors;
              Toast.fire({
             icon: "error",
-            title: "Please check the error above .",
+            title: this.$t('message.Please_errors'),
           });
           }else if(errors.response.status == 403){
             Toast.fire({
@@ -240,7 +240,7 @@ export default {
           else{
             Toast.fire({
             icon: "error",
-            title: "Something went wrong please try again .",
+            title: this.$t('message.Something_went_wrong'),
           });
           }      
           

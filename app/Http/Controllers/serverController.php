@@ -56,7 +56,7 @@ class serverController extends Controller
 
         //check recaptcha
         if(!checkRecaptcha(env('INVISIBLE_RECAPTCHA_SECRETKEY', '6LeCNhwaAAAAACh31QVu_Fve05EQqn7p9iOWNQmU'),$request->ReqResponse)){
-            return response()->json('invalid recaptcha.', 403);
+            return response()->json(trans('message.invalid_recaptcha'), 403);
         }
 
 
@@ -65,7 +65,7 @@ class serverController extends Controller
         $server =  Server::findOrFail($request->id);
         $url =  request()->server('SERVER_NAME') . '/'. $server->slug;
         if (!checkBackLink($server->url, $url)) {
-            return response()->json('You Need To Add BackLink to your website (' . $server->url . ')!', 403);
+            return response()->json(trans("message.BackLink") . '(' . $server->url . ')!', 403);
         }
 
 
@@ -160,7 +160,7 @@ class serverController extends Controller
 
         $url =  request()->server('SERVER_NAME') . '/' . $server->slug;
         if (!checkBackLink($server->url, $url)) {
-            return response()->json('You Need To Add BackLink to your website (' . $server->url . ')!', 403);
+            return response()->json( trans("message.BackLink") .'(' . $server->url . ')!', 403);
         }
 
 

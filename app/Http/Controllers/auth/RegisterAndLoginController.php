@@ -11,12 +11,16 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use  \Illuminate\Support\Facades\App;
+
 
 class RegisterAndLoginController extends Controller
 {
+
+
     // create new account
     public function register(Request $request){
-
+        
         $request->validate([
             'username'=>['required','max:100','min:2','unique:users'],
             'email'=>['required','email','unique:users'],
@@ -25,7 +29,7 @@ class RegisterAndLoginController extends Controller
         ]);
 
         if (!checkRecaptcha(env('INVISIBLE_RECAPTCHA_SECRETKEY', '6LeCNhwaAAAAACh31QVu_Fve05EQqn7p9iOWNQmU'), $request->ReqResponse)) {
-            return response()->json('invalid recaptcha.', 403);
+            return response()->json(trans('message.invalid_recaptcha'), 403);
         }
 
         $my_Ip =  getIPAddress();
@@ -57,14 +61,14 @@ class RegisterAndLoginController extends Controller
          ]);
 
         if(!checkRecaptcha(env('INVISIBLE_RECAPTCHA_SECRETKEY', '6LeCNhwaAAAAACh31QVu_Fve05EQqn7p9iOWNQmU'),$request->ReqResponse)){
-            return response()->json('invalid recaptcha.', 403);
+            return response()->json(trans('message.invalid_recaptcha'), 403);
         }
 
         if(Auth::attempt($request->only('username','password'))){
             return response()->json(Auth::user(),200);
         }
 
-        return response()->json('The Provided Cerdentials Are Incorrect.',403);
+        return response()->json(trans('message.Cerdentials'),403);
     }
     //logout
     public function logout(){
@@ -111,7 +115,7 @@ class RegisterAndLoginController extends Controller
         ]);
             
      if( !Hash::check($request->old_password, auth('sanctum')->user()->password)){
-            return response()->json('The password you entered does not match', 403); 
+            return response()->json(trans('message.match'), 403); 
      }else{
             User::findOrFail(auth('sanctum')->user()->id)->update([
                 'password' => Hash::make($request->password),

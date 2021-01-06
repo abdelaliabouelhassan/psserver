@@ -3,15 +3,15 @@
 
      <modal name="warm" :height="200">
     <div class="my-3 px-4 py-5 bg-white">
-        <h6 class="font-weight-bold"> this server is inactive and not online anymore. are you sure you want to continue ?</h6>
+        <h6 class="font-weight-bold"> {{$t('message.server_is_inactive')}}</h6>
           <button
             class="btn btn-dark "
             @click="visit"
-          >Yes</button>
+          >{{$t('message.Yes')}}</button>
            <button
             class="btn btn-dark "
             @click="$modal.hide('warm')"
-          >No</button>
+          >{{$t('message.No')}}</button>
       </div>
 </modal>
 
@@ -42,19 +42,19 @@
                     style="cursor: pointer"
                     @click="goDetails(Server.slug)"
                   >
-                    Hard
+                    {{$t('message.Hard')}}
                   </p>
                   <p
                     class="hard text-success bg-green rounded"
                     v-if="Server.difficulty == 'Easy'"
                   >
-                    Easy
+                    {{$t('message.Easy')}}
                   </p>
                   <p
                     class="hard text-orange bg-orange rounded"
                     v-if="Server.difficulty == 'Medium'"
                   >
-                    Medium
+                    {{$t('message.Medium')}}
                   </p>
                   <h5 class="font-weight-bold">{{ url }}</h5>
                 </div>
@@ -94,13 +94,13 @@
         @click="Check_last_vote(Server.url,Server.has_vote_in_12)"
         target="_blank"
         class="btn btn-dark bg-dark btn-block rounded font-weight-normal"
-        >{{ url }} - Server details</a
+        >{{ url }} - {{$t('message.Server_details')}}</a
       >
       <div class="row mt-3">
         <div class="col-md-6">
           <div class="row">
             <div class="col-4 m-auto">
-              <p>Server Type:</p>
+              <p>{{ $t('message.Server_Type') }}:</p>
             </div>
             <div class="col-7">
               <p
@@ -109,19 +109,19 @@
                 style="cursor: pointer"
                 @click="goDetails(Server.slug)"
               >
-                Hard
+                {{$t('message.Hard')}}
               </p>
               <p
                 class="hard text-success bg-green rounded"
                 v-if="Server.difficulty == 'Easy'"
               >
-                Easy
+                {{$t('message.Easy')}}
               </p>
               <p
                 class="hard text-orange bg-orange rounded"
                 v-if="Server.difficulty == 'Medium'"
               >
-                Medium
+                {{$t('message.Medium')}}
               </p>
               <p class="d-inline text-muted ml-2">{{ Server.category }}</p>
             </div>
@@ -129,7 +129,7 @@
           <hr />
           <div class="row">
             <div class="col-4 m-auto">
-              <p>Max LvL:</p>
+              <p>{{ $t('message.Max_Level') }}:</p>
             </div>
             <div class="col-7">
               <p class="d-inline text-muted ml-2">{{ Server.maxlevel }}</p>
@@ -147,7 +147,7 @@
           <hr />
           <div class="row">
             <div class="col-4 m-auto">
-              <p>Votes:</p>
+              <p>{{ $t('message.Votes') }}:</p>
             </div>
             <div class="col-7">
               <p class="d-inline text-success ml-2">{{Server.realtimeVote}}</p>
@@ -158,7 +158,7 @@
         <div class="col-md-6">
           <div class="row">
             <div class="col-4 m-auto">
-              <p>Website:</p>
+              <p>{{ $t('message.Website') }}:</p>
             </div>
             <div class="col-7">
               <p class="d-inline text-muted ml-2">
@@ -172,7 +172,7 @@
           <hr />
           <div class="row">
             <div class="col-4 m-auto">
-              <p>Comments:</p>
+              <p>{{ $t('message.Comments') }}:</p>
             </div>
             <div class="col-7">
               <p class="d-inline text-muted ml-2">{{comments.length}}</p>
@@ -181,7 +181,7 @@
           <hr />
           <div class="row">
             <div class="col-4 m-auto">
-              <p>Clicks:</p>
+              <p>{{ $t('message.Clicks') }}:</p>
             </div>
             <div class="col-7">
               <p class="d-inline text-muted ml-2">{{Server.viewd}}</p>
@@ -190,7 +190,7 @@
           <hr />
           <div class="row">
             <div class="col-4 m-auto">
-              <p>Server start:</p>
+              <p>{{ $t('message.Server_start') }}:</p>
             </div>
             <div class="col-7">
               <p class="d-inline text-muted ml-2">{{ Server.created_at }}</p>
@@ -204,7 +204,7 @@
           href="javascript:void(0)"
           class="text-dark text-decoration-none font-weight-bold"
           @click="modalRate"
-          >Rate Server</a
+          >{{$t('message.Rate_Server')}}</a
         >
       </div>
     </div>
@@ -212,7 +212,7 @@
     <!--  -->
 
     <h3 class="my-5 font-weight-bold">
-      Feedback & Comments: <span>{{ comments.length }}</span>
+      {{ $t('message.Feedback') }} & {{ $t('message.Comments') }}: <span>{{ comments.length }}</span>
     </h3>
 
     <div class="card my-3" v-if="!showReplay" v-for="comment in comments">
@@ -238,7 +238,7 @@
                 class="btn btn-dark bg-dark p-0 px-2 mr-2 rounded"
                 style="font-size: 10px"
               >
-                REPLY
+                {{ $t('message.REPLY') }}
               </button>
             </div>
           </div>
@@ -274,7 +274,7 @@
 
     <modal name="replay" :height="500">
       <div class="my-3 px-4 py-5 bg-white">
-        <h6 class="font-weight-bold">Add Your Replay</h6>
+        <h6 class="font-weight-bold">{{$t('message.Add_Your_Replay')}}</h6>
         <span class="text-danger" v-if="errors.username"
           >{{ this.errors.username[0] }}
         </span>
@@ -284,7 +284,7 @@
               <input
                 type="text"
                 class="form-control rounded my-2"
-                placeholder="E-mail address"
+                :placeholder="$t('message.Email')"
                 v-model="replayForm.email"
                 :class="{ 'is-invalid': errors.email }"
               />
@@ -293,7 +293,7 @@
               <input
                 type="text"
                 class="form-control rounded my-2"
-                placeholder="Your User Name"
+               :placeholder="$t('message.Username')"
                 v-model="replayForm.username"
                 :class="{ 'is-invalid': errors.username }"
               />
@@ -322,7 +322,7 @@
       </div>
     </modal>
 
-    <modal name="Comment" :height="500">
+    <modal name="Comment" :height="600">
       <div class="my-3 px-4 py-5 bg-white">
         <h6 class="font-weight-bold">Rate Server</h6>
         <span class="text-danger" v-if="errors.username"
@@ -338,7 +338,7 @@
                 v-model="form.rating"
                 :class="{ 'is-invalid': errors.rating }"
               >
-                <option value="" selected>Select Your rating</option>
+                <option value="" selected>{{ $t('message.Select_Your_rating') }} </option>
                 <option value="Very bad">Very bad</option>
                 <option value="Bad">Bad</option>
                 <option value="Acceptable">Acceptable</option>
@@ -400,7 +400,7 @@
             v-model="tos"
           /><label for="check" class="ml-2 my-2 terms"
             ><span class="" :class="{ 'text-danger': errorTos }"
-              >I have read and agree to the</span
+              >{{ $t('message.I_have_read') }} </span
             >
             <a
               href=""
@@ -423,7 +423,7 @@
     </modal>
 
      <div class="my-3 px-4 py-5 bg-white">
-        <h6 class="font-weight-bold">Add Comment</h6>
+        <h6 class="font-weight-bold">{{ $t('message.Add_Comment') }} </h6>
         <span class="text-danger" v-if="errors.username"
           >{{ this.errors.username[0] }}
         </span>
@@ -434,8 +434,8 @@
               <input
                 type="text"
                 class="form-control rounded my-2"
-                placeholder="E-mail address"
-                v-model="form.email"
+                 :placeholder="$t('message.Email')"
+                v-model="comment.email"
                 :class="{ 'is-invalid': errors.email }"
               />
             </div>
@@ -443,8 +443,8 @@
               <input
                 type="text"
                 class="form-control rounded my-2"
-                placeholder="Your User Name"
-                v-model="form.username"
+                :placeholder="$t('message.Username')"
+                v-model="comment.username"
                 :class="{ 'is-invalid': errors.username }"
               />
             </div>
@@ -458,7 +458,7 @@
             rows="5"
             class="form-control mt-2 rounded"
             placeholder="I think..."
-            v-model="form.comment"
+            v-model="comment.comment"
           ></textarea>
       
             <vue-recaptcha v-if="show" @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
@@ -487,6 +487,12 @@ export default {
       url: "",
       viUrl:'',
       clicked: false,
+      comment:{
+        email:'',
+        comment:'',
+        username:'',
+        server_id:'',
+      },
       form: {
         comment: "",
         rating: "",
@@ -542,7 +548,7 @@ export default {
           this.clicked = false;
           Toast.fire({
             icon: "success",
-            title: "You have voted successfully",
+            title:  this.$t('message.You_have_replayed'),
           });
             this.getComments();
         })
@@ -558,7 +564,7 @@ export default {
           }else {
             Toast.fire({
               icon: "error",
-              title: "Something went wrong please try again .",
+              title: this.$t('message.Something_went_wrong'),
             });
           }
         });
@@ -589,7 +595,7 @@ export default {
           this.clicked = false;
           Toast.fire({
             icon: "success",
-            title: "You have voted successfully",
+            title: this.$t('message.You_have_voted_successfully'),
           });
            this.getComments();
         })
@@ -605,7 +611,7 @@ export default {
           } else {
             Toast.fire({
               icon: "error",
-              title: "Something went wrong please try again .",
+              title:  this.$t('message.Something_went_wrong'),
             });
           }
         });
@@ -624,14 +630,14 @@ export default {
         .catch((errors) => {});
     },
     addcomment(){
-       this.form.server_id = this.Server.id;
+       this.comment.server_id = this.Server.id;
           this.axios
-        .post("/api/addComment", this.form)
+        .post("/api/addComment", this.comment)
         .then((response) => {
           this.clicked = false;
           Toast.fire({
             icon: "success",
-            title: "Comment Added successfully",
+            title: this.$t('message.Comment_Added_successfully'),
           });
            this.getComments();
         })
@@ -647,7 +653,7 @@ export default {
           } else {
             Toast.fire({
               icon: "error",
-              title: "Something went wrong please try again .",
+              title: this.$t('message.Something_went_wrong'),
             });
           }
         });

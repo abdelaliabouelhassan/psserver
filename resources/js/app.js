@@ -49,10 +49,7 @@ import VueI18n from 'vue-i18n'
 Vue.use(VueI18n)
 import messages from './lang/all.js'
 
-const i18n = new VueI18n({
-    locale: 'en', // set locale
-    messages, // set locale messages
-})
+
 
 /**end VueI18n */
 
@@ -110,6 +107,10 @@ import store from './store/store'
 
 /********** End  packages  ***********/
 
+const i18n = new VueI18n({
+    locale: store.state.lang, // set locale
+    messages, // set locale messages
+})
 
 
 
@@ -119,3 +120,4 @@ const app = new Vue({
     i18n,
     router
 });
+

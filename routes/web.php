@@ -12,6 +12,7 @@ use App\BacklinkChecker;
 use App\Enums\ServerRanking;
 use App\Mail\ServerBackLink;
 use Illuminate\Support\Facades\Mail;
+use  \Illuminate\Support\Facades\App;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,7 +31,8 @@ use Illuminate\Support\Facades\Mail;
 use  \Illuminate\Support\Carbon;
 
 Route::get('/test', function () {
-  return Server::find(1)->vote;
+    App::setLocale('fr');
+   return trans('message.invalid_recaptcha');
     
 });
 
@@ -82,5 +84,11 @@ Route::get('/', function () {
 });
 
 Route::get('{path}',function (){
+    if(session()->has('lang')){
+        App::setLocale(session()->get('lang'));
+    }else{
+        session(['lang' => 'en']);
+        App::setLocale('en');
+    }
     return view('master');
 })->where('path','[a-zA-Z0-9-/]+');

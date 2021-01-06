@@ -6,11 +6,11 @@
                 <thead class="thead-dark bg-dark">
                   <tr>
                     <th>#</th>
-                    <th>Servername</th>
-                    <th>Votelink</th>
-                    <th>Likes</th>
-                    <th>Clicks</th>
-                    <th>Actions</th>
+                    <th>{{ $t('message.Servername') }} </th>
+                    <th>{{ $t('message.Votelink') }}</th>
+                    <th>{{ $t('message.Votes') }} </th>
+                    <th>{{ $t('message.Clicks') }} </th>
+                    <th>{{ $t('message.Actions') }} </th>
                   </tr>
                 </thead>
                 <tbody>
@@ -25,9 +25,9 @@
                         <i class="fa fa-external-link-alt text-dark font-10 mr-1"></i>{{myserve.viewd}}
                     </td>
                     <td class="text-center">
-                        <button class="btn btn-dark px-3 py-0 rounded m-0" style="font-size: 12px;" @click="editServer(myserve.slug)">edit</button>
-                        <button v-if="myserve.status  && myserve.admin_active && myserve.server_owner_active" @click="deactive(myserve.id)" class="btn btn-danger px-3 py-0 rounded m-0" style="font-size: 12px;" >Deactivate</button>
-                        <button v-if="myserve.status  && myserve.admin_active && !myserve.server_owner_active" @click="active(myserve.id)" class="btn btn-success px-3 py-0 rounded m-0" style="font-size: 12px;" >Active</button>
+                        <button class="btn btn-dark px-3 py-0 rounded m-0" style="font-size: 12px;" @click="editServer(myserve.slug)">{{ $t('message.edit') }} </button>
+                        <button v-if="myserve.status  && myserve.admin_active && myserve.server_owner_active" @click="deactive(myserve.id)" class="btn btn-danger px-3 py-0 rounded m-0" style="font-size: 12px;" >{{ $t('message.Deactivate') }} </button>
+                        <button v-if="myserve.status  && myserve.admin_active && !myserve.server_owner_active" @click="active(myserve.id)" class="btn btn-success px-3 py-0 rounded m-0" style="font-size: 12px;" >{{ $t('message.Active') }} </button>
                     </td>
                   </tr>
                 
@@ -37,11 +37,11 @@
         <div class="card py-1 mt-2">
             <div class="text-center">
                 <a href="" class="font-weight-bold text-dark text-decoration-none">
-                    ADD NEW SERVER
+                    {{ $t('message.Add_New_Server') }}
                 </a>
             </div>
         </div>
-        <button class="btn btn-dark bg-dark btn-block rounded text-white font-14 mt-5">Change your password</button>
+        <button class="btn btn-dark bg-dark btn-block rounded text-white font-14 mt-5">{{$t('message.Change_your_password')}}</button>
         <div class="row mt-4">
             <div class="col-md-3"></div>
             <div class="col-md-6">
@@ -49,14 +49,14 @@
              <span class="text-danger" v-if="errors.old_password">{{
             this.errors.old_password[0]
           }}</span>
-               <input type="password" class="form-control rounded my-3" :class="{ 'is-invalid': errors.old_password }" v-model="user.old_password" placeholder="Old password">
+               <input type="password" class="form-control rounded my-3" :class="{ 'is-invalid': errors.old_password }" v-model="user.old_password" :placeholder="$t('message.Old_password')">
                      <span class="text-danger" v-if="errors.password">{{
             this.errors.password[0]
           }}</span>
-                    <input type="password" class="form-control rounded my-3" :class="{ 'is-invalid': errors.password }" v-model="user.password" placeholder="New password">
-                    <input type="password" class="form-control rounded my-3" v-model="user.password_confirmation" placeholder="Confirm password">
+                    <input type="password" class="form-control rounded my-3" :class="{ 'is-invalid': errors.password }" v-model="user.password" :placeholder="$t('message.New_password')">
+                    <input type="password" class="form-control rounded my-3" v-model="user.password_confirmation" :placeholder="$t('message.Confirm_Password')">
                     <div class="text-center">
-                        <input type="submit" class="btn btn-danger rounded font-14 mt-4" @click="changepassword" :disabled="clicked" value="CHANGE PASSWORD">
+                        <input type="submit" class="btn btn-danger rounded font-14 mt-4" @click="changepassword" :disabled="clicked" :value="$t('message.CHANGE_PASSWORD')">
                     </div>
                 </div>
             </div>
@@ -105,7 +105,7 @@ export default {
            this.getMyServers();
          Toast.fire({
             icon: "success",
-            title: "Server Deactivated Successfully",
+            title: this.$t('message.Server_Deactivated_Successfully'),
           });
         })
         .catch((errors) => {  
@@ -121,7 +121,7 @@ export default {
           console.log(response)
            Toast.fire({
             icon: "success",
-            title: "Server Activated  Successfully",
+            title: this.$t('message.Server_Activated_Successfully'),
           });
         })
         .catch((errors) => {  
@@ -151,7 +151,7 @@ export default {
            this.clicked = false   
             Toast.fire({
             icon: "success",
-            title: "Password Updated Successfully",
+            title: this.$t('message.Password_Updated_Successfully'),
           });
            vm.errors = []
         })
@@ -162,7 +162,7 @@ export default {
                vm.errors = errors.response.data.errors;
            Toast.fire({
             icon: "error",
-            title: "Please check the error above .",
+            title: this.$t('message.Please_errors'),
           });
           }
            else if (errors.response.status == 403) {
@@ -172,12 +172,12 @@ export default {
             icon: "error",
             title:  errors.response.data,
           });
-          }else{
+          }else{         
              vm.clicked = false 
               vm.errors = []
             Toast.fire({
             icon: "error",
-            title: "Something went wrong please try again .",
+            title: this.$t('message.Something_went_wrong'),
           });
           }      
           

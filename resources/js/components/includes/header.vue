@@ -28,7 +28,7 @@
                 </ul>
               </li>
               <li>
-                <a href="" class="text-white">{{$t('message.All_Servers')}}</a>
+                <a href="" class="text-white">{{$t('message.PARTNERS')}}</a>
               </li>
               <li >
                  <router-link to="/faq"  class="text-white">{{$t('message.FAQ')}}</router-link>
@@ -49,6 +49,15 @@
               <li>
                  <router-link to="/contact"  class="text-white">{{$t('message.CONTACT')}}</router-link>
             
+              </li>
+              <li>
+                <select name="lang" id="" @change="changeLang" v-model="$store.state.lang" class="form-control d-inline mx-2" style="width: 115px">
+                  <option value="en">English</option>
+                   <option value="de">Deutsch</option>
+                    <option value="fr">french</option>
+                     <option value=it>italy</option>
+                     <option value="ro">Roman</option>
+                </select>
               </li>
             </ul>
           </nav>
@@ -102,7 +111,21 @@
 
 <script>
 export default {
+  data(){
+    return{
+      
+    }
+  },
   methods: {
+    changeLang(){
+      this.$i18n.locale = this.$store.state.lang
+       this.axios
+        .post("/api/changLang",{lang:this.$store.state.lang})
+        .then((response) => {
+        })
+        .catch((errors) => {
+        });
+    },
     search(server) {
       something.$emit("search", server);
       if(this.$route.path != '/'){

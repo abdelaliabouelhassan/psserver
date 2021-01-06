@@ -12,7 +12,7 @@ const messages = {
     fr,
     it,
     pl,
-    ro
+    ro,
 }
 
 
