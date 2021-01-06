@@ -5,8 +5,8 @@
       class="alert alert-dark"
       role="alert"
     >
-      You need to login in first then you can create a new server !.
-      <a href="javascript:void(0)" v-on:click="login_modal"> click to login </a>
+     {{ $t('message.You_need_to_login') }}
+      <a href="javascript:void(0)" v-on:click="login_modal"> {{ $t('message.click_to_login') }} </a>
     </div>
     <div
       v-if="
@@ -16,37 +16,37 @@
       class="alert alert-dark"
       role="alert"
     >
-      You need to verify your email first then you can create a new server !.
+      {{ $t('message.verify_your_email') }}
       <a
         href="javascript:void(0)"
         v-show="emailVrf"
         v-on:click="SendEmailVerfication"
-        >click to send another verification email
+        >{{ $t('message.send_another') }}
       </a>
     </div>
 
-    <h6 class="font-weight-bold">Add New Server</h6>
+    <h6 class="font-weight-bold">{{$t('message.Add_New_Server')}}</h6>
     <div>
- <b>Rules :</b>
+ <b>{{$t('message.Rules')}}</b>
     <div class="alert alert-info" role="alert">
         <ul>
           <li>
-              Following pages are strictly prohibited from participating :
+              {{ $t('message.Following_participating') }}
                 <ol>
-                  <li>1. Sites with exaggerated much banner advertising or <b>malware</b></li>
-                  <li>2. Pages which do not have Game content</li>
-                  <li>3. Toplists</li>
-                  <li>4. Sites that infringe applicable law</li>
+                  <li> {{ $t('message.rule1') }} <b>malware</b></li>
+                  <li> {{ $t('message.rule2') }}</li>
+                  <li> {{ $t('message.rule3') }}</li>
+                  <li> {{ $t('message.rule4') }}</li>
                 </ol>
           </li>
           <li>
-            The title and description must be in accordance with the content of the page
+            {{ $t('message.rule5') }}
           </li>
           <li>
-            Violations of these rules and fraud (so-called cheating) will result the suspension of your account
+           {{ $t('message.rule6') }}
           </li>
           <li>
-            <span class="text-danger">Your server will be displayed when approved by the administrators</span>
+            <span class="text-danger">{{ $t('message.rule7') }}</span>
           </li>
         </ul>
     </div>
@@ -55,14 +55,14 @@
     <div class="mt-4" v-if="ndStep">
       <div class="row">
         <div class="col-md-12">
-      <label for="Description">Your Backlink. You need to add them in your website :</label>  
+      <label for="Description">{{ $t('message.backlink') }}</label>  
       <textarea
         name=""
         id="Description"
         cols="30"
         rows="5"
         class="form-control mt-2 rounded"
-        placeholder="Your Backlink You need to add them in your website "  
+        :placeholder="$t('message.Backlink_website')"  
       >
        <a href="{{link}}" title="Metin2 P Server">Metin2 P Server</a>
       </textarea>
@@ -81,7 +81,7 @@
     <div class="mt-4" v-if="firstStep">
       <div class="row">
          <div class="col-md-12">
-          <label for="title">Server title :</label>
+          <label for="title">{{$t('message.Server_title')}} :</label>
             <span class="text-danger" v-if="errors.title">{{
             this.errors.title[0]
           }}</span>
@@ -89,8 +89,8 @@
            :class="{ 'is-invalid': errors.title }"
             type="text"
             id="title"
-            class="form-control rounded my-2"
-            placeholder="Server title "
+            class="form-control rounded my-2"           
+            :placeholder="$t('message.Server_title')"
             v-model="form.title"
           />
         </div>
@@ -113,7 +113,7 @@
         :disabled="checkuser"
         type="submit"
         class="btn btn-dark d-block bg-dark mt-3"
-        value="Generate Backlink"
+        :value="$t('message.Generate_Backlink')"
         @click="GenerateLink"
       />
        </div>
@@ -126,7 +126,7 @@
        
       
         <div class="col-md-12">
-          <label for="Banner">Banner :</label>
+          <label for="Banner">{{ $t('message.Banner') }} :</label>
            <span class="text-danger" v-if="errors.Banner">{{
             this.errors.Banner[0]
           }}</span>
@@ -137,7 +137,7 @@
   </div>
         </div>
         <div class="col-md-12">
-          <label for="Category">Category :</label>
+          <label for="Category">{{ $t('message.Category') }} :</label>
            <span class="text-danger" v-if="errors.Category">{{
             this.errors.Category[0]
           }}</span>
@@ -153,7 +153,7 @@
           </select>
         </div>
          <div class="col-md-12">
-          <label for="Category">Difficulty :</label>
+          <label for="Category">{{ $t('message.Difficulty') }} :</label>
            <span class="text-danger" v-if="errors.Difficulty">{{
             this.errors.Difficulty[0]
           }}</span>
@@ -163,13 +163,13 @@
             class="form-control rounded my-2"
             v-model="form.Difficulty"
           >
-            <option value="Easy">Easy</option>
-            <option value="Medium">Medium</option>
-            <option value="Hard">Hard</option>
+            <option value="Easy">{{$t('message.Easy')}}</option>
+            <option value="Medium">{{$t('message.Medium')}}</option>
+            <option value="Hard">{{$t('message.Hard')}}</option>
           </select>
         </div>
         <div class="col-md-12">
-          <label for="Language">Language :</label>
+          <label for="Language">{{ $t('message.Language') }} :</label>
            <span class="text-danger" v-if="errors.Language">{{
             this.errors.Language[0]
           }}</span>
@@ -189,7 +189,7 @@
           </select>
         </div>
         <div class="col-md-12">
-          <label for="max">Max. Level :</label>
+          <label for="max">{{ $t('message.Max_Level') }} :</label>
            <span class="text-danger" v-if="errors.Level">{{
             this.errors.Level[0]
           }}</span>
@@ -205,7 +205,7 @@
         </div>
 
         <div class="col-md-12">
-          <label for="youtube">YouTube Trailer ID :</label>
+          <label for="youtube">{{ $t('message.YouTube') }} :</label>
            <span class="text-danger" v-if="errors.YouTube">{{
             this.errors.YouTube[0]
           }}</span>
@@ -215,12 +215,12 @@
             step="any"
             id="youtube"
             class="form-control rounded my-2"
-            placeholder="YouTube Trailer ID "
+            :placeholder="$t('message.YouTube')"
             v-model="form.YouTube"
           />
         </div>
         <div class="col-md-12">
-          <label for="Rates">Rates (%) :</label>
+          <label for="Rates">{{ $t('message.Rates') }}  :</label>
            <span class="text-danger" v-if="errors.Rates">{{
             this.errors.Rates[0]
           }}</span>
@@ -230,12 +230,12 @@
             step="any"
             id="Rates"
             class="form-control rounded my-2"
-            placeholder="Rates % "
+            :placeholder="$t('message.Rates')"
             v-model="form.Rates"
           />
         </div>
       </div>
-      <label for="Description">Description :</label>
+      <label for="Description">{{ $t('message.Description') }} :</label>
         <span class="text-danger" v-if="errors.Description">{{
             this.errors.Description[0]
           }}</span>
@@ -246,7 +246,7 @@
         cols="30"
         rows="5"
         class="form-control mt-2 rounded"
-        placeholder="Description"
+        :placeholder="$t('message.Description')"
         v-model="form.Description"
       ></textarea>
       <div>
@@ -259,7 +259,7 @@
         :disabled="checkuser"
         type="submit"
         class="btn btn-dark  bg-dark mt-3"
-        value="Create"
+        :value="$t('message.Create')"
         
         @click="createServer"
       />
@@ -267,7 +267,7 @@
      
         type="submit"
         class="btn btn-dark bg-dark mt-3"
-        value="Back"
+        :value="$t('message.Back')"
         @click="ndStep = true; endStep = false"
       />
     </div>
@@ -324,7 +324,7 @@ export default {
            this.form.id  = response.data.id,
           Toast.fire({
             icon: "success",
-            title: "Backlink Geneated Successfully",
+            title: $t('message.Backlink_Geneated_Successfully'),
           });
         })
         .catch((errors) => {  
@@ -333,12 +333,12 @@ export default {
             this.errors = errors.response.data.errors;
            Toast.fire({
             icon: "error",
-            title: "Please check the error above .",
+            title: $t('message.Please_errors'),
           });
           }else{
             Toast.fire({
             icon: "error",
-            title: "Something went wrong please try again .",
+            title: $t('message.Something_went_wrong'),
           });
           }      
           
@@ -383,7 +383,7 @@ export default {
            this.clicked = false 
           Toast.fire({
             icon: "success",
-            title: "Server Created Successfully",
+            title: $t('message.Created_Successfully'),
           });
         })
         .catch((errors) => {  
@@ -392,7 +392,7 @@ export default {
             this.errors = errors.response.data.errors;
              Toast.fire({
             icon: "error",
-            title: "Please check the error above .",
+            title: $t('message.Please_errors'),
           });
           }else if(errors.response.status == 403){
             Toast.fire({
@@ -403,7 +403,7 @@ export default {
           else{
             Toast.fire({
             icon: "error",
-            title: "Something went wrong please try again .",
+            title: $t('message.Something_went_wrong'),
           });
           }      
           
@@ -417,14 +417,14 @@ export default {
           this.emailVrf = true;
           Toast.fire({
             icon: "success",
-            title: "Verification email sent successfully",
+            title: $t('message.Verification_email_sent_successfully'),
           });
         })
         .catch((errors) => {
           this.emailVrf = true;
           Toast.fire({
             icon: "error",
-            title: "Something went wrong please try again .",
+            title: $t('message.Something_went_wrong'),
           });
         });
     },

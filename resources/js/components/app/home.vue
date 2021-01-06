@@ -20,7 +20,7 @@
 
 
     <div v-if="Servers.length == 0" style="text-align: center; margin-top: 100px;">
-        <b>No Records Found</b>
+        <b>No Records Found </b>
     </div>
 
 

@@ -12,14 +12,14 @@
           <nav class="vg-nav">
             <ul class="vg-nav-main-container">
               <li>
-                  <router-link to="/home"  class="text-white">HOME</router-link>
+                  <router-link to="/home"  class="text-white">{{$t('message.HOME')}}</router-link>
                
               </li>
 
               <li class="dropdown">
-                <a href="" class="text-white">SERVERS</a>
+                <a href="" class="text-white">{{$t('message.SERVERS')}}</a>
                 <ul class="left">
-                  <li><a href="javascript:void(0)" @click="search('')" class="text-dark">All Servers</a></li>
+                  <li><a href="javascript:void(0)" @click="search('')" class="text-dark">{{$t('message.All_Servers')}}</a></li>
                   <li><a href="javascript:void(0)" @click="search('Deutsch')" class="text-dark">Deutsch</a></li>
                   <li><a href="javascript:void(0)" @click="search('English')" class="text-dark">English</a></li>
                   <li><a href="javascript:void(0)" @click="search('Espanol')" class="text-dark">Espanol</a></li>
@@ -28,10 +28,10 @@
                 </ul>
               </li>
               <li>
-                <a href="" class="text-white">PARTNERS</a>
+                <a href="" class="text-white">{{$t('message.All_Servers')}}</a>
               </li>
               <li >
-                 <router-link to="/faq"  class="text-white">FAQ</router-link>
+                 <router-link to="/faq"  class="text-white">{{$t('message.FAQ')}}</router-link>
                
                 <!-- <ul class="left">
                   <li><a href="" class="text-dark">SERVER 1</a></li>
@@ -47,7 +47,7 @@
                 </ul> -->
               </li>
               <li>
-                 <router-link to="/contact"  class="text-white">CONTACT</router-link>
+                 <router-link to="/contact"  class="text-white">{{$t('message.CONTACT')}}</router-link>
             
               </li>
             </ul>
@@ -58,7 +58,7 @@
             @click="login_modal"
             class="btn btn-link text-white ml-5 hidbtn dropdown-toggle text-decoration-none"
             
-            >Sign in</a
+            >{{ $t('message.Sign_in') }}</a
           >|
           <a
             @click="login_register"
@@ -66,11 +66,11 @@
             
           >
             <img src="/img/add-user.png" class="img-fluid" alt="" />
-            Create Account
+            {{$t('message.Create_Account')}}
           </a>
           <!-- <a href="" class="btn btn-link text-white
                     hidbtn dropdown-toggle">Sign in</a> -->
-         <router-link to="/createserver"  class="btn btn-danger ml-2">ADD SERVER</router-link>
+         <router-link to="/createserver"  class="btn btn-danger ml-2">{{$t('message.ADD_SERVER')}}</router-link>
 
         
         </p>
@@ -93,7 +93,7 @@
           </a>
           <!-- <a href="" class="btn btn-link text-white
             hidbtn dropdown-toggle">Sign in</a> -->
-          <button class="btn btn-danger logout" @click="logout">LOG OUT</button>
+          <button class="btn btn-danger logout" @click="logout">{{$t('message.LOG_OUT')}}</button>
         </p>
       </div>
     </div>

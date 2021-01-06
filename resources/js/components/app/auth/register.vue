@@ -1,12 +1,12 @@
 <template>
   <div class="text-center py-2">
-    <h2 class="font-weight-bold" >Create Account</h2>
+    <h2 class="font-weight-bold" >{{$t('message.Create_Account')}}</h2>
     <p>
-      Already have an account?<a
+      {{$t('message.Already')}}<a
        style="cursor:pointer"
         class="ml-2 text-danger text-decoration-none"
         @click="login_modal"
-        >Sign In</a
+        >{{$t('message.Sign_In')}}</a
       >
     </p>
     <div class="row">
@@ -17,7 +17,7 @@
             type="text"
             class="form-control my-3 rounded"
             :class="{ 'is-invalid': errors.username }"
-            placeholder="Username"
+            :placeholder="$t('message.Username')"
             name="username"
             v-model="form.username"
           />
@@ -28,7 +28,7 @@
             type="email"
             class="form-control my-3 rounded"
             :class="{ 'is-invalid': errors.email }"
-            placeholder="E-mail Address"
+             :placeholder="$t('message.Email')"
             name="email"
             v-model="form.email"
           />
@@ -39,7 +39,7 @@
             type="password"
             class="form-control my-3 rounded"
             :class="{ 'is-invalid': errors.password }"
-            placeholder="Password"
+            :placeholder="$t('message.Password')"
             name="password"
             v-model="form.password"
           />
@@ -49,15 +49,15 @@
           <input
             type="password"
             class="form-control my-3 rounded"
-            placeholder="Confirm Password"
+             :placeholder="$t('message.Confirm_Password')"
             name="confirmPassword"
             v-model="form.password_confirmation"
           />
           <div class="text-left">
             <input type="checkbox" v-model="tos" /><label for="check" class="ml-2"  :class="{ 'text-danger': errorTos }"
-              ><span>I have read and agree to the</span>
+              ><span> {{$t('message.I_have_read')}}</span>
               <a href="javascript:void(0)" class="text-success font-16" 
-                >Terms of Use</a
+                >{{$t('message.Terms_of_Use')}}</a
               ></label
             >
           </div>
@@ -67,7 +67,7 @@
             type="submit"
             @click="register"
             class="btn btn-dark btn-block rounded"
-            value="Sign In"
+            :value="$t('message.Sign_Up')"
           />
         </div>
       </div>
@@ -115,7 +115,7 @@ export default {
         
           Toast.fire({
             icon: "success",
-            title: "Account created successfully .  <b>  you need to login now</b>",
+            title: $t('message.Account_created'),
           });
            this.$modal.hide('register')
            this.disabel = false;

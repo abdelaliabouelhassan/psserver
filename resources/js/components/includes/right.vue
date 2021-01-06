@@ -1,9 +1,9 @@
 <template>
     <div class="col-md-4 my-1">
-          <router-link to="/createserver"  class="btn btn-danger btn-block rounded py-3 font-weight-bold">ADD YOUR SERVER</router-link>
+          <router-link to="/createserver"  class="btn btn-danger btn-block rounded py-3 font-weight-bold">{{$t('message.ADD_YOUR_SERVER')}}</router-link>
         <div class="card firstCard py-5 mt-4">
             <div class="container">
-                <p class="text-danger">FEATURED SERVER</p>
+                <p class="text-danger"> {{$t('message.FEATURED_SERVER')}} </p>
                 <span class=" d-inline m-auto">&raquo;</span>
                 <h2 class="font-weight-bold text-white d-inline">Zuko2.com</h2>
                 <p class="mt-4 mb-3 text-white card-lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p>
@@ -18,7 +18,7 @@
                   </span>
                     <span class="text-white">988</span>
                 </p>
-                <a href="" class="btn btn-light mt-5 d-inline">VISIT WEBSITE</a>
+                <a href="" class="btn btn-light mt-5 d-inline">{{$t('message.VISIT_WEBSITE')}}</a>
                 <img src="/img/m2.png" class="img-fluid d-inline ml-4" alt="">
             </div>
         </div>
@@ -44,7 +44,7 @@
         <div class="card card-three mt-3 bg-dark py-3">
             <div class="container">
                 <div class="text-center">
-                    <p class="text-white mb-3">Promoted server trailer</p>
+                    <p class="text-white mb-3">{{$t('message.Promoted_server_trailer')}}</p>
                     <iframe width="100%" height="auto" src="https://www.youtube.com/embed/xcJtL7QggTI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>

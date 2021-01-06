@@ -5,8 +5,8 @@
         <div class="col-md-8 my-1">
           <div class="row">
             <div class="col-sm-8">
-              <h6 class="font-weight-bold">Welcome at Metin2-Toplist.com!</h6>
-              <p>Largest private server list!</p>
+              <h6 class="font-weight-bold">{{$t('message.Welcome')}}</h6>
+              <p>{{$t('message.Largest_private_server_list')}}</p>
             </div>
             <div class="col-sm-4 text-right">
               <div class="input-group">
@@ -16,7 +16,7 @@
                   id=""
                   class="form-control d-inline mx-2"
                 >
-                  <option value="">All Servers</option>
+                  <option value="">{{$t('message.ADD_SERVER')}}</option>
                   <option value="Deutsch">Deutsch</option>
                   <option value="English">English</option>
                   <option value="Espanol">Espanol</option>

@@ -2307,7 +2307,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.link = response.data.link;
         _this.form.id = response.data.id, Toast.fire({
           icon: "success",
-          title: "Backlink Geneated Successfully"
+          title: $t('message.Backlink_Geneated_Successfully')
         });
       })["catch"](function (errors) {
         _this.clicked = false;
@@ -2316,12 +2316,12 @@ __webpack_require__.r(__webpack_exports__);
           _this.errors = errors.response.data.errors;
           Toast.fire({
             icon: "error",
-            title: "Please check the error above ."
+            title: $t('message.Please_errors')
           });
         } else {
           Toast.fire({
             icon: "error",
-            title: "Something went wrong please try again ."
+            title: $t('message.Something_went_wrong')
           });
         }
       });
@@ -2358,7 +2358,7 @@ __webpack_require__.r(__webpack_exports__);
         _this3.clicked = false;
         Toast.fire({
           icon: "success",
-          title: "Server Created Successfully"
+          title: $t('message.Created_Successfully')
         });
       })["catch"](function (errors) {
         _this3.clicked = false;
@@ -2367,7 +2367,7 @@ __webpack_require__.r(__webpack_exports__);
           _this3.errors = errors.response.data.errors;
           Toast.fire({
             icon: "error",
-            title: "Please check the error above ."
+            title: $t('message.Please_errors')
           });
         } else if (errors.response.status == 403) {
           Toast.fire({
@@ -2377,7 +2377,7 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           Toast.fire({
             icon: "error",
-            title: "Something went wrong please try again ."
+            title: $t('message.Something_went_wrong')
           });
         }
       });
@@ -2390,13 +2390,13 @@ __webpack_require__.r(__webpack_exports__);
         _this4.emailVrf = true;
         Toast.fire({
           icon: "success",
-          title: "Verification email sent successfully"
+          title: $t('message.Verification_email_sent_successfully')
         });
       })["catch"](function (errors) {
         _this4.emailVrf = true;
         Toast.fire({
           icon: "error",
-          title: "Something went wrong please try again ."
+          title: $t('message.Something_went_wrong')
         });
       });
     },
@@ -2519,7 +2519,7 @@ __webpack_require__.r(__webpack_exports__);
         something.$emit("loaduser");
         Toast.fire({
           icon: "success",
-          title: "Signed in successfully"
+          title: $t('message.Signed_in_successfully')
         });
 
         _this.$modal.hide('login');
@@ -2673,7 +2673,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.errors = [];
         Toast.fire({
           icon: "success",
-          title: "Account created successfully .  <b>  you need to login now</b>"
+          title: $t('message.Account_created')
         });
 
         _this.$modal.hide('register');
@@ -4262,6 +4262,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -45152,6 +45153,2210 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-i18n/dist/vue-i18n.esm.js":
+/*!****************************************************!*\
+  !*** ./node_modules/vue-i18n/dist/vue-i18n.esm.js ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/*!
+ * vue-i18n v8.22.2 
+ * (c) 2020 kazuya kawaguchi
+ * Released under the MIT License.
+ */
+/*  */
+
+/**
+ * constants
+ */
+
+var numberFormatKeys = [
+  'compactDisplay',
+  'currency',
+  'currencyDisplay',
+  'currencySign',
+  'localeMatcher',
+  'notation',
+  'numberingSystem',
+  'signDisplay',
+  'style',
+  'unit',
+  'unitDisplay',
+  'useGrouping',
+  'minimumIntegerDigits',
+  'minimumFractionDigits',
+  'maximumFractionDigits',
+  'minimumSignificantDigits',
+  'maximumSignificantDigits'
+];
+
+/**
+ * utilities
+ */
+
+function warn (msg, err) {
+  if (typeof console !== 'undefined') {
+    console.warn('[vue-i18n] ' + msg);
+    /* istanbul ignore if */
+    if (err) {
+      console.warn(err.stack);
+    }
+  }
+}
+
+function error (msg, err) {
+  if (typeof console !== 'undefined') {
+    console.error('[vue-i18n] ' + msg);
+    /* istanbul ignore if */
+    if (err) {
+      console.error(err.stack);
+    }
+  }
+}
+
+var isArray = Array.isArray;
+
+function isObject (obj) {
+  return obj !== null && typeof obj === 'object'
+}
+
+function isBoolean (val) {
+  return typeof val === 'boolean'
+}
+
+function isString (val) {
+  return typeof val === 'string'
+}
+
+var toString = Object.prototype.toString;
+var OBJECT_STRING = '[object Object]';
+function isPlainObject (obj) {
+  return toString.call(obj) === OBJECT_STRING
+}
+
+function isNull (val) {
+  return val === null || val === undefined
+}
+
+function isFunction (val) {
+  return typeof val === 'function'
+}
+
+function parseArgs () {
+  var args = [], len = arguments.length;
+  while ( len-- ) args[ len ] = arguments[ len ];
+
+  var locale = null;
+  var params = null;
+  if (args.length === 1) {
+    if (isObject(args[0]) || isArray(args[0])) {
+      params = args[0];
+    } else if (typeof args[0] === 'string') {
+      locale = args[0];
+    }
+  } else if (args.length === 2) {
+    if (typeof args[0] === 'string') {
+      locale = args[0];
+    }
+    /* istanbul ignore if */
+    if (isObject(args[1]) || isArray(args[1])) {
+      params = args[1];
+    }
+  }
+
+  return { locale: locale, params: params }
+}
+
+function looseClone (obj) {
+  return JSON.parse(JSON.stringify(obj))
+}
+
+function remove (arr, item) {
+  if (arr.length) {
+    var index = arr.indexOf(item);
+    if (index > -1) {
+      return arr.splice(index, 1)
+    }
+  }
+}
+
+function includes (arr, item) {
+  return !!~arr.indexOf(item)
+}
+
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+function hasOwn (obj, key) {
+  return hasOwnProperty.call(obj, key)
+}
+
+function merge (target) {
+  var arguments$1 = arguments;
+
+  var output = Object(target);
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments$1[i];
+    if (source !== undefined && source !== null) {
+      var key = (void 0);
+      for (key in source) {
+        if (hasOwn(source, key)) {
+          if (isObject(source[key])) {
+            output[key] = merge(output[key], source[key]);
+          } else {
+            output[key] = source[key];
+          }
+        }
+      }
+    }
+  }
+  return output
+}
+
+function looseEqual (a, b) {
+  if (a === b) { return true }
+  var isObjectA = isObject(a);
+  var isObjectB = isObject(b);
+  if (isObjectA && isObjectB) {
+    try {
+      var isArrayA = isArray(a);
+      var isArrayB = isArray(b);
+      if (isArrayA && isArrayB) {
+        return a.length === b.length && a.every(function (e, i) {
+          return looseEqual(e, b[i])
+        })
+      } else if (!isArrayA && !isArrayB) {
+        var keysA = Object.keys(a);
+        var keysB = Object.keys(b);
+        return keysA.length === keysB.length && keysA.every(function (key) {
+          return looseEqual(a[key], b[key])
+        })
+      } else {
+        /* istanbul ignore next */
+        return false
+      }
+    } catch (e) {
+      /* istanbul ignore next */
+      return false
+    }
+  } else if (!isObjectA && !isObjectB) {
+    return String(a) === String(b)
+  } else {
+    return false
+  }
+}
+
+/**
+ * Sanitizes html special characters from input strings. For mitigating risk of XSS attacks.
+ * @param rawText The raw input from the user that should be escaped.
+ */
+function escapeHtml(rawText) {
+  return rawText
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&apos;')
+}
+
+/**
+ * Escapes html tags and special symbols from all provided params which were returned from parseArgs().params.
+ * This method performs an in-place operation on the params object.
+ *
+ * @param {any} params Parameters as provided from `parseArgs().params`.
+ *                     May be either an array of strings or a string->any map.
+ *
+ * @returns The manipulated `params` object.
+ */
+function escapeParams(params) {
+  if(params != null) {
+    Object.keys(params).forEach(function (key) {
+      if(typeof(params[key]) == 'string') {
+        params[key] = escapeHtml(params[key]);
+      }
+    });
+  }
+  return params
+}
+
+/*  */
+
+function extend (Vue) {
+  if (!Vue.prototype.hasOwnProperty('$i18n')) {
+    // $FlowFixMe
+    Object.defineProperty(Vue.prototype, '$i18n', {
+      get: function get () { return this._i18n }
+    });
+  }
+
+  Vue.prototype.$t = function (key) {
+    var values = [], len = arguments.length - 1;
+    while ( len-- > 0 ) values[ len ] = arguments[ len + 1 ];
+
+    var i18n = this.$i18n;
+    return i18n._t.apply(i18n, [ key, i18n.locale, i18n._getMessages(), this ].concat( values ))
+  };
+
+  Vue.prototype.$tc = function (key, choice) {
+    var values = [], len = arguments.length - 2;
+    while ( len-- > 0 ) values[ len ] = arguments[ len + 2 ];
+
+    var i18n = this.$i18n;
+    return i18n._tc.apply(i18n, [ key, i18n.locale, i18n._getMessages(), this, choice ].concat( values ))
+  };
+
+  Vue.prototype.$te = function (key, locale) {
+    var i18n = this.$i18n;
+    return i18n._te(key, i18n.locale, i18n._getMessages(), locale)
+  };
+
+  Vue.prototype.$d = function (value) {
+    var ref;
+
+    var args = [], len = arguments.length - 1;
+    while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
+    return (ref = this.$i18n).d.apply(ref, [ value ].concat( args ))
+  };
+
+  Vue.prototype.$n = function (value) {
+    var ref;
+
+    var args = [], len = arguments.length - 1;
+    while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
+    return (ref = this.$i18n).n.apply(ref, [ value ].concat( args ))
+  };
+}
+
+/*  */
+
+var mixin = {
+  beforeCreate: function beforeCreate () {
+    var options = this.$options;
+    options.i18n = options.i18n || (options.__i18n ? {} : null);
+
+    if (options.i18n) {
+      if (options.i18n instanceof VueI18n) {
+        // init locale messages via custom blocks
+        if (options.__i18n) {
+          try {
+            var localeMessages = options.i18n && options.i18n.messages ? options.i18n.messages : {};
+            options.__i18n.forEach(function (resource) {
+              localeMessages = merge(localeMessages, JSON.parse(resource));
+            });
+            Object.keys(localeMessages).forEach(function (locale) {
+              options.i18n.mergeLocaleMessage(locale, localeMessages[locale]);
+            });
+          } catch (e) {
+            if (true) {
+              error("Cannot parse locale messages via custom blocks.", e);
+            }
+          }
+        }
+        this._i18n = options.i18n;
+        this._i18nWatcher = this._i18n.watchI18nData();
+      } else if (isPlainObject(options.i18n)) {
+        var rootI18n = this.$root && this.$root.$i18n && this.$root.$i18n instanceof VueI18n
+          ? this.$root.$i18n
+          : null;
+        // component local i18n
+        if (rootI18n) {
+          options.i18n.root = this.$root;
+          options.i18n.formatter = rootI18n.formatter;
+          options.i18n.fallbackLocale = rootI18n.fallbackLocale;
+          options.i18n.formatFallbackMessages = rootI18n.formatFallbackMessages;
+          options.i18n.silentTranslationWarn = rootI18n.silentTranslationWarn;
+          options.i18n.silentFallbackWarn = rootI18n.silentFallbackWarn;
+          options.i18n.pluralizationRules = rootI18n.pluralizationRules;
+          options.i18n.preserveDirectiveContent = rootI18n.preserveDirectiveContent;
+        }
+
+        // init locale messages via custom blocks
+        if (options.__i18n) {
+          try {
+            var localeMessages$1 = options.i18n && options.i18n.messages ? options.i18n.messages : {};
+            options.__i18n.forEach(function (resource) {
+              localeMessages$1 = merge(localeMessages$1, JSON.parse(resource));
+            });
+            options.i18n.messages = localeMessages$1;
+          } catch (e) {
+            if (true) {
+              warn("Cannot parse locale messages via custom blocks.", e);
+            }
+          }
+        }
+
+        var ref = options.i18n;
+        var sharedMessages = ref.sharedMessages;
+        if (sharedMessages && isPlainObject(sharedMessages)) {
+          options.i18n.messages = merge(options.i18n.messages, sharedMessages);
+        }
+
+        this._i18n = new VueI18n(options.i18n);
+        this._i18nWatcher = this._i18n.watchI18nData();
+
+        if (options.i18n.sync === undefined || !!options.i18n.sync) {
+          this._localeWatcher = this.$i18n.watchLocale();
+        }
+
+        if (rootI18n) {
+          rootI18n.onComponentInstanceCreated(this._i18n);
+        }
+      } else {
+        if (true) {
+          warn("Cannot be interpreted 'i18n' option.");
+        }
+      }
+    } else if (this.$root && this.$root.$i18n && this.$root.$i18n instanceof VueI18n) {
+      // root i18n
+      this._i18n = this.$root.$i18n;
+    } else if (options.parent && options.parent.$i18n && options.parent.$i18n instanceof VueI18n) {
+      // parent i18n
+      this._i18n = options.parent.$i18n;
+    }
+  },
+
+  beforeMount: function beforeMount () {
+    var options = this.$options;
+    options.i18n = options.i18n || (options.__i18n ? {} : null);
+
+    if (options.i18n) {
+      if (options.i18n instanceof VueI18n) {
+        // init locale messages via custom blocks
+        this._i18n.subscribeDataChanging(this);
+        this._subscribing = true;
+      } else if (isPlainObject(options.i18n)) {
+        this._i18n.subscribeDataChanging(this);
+        this._subscribing = true;
+      } else {
+        if (true) {
+          warn("Cannot be interpreted 'i18n' option.");
+        }
+      }
+    } else if (this.$root && this.$root.$i18n && this.$root.$i18n instanceof VueI18n) {
+      this._i18n.subscribeDataChanging(this);
+      this._subscribing = true;
+    } else if (options.parent && options.parent.$i18n && options.parent.$i18n instanceof VueI18n) {
+      this._i18n.subscribeDataChanging(this);
+      this._subscribing = true;
+    }
+  },
+
+  beforeDestroy: function beforeDestroy () {
+    if (!this._i18n) { return }
+
+    var self = this;
+    this.$nextTick(function () {
+      if (self._subscribing) {
+        self._i18n.unsubscribeDataChanging(self);
+        delete self._subscribing;
+      }
+
+      if (self._i18nWatcher) {
+        self._i18nWatcher();
+        self._i18n.destroyVM();
+        delete self._i18nWatcher;
+      }
+
+      if (self._localeWatcher) {
+        self._localeWatcher();
+        delete self._localeWatcher;
+      }
+    });
+  }
+};
+
+/*  */
+
+var interpolationComponent = {
+  name: 'i18n',
+  functional: true,
+  props: {
+    tag: {
+      type: [String, Boolean, Object],
+      default: 'span'
+    },
+    path: {
+      type: String,
+      required: true
+    },
+    locale: {
+      type: String
+    },
+    places: {
+      type: [Array, Object]
+    }
+  },
+  render: function render (h, ref) {
+    var data = ref.data;
+    var parent = ref.parent;
+    var props = ref.props;
+    var slots = ref.slots;
+
+    var $i18n = parent.$i18n;
+    if (!$i18n) {
+      if (true) {
+        warn('Cannot find VueI18n instance!');
+      }
+      return
+    }
+
+    var path = props.path;
+    var locale = props.locale;
+    var places = props.places;
+    var params = slots();
+    var children = $i18n.i(
+      path,
+      locale,
+      onlyHasDefaultPlace(params) || places
+        ? useLegacyPlaces(params.default, places)
+        : params
+    );
+
+    var tag = (!!props.tag && props.tag !== true) || props.tag === false ? props.tag : 'span';
+    return tag ? h(tag, data, children) : children
+  }
+};
+
+function onlyHasDefaultPlace (params) {
+  var prop;
+  for (prop in params) {
+    if (prop !== 'default') { return false }
+  }
+  return Boolean(prop)
+}
+
+function useLegacyPlaces (children, places) {
+  var params = places ? createParamsFromPlaces(places) : {};
+
+  if (!children) { return params }
+
+  // Filter empty text nodes
+  children = children.filter(function (child) {
+    return child.tag || child.text.trim() !== ''
+  });
+
+  var everyPlace = children.every(vnodeHasPlaceAttribute);
+  if ( true && everyPlace) {
+    warn('`place` attribute is deprecated in next major version. Please switch to Vue slots.');
+  }
+
+  return children.reduce(
+    everyPlace ? assignChildPlace : assignChildIndex,
+    params
+  )
+}
+
+function createParamsFromPlaces (places) {
+  if (true) {
+    warn('`places` prop is deprecated in next major version. Please switch to Vue slots.');
+  }
+
+  return Array.isArray(places)
+    ? places.reduce(assignChildIndex, {})
+    : Object.assign({}, places)
+}
+
+function assignChildPlace (params, child) {
+  if (child.data && child.data.attrs && child.data.attrs.place) {
+    params[child.data.attrs.place] = child;
+  }
+  return params
+}
+
+function assignChildIndex (params, child, index) {
+  params[index] = child;
+  return params
+}
+
+function vnodeHasPlaceAttribute (vnode) {
+  return Boolean(vnode.data && vnode.data.attrs && vnode.data.attrs.place)
+}
+
+/*  */
+
+var numberComponent = {
+  name: 'i18n-n',
+  functional: true,
+  props: {
+    tag: {
+      type: [String, Boolean, Object],
+      default: 'span'
+    },
+    value: {
+      type: Number,
+      required: true
+    },
+    format: {
+      type: [String, Object]
+    },
+    locale: {
+      type: String
+    }
+  },
+  render: function render (h, ref) {
+    var props = ref.props;
+    var parent = ref.parent;
+    var data = ref.data;
+
+    var i18n = parent.$i18n;
+
+    if (!i18n) {
+      if (true) {
+        warn('Cannot find VueI18n instance!');
+      }
+      return null
+    }
+
+    var key = null;
+    var options = null;
+
+    if (isString(props.format)) {
+      key = props.format;
+    } else if (isObject(props.format)) {
+      if (props.format.key) {
+        key = props.format.key;
+      }
+
+      // Filter out number format options only
+      options = Object.keys(props.format).reduce(function (acc, prop) {
+        var obj;
+
+        if (includes(numberFormatKeys, prop)) {
+          return Object.assign({}, acc, ( obj = {}, obj[prop] = props.format[prop], obj ))
+        }
+        return acc
+      }, null);
+    }
+
+    var locale = props.locale || i18n.locale;
+    var parts = i18n._ntp(props.value, locale, key, options);
+
+    var values = parts.map(function (part, index) {
+      var obj;
+
+      var slot = data.scopedSlots && data.scopedSlots[part.type];
+      return slot ? slot(( obj = {}, obj[part.type] = part.value, obj.index = index, obj.parts = parts, obj )) : part.value
+    });
+
+    var tag = (!!props.tag && props.tag !== true) || props.tag === false ? props.tag : 'span';
+    return tag
+      ? h(tag, {
+        attrs: data.attrs,
+        'class': data['class'],
+        staticClass: data.staticClass
+      }, values)
+      : values
+  }
+};
+
+/*  */
+
+function bind (el, binding, vnode) {
+  if (!assert(el, vnode)) { return }
+
+  t(el, binding, vnode);
+}
+
+function update (el, binding, vnode, oldVNode) {
+  if (!assert(el, vnode)) { return }
+
+  var i18n = vnode.context.$i18n;
+  if (localeEqual(el, vnode) &&
+    (looseEqual(binding.value, binding.oldValue) &&
+     looseEqual(el._localeMessage, i18n.getLocaleMessage(i18n.locale)))) { return }
+
+  t(el, binding, vnode);
+}
+
+function unbind (el, binding, vnode, oldVNode) {
+  var vm = vnode.context;
+  if (!vm) {
+    warn('Vue instance does not exists in VNode context');
+    return
+  }
+
+  var i18n = vnode.context.$i18n || {};
+  if (!binding.modifiers.preserve && !i18n.preserveDirectiveContent) {
+    el.textContent = '';
+  }
+  el._vt = undefined;
+  delete el['_vt'];
+  el._locale = undefined;
+  delete el['_locale'];
+  el._localeMessage = undefined;
+  delete el['_localeMessage'];
+}
+
+function assert (el, vnode) {
+  var vm = vnode.context;
+  if (!vm) {
+    warn('Vue instance does not exists in VNode context');
+    return false
+  }
+
+  if (!vm.$i18n) {
+    warn('VueI18n instance does not exists in Vue instance');
+    return false
+  }
+
+  return true
+}
+
+function localeEqual (el, vnode) {
+  var vm = vnode.context;
+  return el._locale === vm.$i18n.locale
+}
+
+function t (el, binding, vnode) {
+  var ref$1, ref$2;
+
+  var value = binding.value;
+
+  var ref = parseValue(value);
+  var path = ref.path;
+  var locale = ref.locale;
+  var args = ref.args;
+  var choice = ref.choice;
+  if (!path && !locale && !args) {
+    warn('value type not supported');
+    return
+  }
+
+  if (!path) {
+    warn('`path` is required in v-t directive');
+    return
+  }
+
+  var vm = vnode.context;
+  if (choice != null) {
+    el._vt = el.textContent = (ref$1 = vm.$i18n).tc.apply(ref$1, [ path, choice ].concat( makeParams(locale, args) ));
+  } else {
+    el._vt = el.textContent = (ref$2 = vm.$i18n).t.apply(ref$2, [ path ].concat( makeParams(locale, args) ));
+  }
+  el._locale = vm.$i18n.locale;
+  el._localeMessage = vm.$i18n.getLocaleMessage(vm.$i18n.locale);
+}
+
+function parseValue (value) {
+  var path;
+  var locale;
+  var args;
+  var choice;
+
+  if (isString(value)) {
+    path = value;
+  } else if (isPlainObject(value)) {
+    path = value.path;
+    locale = value.locale;
+    args = value.args;
+    choice = value.choice;
+  }
+
+  return { path: path, locale: locale, args: args, choice: choice }
+}
+
+function makeParams (locale, args) {
+  var params = [];
+
+  locale && params.push(locale);
+  if (args && (Array.isArray(args) || isPlainObject(args))) {
+    params.push(args);
+  }
+
+  return params
+}
+
+var Vue;
+
+function install (_Vue) {
+  /* istanbul ignore if */
+  if ( true && install.installed && _Vue === Vue) {
+    warn('already installed.');
+    return
+  }
+  install.installed = true;
+
+  Vue = _Vue;
+
+  var version = (Vue.version && Number(Vue.version.split('.')[0])) || -1;
+  /* istanbul ignore if */
+  if ( true && version < 2) {
+    warn(("vue-i18n (" + (install.version) + ") need to use Vue 2.0 or later (Vue: " + (Vue.version) + ")."));
+    return
+  }
+
+  extend(Vue);
+  Vue.mixin(mixin);
+  Vue.directive('t', { bind: bind, update: update, unbind: unbind });
+  Vue.component(interpolationComponent.name, interpolationComponent);
+  Vue.component(numberComponent.name, numberComponent);
+
+  // use simple mergeStrategies to prevent i18n instance lose '__proto__'
+  var strats = Vue.config.optionMergeStrategies;
+  strats.i18n = function (parentVal, childVal) {
+    return childVal === undefined
+      ? parentVal
+      : childVal
+  };
+}
+
+/*  */
+
+var BaseFormatter = function BaseFormatter () {
+  this._caches = Object.create(null);
+};
+
+BaseFormatter.prototype.interpolate = function interpolate (message, values) {
+  if (!values) {
+    return [message]
+  }
+  var tokens = this._caches[message];
+  if (!tokens) {
+    tokens = parse(message);
+    this._caches[message] = tokens;
+  }
+  return compile(tokens, values)
+};
+
+
+
+var RE_TOKEN_LIST_VALUE = /^(?:\d)+/;
+var RE_TOKEN_NAMED_VALUE = /^(?:\w)+/;
+
+function parse (format) {
+  var tokens = [];
+  var position = 0;
+
+  var text = '';
+  while (position < format.length) {
+    var char = format[position++];
+    if (char === '{') {
+      if (text) {
+        tokens.push({ type: 'text', value: text });
+      }
+
+      text = '';
+      var sub = '';
+      char = format[position++];
+      while (char !== undefined && char !== '}') {
+        sub += char;
+        char = format[position++];
+      }
+      var isClosed = char === '}';
+
+      var type = RE_TOKEN_LIST_VALUE.test(sub)
+        ? 'list'
+        : isClosed && RE_TOKEN_NAMED_VALUE.test(sub)
+          ? 'named'
+          : 'unknown';
+      tokens.push({ value: sub, type: type });
+    } else if (char === '%') {
+      // when found rails i18n syntax, skip text capture
+      if (format[(position)] !== '{') {
+        text += char;
+      }
+    } else {
+      text += char;
+    }
+  }
+
+  text && tokens.push({ type: 'text', value: text });
+
+  return tokens
+}
+
+function compile (tokens, values) {
+  var compiled = [];
+  var index = 0;
+
+  var mode = Array.isArray(values)
+    ? 'list'
+    : isObject(values)
+      ? 'named'
+      : 'unknown';
+  if (mode === 'unknown') { return compiled }
+
+  while (index < tokens.length) {
+    var token = tokens[index];
+    switch (token.type) {
+      case 'text':
+        compiled.push(token.value);
+        break
+      case 'list':
+        compiled.push(values[parseInt(token.value, 10)]);
+        break
+      case 'named':
+        if (mode === 'named') {
+          compiled.push((values)[token.value]);
+        } else {
+          if (true) {
+            warn(("Type of token '" + (token.type) + "' and format of value '" + mode + "' don't match!"));
+          }
+        }
+        break
+      case 'unknown':
+        if (true) {
+          warn("Detect 'unknown' type of token!");
+        }
+        break
+    }
+    index++;
+  }
+
+  return compiled
+}
+
+/*  */
+
+/**
+ *  Path parser
+ *  - Inspired:
+ *    Vue.js Path parser
+ */
+
+// actions
+var APPEND = 0;
+var PUSH = 1;
+var INC_SUB_PATH_DEPTH = 2;
+var PUSH_SUB_PATH = 3;
+
+// states
+var BEFORE_PATH = 0;
+var IN_PATH = 1;
+var BEFORE_IDENT = 2;
+var IN_IDENT = 3;
+var IN_SUB_PATH = 4;
+var IN_SINGLE_QUOTE = 5;
+var IN_DOUBLE_QUOTE = 6;
+var AFTER_PATH = 7;
+var ERROR = 8;
+
+var pathStateMachine = [];
+
+pathStateMachine[BEFORE_PATH] = {
+  'ws': [BEFORE_PATH],
+  'ident': [IN_IDENT, APPEND],
+  '[': [IN_SUB_PATH],
+  'eof': [AFTER_PATH]
+};
+
+pathStateMachine[IN_PATH] = {
+  'ws': [IN_PATH],
+  '.': [BEFORE_IDENT],
+  '[': [IN_SUB_PATH],
+  'eof': [AFTER_PATH]
+};
+
+pathStateMachine[BEFORE_IDENT] = {
+  'ws': [BEFORE_IDENT],
+  'ident': [IN_IDENT, APPEND],
+  '0': [IN_IDENT, APPEND],
+  'number': [IN_IDENT, APPEND]
+};
+
+pathStateMachine[IN_IDENT] = {
+  'ident': [IN_IDENT, APPEND],
+  '0': [IN_IDENT, APPEND],
+  'number': [IN_IDENT, APPEND],
+  'ws': [IN_PATH, PUSH],
+  '.': [BEFORE_IDENT, PUSH],
+  '[': [IN_SUB_PATH, PUSH],
+  'eof': [AFTER_PATH, PUSH]
+};
+
+pathStateMachine[IN_SUB_PATH] = {
+  "'": [IN_SINGLE_QUOTE, APPEND],
+  '"': [IN_DOUBLE_QUOTE, APPEND],
+  '[': [IN_SUB_PATH, INC_SUB_PATH_DEPTH],
+  ']': [IN_PATH, PUSH_SUB_PATH],
+  'eof': ERROR,
+  'else': [IN_SUB_PATH, APPEND]
+};
+
+pathStateMachine[IN_SINGLE_QUOTE] = {
+  "'": [IN_SUB_PATH, APPEND],
+  'eof': ERROR,
+  'else': [IN_SINGLE_QUOTE, APPEND]
+};
+
+pathStateMachine[IN_DOUBLE_QUOTE] = {
+  '"': [IN_SUB_PATH, APPEND],
+  'eof': ERROR,
+  'else': [IN_DOUBLE_QUOTE, APPEND]
+};
+
+/**
+ * Check if an expression is a literal value.
+ */
+
+var literalValueRE = /^\s?(?:true|false|-?[\d.]+|'[^']*'|"[^"]*")\s?$/;
+function isLiteral (exp) {
+  return literalValueRE.test(exp)
+}
+
+/**
+ * Strip quotes from a string
+ */
+
+function stripQuotes (str) {
+  var a = str.charCodeAt(0);
+  var b = str.charCodeAt(str.length - 1);
+  return a === b && (a === 0x22 || a === 0x27)
+    ? str.slice(1, -1)
+    : str
+}
+
+/**
+ * Determine the type of a character in a keypath.
+ */
+
+function getPathCharType (ch) {
+  if (ch === undefined || ch === null) { return 'eof' }
+
+  var code = ch.charCodeAt(0);
+
+  switch (code) {
+    case 0x5B: // [
+    case 0x5D: // ]
+    case 0x2E: // .
+    case 0x22: // "
+    case 0x27: // '
+      return ch
+
+    case 0x5F: // _
+    case 0x24: // $
+    case 0x2D: // -
+      return 'ident'
+
+    case 0x09: // Tab
+    case 0x0A: // Newline
+    case 0x0D: // Return
+    case 0xA0:  // No-break space
+    case 0xFEFF:  // Byte Order Mark
+    case 0x2028:  // Line Separator
+    case 0x2029:  // Paragraph Separator
+      return 'ws'
+  }
+
+  return 'ident'
+}
+
+/**
+ * Format a subPath, return its plain form if it is
+ * a literal string or number. Otherwise prepend the
+ * dynamic indicator (*).
+ */
+
+function formatSubPath (path) {
+  var trimmed = path.trim();
+  // invalid leading 0
+  if (path.charAt(0) === '0' && isNaN(path)) { return false }
+
+  return isLiteral(trimmed) ? stripQuotes(trimmed) : '*' + trimmed
+}
+
+/**
+ * Parse a string path into an array of segments
+ */
+
+function parse$1 (path) {
+  var keys = [];
+  var index = -1;
+  var mode = BEFORE_PATH;
+  var subPathDepth = 0;
+  var c;
+  var key;
+  var newChar;
+  var type;
+  var transition;
+  var action;
+  var typeMap;
+  var actions = [];
+
+  actions[PUSH] = function () {
+    if (key !== undefined) {
+      keys.push(key);
+      key = undefined;
+    }
+  };
+
+  actions[APPEND] = function () {
+    if (key === undefined) {
+      key = newChar;
+    } else {
+      key += newChar;
+    }
+  };
+
+  actions[INC_SUB_PATH_DEPTH] = function () {
+    actions[APPEND]();
+    subPathDepth++;
+  };
+
+  actions[PUSH_SUB_PATH] = function () {
+    if (subPathDepth > 0) {
+      subPathDepth--;
+      mode = IN_SUB_PATH;
+      actions[APPEND]();
+    } else {
+      subPathDepth = 0;
+      if (key === undefined) { return false }
+      key = formatSubPath(key);
+      if (key === false) {
+        return false
+      } else {
+        actions[PUSH]();
+      }
+    }
+  };
+
+  function maybeUnescapeQuote () {
+    var nextChar = path[index + 1];
+    if ((mode === IN_SINGLE_QUOTE && nextChar === "'") ||
+      (mode === IN_DOUBLE_QUOTE && nextChar === '"')) {
+      index++;
+      newChar = '\\' + nextChar;
+      actions[APPEND]();
+      return true
+    }
+  }
+
+  while (mode !== null) {
+    index++;
+    c = path[index];
+
+    if (c === '\\' && maybeUnescapeQuote()) {
+      continue
+    }
+
+    type = getPathCharType(c);
+    typeMap = pathStateMachine[mode];
+    transition = typeMap[type] || typeMap['else'] || ERROR;
+
+    if (transition === ERROR) {
+      return // parse error
+    }
+
+    mode = transition[0];
+    action = actions[transition[1]];
+    if (action) {
+      newChar = transition[2];
+      newChar = newChar === undefined
+        ? c
+        : newChar;
+      if (action() === false) {
+        return
+      }
+    }
+
+    if (mode === AFTER_PATH) {
+      return keys
+    }
+  }
+}
+
+
+
+
+
+var I18nPath = function I18nPath () {
+  this._cache = Object.create(null);
+};
+
+/**
+ * External parse that check for a cache hit first
+ */
+I18nPath.prototype.parsePath = function parsePath (path) {
+  var hit = this._cache[path];
+  if (!hit) {
+    hit = parse$1(path);
+    if (hit) {
+      this._cache[path] = hit;
+    }
+  }
+  return hit || []
+};
+
+/**
+ * Get path value from path string
+ */
+I18nPath.prototype.getPathValue = function getPathValue (obj, path) {
+  if (!isObject(obj)) { return null }
+
+  var paths = this.parsePath(path);
+  if (paths.length === 0) {
+    return null
+  } else {
+    var length = paths.length;
+    var last = obj;
+    var i = 0;
+    while (i < length) {
+      var value = last[paths[i]];
+      if (value === undefined) {
+        return null
+      }
+      last = value;
+      i++;
+    }
+
+    return last
+  }
+};
+
+/*  */
+
+
+
+var htmlTagMatcher = /<\/?[\w\s="/.':;#-\/]+>/;
+var linkKeyMatcher = /(?:@(?:\.[a-z]+)?:(?:[\w\-_|.]+|\([\w\-_|.]+\)))/g;
+var linkKeyPrefixMatcher = /^@(?:\.([a-z]+))?:/;
+var bracketsMatcher = /[()]/g;
+var defaultModifiers = {
+  'upper': function (str) { return str.toLocaleUpperCase(); },
+  'lower': function (str) { return str.toLocaleLowerCase(); },
+  'capitalize': function (str) { return ("" + (str.charAt(0).toLocaleUpperCase()) + (str.substr(1))); }
+};
+
+var defaultFormatter = new BaseFormatter();
+
+var VueI18n = function VueI18n (options) {
+  var this$1 = this;
+  if ( options === void 0 ) options = {};
+
+  // Auto install if it is not done yet and `window` has `Vue`.
+  // To allow users to avoid auto-installation in some cases,
+  // this code should be placed here. See #290
+  /* istanbul ignore if */
+  if (!Vue && typeof window !== 'undefined' && window.Vue) {
+    install(window.Vue);
+  }
+
+  var locale = options.locale || 'en-US';
+  var fallbackLocale = options.fallbackLocale === false
+    ? false
+    : options.fallbackLocale || 'en-US';
+  var messages = options.messages || {};
+  var dateTimeFormats = options.dateTimeFormats || {};
+  var numberFormats = options.numberFormats || {};
+
+  this._vm = null;
+  this._formatter = options.formatter || defaultFormatter;
+  this._modifiers = options.modifiers || {};
+  this._missing = options.missing || null;
+  this._root = options.root || null;
+  this._sync = options.sync === undefined ? true : !!options.sync;
+  this._fallbackRoot = options.fallbackRoot === undefined
+    ? true
+    : !!options.fallbackRoot;
+  this._formatFallbackMessages = options.formatFallbackMessages === undefined
+    ? false
+    : !!options.formatFallbackMessages;
+  this._silentTranslationWarn = options.silentTranslationWarn === undefined
+    ? false
+    : options.silentTranslationWarn;
+  this._silentFallbackWarn = options.silentFallbackWarn === undefined
+    ? false
+    : !!options.silentFallbackWarn;
+  this._dateTimeFormatters = {};
+  this._numberFormatters = {};
+  this._path = new I18nPath();
+  this._dataListeners = [];
+  this._componentInstanceCreatedListener = options.componentInstanceCreatedListener || null;
+  this._preserveDirectiveContent = options.preserveDirectiveContent === undefined
+    ? false
+    : !!options.preserveDirectiveContent;
+  this.pluralizationRules = options.pluralizationRules || {};
+  this._warnHtmlInMessage = options.warnHtmlInMessage || 'off';
+  this._postTranslation = options.postTranslation || null;
+  this._escapeParameterHtml = options.escapeParameterHtml || false;
+
+  /**
+   * @param choice {number} a choice index given by the input to $tc: `$tc('path.to.rule', choiceIndex)`
+   * @param choicesLength {number} an overall amount of available choices
+   * @returns a final choice index
+  */
+  this.getChoiceIndex = function (choice, choicesLength) {
+    var thisPrototype = Object.getPrototypeOf(this$1);
+    if (thisPrototype && thisPrototype.getChoiceIndex) {
+      var prototypeGetChoiceIndex = (thisPrototype.getChoiceIndex);
+      return (prototypeGetChoiceIndex).call(this$1, choice, choicesLength)
+    }
+
+    // Default (old) getChoiceIndex implementation - english-compatible
+    var defaultImpl = function (_choice, _choicesLength) {
+      _choice = Math.abs(_choice);
+
+      if (_choicesLength === 2) {
+        return _choice
+          ? _choice > 1
+            ? 1
+            : 0
+          : 1
+      }
+
+      return _choice ? Math.min(_choice, 2) : 0
+    };
+
+    if (this$1.locale in this$1.pluralizationRules) {
+      return this$1.pluralizationRules[this$1.locale].apply(this$1, [choice, choicesLength])
+    } else {
+      return defaultImpl(choice, choicesLength)
+    }
+  };
+
+
+  this._exist = function (message, key) {
+    if (!message || !key) { return false }
+    if (!isNull(this$1._path.getPathValue(message, key))) { return true }
+    // fallback for flat key
+    if (message[key]) { return true }
+    return false
+  };
+
+  if (this._warnHtmlInMessage === 'warn' || this._warnHtmlInMessage === 'error') {
+    Object.keys(messages).forEach(function (locale) {
+      this$1._checkLocaleMessage(locale, this$1._warnHtmlInMessage, messages[locale]);
+    });
+  }
+
+  this._initVM({
+    locale: locale,
+    fallbackLocale: fallbackLocale,
+    messages: messages,
+    dateTimeFormats: dateTimeFormats,
+    numberFormats: numberFormats
+  });
+};
+
+var prototypeAccessors = { vm: { configurable: true },messages: { configurable: true },dateTimeFormats: { configurable: true },numberFormats: { configurable: true },availableLocales: { configurable: true },locale: { configurable: true },fallbackLocale: { configurable: true },formatFallbackMessages: { configurable: true },missing: { configurable: true },formatter: { configurable: true },silentTranslationWarn: { configurable: true },silentFallbackWarn: { configurable: true },preserveDirectiveContent: { configurable: true },warnHtmlInMessage: { configurable: true },postTranslation: { configurable: true } };
+
+VueI18n.prototype._checkLocaleMessage = function _checkLocaleMessage (locale, level, message) {
+  var paths = [];
+
+  var fn = function (level, locale, message, paths) {
+    if (isPlainObject(message)) {
+      Object.keys(message).forEach(function (key) {
+        var val = message[key];
+        if (isPlainObject(val)) {
+          paths.push(key);
+          paths.push('.');
+          fn(level, locale, val, paths);
+          paths.pop();
+          paths.pop();
+        } else {
+          paths.push(key);
+          fn(level, locale, val, paths);
+          paths.pop();
+        }
+      });
+    } else if (isArray(message)) {
+      message.forEach(function (item, index) {
+        if (isPlainObject(item)) {
+          paths.push(("[" + index + "]"));
+          paths.push('.');
+          fn(level, locale, item, paths);
+          paths.pop();
+          paths.pop();
+        } else {
+          paths.push(("[" + index + "]"));
+          fn(level, locale, item, paths);
+          paths.pop();
+        }
+      });
+    } else if (isString(message)) {
+      var ret = htmlTagMatcher.test(message);
+      if (ret) {
+        var msg = "Detected HTML in message '" + message + "' of keypath '" + (paths.join('')) + "' at '" + locale + "'. Consider component interpolation with '<i18n>' to avoid XSS. See https://bit.ly/2ZqJzkp";
+        if (level === 'warn') {
+          warn(msg);
+        } else if (level === 'error') {
+          error(msg);
+        }
+      }
+    }
+  };
+
+  fn(level, locale, message, paths);
+};
+
+VueI18n.prototype._initVM = function _initVM (data) {
+  var silent = Vue.config.silent;
+  Vue.config.silent = true;
+  this._vm = new Vue({ data: data });
+  Vue.config.silent = silent;
+};
+
+VueI18n.prototype.destroyVM = function destroyVM () {
+  this._vm.$destroy();
+};
+
+VueI18n.prototype.subscribeDataChanging = function subscribeDataChanging (vm) {
+  this._dataListeners.push(vm);
+};
+
+VueI18n.prototype.unsubscribeDataChanging = function unsubscribeDataChanging (vm) {
+  remove(this._dataListeners, vm);
+};
+
+VueI18n.prototype.watchI18nData = function watchI18nData () {
+  var self = this;
+  return this._vm.$watch('$data', function () {
+    var i = self._dataListeners.length;
+    while (i--) {
+      Vue.nextTick(function () {
+        self._dataListeners[i] && self._dataListeners[i].$forceUpdate();
+      });
+    }
+  }, { deep: true })
+};
+
+VueI18n.prototype.watchLocale = function watchLocale () {
+  /* istanbul ignore if */
+  if (!this._sync || !this._root) { return null }
+  var target = this._vm;
+  return this._root.$i18n.vm.$watch('locale', function (val) {
+    target.$set(target, 'locale', val);
+    target.$forceUpdate();
+  }, { immediate: true })
+};
+
+VueI18n.prototype.onComponentInstanceCreated = function onComponentInstanceCreated (newI18n) {
+  if (this._componentInstanceCreatedListener) {
+    this._componentInstanceCreatedListener(newI18n, this);
+  }
+};
+
+prototypeAccessors.vm.get = function () { return this._vm };
+
+prototypeAccessors.messages.get = function () { return looseClone(this._getMessages()) };
+prototypeAccessors.dateTimeFormats.get = function () { return looseClone(this._getDateTimeFormats()) };
+prototypeAccessors.numberFormats.get = function () { return looseClone(this._getNumberFormats()) };
+prototypeAccessors.availableLocales.get = function () { return Object.keys(this.messages).sort() };
+
+prototypeAccessors.locale.get = function () { return this._vm.locale };
+prototypeAccessors.locale.set = function (locale) {
+  this._vm.$set(this._vm, 'locale', locale);
+};
+
+prototypeAccessors.fallbackLocale.get = function () { return this._vm.fallbackLocale };
+prototypeAccessors.fallbackLocale.set = function (locale) {
+  this._localeChainCache = {};
+  this._vm.$set(this._vm, 'fallbackLocale', locale);
+};
+
+prototypeAccessors.formatFallbackMessages.get = function () { return this._formatFallbackMessages };
+prototypeAccessors.formatFallbackMessages.set = function (fallback) { this._formatFallbackMessages = fallback; };
+
+prototypeAccessors.missing.get = function () { return this._missing };
+prototypeAccessors.missing.set = function (handler) { this._missing = handler; };
+
+prototypeAccessors.formatter.get = function () { return this._formatter };
+prototypeAccessors.formatter.set = function (formatter) { this._formatter = formatter; };
+
+prototypeAccessors.silentTranslationWarn.get = function () { return this._silentTranslationWarn };
+prototypeAccessors.silentTranslationWarn.set = function (silent) { this._silentTranslationWarn = silent; };
+
+prototypeAccessors.silentFallbackWarn.get = function () { return this._silentFallbackWarn };
+prototypeAccessors.silentFallbackWarn.set = function (silent) { this._silentFallbackWarn = silent; };
+
+prototypeAccessors.preserveDirectiveContent.get = function () { return this._preserveDirectiveContent };
+prototypeAccessors.preserveDirectiveContent.set = function (preserve) { this._preserveDirectiveContent = preserve; };
+
+prototypeAccessors.warnHtmlInMessage.get = function () { return this._warnHtmlInMessage };
+prototypeAccessors.warnHtmlInMessage.set = function (level) {
+    var this$1 = this;
+
+  var orgLevel = this._warnHtmlInMessage;
+  this._warnHtmlInMessage = level;
+  if (orgLevel !== level && (level === 'warn' || level === 'error')) {
+    var messages = this._getMessages();
+    Object.keys(messages).forEach(function (locale) {
+      this$1._checkLocaleMessage(locale, this$1._warnHtmlInMessage, messages[locale]);
+    });
+  }
+};
+
+prototypeAccessors.postTranslation.get = function () { return this._postTranslation };
+prototypeAccessors.postTranslation.set = function (handler) { this._postTranslation = handler; };
+
+VueI18n.prototype._getMessages = function _getMessages () { return this._vm.messages };
+VueI18n.prototype._getDateTimeFormats = function _getDateTimeFormats () { return this._vm.dateTimeFormats };
+VueI18n.prototype._getNumberFormats = function _getNumberFormats () { return this._vm.numberFormats };
+
+VueI18n.prototype._warnDefault = function _warnDefault (locale, key, result, vm, values, interpolateMode) {
+  if (!isNull(result)) { return result }
+  if (this._missing) {
+    var missingRet = this._missing.apply(null, [locale, key, vm, values]);
+    if (isString(missingRet)) {
+      return missingRet
+    }
+  } else {
+    if ( true && !this._isSilentTranslationWarn(key)) {
+      warn(
+        "Cannot translate the value of keypath '" + key + "'. " +
+        'Use the value of keypath as default.'
+      );
+    }
+  }
+
+  if (this._formatFallbackMessages) {
+    var parsedArgs = parseArgs.apply(void 0, values);
+    return this._render(key, interpolateMode, parsedArgs.params, key)
+  } else {
+    return key
+  }
+};
+
+VueI18n.prototype._isFallbackRoot = function _isFallbackRoot (val) {
+  return !val && !isNull(this._root) && this._fallbackRoot
+};
+
+VueI18n.prototype._isSilentFallbackWarn = function _isSilentFallbackWarn (key) {
+  return this._silentFallbackWarn instanceof RegExp
+    ? this._silentFallbackWarn.test(key)
+    : this._silentFallbackWarn
+};
+
+VueI18n.prototype._isSilentFallback = function _isSilentFallback (locale, key) {
+  return this._isSilentFallbackWarn(key) && (this._isFallbackRoot() || locale !== this.fallbackLocale)
+};
+
+VueI18n.prototype._isSilentTranslationWarn = function _isSilentTranslationWarn (key) {
+  return this._silentTranslationWarn instanceof RegExp
+    ? this._silentTranslationWarn.test(key)
+    : this._silentTranslationWarn
+};
+
+VueI18n.prototype._interpolate = function _interpolate (
+  locale,
+  message,
+  key,
+  host,
+  interpolateMode,
+  values,
+  visitedLinkStack
+) {
+  if (!message) { return null }
+
+  var pathRet = this._path.getPathValue(message, key);
+  if (isArray(pathRet) || isPlainObject(pathRet)) { return pathRet }
+
+  var ret;
+  if (isNull(pathRet)) {
+    /* istanbul ignore else */
+    if (isPlainObject(message)) {
+      ret = message[key];
+      if (!(isString(ret) || isFunction(ret))) {
+        if ( true && !this._isSilentTranslationWarn(key) && !this._isSilentFallback(locale, key)) {
+          warn(("Value of key '" + key + "' is not a string or function !"));
+        }
+        return null
+      }
+    } else {
+      return null
+    }
+  } else {
+    /* istanbul ignore else */
+    if (isString(pathRet) || isFunction(pathRet)) {
+      ret = pathRet;
+    } else {
+      if ( true && !this._isSilentTranslationWarn(key) && !this._isSilentFallback(locale, key)) {
+        warn(("Value of key '" + key + "' is not a string or function!"));
+      }
+      return null
+    }
+  }
+
+  // Check for the existence of links within the translated string
+  if (isString(ret) && (ret.indexOf('@:') >= 0 || ret.indexOf('@.') >= 0)) {
+    ret = this._link(locale, message, ret, host, 'raw', values, visitedLinkStack);
+  }
+
+  return this._render(ret, interpolateMode, values, key)
+};
+
+VueI18n.prototype._link = function _link (
+  locale,
+  message,
+  str,
+  host,
+  interpolateMode,
+  values,
+  visitedLinkStack
+) {
+  var ret = str;
+
+  // Match all the links within the local
+  // We are going to replace each of
+  // them with its translation
+  var matches = ret.match(linkKeyMatcher);
+  for (var idx in matches) {
+    // ie compatible: filter custom array
+    // prototype method
+    if (!matches.hasOwnProperty(idx)) {
+      continue
+    }
+    var link = matches[idx];
+    var linkKeyPrefixMatches = link.match(linkKeyPrefixMatcher);
+    var linkPrefix = linkKeyPrefixMatches[0];
+      var formatterName = linkKeyPrefixMatches[1];
+
+    // Remove the leading @:, @.case: and the brackets
+    var linkPlaceholder = link.replace(linkPrefix, '').replace(bracketsMatcher, '');
+
+    if (includes(visitedLinkStack, linkPlaceholder)) {
+      if (true) {
+        warn(("Circular reference found. \"" + link + "\" is already visited in the chain of " + (visitedLinkStack.reverse().join(' <- '))));
+      }
+      return ret
+    }
+    visitedLinkStack.push(linkPlaceholder);
+
+    // Translate the link
+    var translated = this._interpolate(
+      locale, message, linkPlaceholder, host,
+      interpolateMode === 'raw' ? 'string' : interpolateMode,
+      interpolateMode === 'raw' ? undefined : values,
+      visitedLinkStack
+    );
+
+    if (this._isFallbackRoot(translated)) {
+      if ( true && !this._isSilentTranslationWarn(linkPlaceholder)) {
+        warn(("Fall back to translate the link placeholder '" + linkPlaceholder + "' with root locale."));
+      }
+      /* istanbul ignore if */
+      if (!this._root) { throw Error('unexpected error') }
+      var root = this._root.$i18n;
+      translated = root._translate(
+        root._getMessages(), root.locale, root.fallbackLocale,
+        linkPlaceholder, host, interpolateMode, values
+      );
+    }
+    translated = this._warnDefault(
+      locale, linkPlaceholder, translated, host,
+      isArray(values) ? values : [values],
+      interpolateMode
+    );
+
+    if (this._modifiers.hasOwnProperty(formatterName)) {
+      translated = this._modifiers[formatterName](translated);
+    } else if (defaultModifiers.hasOwnProperty(formatterName)) {
+      translated = defaultModifiers[formatterName](translated);
+    }
+
+    visitedLinkStack.pop();
+
+    // Replace the link with the translated
+    ret = !translated ? ret : ret.replace(link, translated);
+  }
+
+  return ret
+};
+
+VueI18n.prototype._createMessageContext = function _createMessageContext (values) {
+  var _list = isArray(values) ? values : [];
+  var _named = isObject(values) ? values : {};
+  var list = function (index) { return _list[index]; };
+  var named = function (key) { return _named[key]; };
+  return {
+    list: list,
+    named: named
+  }
+};
+
+VueI18n.prototype._render = function _render (message, interpolateMode, values, path) {
+  if (isFunction(message)) {
+    return message(this._createMessageContext(values))
+  }
+
+  var ret = this._formatter.interpolate(message, values, path);
+
+  // If the custom formatter refuses to work - apply the default one
+  if (!ret) {
+    ret = defaultFormatter.interpolate(message, values, path);
+  }
+
+  // if interpolateMode is **not** 'string' ('row'),
+  // return the compiled data (e.g. ['foo', VNode, 'bar']) with formatter
+  return interpolateMode === 'string' && !isString(ret) ? ret.join('') : ret
+};
+
+VueI18n.prototype._appendItemToChain = function _appendItemToChain (chain, item, blocks) {
+  var follow = false;
+  if (!includes(chain, item)) {
+    follow = true;
+    if (item) {
+      follow = item[item.length - 1] !== '!';
+      item = item.replace(/!/g, '');
+      chain.push(item);
+      if (blocks && blocks[item]) {
+        follow = blocks[item];
+      }
+    }
+  }
+  return follow
+};
+
+VueI18n.prototype._appendLocaleToChain = function _appendLocaleToChain (chain, locale, blocks) {
+  var follow;
+  var tokens = locale.split('-');
+  do {
+    var item = tokens.join('-');
+    follow = this._appendItemToChain(chain, item, blocks);
+    tokens.splice(-1, 1);
+  } while (tokens.length && (follow === true))
+  return follow
+};
+
+VueI18n.prototype._appendBlockToChain = function _appendBlockToChain (chain, block, blocks) {
+  var follow = true;
+  for (var i = 0; (i < block.length) && (isBoolean(follow)); i++) {
+    var locale = block[i];
+    if (isString(locale)) {
+      follow = this._appendLocaleToChain(chain, locale, blocks);
+    }
+  }
+  return follow
+};
+
+VueI18n.prototype._getLocaleChain = function _getLocaleChain (start, fallbackLocale) {
+  if (start === '') { return [] }
+
+  if (!this._localeChainCache) {
+    this._localeChainCache = {};
+  }
+
+  var chain = this._localeChainCache[start];
+  if (!chain) {
+    if (!fallbackLocale) {
+      fallbackLocale = this.fallbackLocale;
+    }
+    chain = [];
+
+    // first block defined by start
+    var block = [start];
+
+    // while any intervening block found
+    while (isArray(block)) {
+      block = this._appendBlockToChain(
+        chain,
+        block,
+        fallbackLocale
+      );
+    }
+
+    // last block defined by default
+    var defaults;
+    if (isArray(fallbackLocale)) {
+      defaults = fallbackLocale;
+    } else if (isObject(fallbackLocale)) {
+      /* $FlowFixMe */
+      if (fallbackLocale['default']) {
+        defaults = fallbackLocale['default'];
+      } else {
+        defaults = null;
+      }
+    } else {
+      defaults = fallbackLocale;
+    }
+
+    // convert defaults to array
+    if (isString(defaults)) {
+      block = [defaults];
+    } else {
+      block = defaults;
+    }
+    if (block) {
+      this._appendBlockToChain(
+        chain,
+        block,
+        null
+      );
+    }
+    this._localeChainCache[start] = chain;
+  }
+  return chain
+};
+
+VueI18n.prototype._translate = function _translate (
+  messages,
+  locale,
+  fallback,
+  key,
+  host,
+  interpolateMode,
+  args
+) {
+  var chain = this._getLocaleChain(locale, fallback);
+  var res;
+  for (var i = 0; i < chain.length; i++) {
+    var step = chain[i];
+    res =
+      this._interpolate(step, messages[step], key, host, interpolateMode, args, [key]);
+    if (!isNull(res)) {
+      if (step !== locale && "development" !== 'production' && !this._isSilentTranslationWarn(key) && !this._isSilentFallbackWarn(key)) {
+        warn(("Fall back to translate the keypath '" + key + "' with '" + step + "' locale."));
+      }
+      return res
+    }
+  }
+  return null
+};
+
+VueI18n.prototype._t = function _t (key, _locale, messages, host) {
+    var ref;
+
+    var values = [], len = arguments.length - 4;
+    while ( len-- > 0 ) values[ len ] = arguments[ len + 4 ];
+  if (!key) { return '' }
+
+  var parsedArgs = parseArgs.apply(void 0, values);
+  if(this._escapeParameterHtml) {
+    parsedArgs.params = escapeParams(parsedArgs.params);
+  }
+
+  var locale = parsedArgs.locale || _locale;
+
+  var ret = this._translate(
+    messages, locale, this.fallbackLocale, key,
+    host, 'string', parsedArgs.params
+  );
+  if (this._isFallbackRoot(ret)) {
+    if ( true && !this._isSilentTranslationWarn(key) && !this._isSilentFallbackWarn(key)) {
+      warn(("Fall back to translate the keypath '" + key + "' with root locale."));
+    }
+    /* istanbul ignore if */
+    if (!this._root) { throw Error('unexpected error') }
+    return (ref = this._root).$t.apply(ref, [ key ].concat( values ))
+  } else {
+    ret = this._warnDefault(locale, key, ret, host, values, 'string');
+    if (this._postTranslation && ret !== null && ret !== undefined) {
+      ret = this._postTranslation(ret, key);
+    }
+    return ret
+  }
+};
+
+VueI18n.prototype.t = function t (key) {
+    var ref;
+
+    var values = [], len = arguments.length - 1;
+    while ( len-- > 0 ) values[ len ] = arguments[ len + 1 ];
+  return (ref = this)._t.apply(ref, [ key, this.locale, this._getMessages(), null ].concat( values ))
+};
+
+VueI18n.prototype._i = function _i (key, locale, messages, host, values) {
+  var ret =
+    this._translate(messages, locale, this.fallbackLocale, key, host, 'raw', values);
+  if (this._isFallbackRoot(ret)) {
+    if ( true && !this._isSilentTranslationWarn(key)) {
+      warn(("Fall back to interpolate the keypath '" + key + "' with root locale."));
+    }
+    if (!this._root) { throw Error('unexpected error') }
+    return this._root.$i18n.i(key, locale, values)
+  } else {
+    return this._warnDefault(locale, key, ret, host, [values], 'raw')
+  }
+};
+
+VueI18n.prototype.i = function i (key, locale, values) {
+  /* istanbul ignore if */
+  if (!key) { return '' }
+
+  if (!isString(locale)) {
+    locale = this.locale;
+  }
+
+  return this._i(key, locale, this._getMessages(), null, values)
+};
+
+VueI18n.prototype._tc = function _tc (
+  key,
+  _locale,
+  messages,
+  host,
+  choice
+) {
+    var ref;
+
+    var values = [], len = arguments.length - 5;
+    while ( len-- > 0 ) values[ len ] = arguments[ len + 5 ];
+  if (!key) { return '' }
+  if (choice === undefined) {
+    choice = 1;
+  }
+
+  var predefined = { 'count': choice, 'n': choice };
+  var parsedArgs = parseArgs.apply(void 0, values);
+  parsedArgs.params = Object.assign(predefined, parsedArgs.params);
+  values = parsedArgs.locale === null ? [parsedArgs.params] : [parsedArgs.locale, parsedArgs.params];
+  return this.fetchChoice((ref = this)._t.apply(ref, [ key, _locale, messages, host ].concat( values )), choice)
+};
+
+VueI18n.prototype.fetchChoice = function fetchChoice (message, choice) {
+  /* istanbul ignore if */
+  if (!message || !isString(message)) { return null }
+  var choices = message.split('|');
+
+  choice = this.getChoiceIndex(choice, choices.length);
+  if (!choices[choice]) { return message }
+  return choices[choice].trim()
+};
+
+VueI18n.prototype.tc = function tc (key, choice) {
+    var ref;
+
+    var values = [], len = arguments.length - 2;
+    while ( len-- > 0 ) values[ len ] = arguments[ len + 2 ];
+  return (ref = this)._tc.apply(ref, [ key, this.locale, this._getMessages(), null, choice ].concat( values ))
+};
+
+VueI18n.prototype._te = function _te (key, locale, messages) {
+    var args = [], len = arguments.length - 3;
+    while ( len-- > 0 ) args[ len ] = arguments[ len + 3 ];
+
+  var _locale = parseArgs.apply(void 0, args).locale || locale;
+  return this._exist(messages[_locale], key)
+};
+
+VueI18n.prototype.te = function te (key, locale) {
+  return this._te(key, this.locale, this._getMessages(), locale)
+};
+
+VueI18n.prototype.getLocaleMessage = function getLocaleMessage (locale) {
+  return looseClone(this._vm.messages[locale] || {})
+};
+
+VueI18n.prototype.setLocaleMessage = function setLocaleMessage (locale, message) {
+  if (this._warnHtmlInMessage === 'warn' || this._warnHtmlInMessage === 'error') {
+    this._checkLocaleMessage(locale, this._warnHtmlInMessage, message);
+  }
+  this._vm.$set(this._vm.messages, locale, message);
+};
+
+VueI18n.prototype.mergeLocaleMessage = function mergeLocaleMessage (locale, message) {
+  if (this._warnHtmlInMessage === 'warn' || this._warnHtmlInMessage === 'error') {
+    this._checkLocaleMessage(locale, this._warnHtmlInMessage, message);
+  }
+  this._vm.$set(this._vm.messages, locale, merge({}, this._vm.messages[locale] || {}, message));
+};
+
+VueI18n.prototype.getDateTimeFormat = function getDateTimeFormat (locale) {
+  return looseClone(this._vm.dateTimeFormats[locale] || {})
+};
+
+VueI18n.prototype.setDateTimeFormat = function setDateTimeFormat (locale, format) {
+  this._vm.$set(this._vm.dateTimeFormats, locale, format);
+  this._clearDateTimeFormat(locale, format);
+};
+
+VueI18n.prototype.mergeDateTimeFormat = function mergeDateTimeFormat (locale, format) {
+  this._vm.$set(this._vm.dateTimeFormats, locale, merge(this._vm.dateTimeFormats[locale] || {}, format));
+  this._clearDateTimeFormat(locale, format);
+};
+
+VueI18n.prototype._clearDateTimeFormat = function _clearDateTimeFormat (locale, format) {
+  for (var key in format) {
+    var id = locale + "__" + key;
+
+    if (!this._dateTimeFormatters.hasOwnProperty(id)) {
+      continue
+    }
+
+    delete this._dateTimeFormatters[id];
+  }
+};
+
+VueI18n.prototype._localizeDateTime = function _localizeDateTime (
+  value,
+  locale,
+  fallback,
+  dateTimeFormats,
+  key
+) {
+  var _locale = locale;
+  var formats = dateTimeFormats[_locale];
+
+  var chain = this._getLocaleChain(locale, fallback);
+  for (var i = 0; i < chain.length; i++) {
+    var current = _locale;
+    var step = chain[i];
+    formats = dateTimeFormats[step];
+    _locale = step;
+    // fallback locale
+    if (isNull(formats) || isNull(formats[key])) {
+      if (step !== locale && "development" !== 'production' && !this._isSilentTranslationWarn(key) && !this._isSilentFallbackWarn(key)) {
+        warn(("Fall back to '" + step + "' datetime formats from '" + current + "' datetime formats."));
+      }
+    } else {
+      break
+    }
+  }
+
+  if (isNull(formats) || isNull(formats[key])) {
+    return null
+  } else {
+    var format = formats[key];
+    var id = _locale + "__" + key;
+    var formatter = this._dateTimeFormatters[id];
+    if (!formatter) {
+      formatter = this._dateTimeFormatters[id] = new Intl.DateTimeFormat(_locale, format);
+    }
+    return formatter.format(value)
+  }
+};
+
+VueI18n.prototype._d = function _d (value, locale, key) {
+  /* istanbul ignore if */
+  if ( true && !VueI18n.availabilities.dateTimeFormat) {
+    warn('Cannot format a Date value due to not supported Intl.DateTimeFormat.');
+    return ''
+  }
+
+  if (!key) {
+    return new Intl.DateTimeFormat(locale).format(value)
+  }
+
+  var ret =
+    this._localizeDateTime(value, locale, this.fallbackLocale, this._getDateTimeFormats(), key);
+  if (this._isFallbackRoot(ret)) {
+    if ( true && !this._isSilentTranslationWarn(key) && !this._isSilentFallbackWarn(key)) {
+      warn(("Fall back to datetime localization of root: key '" + key + "'."));
+    }
+    /* istanbul ignore if */
+    if (!this._root) { throw Error('unexpected error') }
+    return this._root.$i18n.d(value, key, locale)
+  } else {
+    return ret || ''
+  }
+};
+
+VueI18n.prototype.d = function d (value) {
+    var args = [], len = arguments.length - 1;
+    while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
+
+  var locale = this.locale;
+  var key = null;
+
+  if (args.length === 1) {
+    if (isString(args[0])) {
+      key = args[0];
+    } else if (isObject(args[0])) {
+      if (args[0].locale) {
+        locale = args[0].locale;
+      }
+      if (args[0].key) {
+        key = args[0].key;
+      }
+    }
+  } else if (args.length === 2) {
+    if (isString(args[0])) {
+      key = args[0];
+    }
+    if (isString(args[1])) {
+      locale = args[1];
+    }
+  }
+
+  return this._d(value, locale, key)
+};
+
+VueI18n.prototype.getNumberFormat = function getNumberFormat (locale) {
+  return looseClone(this._vm.numberFormats[locale] || {})
+};
+
+VueI18n.prototype.setNumberFormat = function setNumberFormat (locale, format) {
+  this._vm.$set(this._vm.numberFormats, locale, format);
+  this._clearNumberFormat(locale, format);
+};
+
+VueI18n.prototype.mergeNumberFormat = function mergeNumberFormat (locale, format) {
+  this._vm.$set(this._vm.numberFormats, locale, merge(this._vm.numberFormats[locale] || {}, format));
+  this._clearNumberFormat(locale, format);
+};
+
+VueI18n.prototype._clearNumberFormat = function _clearNumberFormat (locale, format) {
+  for (var key in format) {
+    var id = locale + "__" + key;
+
+    if (!this._numberFormatters.hasOwnProperty(id)) {
+      continue
+    }
+
+    delete this._numberFormatters[id];
+  }
+};
+
+VueI18n.prototype._getNumberFormatter = function _getNumberFormatter (
+  value,
+  locale,
+  fallback,
+  numberFormats,
+  key,
+  options
+) {
+  var _locale = locale;
+  var formats = numberFormats[_locale];
+
+  var chain = this._getLocaleChain(locale, fallback);
+  for (var i = 0; i < chain.length; i++) {
+    var current = _locale;
+    var step = chain[i];
+    formats = numberFormats[step];
+    _locale = step;
+    // fallback locale
+    if (isNull(formats) || isNull(formats[key])) {
+      if (step !== locale && "development" !== 'production' && !this._isSilentTranslationWarn(key) && !this._isSilentFallbackWarn(key)) {
+        warn(("Fall back to '" + step + "' number formats from '" + current + "' number formats."));
+      }
+    } else {
+      break
+    }
+  }
+
+  if (isNull(formats) || isNull(formats[key])) {
+    return null
+  } else {
+    var format = formats[key];
+
+    var formatter;
+    if (options) {
+      // If options specified - create one time number formatter
+      formatter = new Intl.NumberFormat(_locale, Object.assign({}, format, options));
+    } else {
+      var id = _locale + "__" + key;
+      formatter = this._numberFormatters[id];
+      if (!formatter) {
+        formatter = this._numberFormatters[id] = new Intl.NumberFormat(_locale, format);
+      }
+    }
+    return formatter
+  }
+};
+
+VueI18n.prototype._n = function _n (value, locale, key, options) {
+  /* istanbul ignore if */
+  if (!VueI18n.availabilities.numberFormat) {
+    if (true) {
+      warn('Cannot format a Number value due to not supported Intl.NumberFormat.');
+    }
+    return ''
+  }
+
+  if (!key) {
+    var nf = !options ? new Intl.NumberFormat(locale) : new Intl.NumberFormat(locale, options);
+    return nf.format(value)
+  }
+
+  var formatter = this._getNumberFormatter(value, locale, this.fallbackLocale, this._getNumberFormats(), key, options);
+  var ret = formatter && formatter.format(value);
+  if (this._isFallbackRoot(ret)) {
+    if ( true && !this._isSilentTranslationWarn(key) && !this._isSilentFallbackWarn(key)) {
+      warn(("Fall back to number localization of root: key '" + key + "'."));
+    }
+    /* istanbul ignore if */
+    if (!this._root) { throw Error('unexpected error') }
+    return this._root.$i18n.n(value, Object.assign({}, { key: key, locale: locale }, options))
+  } else {
+    return ret || ''
+  }
+};
+
+VueI18n.prototype.n = function n (value) {
+    var args = [], len = arguments.length - 1;
+    while ( len-- > 0 ) args[ len ] = arguments[ len + 1 ];
+
+  var locale = this.locale;
+  var key = null;
+  var options = null;
+
+  if (args.length === 1) {
+    if (isString(args[0])) {
+      key = args[0];
+    } else if (isObject(args[0])) {
+      if (args[0].locale) {
+        locale = args[0].locale;
+      }
+      if (args[0].key) {
+        key = args[0].key;
+      }
+
+      // Filter out number format options only
+      options = Object.keys(args[0]).reduce(function (acc, key) {
+          var obj;
+
+        if (includes(numberFormatKeys, key)) {
+          return Object.assign({}, acc, ( obj = {}, obj[key] = args[0][key], obj ))
+        }
+        return acc
+      }, null);
+    }
+  } else if (args.length === 2) {
+    if (isString(args[0])) {
+      key = args[0];
+    }
+    if (isString(args[1])) {
+      locale = args[1];
+    }
+  }
+
+  return this._n(value, locale, key, options)
+};
+
+VueI18n.prototype._ntp = function _ntp (value, locale, key, options) {
+  /* istanbul ignore if */
+  if (!VueI18n.availabilities.numberFormat) {
+    if (true) {
+      warn('Cannot format to parts a Number value due to not supported Intl.NumberFormat.');
+    }
+    return []
+  }
+
+  if (!key) {
+    var nf = !options ? new Intl.NumberFormat(locale) : new Intl.NumberFormat(locale, options);
+    return nf.formatToParts(value)
+  }
+
+  var formatter = this._getNumberFormatter(value, locale, this.fallbackLocale, this._getNumberFormats(), key, options);
+  var ret = formatter && formatter.formatToParts(value);
+  if (this._isFallbackRoot(ret)) {
+    if ( true && !this._isSilentTranslationWarn(key)) {
+      warn(("Fall back to format number to parts of root: key '" + key + "' ."));
+    }
+    /* istanbul ignore if */
+    if (!this._root) { throw Error('unexpected error') }
+    return this._root.$i18n._ntp(value, locale, key, options)
+  } else {
+    return ret || []
+  }
+};
+
+Object.defineProperties( VueI18n.prototype, prototypeAccessors );
+
+var availabilities;
+// $FlowFixMe
+Object.defineProperty(VueI18n, 'availabilities', {
+  get: function get () {
+    if (!availabilities) {
+      var intlDefined = typeof Intl !== 'undefined';
+      availabilities = {
+        dateTimeFormat: intlDefined && typeof Intl.DateTimeFormat !== 'undefined',
+        numberFormat: intlDefined && typeof Intl.NumberFormat !== 'undefined'
+      };
+    }
+
+    return availabilities
+  }
+});
+
+VueI18n.install = install;
+VueI18n.version = '8.22.2';
+
+/* harmony default export */ __webpack_exports__["default"] = (VueI18n);
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-js-modal/dist/index.js":
 /*!*************************************************!*\
   !*** ./node_modules/vue-js-modal/dist/index.js ***!
@@ -45419,7 +47624,9 @@ var render = function() {
           { staticClass: "alert alert-dark", attrs: { role: "alert" } },
           [
             _vm._v(
-              "\n      You need to login in first then you can create a new server !.\n      "
+              "\n     " +
+                _vm._s(_vm.$t("message.You_need_to_login")) +
+                "\n      "
             ),
             _c(
               "a",
@@ -45427,7 +47634,7 @@ var render = function() {
                 attrs: { href: "javascript:void(0)" },
                 on: { click: _vm.login_modal }
               },
-              [_vm._v(" click to login ")]
+              [_vm._v(" " + _vm._s(_vm.$t("message.click_to_login")) + " ")]
             )
           ]
         )
@@ -45440,7 +47647,9 @@ var render = function() {
           { staticClass: "alert alert-dark", attrs: { role: "alert" } },
           [
             _vm._v(
-              "\n      You need to verify your email first then you can create a new server !.\n      "
+              "\n      " +
+                _vm._s(_vm.$t("message.verify_your_email")) +
+                "\n      "
             ),
             _c(
               "a",
@@ -45456,22 +47665,70 @@ var render = function() {
                 attrs: { href: "javascript:void(0)" },
                 on: { click: _vm.SendEmailVerfication }
               },
-              [_vm._v("click to send another verification email\n      ")]
+              [_vm._v(_vm._s(_vm.$t("message.send_another")) + "\n      ")]
             )
           ]
         )
       : _vm._e(),
     _vm._v(" "),
-    _c("h6", { staticClass: "font-weight-bold" }, [_vm._v("Add New Server")]),
+    _c("h6", { staticClass: "font-weight-bold" }, [
+      _vm._v(_vm._s(_vm.$t("message.Add_New_Server")))
+    ]),
     _vm._v(" "),
-    _vm._m(0),
+    _c("div", [
+      _c("b", [_vm._v(_vm._s(_vm.$t("message.Rules")))]),
+      _vm._v(" "),
+      _c("div", { staticClass: "alert alert-info", attrs: { role: "alert" } }, [
+        _c("ul", [
+          _c("li", [
+            _vm._v(
+              "\n              " +
+                _vm._s(_vm.$t("message.Following_participating")) +
+                "\n                "
+            ),
+            _c("ol", [
+              _c("li", [
+                _vm._v(" " + _vm._s(_vm.$t("message.rule1")) + " "),
+                _c("b", [_vm._v("malware")])
+              ]),
+              _vm._v(" "),
+              _c("li", [_vm._v(" " + _vm._s(_vm.$t("message.rule2")))]),
+              _vm._v(" "),
+              _c("li", [_vm._v(" " + _vm._s(_vm.$t("message.rule3")))]),
+              _vm._v(" "),
+              _c("li", [_vm._v(" " + _vm._s(_vm.$t("message.rule4")))])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _vm._v(
+              "\n            " +
+                _vm._s(_vm.$t("message.rule5")) +
+                "\n          "
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _vm._v(
+              "\n           " + _vm._s(_vm.$t("message.rule6")) + "\n          "
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c("span", { staticClass: "text-danger" }, [
+              _vm._v(_vm._s(_vm.$t("message.rule7")))
+            ])
+          ])
+        ])
+      ])
+    ]),
     _vm._v(" "),
     _vm.ndStep
       ? _c("div", { staticClass: "mt-4" }, [
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-md-12" }, [
               _c("label", { attrs: { for: "Description" } }, [
-                _vm._v("Your Backlink. You need to add them in your website :")
+                _vm._v(_vm._s(_vm.$t("message.backlink")))
               ]),
               _vm._v(" "),
               _c(
@@ -45483,8 +47740,7 @@ var render = function() {
                     id: "Description",
                     cols: "30",
                     rows: "5",
-                    placeholder:
-                      "Your Backlink You need to add them in your website "
+                    placeholder: _vm.$t("message.Backlink_website")
                   }
                 },
                 [
@@ -45520,7 +47776,7 @@ var render = function() {
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-md-12" }, [
               _c("label", { attrs: { for: "title" } }, [
-                _vm._v("Server title :")
+                _vm._v(_vm._s(_vm.$t("message.Server_title")) + " :")
               ]),
               _vm._v(" "),
               _vm.errors.title
@@ -45543,7 +47799,7 @@ var render = function() {
                 attrs: {
                   type: "text",
                   id: "title",
-                  placeholder: "Server title "
+                  placeholder: _vm.$t("message.Server_title")
                 },
                 domProps: { value: _vm.form.title },
                 on: {
@@ -45593,11 +47849,8 @@ var render = function() {
               _vm._v(" "),
               _c("input", {
                 staticClass: "btn btn-dark d-block bg-dark mt-3",
-                attrs: {
-                  disabled: _vm.checkuser,
-                  type: "submit",
-                  value: "Generate Backlink"
-                },
+                attrs: { disabled: _vm.checkuser, type: "submit" },
+                domProps: { value: _vm.$t("message.Generate_Backlink") },
                 on: { click: _vm.GenerateLink }
               })
             ])
@@ -45609,7 +47862,9 @@ var render = function() {
       ? _c("div", { staticClass: "mt-4" }, [
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-md-12" }, [
-              _c("label", { attrs: { for: "Banner" } }, [_vm._v("Banner :")]),
+              _c("label", { attrs: { for: "Banner" } }, [
+                _vm._v(_vm._s(_vm.$t("message.Banner")) + " :")
+              ]),
               _vm._v(" "),
               _vm.errors.Banner
                 ? _c("span", { staticClass: "text-danger" }, [
@@ -45642,7 +47897,7 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "col-md-12" }, [
               _c("label", { attrs: { for: "Category" } }, [
-                _vm._v("Category :")
+                _vm._v(_vm._s(_vm.$t("message.Category")) + " :")
               ]),
               _vm._v(" "),
               _vm.errors.Category
@@ -45703,7 +47958,7 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "col-md-12" }, [
               _c("label", { attrs: { for: "Category" } }, [
-                _vm._v("Difficulty :")
+                _vm._v(_vm._s(_vm.$t("message.Difficulty")) + " :")
               ]),
               _vm._v(" "),
               _vm.errors.Difficulty
@@ -45747,20 +48002,24 @@ var render = function() {
                   }
                 },
                 [
-                  _c("option", { attrs: { value: "Easy" } }, [_vm._v("Easy")]),
-                  _vm._v(" "),
-                  _c("option", { attrs: { value: "Medium" } }, [
-                    _vm._v("Medium")
+                  _c("option", { attrs: { value: "Easy" } }, [
+                    _vm._v(_vm._s(_vm.$t("message.Easy")))
                   ]),
                   _vm._v(" "),
-                  _c("option", { attrs: { value: "Hard" } }, [_vm._v("Hard")])
+                  _c("option", { attrs: { value: "Medium" } }, [
+                    _vm._v(_vm._s(_vm.$t("message.Medium")))
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "Hard" } }, [
+                    _vm._v(_vm._s(_vm.$t("message.Hard")))
+                  ])
                 ]
               )
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-12" }, [
               _c("label", { attrs: { for: "Language" } }, [
-                _vm._v("Language :")
+                _vm._v(_vm._s(_vm.$t("message.Language")) + " :")
               ]),
               _vm._v(" "),
               _vm.errors.Language
@@ -45830,7 +48089,9 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-12" }, [
-              _c("label", { attrs: { for: "max" } }, [_vm._v("Max. Level :")]),
+              _c("label", { attrs: { for: "max" } }, [
+                _vm._v(_vm._s(_vm.$t("message.Max_Level")) + " :")
+              ]),
               _vm._v(" "),
               _vm.errors.Level
                 ? _c("span", { staticClass: "text-danger" }, [
@@ -45869,7 +48130,7 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "col-md-12" }, [
               _c("label", { attrs: { for: "youtube" } }, [
-                _vm._v("YouTube Trailer ID :")
+                _vm._v(_vm._s(_vm.$t("message.YouTube")) + " :")
               ]),
               _vm._v(" "),
               _vm.errors.YouTube
@@ -45893,7 +48154,7 @@ var render = function() {
                   type: "url",
                   step: "any",
                   id: "youtube",
-                  placeholder: "YouTube Trailer ID "
+                  placeholder: _vm.$t("message.YouTube")
                 },
                 domProps: { value: _vm.form.YouTube },
                 on: {
@@ -45908,7 +48169,9 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "col-md-12" }, [
-              _c("label", { attrs: { for: "Rates" } }, [_vm._v("Rates (%) :")]),
+              _c("label", { attrs: { for: "Rates" } }, [
+                _vm._v(_vm._s(_vm.$t("message.Rates")) + "  :")
+              ]),
               _vm._v(" "),
               _vm.errors.Rates
                 ? _c("span", { staticClass: "text-danger" }, [
@@ -45931,7 +48194,7 @@ var render = function() {
                   type: "number",
                   step: "any",
                   id: "Rates",
-                  placeholder: "Rates % "
+                  placeholder: _vm.$t("message.Rates")
                 },
                 domProps: { value: _vm.form.Rates },
                 on: {
@@ -45947,7 +48210,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("label", { attrs: { for: "Description" } }, [
-            _vm._v("Description :")
+            _vm._v(_vm._s(_vm.$t("message.Description")) + " :")
           ]),
           _vm._v(" "),
           _vm.errors.Description
@@ -45972,7 +48235,7 @@ var render = function() {
               id: "Description",
               cols: "30",
               rows: "5",
-              placeholder: "Description"
+              placeholder: _vm.$t("message.Description")
             },
             domProps: { value: _vm.form.Description },
             on: {
@@ -45999,17 +48262,15 @@ var render = function() {
           _c("div", [
             _c("input", {
               staticClass: "btn btn-dark  bg-dark mt-3",
-              attrs: {
-                disabled: _vm.checkuser,
-                type: "submit",
-                value: "Create"
-              },
+              attrs: { disabled: _vm.checkuser, type: "submit" },
+              domProps: { value: _vm.$t("message.Create") },
               on: { click: _vm.createServer }
             }),
             _vm._v(" "),
             _c("input", {
               staticClass: "btn btn-dark bg-dark mt-3",
-              attrs: { type: "submit", value: "Back" },
+              attrs: { type: "submit" },
+              domProps: { value: _vm.$t("message.Back") },
               on: {
                 click: function($event) {
                   _vm.ndStep = true
@@ -46022,58 +48283,7 @@ var render = function() {
       : _vm._e()
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("b", [_vm._v("Rules :")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "alert alert-info", attrs: { role: "alert" } }, [
-        _c("ul", [
-          _c("li", [
-            _vm._v(
-              "\n              Following pages are strictly prohibited from participating :\n                "
-            ),
-            _c("ol", [
-              _c("li", [
-                _vm._v("1. Sites with exaggerated much banner advertising or "),
-                _c("b", [_vm._v("malware")])
-              ]),
-              _vm._v(" "),
-              _c("li", [_vm._v("2. Pages which do not have Game content")]),
-              _vm._v(" "),
-              _c("li", [_vm._v("3. Toplists")]),
-              _vm._v(" "),
-              _c("li", [_vm._v("4. Sites that infringe applicable law")])
-            ])
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _vm._v(
-              "\n            The title and description must be in accordance with the content of the page\n          "
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _vm._v(
-              "\n            Violations of these rules and fraud (so-called cheating) will result the suspension of your account\n          "
-            )
-          ]),
-          _vm._v(" "),
-          _c("li", [
-            _c("span", { staticClass: "text-danger" }, [
-              _vm._v(
-                "Your server will be displayed when approved by the administrators"
-              )
-            ])
-          ])
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -46096,10 +48306,12 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "text-center py-2" }, [
-    _c("h2", { staticClass: "font-weight-bold" }, [_vm._v("Welcome back!")]),
+    _c("h2", { staticClass: "font-weight-bold" }, [
+      _vm._v(" " + _vm._s(_vm.$t("message.Welcome_back")) + " ")
+    ]),
     _vm._v(" "),
     _c("p", [
-      _vm._v("\n    Don't have an account?"),
+      _vm._v("\n    " + _vm._s(_vm.$t("message.account"))),
       _c(
         "a",
         {
@@ -46107,7 +48319,7 @@ var render = function() {
           staticStyle: { cursor: "pointer" },
           on: { click: _vm.register_modal }
         },
-        [_vm._v("Create Account")]
+        [_vm._v(_vm._s(_vm.$t("message.Create_Account")))]
       )
     ]),
     _vm._v(" "),
@@ -46132,7 +48344,7 @@ var render = function() {
               class: { "is-invalid": _vm.errors.username },
               attrs: {
                 type: "text",
-                placeholder: "Username",
+                placeholder: _vm.$t("message.Username"),
                 name: "username"
               },
               domProps: { value: _vm.form.username },
@@ -46159,7 +48371,7 @@ var render = function() {
               class: { "is-invalid": _vm.errors.password },
               attrs: {
                 type: "password",
-                placeholder: "Password",
+                placeholder: _vm.$t("message.Password"),
                 name: "password"
               },
               domProps: { value: _vm.form.password },
@@ -46173,7 +48385,12 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _vm._m(0),
+            _c("div", { staticClass: "text-left" }, [
+              _c("input", { attrs: { type: "checkbox" } }),
+              _c("label", { staticClass: "ml-2", attrs: { for: "check" } }, [
+                _vm._v(_vm._s(_vm.$t("message.Remember_Me")))
+              ])
+            ]),
             _vm._v(" "),
             _c("vue-recaptcha", {
               attrs: { sitekey: _vm.$store.state.sitekey },
@@ -46182,11 +48399,8 @@ var render = function() {
             _vm._v(" "),
             _c("input", {
               staticClass: "btn btn-dark btn-block rounded",
-              attrs: {
-                disabled: _vm.disabel,
-                type: "submit",
-                value: "Sign In"
-              },
+              attrs: { disabled: _vm.disabel, type: "submit" },
+              domProps: { value: _vm.$t("message.Sign_In") },
               on: { click: _vm.login }
             })
           ],
@@ -46198,19 +48412,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "text-left" }, [
-      _c("input", { attrs: { type: "checkbox" } }),
-      _c("label", { staticClass: "ml-2", attrs: { for: "check" } }, [
-        _vm._v("Remember Me")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -46233,10 +48435,12 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "text-center py-2" }, [
-    _c("h2", { staticClass: "font-weight-bold" }, [_vm._v("Create Account")]),
+    _c("h2", { staticClass: "font-weight-bold" }, [
+      _vm._v(_vm._s(_vm.$t("message.Create_Account")))
+    ]),
     _vm._v(" "),
     _c("p", [
-      _vm._v("\n    Already have an account?"),
+      _vm._v("\n    " + _vm._s(_vm.$t("message.Already"))),
       _c(
         "a",
         {
@@ -46244,7 +48448,7 @@ var render = function() {
           staticStyle: { cursor: "pointer" },
           on: { click: _vm.login_modal }
         },
-        [_vm._v("Sign In")]
+        [_vm._v(_vm._s(_vm.$t("message.Sign_In")))]
       )
     ]),
     _vm._v(" "),
@@ -46269,7 +48473,7 @@ var render = function() {
               class: { "is-invalid": _vm.errors.username },
               attrs: {
                 type: "text",
-                placeholder: "Username",
+                placeholder: _vm.$t("message.Username"),
                 name: "username"
               },
               domProps: { value: _vm.form.username },
@@ -46302,7 +48506,7 @@ var render = function() {
               class: { "is-invalid": _vm.errors.email },
               attrs: {
                 type: "email",
-                placeholder: "E-mail Address",
+                placeholder: _vm.$t("message.Email"),
                 name: "email"
               },
               domProps: { value: _vm.form.email },
@@ -46335,7 +48539,7 @@ var render = function() {
               class: { "is-invalid": _vm.errors.password },
               attrs: {
                 type: "password",
-                placeholder: "Password",
+                placeholder: _vm.$t("message.Password"),
                 name: "password"
               },
               domProps: { value: _vm.form.password },
@@ -46367,7 +48571,7 @@ var render = function() {
               staticClass: "form-control my-3 rounded",
               attrs: {
                 type: "password",
-                placeholder: "Confirm Password",
+                placeholder: _vm.$t("message.Confirm_Password"),
                 name: "confirmPassword"
               },
               domProps: { value: _vm.form.password_confirmation },
@@ -46431,7 +48635,9 @@ var render = function() {
                   attrs: { for: "check" }
                 },
                 [
-                  _c("span", [_vm._v("I have read and agree to the")]),
+                  _c("span", [
+                    _vm._v(" " + _vm._s(_vm.$t("message.I_have_read")))
+                  ]),
                   _vm._v(" "),
                   _c(
                     "a",
@@ -46439,7 +48645,7 @@ var render = function() {
                       staticClass: "text-success font-16",
                       attrs: { href: "javascript:void(0)" }
                     },
-                    [_vm._v("Terms of Use")]
+                    [_vm._v(_vm._s(_vm.$t("message.Terms_of_Use")))]
                   )
                 ]
               )
@@ -46452,11 +48658,8 @@ var render = function() {
             _vm._v(" "),
             _c("input", {
               staticClass: "btn btn-dark btn-block rounded",
-              attrs: {
-                disabled: _vm.disabel,
-                type: "submit",
-                value: "Sign In"
-              },
+              attrs: { disabled: _vm.disabel, type: "submit" },
+              domProps: { value: _vm.$t("message.Sign_Up") },
               on: { click: _vm.register }
             })
           ],
@@ -47147,7 +49350,7 @@ var render = function() {
         ? _c(
             "div",
             { staticStyle: { "text-align": "center", "margin-top": "100px" } },
-            [_c("b", [_vm._v("No Records Found")])]
+            [_c("b", [_vm._v("No Records Found ")])]
           )
         : _vm._e(),
       _vm._v(" "),
@@ -48956,187 +51159,198 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("section", { staticClass: "footer" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("h6", [_vm._v(_vm._s(_vm.$t("message.Footer_Right")))]),
+            _vm._v(" "),
+            _c("p", { staticClass: "mt-3 text-justify" }, [
+              _vm._v(
+                "\n                        " +
+                  _vm._s(_vm.$t("message.Footer_text")) +
+                  "\n                    "
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-6 m-auto" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-md-4 m-auto" }, [
+                _c(
+                  "a",
+                  {
+                    staticClass:
+                      "d-block my-2 text-dark font-weight-bold text-decoration-none",
+                    attrs: { href: "" }
+                  },
+                  [_vm._v(" " + _vm._s(_vm.$t("message.HOMEPAGE")))]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass:
+                      "d-block my-2 text-dark font-weight-bold text-decoration-none",
+                    attrs: { href: "" }
+                  },
+                  [_vm._v(_vm._s(_vm.$t("message.METIN2_SERVICE")))]
+                ),
+                _vm._v(" "),
+                _c(
+                  "a",
+                  {
+                    staticClass:
+                      "d-block my-2 text-dark font-weight-bold text-decoration-none",
+                    attrs: { href: "" }
+                  },
+                  [_vm._v(_vm._s(_vm.$t("message.BECOME_A_PARTNER")))]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "col-md-4 m-auto" },
+                [
+                  _c(
+                    "a",
+                    {
+                      staticClass:
+                        "d-block my-2 text-dark font-weight-bold text-decoration-none",
+                      attrs: { href: "" }
+                    },
+                    [_vm._v(_vm._s(_vm.$t("message.PARTNERS")))]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    {
+                      staticClass:
+                        "d-block my-2 text-danger font-weight-bold text-decoration-none",
+                      attrs: { to: "/createserver" }
+                    },
+                    [_vm._v(_vm._s(_vm.$t("message.ADD_SERVERS")))]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "a",
+                    {
+                      staticClass:
+                        "d-block my-2 text-dark font-weight-bold text-decoration-none",
+                      attrs: { href: "" }
+                    },
+                    [_vm._v(_vm._s(_vm.$t("message.FAQ")))]
+                  )
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "col-md-4 m-auto" }, [
+                _c("p", { staticClass: "mb-2 font-weight-bold" }, [
+                  _vm._v(_vm._s(_vm.$t("message.Find_Us_On")))
+                ]),
+                _vm._v(" "),
+                _vm._m(0)
+              ])
+            ])
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("section", { staticClass: "bottomBar bg-dark py-2" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-6" }, [
+            _c("p", { staticClass: "text-secondary" }, [
+              _vm._v(
+                "\n                         " +
+                  _vm._s(_vm.$t("message.Footer_text1")) +
+                  " "
+              ),
+              _c("a", { staticClass: "text-white", attrs: { href: "" } }, [
+                _vm._v("trademarks")
+              ]),
+              _vm._v(" " + _vm._s(_vm.$t("message.Footer_text2")) + " "),
+              _c("a", { staticClass: "text-white", attrs: { href: "" } }, [
+                _vm._v(" " + _vm._s(_vm.$t("message.Footer_text3")))
+              ]),
+              _vm._v(".\n                    ")
+            ])
+          ]),
+          _vm._v(" "),
+          _vm._m(1)
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("section", { staticClass: "footer" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-6" }, [
-              _c("h6", [
-                _vm._v("© 2020 Metin2-Toplist.com All rights reserved.")
-              ]),
-              _vm._v(" "),
-              _c("p", { staticClass: "mt-3 text-justify" }, [
-                _vm._v(
-                  "\n                        Es ist ungeklärt, ob es Profitgier oder reine Freude am Experimentieren war, was die ersten Serveradministratoren dazu bewog, ihre anfangs über den VPN-Client „LogMeIn Hamachi“ und „Windows Virtual PC“ laufenden Projekte öffentlich zugänglich zu machen und damit.\n                    "
-                )
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-6 m-auto" }, [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-4 m-auto" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass:
-                        "d-block my-2 text-dark font-weight-bold text-decoration-none",
-                      attrs: { href: "" }
-                    },
-                    [_vm._v("HOMEPAGE")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass:
-                        "d-block my-2 text-dark font-weight-bold text-decoration-none",
-                      attrs: { href: "" }
-                    },
-                    [_vm._v("METIN2 SERVICE")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass:
-                        "d-block my-2 text-dark font-weight-bold text-decoration-none",
-                      attrs: { href: "" }
-                    },
-                    [_vm._v("BECOME A PARTNER")]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4 m-auto" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass:
-                        "d-block my-2 text-dark font-weight-bold text-decoration-none",
-                      attrs: { href: "" }
-                    },
-                    [_vm._v("PARTNERS")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass:
-                        "d-block my-2 text-danger font-weight-bold text-decoration-none",
-                      attrs: { href: "" }
-                    },
-                    [_vm._v("ADD SERVERS")]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "a",
-                    {
-                      staticClass:
-                        "d-block my-2 text-dark font-weight-bold text-decoration-none",
-                      attrs: { href: "" }
-                    },
-                    [_vm._v("FAQ")]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-md-4 m-auto" }, [
-                  _c("p", { staticClass: "mb-2 font-weight-bold" }, [
-                    _vm._v("Find Us On")
-                  ]),
-                  _vm._v(" "),
-                  _c("p", [
-                    _c(
-                      "a",
-                      {
-                        staticClass:
-                          "mx-1 my-2 text-dark font-weight-bold text-decoration-none d-inline",
-                        attrs: { href: "" }
-                      },
-                      [
-                        _c("img", {
-                          staticClass: "img-fluid",
-                          attrs: { src: "/img/fb.png", alt: "" }
-                        })
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass:
-                          "mx-1 my-2 text-dark font-weight-bold text-decoration-none d-inline",
-                        attrs: { href: "" }
-                      },
-                      [
-                        _c("img", {
-                          staticClass: "img-fluid",
-                          attrs: { src: "/img/discord.png", alt: "" }
-                        })
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "a",
-                      {
-                        staticClass:
-                          "mx-1 my-2 text-dark font-weight-bold text-decoration-none d-inline",
-                        attrs: { href: "" }
-                      },
-                      [
-                        _c("img", {
-                          staticClass: "img-fluid",
-                          attrs: { src: "/img/epvp.png", alt: "" }
-                        })
-                      ]
-                    )
-                  ])
-                ])
-              ])
-            ])
-          ])
-        ])
+    return _c("p", [
+      _c(
+        "a",
+        {
+          staticClass:
+            "mx-1 my-2 text-dark font-weight-bold text-decoration-none d-inline",
+          attrs: { href: "" }
+        },
+        [
+          _c("img", {
+            staticClass: "img-fluid",
+            attrs: { src: "/img/fb.png", alt: "" }
+          })
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass:
+            "mx-1 my-2 text-dark font-weight-bold text-decoration-none d-inline",
+          attrs: { href: "" }
+        },
+        [
+          _c("img", {
+            staticClass: "img-fluid",
+            attrs: { src: "/img/discord.png", alt: "" }
+          })
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass:
+            "mx-1 my-2 text-dark font-weight-bold text-decoration-none d-inline",
+          attrs: { href: "" }
+        },
+        [
+          _c("img", {
+            staticClass: "img-fluid",
+            attrs: { src: "/img/epvp.png", alt: "" }
+          })
+        ]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-6 text-right" }, [
+      _c("a", { staticClass: "text-white mr-2", attrs: { href: "" } }, [
+        _vm._v("Regulations")
       ]),
       _vm._v(" "),
-      _c("section", { staticClass: "bottomBar bg-dark py-2" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-md-6" }, [
-              _c("p", { staticClass: "text-secondary" }, [
-                _vm._v(
-                  "\n                        Further content used here are "
-                ),
-                _c("a", { staticClass: "text-white", attrs: { href: "" } }, [
-                  _vm._v("trademarks")
-                ]),
-                _vm._v(" of their "),
-                _c("a", { staticClass: "text-white", attrs: { href: "" } }, [
-                  _vm._v("respective owners")
-                ]),
-                _vm._v(".\n                    ")
-              ])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-md-6 text-right" }, [
-              _c("a", { staticClass: "text-white mr-2", attrs: { href: "" } }, [
-                _vm._v("Regulations")
-              ]),
-              _vm._v(" "),
-              _c("span", [_vm._v("|")]),
-              _vm._v(" "),
-              _c(
-                "a",
-                { staticClass: "text-secondary ml-2", attrs: { href: "" } },
-                [_vm._v("Privacy Policy")]
-              )
-            ])
-          ])
-        ])
+      _c("span", [_vm._v("|")]),
+      _vm._v(" "),
+      _c("a", { staticClass: "text-secondary ml-2", attrs: { href: "" } }, [
+        _vm._v("Privacy Policy")
       ])
     ])
   }
@@ -49190,7 +51404,7 @@ var render = function() {
                   _c(
                     "router-link",
                     { staticClass: "text-white", attrs: { to: "/home" } },
-                    [_vm._v("HOME")]
+                    [_vm._v(_vm._s(_vm.$t("message.HOME")))]
                   )
                 ],
                 1
@@ -49198,7 +51412,7 @@ var render = function() {
               _vm._v(" "),
               _c("li", { staticClass: "dropdown" }, [
                 _c("a", { staticClass: "text-white", attrs: { href: "" } }, [
-                  _vm._v("SERVERS")
+                  _vm._v(_vm._s(_vm.$t("message.SERVERS")))
                 ]),
                 _vm._v(" "),
                 _c("ul", { staticClass: "left" }, [
@@ -49214,7 +51428,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("All Servers")]
+                      [_vm._v(_vm._s(_vm.$t("message.All_Servers")))]
                     )
                   ]),
                   _vm._v(" "),
@@ -49300,7 +51514,11 @@ var render = function() {
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(0),
+              _c("li", [
+                _c("a", { staticClass: "text-white", attrs: { href: "" } }, [
+                  _vm._v(_vm._s(_vm.$t("message.All_Servers")))
+                ])
+              ]),
               _vm._v(" "),
               _c(
                 "li",
@@ -49308,7 +51526,7 @@ var render = function() {
                   _c(
                     "router-link",
                     { staticClass: "text-white", attrs: { to: "/faq" } },
-                    [_vm._v("FAQ")]
+                    [_vm._v(_vm._s(_vm.$t("message.FAQ")))]
                   )
                 ],
                 1
@@ -49320,7 +51538,7 @@ var render = function() {
                   _c(
                     "router-link",
                     { staticClass: "text-white", attrs: { to: "/contact" } },
-                    [_vm._v("CONTACT")]
+                    [_vm._v(_vm._s(_vm.$t("message.CONTACT")))]
                   )
                 ],
                 1
@@ -49341,7 +51559,7 @@ var render = function() {
                       "btn btn-link text-white ml-5 hidbtn dropdown-toggle text-decoration-none",
                     on: { click: _vm.login_modal }
                   },
-                  [_vm._v("Sign in")]
+                  [_vm._v(_vm._s(_vm.$t("message.Sign_in")))]
                 ),
                 _vm._v("|\n        "),
                 _c(
@@ -49356,7 +51574,11 @@ var render = function() {
                       staticClass: "img-fluid",
                       attrs: { src: "/img/add-user.png", alt: "" }
                     }),
-                    _vm._v("\n          Create Account\n        ")
+                    _vm._v(
+                      "\n          " +
+                        _vm._s(_vm.$t("message.Create_Account")) +
+                        "\n        "
+                    )
                   ]
                 ),
                 _vm._v(" "),
@@ -49366,7 +51588,7 @@ var render = function() {
                     staticClass: "btn btn-danger ml-2",
                     attrs: { to: "/createserver" }
                   },
-                  [_vm._v("ADD SERVER")]
+                  [_vm._v(_vm._s(_vm.$t("message.ADD_SERVER")))]
                 )
               ],
               1
@@ -49408,7 +51630,7 @@ var render = function() {
                     staticClass: "btn btn-danger logout",
                     on: { click: _vm.logout }
                   },
-                  [_vm._v("LOG OUT")]
+                  [_vm._v(_vm._s(_vm.$t("message.LOG_OUT")))]
                 )
               ],
               1
@@ -49418,18 +51640,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { staticClass: "text-white", attrs: { href: "" } }, [
-        _vm._v("PARTNERS")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -49468,7 +51679,17 @@ var render = function() {
               { staticClass: "col-md-8 my-1" },
               [
                 _c("div", { staticClass: "row" }, [
-                  _vm._m(0),
+                  _c("div", { staticClass: "col-sm-8" }, [
+                    _c("h6", { staticClass: "font-weight-bold" }, [
+                      _vm._v(_vm._s(_vm.$t("message.Welcome")))
+                    ]),
+                    _vm._v(" "),
+                    _c("p", [
+                      _vm._v(
+                        _vm._s(_vm.$t("message.Largest_private_server_list"))
+                      )
+                    ])
+                  ]),
                   _vm._v(" "),
                   _c("div", { staticClass: "col-sm-4 text-right" }, [
                     _c("div", { staticClass: "input-group" }, [
@@ -49503,7 +51724,7 @@ var render = function() {
                         },
                         [
                           _c("option", { attrs: { value: "" } }, [
-                            _vm._v("All Servers")
+                            _vm._v(_vm._s(_vm.$t("message.ADD_SERVER")))
                           ]),
                           _vm._v(" "),
                           _c("option", { attrs: { value: "Deutsch" } }, [
@@ -49555,20 +51776,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col-sm-8" }, [
-      _c("h6", { staticClass: "font-weight-bold" }, [
-        _vm._v("Welcome at Metin2-Toplist.com!")
-      ]),
-      _vm._v(" "),
-      _c("p", [_vm._v("Largest private server list!")])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -49600,14 +51808,65 @@ var render = function() {
           staticClass: "btn btn-danger btn-block rounded py-3 font-weight-bold",
           attrs: { to: "/createserver" }
         },
-        [_vm._v("ADD YOUR SERVER")]
+        [_vm._v(_vm._s(_vm.$t("message.ADD_YOUR_SERVER")))]
       ),
       _vm._v(" "),
-      _vm._m(0),
+      _c("div", { staticClass: "card firstCard py-5 mt-4" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("p", { staticClass: "text-danger" }, [
+            _vm._v(" " + _vm._s(_vm.$t("message.FEATURED_SERVER")) + " ")
+          ]),
+          _vm._v(" "),
+          _c("span", { staticClass: " d-inline m-auto" }, [_vm._v("»")]),
+          _vm._v(" "),
+          _c("h2", { staticClass: "font-weight-bold text-white d-inline" }, [
+            _vm._v("Zuko2.com")
+          ]),
+          _vm._v(" "),
+          _c("p", { staticClass: "mt-4 mb-3 text-white card-lorem" }, [
+            _vm._v(
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore."
+            )
+          ]),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "a",
+            { staticClass: "btn btn-light mt-5 d-inline", attrs: { href: "" } },
+            [_vm._v(_vm._s(_vm.$t("message.VISIT_WEBSITE")))]
+          ),
+          _vm._v(" "),
+          _c("img", {
+            staticClass: "img-fluid d-inline ml-4",
+            attrs: { src: "/img/m2.png", alt: "" }
+          })
+        ])
+      ]),
       _vm._v(" "),
       _vm._m(1),
       _vm._v(" "),
-      _vm._m(2)
+      _c("div", { staticClass: "card card-three mt-3 bg-dark py-3" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "text-center" }, [
+            _c("p", { staticClass: "text-white mb-3" }, [
+              _vm._v(_vm._s(_vm.$t("message.Promoted_server_trailer")))
+            ]),
+            _vm._v(" "),
+            _c("iframe", {
+              attrs: {
+                width: "100%",
+                height: "auto",
+                src: "https://www.youtube.com/embed/xcJtL7QggTI",
+                frameborder: "0",
+                allow:
+                  "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
+                allowfullscreen: ""
+              }
+            })
+          ])
+        ])
+      ])
     ],
     1
   )
@@ -49617,52 +51876,23 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card firstCard py-5 mt-4" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("p", { staticClass: "text-danger" }, [_vm._v("FEATURED SERVER")]),
-        _vm._v(" "),
-        _c("span", { staticClass: " d-inline m-auto" }, [_vm._v("»")]),
-        _vm._v(" "),
-        _c("h2", { staticClass: "font-weight-bold text-white d-inline" }, [
-          _vm._v("Zuko2.com")
-        ]),
-        _vm._v(" "),
-        _c("p", { staticClass: "mt-4 mb-3 text-white card-lorem" }, [
-          _vm._v(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore."
-          )
-        ]),
-        _vm._v(" "),
-        _c("p", [
-          _c("span", [
-            _c("img", {
-              staticClass: "img-fluid",
-              attrs: { src: "/img/like.png", alt: "" }
-            })
-          ]),
-          _vm._v(" "),
-          _c("span", { staticClass: "text-success" }, [_vm._v("22545")]),
-          _vm._v(" "),
-          _c("span", { staticClass: "mx-3 text-secondary" }, [_vm._v("|")]),
-          _vm._v(" "),
-          _c("span", [
-            _c("i", { staticClass: "fa fa-external-link-alt text-white" })
-          ]),
-          _vm._v(" "),
-          _c("span", { staticClass: "text-white" }, [_vm._v("988")])
-        ]),
-        _vm._v(" "),
-        _c(
-          "a",
-          { staticClass: "btn btn-light mt-5 d-inline", attrs: { href: "" } },
-          [_vm._v("VISIT WEBSITE")]
-        ),
-        _vm._v(" "),
+    return _c("p", [
+      _c("span", [
         _c("img", {
-          staticClass: "img-fluid d-inline ml-4",
-          attrs: { src: "/img/m2.png", alt: "" }
+          staticClass: "img-fluid",
+          attrs: { src: "/img/like.png", alt: "" }
         })
-      ])
+      ]),
+      _vm._v(" "),
+      _c("span", { staticClass: "text-success" }, [_vm._v("22545")]),
+      _vm._v(" "),
+      _c("span", { staticClass: "mx-3 text-secondary" }, [_vm._v("|")]),
+      _vm._v(" "),
+      _c("span", [
+        _c("i", { staticClass: "fa fa-external-link-alt text-white" })
+      ]),
+      _vm._v(" "),
+      _c("span", { staticClass: "text-white" }, [_vm._v("988")])
     ])
   },
   function() {
@@ -49697,32 +51927,6 @@ var staticRenderFns = [
               _c("span", { staticClass: "vision" }, [_vm._v("2 Minutes Ago")])
             ])
           ])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card card-three mt-3 bg-dark py-3" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "text-center" }, [
-          _c("p", { staticClass: "text-white mb-3" }, [
-            _vm._v("Promoted server trailer")
-          ]),
-          _vm._v(" "),
-          _c("iframe", {
-            attrs: {
-              width: "100%",
-              height: "auto",
-              src: "https://www.youtube.com/embed/xcJtL7QggTI",
-              frameborder: "0",
-              allow:
-                "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture",
-              allowfullscreen: ""
-            }
-          })
         ])
       ])
     ])
@@ -66541,17 +68745,19 @@ module.exports = function(module) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vuejs_paginate__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuejs-paginate */ "./node_modules/vuejs-paginate/dist/index.js");
 /* harmony import */ var vuejs_paginate__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vuejs_paginate__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue_js_modal__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-js-modal */ "./node_modules/vue-js-modal/dist/index.js");
-/* harmony import */ var vue_js_modal__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_js_modal__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-axios */ "./node_modules/vue-axios/dist/vue-axios.es5.js");
-/* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue_axios__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _router_router_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./router/router.js */ "./resources/js/router/router.js");
-/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./store/store */ "./resources/js/store/store.js");
+/* harmony import */ var vue_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-i18n */ "./node_modules/vue-i18n/dist/vue-i18n.esm.js");
+/* harmony import */ var _lang_all_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./lang/all.js */ "./resources/js/lang/all.js");
+/* harmony import */ var vue_js_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-js-modal */ "./node_modules/vue-js-modal/dist/index.js");
+/* harmony import */ var vue_js_modal__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_js_modal__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! vue-axios */ "./node_modules/vue-axios/dist/vue-axios.es5.js");
+/* harmony import */ var vue_axios__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(vue_axios__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var _router_router_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./router/router.js */ "./resources/js/router/router.js");
+/* harmony import */ var _store_store__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./store/store */ "./resources/js/store/store.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -66590,13 +68796,26 @@ window.something = new Vue();
 
 
 Vue.component('paginate', vuejs_paginate__WEBPACK_IMPORTED_MODULE_0___default.a);
+/**VueI18n */
 
-Vue.use(vue_js_modal__WEBPACK_IMPORTED_MODULE_1___default.a);
+
+Vue.use(vue_i18n__WEBPACK_IMPORTED_MODULE_1__["default"]);
+
+var i18n = new vue_i18n__WEBPACK_IMPORTED_MODULE_1__["default"]({
+  locale: 'en',
+  // set locale
+  messages: _lang_all_js__WEBPACK_IMPORTED_MODULE_2__["default"] // set locale messages
+
+});
+/**end VueI18n */
+
+
+Vue.use(vue_js_modal__WEBPACK_IMPORTED_MODULE_3___default.a);
 /*sweetalert2*/
 
 
-window.Swal = sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a;
-var swalWithBootstrapButtons = sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.mixin({
+window.Swal = sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a;
+var swalWithBootstrapButtons = sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.mixin({
   customClass: {
     confirmButton: 'btn btn-success',
     cancelButton: 'btn btn-danger'
@@ -66604,15 +68823,15 @@ var swalWithBootstrapButtons = sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.
   buttonsStyling: false
 });
 window.swalWithBootstrapButtons = swalWithBootstrapButtons;
-var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.mixin({
+var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.mixin({
   toast: true,
   position: 'bottom-start',
   showConfirmButton: false,
   timer: 5000,
   timerProgressBar: true,
   onOpen: function onOpen(toast) {
-    toast.addEventListener('mouseenter', sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.stopTimer);
-    toast.addEventListener('mouseleave', sweetalert2__WEBPACK_IMPORTED_MODULE_2___default.a.resumeTimer);
+    toast.addEventListener('mouseenter', sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.stopTimer);
+    toast.addEventListener('mouseleave', sweetalert2__WEBPACK_IMPORTED_MODULE_4___default.a.resumeTimer);
   }
 });
 window.Toast = Toast;
@@ -66622,17 +68841,17 @@ window.Toast = Toast;
 
 
 
-Vue.use(vue_axios__WEBPACK_IMPORTED_MODULE_4___default.a, axios__WEBPACK_IMPORTED_MODULE_3___default.a);
+Vue.use(vue_axios__WEBPACK_IMPORTED_MODULE_6___default.a, axios__WEBPACK_IMPORTED_MODULE_5___default.a);
 /*End axios*/
 
 /*Vue Router*/
 
 
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]);
+Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_7__["default"]);
 
-var router = new vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]({
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_7__["default"]({
   mode: 'history',
-  routes: _router_router_js__WEBPACK_IMPORTED_MODULE_6__["default"]
+  routes: _router_router_js__WEBPACK_IMPORTED_MODULE_8__["default"]
 });
 /*End Vue Router*/
 
@@ -66645,7 +68864,8 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_5__["default"]({
 
 var app = new Vue({
   el: '#app',
-  store: _store_store__WEBPACK_IMPORTED_MODULE_7__["default"],
+  store: _store_store__WEBPACK_IMPORTED_MODULE_9__["default"],
+  i18n: i18n,
   router: router
 });
 
@@ -67884,6 +70104,181 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_main_vue_vue_type_template_id_c176d7f8_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/lang/all.js":
+/*!**********************************!*\
+  !*** ./resources/js/lang/all.js ***!
+  \**********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _en__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./en */ "./resources/js/lang/en.js");
+/* harmony import */ var _de__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./de */ "./resources/js/lang/de.js");
+/* harmony import */ var _fr__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./fr */ "./resources/js/lang/fr.js");
+/* harmony import */ var _it__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./it */ "./resources/js/lang/it.js");
+/* harmony import */ var _pl__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pl */ "./resources/js/lang/pl.js");
+/* harmony import */ var _ro__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ro */ "./resources/js/lang/ro.js");
+
+
+
+
+
+
+var messages = {
+  en: _en__WEBPACK_IMPORTED_MODULE_0__["default"],
+  de: _de__WEBPACK_IMPORTED_MODULE_1__["default"],
+  fr: _fr__WEBPACK_IMPORTED_MODULE_2__["default"],
+  it: _it__WEBPACK_IMPORTED_MODULE_3__["default"],
+  pl: _pl__WEBPACK_IMPORTED_MODULE_4__["default"],
+  ro: _ro__WEBPACK_IMPORTED_MODULE_5__["default"]
+};
+/* harmony default export */ __webpack_exports__["default"] = (messages);
+
+/***/ }),
+
+/***/ "./resources/js/lang/de.js":
+/*!*********************************!*\
+  !*** ./resources/js/lang/de.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var de = {
+  message: {
+    test: 'test'
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (de);
+
+/***/ }),
+
+/***/ "./resources/js/lang/en.js":
+/*!*********************************!*\
+  !*** ./resources/js/lang/en.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var _message;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var en = {
+  message: (_message = {
+    HOME: 'HOME',
+    SERVERS: 'SERVERS',
+    All_Servers: 'All Servers',
+    PARTNERS: 'PARTNERS',
+    FAQ: 'FAQ',
+    CONTACT: 'CONTACT',
+    Create_Account: 'Create Account',
+    Sign_in: 'Sign in',
+    ADD_SERVER: 'ADD SERVER',
+    LOG_OUT: 'LOG OUT',
+    Footer_Right: '© 2020 Metin2-Toplist.com All rights reserved.',
+    Footer_text: 'It is unclear whether it was greed for profit or pure joy in experimentation, which prompted the first server administrators to make their projects, which were initially running via the VPN client "LogMeIn Hamachi" and "Windows Virtual PC", publicly accessible and thus.',
+    Footer_text1: 'Further content used here are',
+    Footer_text2: 'trademarks',
+    Footer_text3: 'of their',
+    Footer_text4: 'respective owners',
+    HOMEPAGE: 'HOMEPAGE',
+    METIN2_SERVICE: 'METIN2 SERVICE',
+    BECOME_A_PARTNER: 'BECOME A PARTNER',
+    Find_Us_On: 'Find Us On',
+    ADD_SERVERS: 'ADD SERVERS',
+    FEATURED_SERVER: 'FEATURED SERVER',
+    ADD_YOUR_SERVER: 'ADD YOUR SERVER',
+    VISIT_WEBSITE: 'VISIT WEBSITE',
+    Promoted_server_trailer: 'Promoted server trailer',
+    Welcome: 'Welcome at Metin2-Toplist.com!',
+    Largest_private_server_list: 'Largest private server list!',
+    Welcome_back: 'Welcome back!'
+  }, _defineProperty(_message, "Create_Account", 'Create Account'), _defineProperty(_message, "account", 'Don\'t have an account?'), _defineProperty(_message, "Username", 'User name'), _defineProperty(_message, "Password", 'Password'), _defineProperty(_message, "Remember_Me", 'Remember Me'), _defineProperty(_message, "Sign_In", 'Sign In'), _defineProperty(_message, "Signed_in_successfully", 'Signed in successfully'), _defineProperty(_message, "Create_Account", 'Create Account'), _defineProperty(_message, "Already", 'Already have an account?'), _defineProperty(_message, "Email", 'E-mail Address'), _defineProperty(_message, "Confirm_Password", 'Confirm Password'), _defineProperty(_message, "I_have_read", 'I have read and agree to the'), _defineProperty(_message, "Terms_of_Use", 'Terms of Use'), _defineProperty(_message, "Sign_Up", 'Sign Up'), _defineProperty(_message, "Account_created", 'Account created successfully.'), _defineProperty(_message, "You_need_to_login", ' You need to login in first then you can create a new server !.'), _defineProperty(_message, "click_to_login", 'click to login'), _defineProperty(_message, "verify_your_email", 'You need to verify your email first then you can create a new server !.'), _defineProperty(_message, "send_another", 'click to send another verification email'), _defineProperty(_message, "Add_New_Server", 'Add New Server'), _defineProperty(_message, "Rules", 'Rules :'), _defineProperty(_message, "Following_participating", 'Following pages are strictly prohibited from participating :'), _defineProperty(_message, "rule1", '1. Sites with exaggerated much banner advertising or'), _defineProperty(_message, "rule2", '2. Pages which do not have Game content'), _defineProperty(_message, "rule3", '3. Toplists'), _defineProperty(_message, "rule4", '4. Sites that infringe applicable law'), _defineProperty(_message, "rule5", 'The title and description must be in accordance with the content of the page'), _defineProperty(_message, "rule6", 'Violations of these rules and fraud (so-called cheating) will result the suspension of your account'), _defineProperty(_message, "rule7", 'Your server will be displayed when approved by the administrators'), _defineProperty(_message, "backlink", 'Your Backlink. You need to add them in your website :'), _defineProperty(_message, "Backlink_website", 'Your Backlink You need to add them in your website'), _defineProperty(_message, "Server_title", 'Server title '), _defineProperty(_message, "Generate_Backlink", 'Generate Backlink'), _defineProperty(_message, "Banner", 'Banner'), _defineProperty(_message, "Category", 'Category'), _defineProperty(_message, "Difficulty", 'Difficulty'), _defineProperty(_message, "Easy", 'Easy'), _defineProperty(_message, "Medium", 'Medium'), _defineProperty(_message, "Hard", 'Hard'), _defineProperty(_message, "Language", 'Language'), _defineProperty(_message, "Max_Level", 'Max. Level'), _defineProperty(_message, "YouTube", 'YouTube Trailer Url'), _defineProperty(_message, "Rates", 'Rates (%)'), _defineProperty(_message, "Description", 'Description'), _defineProperty(_message, "Create", 'Create'), _defineProperty(_message, "Back", 'Back'), _defineProperty(_message, "Backlink_Geneated_Successfully", 'Backlink Geneated Successfully'), _defineProperty(_message, "Please_errors", 'Please check the error above .'), _defineProperty(_message, "Something_went_wrong", 'Something went wrong please try again .'), _defineProperty(_message, "Created_Successfully", 'Server Created Successfully'), _defineProperty(_message, "Verification_email_sent_successfully", 'Verification email sent successfully'), _message)
+};
+/* harmony default export */ __webpack_exports__["default"] = (en);
+
+/***/ }),
+
+/***/ "./resources/js/lang/fr.js":
+/*!*********************************!*\
+  !*** ./resources/js/lang/fr.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var fr = {
+  message: {
+    HOME: 'PAGE PRINCIPALE',
+    SERVERS: 'LES SERVEURS',
+    All_Servers: 'Tous les serveurs',
+    PARTNERS: 'LES PARTENAIRES'
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (fr);
+
+/***/ }),
+
+/***/ "./resources/js/lang/it.js":
+/*!*********************************!*\
+  !*** ./resources/js/lang/it.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var it = {
+  message: {
+    test: 'test'
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (it);
+
+/***/ }),
+
+/***/ "./resources/js/lang/pl.js":
+/*!*********************************!*\
+  !*** ./resources/js/lang/pl.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var pl = {
+  message: {
+    test: 'test'
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (pl);
+
+/***/ }),
+
+/***/ "./resources/js/lang/ro.js":
+/*!*********************************!*\
+  !*** ./resources/js/lang/ro.js ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var ro = {
+  message: {
+    test: 'test'
+  }
+};
+/* harmony default export */ __webpack_exports__["default"] = (ro);
 
 /***/ }),
 

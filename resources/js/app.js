@@ -43,6 +43,19 @@ import Paginate from 'vuejs-paginate'
 Vue.component('paginate', Paginate)
 
 
+/**VueI18n */
+import VueI18n from 'vue-i18n'
+
+Vue.use(VueI18n)
+import messages from './lang/all.js'
+
+const i18n = new VueI18n({
+    locale: 'en', // set locale
+    messages, // set locale messages
+})
+
+/**end VueI18n */
+
 import VModal from 'vue-js-modal'
 Vue.use(VModal)
 /*sweetalert2*/
@@ -103,5 +116,6 @@ import store from './store/store'
 const app = new Vue({
     el: '#app',
     store,
+    i18n,
     router
 });

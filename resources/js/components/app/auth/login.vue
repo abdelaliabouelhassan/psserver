@@ -1,12 +1,12 @@
 <template>
   <div class="text-center py-2">
-    <h2 class="font-weight-bold">Welcome back!</h2>
+    <h2 class="font-weight-bold"> {{$t('message.Welcome_back')}} </h2>
     <p>
-      Don't have an account?<a
+      {{$t('message.account')}}<a
         style="cursor:pointer"
         class="ml-2 text-success text-decoration-none"
          @click="register_modal"
-        >Create Account</a
+        >{{$t('message.Create_Account')}}</a
       >
     </p>
     <div class="row">
@@ -17,7 +17,7 @@
             type="text"
             class="form-control my-3 rounded"
             :class="{ 'is-invalid': errors.username }"
-            placeholder="Username"
+            :placeholder="$t('message.Username')"
             name="username"
             v-model="form.username"
           />
@@ -25,14 +25,14 @@
             type="password"
             class="form-control my-3 rounded"
             :class="{ 'is-invalid': errors.password }"
-            placeholder="Password"
+            :placeholder="$t('message.Password')"
             name="password"
             v-model="form.password"
           />
 
           <div class="text-left">
             <input type="checkbox" /><label for="check" class="ml-2"
-              >Remember Me</label
+              >{{ $t('message.Remember_Me') }}</label
             >
           </div>
             <vue-recaptcha @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
@@ -42,7 +42,7 @@
             type="submit"
             @click="login"
             class="btn btn-dark btn-block rounded"
-            value="Sign In"
+            :value="$t('message.Sign_In')"
           />
         </div>
       </div>
@@ -82,7 +82,7 @@ export default {
          something.$emit("loaduser");
            Toast.fire({
             icon: "success",
-            title: "Signed in successfully",
+            title: $t('message.Signed_in_successfully'),
           });
           this.$modal.hide('login')
 
