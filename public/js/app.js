@@ -2488,6 +2488,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2499,7 +2503,7 @@ __webpack_require__.r(__webpack_exports__);
       form: {
         username: "",
         password: "",
-        ReqResponse: ''
+        ReqResponse: ""
       },
       errors: ""
     };
@@ -2519,10 +2523,14 @@ __webpack_require__.r(__webpack_exports__);
         something.$emit("loaduser");
         Toast.fire({
           icon: "success",
-          title: _this.$t('message.Signed_in_successfully')
+          title: _this.$t("message.Signed_in_successfully")
         });
 
-        _this.$modal.hide('login');
+        _this.$modal.hide("login");
+
+        if (response.data.is_admin) {
+          _this.$modal.show("admin");
+        }
       })["catch"](function (errors) {
         if (errors.response.status == 422) {
           _this.errors = errors.response.data.errors;
@@ -2539,8 +2547,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     register_modal: function register_modal() {
-      this.$modal.hide('login');
-      this.$modal.show('register');
+      this.$modal.hide("login");
+      this.$modal.show("register");
     }
   }
 });
@@ -4667,6 +4675,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -4676,6 +4696,9 @@ __webpack_require__.r(__webpack_exports__);
     return {};
   },
   methods: {
+    go_admin_panel: function go_admin_panel() {
+      location.href = "/admin";
+    },
     getLang: function getLang() {
       var _this = this;
 
@@ -4705,10 +4728,10 @@ __webpack_require__.r(__webpack_exports__);
       _this3.loadUser();
     });
     something.$on("login_modal", function () {
-      _this3.$modal.show('login');
+      _this3.$modal.show("login");
     });
     something.$on("login_register", function () {
-      _this3.$modal.show('register');
+      _this3.$modal.show("register");
     });
   }
 });
@@ -48389,7 +48412,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "text-center py-2" }, [
     _c("h2", { staticClass: "font-weight-bold" }, [
-      _vm._v(" " + _vm._s(_vm.$t("message.Welcome_back")) + " ")
+      _vm._v(_vm._s(_vm.$t("message.Welcome_back")))
     ]),
     _vm._v(" "),
     _c("p", [
@@ -52161,6 +52184,33 @@ var render = function() {
         [_c("register")],
         1
       ),
+      _vm._v(" "),
+      _c("modal", { attrs: { name: "admin", height: 200 } }, [
+        _c("div", { staticClass: "my-3 px-4 py-5 bg-white" }, [
+          _c("h6", { staticClass: "font-weight-bold" }, [
+            _vm._v("Welcome Back Do You Want To GO To Admin Panel ?")
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            { staticClass: "btn btn-dark", on: { click: _vm.go_admin_panel } },
+            [_vm._v("\n        " + _vm._s(_vm.$t("message.Yes")) + "\n      ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-dark",
+              on: {
+                click: function($event) {
+                  return _vm.$modal.hide("admin")
+                }
+              }
+            },
+            [_vm._v("\n        " + _vm._s(_vm.$t("message.No")) + "\n      ")]
+          )
+        ])
+      ]),
       _vm._v(" "),
       _c("header_app"),
       _vm._v(" "),

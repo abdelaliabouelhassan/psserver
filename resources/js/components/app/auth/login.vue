@@ -1,12 +1,13 @@
 <template>
   <div class="text-center py-2">
-    <h2 class="font-weight-bold"> {{$t('message.Welcome_back')}} </h2>
+    <h2 class="font-weight-bold">{{ $t("message.Welcome_back") }}</h2>
     <p>
-      {{$t('message.account')}}<a
-        style="cursor:pointer"
+      {{ $t("message.account")
+      }}<a
+        style="cursor: pointer"
         class="ml-2 text-success text-decoration-none"
-         @click="register_modal"
-        >{{$t('message.Create_Account')}}</a
+        @click="register_modal"
+        >{{ $t("message.Create_Account") }}</a
       >
     </p>
     <div class="row">
@@ -31,14 +32,17 @@
           />
 
           <div class="text-left">
-            <input type="checkbox" /><label for="check" class="ml-2"
-              >{{ $t('message.Remember_Me') }}</label
-            >
+            <input type="checkbox" /><label for="check" class="ml-2">{{
+              $t("message.Remember_Me")
+            }}</label>
           </div>
-            <vue-recaptcha @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
+          <vue-recaptcha
+            @verify="checkRecaptcha"
+            :sitekey="$store.state.sitekey"
+          ></vue-recaptcha>
 
           <input
-           :disabled="disabel"
+            :disabled="disabel"
             type="submit"
             @click="login"
             class="btn btn-dark btn-block rounded"
@@ -52,61 +56,63 @@
 </template>
 
 <script>
-  import VueRecaptcha from 'vue-recaptcha';
+import VueRecaptcha from "vue-recaptcha";
 
 export default {
-      components: { VueRecaptcha },
+  components: { VueRecaptcha },
   data() {
     return {
-      disabel:false,
+      disabel: false,
       form: {
         username: "",
         password: "",
-        ReqResponse:'',
+        ReqResponse: "",
       },
-      errors:"",
+      errors: "",
     };
   },
   methods: {
-    checkRecaptcha(response){
-      this.form.ReqResponse = response
-        this.disabel = false
+    checkRecaptcha(response) {
+      this.form.ReqResponse = response;
+      this.disabel = false;
     },
     login() {
-       this.disabel = true;
+      this.disabel = true;
       this.axios
         .post("/api/login", this.form)
         .then((response) => {
           this.errors = [];
-           this.disabel = false;
-         something.$emit("loaduser");
-           Toast.fire({
+          this.disabel = false;
+          something.$emit("loaduser");
+          Toast.fire({
             icon: "success",
-            title: this.$t('message.Signed_in_successfully'),
+            title: this.$t("message.Signed_in_successfully"),
           });
-          this.$modal.hide('login')
+          this.$modal.hide("login");
 
-          
+          if (response.data.is_admin) {
+            this.$modal.show("admin");
+          }
         })
         .catch((errors) => {
-          if(errors.response.status == 422){
-             this.errors = errors.response.data.errors;
-          }else if(errors.response.status == 403){
-               Toast.fire({
-            icon: "error",
-            title: errors.response.data,
-          });
+          if (errors.response.status == 422) {
+            this.errors = errors.response.data.errors;
+          } else if (errors.response.status == 403) {
+            Toast.fire({
+              icon: "error",
+              title: errors.response.data,
+            });
           }
-      
-         this.$store.state.islogin = false
-           this.$store.state.user = []
-            this.disabel = false;
+
+          this.$store.state.islogin = false;
+          this.$store.state.user = [];
+          this.disabel = false;
         });
     },
-     register_modal(){
-       this.$modal.hide('login')
-        this.$modal.show('register')
-    }
+    register_modal() {
+      this.$modal.hide("login");
+      this.$modal.show("register");
+    },
   },
 };
 </script>
