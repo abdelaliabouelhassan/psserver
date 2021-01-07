@@ -238,4 +238,9 @@ class serverController extends Controller
         }
     }
 
+    public function GetFeathred_Server(){
+        $servers = Server::orderBy('vote_amount', 'desc')->where('status', true)->where('admin_active', true)->where('server_owner_active', true)->get();
+        return  ServersCollection::collection($servers);  
+    }
+
 }

@@ -28,6 +28,7 @@ class ServersCollection extends JsonResource
             'youtube_id'=>$this->youtube_id,
             'rates'=>$this->rates,
             'description'=>$this->description,
+            'short_description'=>$truncated = Str::limit($this->description, 20, '...'),
             'status'=>$this->status,
             'is_international' => Str::containsAll($this->language, ['Deutsch,', 'English,', 'Espanol,', 'France,', 'Roman,']),
             'slug'=>$this->slug,

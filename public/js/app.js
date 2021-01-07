@@ -4671,7 +4671,34 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      server: [],
+      server2: [],
+      url: ''
+    };
+  },
+  created: function created() {
+    this.get_server();
+  },
+  methods: {
+    goDetails: function goDetails(slug) {
+      this.$router.push({
+        path: "/serverdetails/".concat(slug)
+      });
+    },
+    get_server: function get_server() {
+      var _this = this;
+
+      this.axios.get("/api/GetFeathred_Server").then(function (response) {
+        _this.server = response.data.data[0];
+        _this.server2 = response.data.data[1];
+        _this.url = _this.server.url.replace(/[http://www https://www]/g, "");
+      })["catch"](function (errors) {});
+    }
+  }
+});
 
 /***/ }),
 
@@ -52086,40 +52113,103 @@ var render = function() {
         [_vm._v(_vm._s(_vm.$t("message.ADD_YOUR_SERVER")))]
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "card firstCard py-5 mt-4" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("p", { staticClass: "text-danger" }, [
-            _vm._v(" " + _vm._s(_vm.$t("message.FEATURED_SERVER")) + " ")
-          ]),
-          _vm._v(" "),
-          _c("span", { staticClass: " d-inline m-auto" }, [_vm._v("»")]),
-          _vm._v(" "),
-          _c("h2", { staticClass: "font-weight-bold text-white d-inline" }, [
-            _vm._v("Zuko2.com")
-          ]),
-          _vm._v(" "),
-          _c("p", { staticClass: "mt-4 mb-3 text-white card-lorem" }, [
-            _vm._v(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore."
-            )
-          ]),
-          _vm._v(" "),
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "a",
-            { staticClass: "btn btn-light mt-5 d-inline", attrs: { href: "" } },
-            [_vm._v(_vm._s(_vm.$t("message.VISIT_WEBSITE")))]
-          ),
-          _vm._v(" "),
-          _c("img", {
-            staticClass: "img-fluid d-inline ml-4",
-            attrs: { src: "/img/m2.png", alt: "" }
-          })
-        ])
-      ]),
+      _vm.server
+        ? _c("div", { staticClass: "card firstCard py-5 mt-4" }, [
+            _c("div", { staticClass: "container" }, [
+              _c("p", { staticClass: "text-danger" }, [
+                _vm._v(" " + _vm._s(_vm.$t("message.FEATURED_SERVER")) + " ")
+              ]),
+              _vm._v(" "),
+              _c("span", { staticClass: " d-inline m-auto" }, [_vm._v("»")]),
+              _vm._v(" "),
+              _c(
+                "h2",
+                { staticClass: "font-weight-bold text-white d-inline" },
+                [_vm._v(" " + _vm._s(_vm.url))]
+              ),
+              _vm._v(" "),
+              _c("p", { staticClass: "mt-4 mb-3 text-white card-lorem" }, [
+                _vm._v(_vm._s(_vm.server.short_description))
+              ]),
+              _vm._v(" "),
+              _c("p", [
+                _vm._m(0),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-success" }, [
+                  _vm._v(_vm._s(_vm.server.realtimeVote))
+                ]),
+                _vm._v(" "),
+                _c("span", { staticClass: "mx-3 text-secondary" }, [
+                  _vm._v("|")
+                ]),
+                _vm._v(" "),
+                _vm._m(1),
+                _vm._v(" "),
+                _c("span", { staticClass: "text-white" }, [
+                  _vm._v(_vm._s(_vm.server.viewd))
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-light mt-5 d-inline",
+                  on: {
+                    click: function($event) {
+                      return _vm.goDetails(_vm.server.slug)
+                    }
+                  }
+                },
+                [_vm._v(_vm._s(_vm.$t("message.VISIT_WEBSITE")))]
+              ),
+              _vm._v(" "),
+              _c("img", {
+                staticClass: "img-fluid d-inline ml-4",
+                attrs: { src: "/img/m2.png", alt: "" }
+              })
+            ])
+          ])
+        : _vm._e(),
       _vm._v(" "),
-      _vm._m(1),
+      _vm.server2
+        ? _c("div", { staticClass: "card card-two mt-3" }, [
+            _c("img", {
+              staticClass: "card-img-top img-fluid",
+              attrs: { src: "/img/add.png", alt: "" }
+            }),
+            _vm._v(" "),
+            _c("div", { staticClass: "card-body bg-dark" }, [
+              _c("div", { staticClass: "px-3" }, [
+                _c("p", { staticClass: "text-white" }, [
+                  _vm._v(
+                    "\n                    " +
+                      _vm._s(_vm.server2.short_description) +
+                      "\n                "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row mt-3" }, [
+                  _c("div", { staticClass: "col-6" }, [
+                    _c("img", {
+                      staticClass: "img-fluid",
+                      attrs: { src: "/img/eye.png", alt: "" }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "vision" }, [
+                      _vm._v(_vm._s(_vm.server2.viewd))
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-6" }, [
+                    _c("span", { staticClass: "vision" }, [
+                      _vm._v(_vm._s(_vm.server2.created_at))
+                    ])
+                  ])
+                ])
+              ])
+            ])
+          ])
+        : _vm._e(),
       _vm._v(" "),
       _c("div", { staticClass: "card card-three mt-3 bg-dark py-3" }, [
         _c("div", { staticClass: "container" }, [
@@ -52151,59 +52241,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", [
-      _c("span", [
-        _c("img", {
-          staticClass: "img-fluid",
-          attrs: { src: "/img/like.png", alt: "" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("span", { staticClass: "text-success" }, [_vm._v("22545")]),
-      _vm._v(" "),
-      _c("span", { staticClass: "mx-3 text-secondary" }, [_vm._v("|")]),
-      _vm._v(" "),
-      _c("span", [
-        _c("i", { staticClass: "fa fa-external-link-alt text-white" })
-      ]),
-      _vm._v(" "),
-      _c("span", { staticClass: "text-white" }, [_vm._v("988")])
+    return _c("span", [
+      _c("img", {
+        staticClass: "img-fluid",
+        attrs: { src: "/img/like.png", alt: "" }
+      })
     ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card card-two mt-3" }, [
-      _c("img", {
-        staticClass: "card-img-top img-fluid",
-        attrs: { src: "/img/add.png", alt: "" }
-      }),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-body bg-dark" }, [
-        _c("div", { staticClass: "px-3" }, [
-          _c("p", { staticClass: "text-white" }, [
-            _vm._v(
-              "\n                    Lorem ipsum dolor sit amet, consectetur Tiscing elit.\n                "
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "row mt-3" }, [
-            _c("div", { staticClass: "col-6" }, [
-              _c("img", {
-                staticClass: "img-fluid",
-                attrs: { src: "/img/eye.png", alt: "" }
-              }),
-              _vm._v(" "),
-              _c("span", { staticClass: "vision" }, [_vm._v("29 834")])
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-6" }, [
-              _c("span", { staticClass: "vision" }, [_vm._v("2 Minutes Ago")])
-            ])
-          ])
-        ])
-      ])
+    return _c("span", [
+      _c("i", { staticClass: "fa fa-external-link-alt text-white" })
     ])
   }
 ]

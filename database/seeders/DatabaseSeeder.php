@@ -56,7 +56,25 @@ class DatabaseSeeder extends Seeder
     			'hasBacklink'=>true,
     			'status'=>true,
 
-    		]);
+			]);
+
+		Server::create([
+			'url' => 'https://www.youtube.com/',
+			'title' => 'best server (:',
+			'banner' => 'uploads/images/1609968077.gif',
+			'category' => 'Oldschool Root',
+			'language' => 'Deutsch,English,Espanol,France,',
+			'maxlevel' => '1000',
+			'youtube_id' => 'https://www.youtube.com/watch?v=vCkD9uMmotQ&list=RDKV2ssT8lzj8&index=27&ab_channel=NitinRandhawa',
+			'rates' => '60',
+			'description' => 'best server (:best server (:best server (:best server (:best server (:best server (:best server (:best server (:',
+			'screen' => null,
+			'user_id' => 2,
+			'difficulty' => 'Hard',
+			'hasBacklink' => true,
+			'status' => true,
+
+		]);
 
     }
 }

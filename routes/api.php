@@ -46,7 +46,7 @@ Route::get('/getMyServers', 'serverController@getMyServers');
 Route::get('/getServerInfo/{slug}', 'serverController@getServerInfo');
 Route::post('/updateServer', 'serverController@updateServer');
 Route::get('/GetServers/{server}', 'serverController@getserverbyserver');
-
+Route::get('/GetFeathred_Server/', 'serverController@GetFeathred_Server');
 //vote
 Route::post('/Vote', 'VotesController@Vote');
 

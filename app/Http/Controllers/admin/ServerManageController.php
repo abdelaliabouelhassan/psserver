@@ -47,7 +47,7 @@ class ServerManageController extends Controller
         $delay_in_milliseconds = 15000;
         $node_path = $include_path . DIRECTORY_SEPARATOR . 'node';
         $npm_path = $include_path . DIRECTORY_SEPARATOR . 'npm';
-        $path_to_image = public_path('uploads/images/' . $image_name);
+        $path_to_image = 'uploads/images/' . $image_name;
         Browsershot::url($server->url)
             ->addChromiumArguments(['no-sandbox'])
             ->setIncludePath($include_path)
