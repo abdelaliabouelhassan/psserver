@@ -2381,6 +2381,8 @@ __webpack_require__.r(__webpack_exports__);
             title: _this3.$t('message.Something_went_wrong')
           });
         }
+
+        _this3.$refs.recaptcha.reset();
       });
     },
     SendEmailVerfication: function SendEmailVerfication() {
@@ -2702,6 +2704,8 @@ __webpack_require__.r(__webpack_exports__);
           });
         }
 
+        _this.$refs.recaptcha.reset();
+
         _this.disabel = false;
       });
     },
@@ -2842,6 +2846,8 @@ __webpack_require__.r(__webpack_exports__);
         });
       })["catch"](function (errors) {
         _this.clicked = false;
+
+        _this.$refs.recaptcha.reset();
 
         if (errors.response.status == 422) {
           _this.errors = errors.response.data.errors;
@@ -3836,6 +3842,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3913,6 +3921,8 @@ __webpack_require__.r(__webpack_exports__);
 
         _this.getComments();
       })["catch"](function (errors) {
+        _this.$refs.recaptcha1.reset();
+
         _this.clicked = false;
 
         if (errors.response.status == 422) {
@@ -3961,6 +3971,8 @@ __webpack_require__.r(__webpack_exports__);
 
         _this3.getComments();
       })["catch"](function (errors) {
+        _this3.$refs.recaptcha2.reset();
+
         _this3.clicked = false;
 
         if (errors.response.status == 422) {
@@ -4003,6 +4015,8 @@ __webpack_require__.r(__webpack_exports__);
 
         _this5.getComments();
       })["catch"](function (errors) {
+        _this5.$refs.recaptcha3.reset();
+
         _this5.clicked = false;
 
         if (errors.response.status == 422) {
@@ -48368,6 +48382,7 @@ var render = function() {
             "div",
             [
               _c("vue-recaptcha", {
+                ref: "recaptcha",
                 attrs: { sitekey: _vm.$store.state.sitekey },
                 on: { verify: _vm.checkRecaptcha }
               })
@@ -48769,6 +48784,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("vue-recaptcha", {
+              ref: "recaptcha",
               attrs: { sitekey: _vm.$store.state.sitekey },
               on: { verify: _vm.checkRecaptcha }
             }),
@@ -48972,6 +48988,7 @@ var render = function() {
         _vm._v(" "),
         _vm.show
           ? _c("vue-recaptcha", {
+              ref: "recaptcha",
               attrs: { sitekey: _vm.$store.state.sitekey },
               on: { verify: _vm.checkRecaptcha }
             })
@@ -50378,6 +50395,7 @@ var render = function() {
               }),
               _vm._v(" "),
               _c("vue-recaptcha", {
+                ref: "recaptcha1",
                 attrs: { sitekey: _vm.$store.state.sitekey },
                 on: { verify: _vm.checkRecaptcha }
               }),
@@ -50700,6 +50718,7 @@ var render = function() {
               ),
               _vm._v(" "),
               _c("vue-recaptcha", {
+                ref: "recaptcha2",
                 attrs: { sitekey: _vm.$store.state.sitekey },
                 on: { verify: _vm.checkRecaptcha }
               }),
@@ -50839,6 +50858,7 @@ var render = function() {
                 _vm._v(" "),
                 _vm.show
                   ? _c("vue-recaptcha", {
+                      ref: "recaptcha3",
                       attrs: { sitekey: _vm.$store.state.sitekey },
                       on: { verify: _vm.checkRecaptcha }
                     })
@@ -69144,6 +69164,9 @@ var i18n = new vue_i18n__WEBPACK_IMPORTED_MODULE_1__["default"]({
   messages: _lang_all_js__WEBPACK_IMPORTED_MODULE_2__["default"] // set locale messages
 
 });
+Vue.config.devtools = false;
+Vue.config.debug = false;
+Vue.config.silent = true;
 var app = new Vue({
   el: '#app',
   store: _store_store__WEBPACK_IMPORTED_MODULE_9__["default"],

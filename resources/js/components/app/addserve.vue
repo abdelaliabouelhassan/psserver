@@ -251,7 +251,7 @@
         v-model="form.Description"
       ></textarea>
       <div>
-  <vue-recaptcha @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
+  <vue-recaptcha ref="recaptcha" @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
       </div>
       
 
@@ -406,7 +406,8 @@ export default {
             icon: "error",
             title: this.$t('message.Something_went_wrong'),
           });
-          }      
+          }  
+          this.$refs.recaptcha.reset()    
           
         });
     },

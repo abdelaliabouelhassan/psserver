@@ -61,7 +61,7 @@
               ></label
             >
           </div>
-          <vue-recaptcha @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
+          <vue-recaptcha ref="recaptcha" @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
           <input
             :disabled="disabel"
             type="submit"
@@ -131,7 +131,7 @@ export default {
             title: errors.response.data,
           });
           }
-
+           this.$refs.recaptcha.reset()
            this.disabel = false;
         });
     },

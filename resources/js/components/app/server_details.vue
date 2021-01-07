@@ -309,7 +309,7 @@
             placeholder="I think..."
             v-model="replayForm.comment"
           ></textarea>
-           <vue-recaptcha @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
+           <vue-recaptcha ref="recaptcha1" @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
 
           <input
            v-if="$store.state.islogin && !$store.state.user.is_banned || !$store.state.islogin"
@@ -410,7 +410,7 @@
               >Terms of Use</a
             ></label
           >
-            <vue-recaptcha @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
+            <vue-recaptcha ref="recaptcha2" @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
 
           <input
            v-if="$store.state.islogin && !$store.state.user.is_banned || !$store.state.islogin"
@@ -463,7 +463,9 @@
             v-model="comment.comment"
           ></textarea>
       
-            <vue-recaptcha v-if="show" @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
+            <vue-recaptcha 
+            ref="recaptcha3"
+             v-if="show" @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
 
           <input
            v-if="$store.state.islogin && !$store.state.user.is_banned || !$store.state.islogin"
@@ -556,6 +558,7 @@ export default {
             this.getComments();
         })
         .catch((errors) => {
+         this.$refs.recaptcha1.reset()
           this.clicked = false;
           if (errors.response.status == 422) {
             this.errors = errors.response.data.errors;
@@ -603,6 +606,7 @@ export default {
            this.getComments();
         })
         .catch((errors) => {
+             this.$refs.recaptcha2.reset()
           this.clicked = false;
           if (errors.response.status == 422) {
             this.errors = errors.response.data.errors;
@@ -645,6 +649,7 @@ export default {
            this.getComments();
         })
         .catch((errors) => {
+        this.$refs.recaptcha3.reset()
           this.clicked = false;
           if (errors.response.status == 422) {
             this.errors = errors.response.data.errors;

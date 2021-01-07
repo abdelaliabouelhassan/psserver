@@ -53,7 +53,7 @@
         >
         <a href="" class="text-success font-16">Terms of Use</a></label
       >
-         <vue-recaptcha v-if="show" @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
+         <vue-recaptcha  ref="recaptcha" v-if="show" @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
 
       <input
         :disabled="clicked"
@@ -115,6 +115,7 @@ export default {
         })
         .catch((errors) => {
           this.clicked = false;
+          this.$refs.recaptcha.reset()
           if (errors.response.status == 422) {
             this.errors = errors.response.data.errors;
             Toast.fire({

@@ -112,7 +112,9 @@ const i18n = new VueI18n({
     messages, // set locale messages
 })
 
-
+Vue.config.devtools = false;
+Vue.config.debug = false;
+Vue.config.silent = true; 
 
 const app = new Vue({
     el: '#app',
