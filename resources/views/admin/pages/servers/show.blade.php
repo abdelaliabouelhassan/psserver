@@ -45,7 +45,7 @@
                         <li class="list-group-item"><span style="color: gray">max level : {{ $server->maxlevel }}</span></li>
                         <li class="list-group-item"><span style="color: gray">youtube url : <a href="{{ $server->youtube_id }}" >{{ $server->youtube_id }}</a> </span></li>
                         <li class="list-group-item"><span style="color: gray">rates : {{ $server->rates }} %</span></li>
-                        <li class="list-group-item"><span style="color: gray">website screen (screenshot) :  @if($server->screen != null) <img src="{{ $server->screen }}" style="width: 100px" alt="{{ $server->screen }}"> @else <b>no screen shot</b>   @endif</span></li>
+                        <li class="list-group-item"><span style="color: gray">website screen (screenshot) :  @if($server->screen) <img src="{{ $server->screen }}" style="width: 100px" alt="{{ $server->screen }}"> @else <b>no screen shot</b>   @endif</span></li>
                         <li class="list-group-item"><span style="color: gray">Owner name : {{ $server->user->username }}</span></li>
                         <li class="list-group-item"><span style="color: gray">difficulty : {{ $server->difficulty }}</span></li>
                         <li class="list-group-item"><span style="color: gray">Votes : {{ $server->vote_amount }}</span></li>
