@@ -1,33 +1,70 @@
 @extends ('admin.dashboard')
 @section('section')
 <div class="container-fluid site-width">
-    <!-- START: Breadcrumbs-->
-    <div class="row ">
-        <div class="col-12  align-self-center">
-            <div class="sub-header mt-3 py-3 align-self-center d-sm-flex w-100 rounded">
-                <div class="w-sm-100 mr-auto"><h4 class="mb-0">Blank Page</h4></div>
-
-                <ol class="breadcrumb bg-transparent align-self-center m-0 p-0">
-                    <li class="breadcrumb-item">Home</li>
-                    <li class="breadcrumb-item">Page</li>
-                    <li class="breadcrumb-item active"><a href="#">Blank Page</a></li>
-                </ol>
-            </div>
-        </div>
-    </div>
-    <!-- END: Breadcrumbs-->
+  
 
     <!-- START: Card Data-->
     <div class="row">
-        <div class="col-12  mt-3">                          
-            <div class="card">  
-                <div class="card-header d-flex justify-content-between align-items-center">                               
-                    <h4 class="card-title">Heading Here</h4>                                   
+        
+           <div class="col-12  col-md-6 col-lg-3 mt-3">
+            <div class="card border-bottom-0">                            
+                <div class="card-content border-bottom border-primary border-w-5">
+                    <div class="card-body p-4">                                   
+                        <div class="d-flex">                                        
+                            <div class="circle-50 outline-badge-primary"> <span class="cf card-liner-icon cf-ltc mt-2"></span></div>
+                            <div class="media-body align-self-center pl-3">
+                                <span class="mb-0 h6 font-w-600">new users (today)</span><br>
+                                <p class="mb-0 font-w-500 h6">{{ $user_count }}</p>                                                    
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    Content here
-                </div>                                
-            </div>
+            </div>                        
+        </div>
+        <div class="col-12  col-md-6 col-lg-3 mt-3">
+            <div class="card border-bottom-0">                            
+                <div class="card-content border-bottom border-warning border-w-5">
+                    <div class="card-body p-4">                                   
+                        <div class="d-flex">                                        
+                            <div class="circle-50 outline-badge-warning"> <span class="cf card-liner-icon cf-xlm mt-2"></span></div>
+                            <div class="media-body align-self-center pl-3">
+                                <span class="mb-0 h6 font-w-600">new servers (today)</span><br>
+                                <p class="mb-0 font-w-500 h6">{{ $server_count }}</p>                                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>                        
+        </div>
+        <div class="col-12  col-md-6 col-lg-3 mt-3">
+            <div class="card border-bottom-0">                            
+                <div class="card-content border-bottom border-success border-w-5">
+                    <div class="card-body p-4">                                   
+                        <div class="d-flex">                                        
+                            <div class="circle-50 outline-badge-success"> <span class="cf card-liner-icon cf-link mt-2"></span></div>
+                            <div class="media-body align-self-center pl-3">
+                                <span class="mb-0 h6 font-w-600">new users (this month)</span><br>
+                                <p class="mb-0 font-w-500 h6">{{ $user_count_last_30_days }}</p>                                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>                        
+        </div>
+        <div class="col-12  col-md-6 col-lg-3 mt-3">
+            <div class="card border-bottom-0">                            
+                <div class="card-content border-bottom border-info border-w-5">
+                    <div class="card-body p-4">                                   
+                        <div class="d-flex">                                        
+                            <div class="circle-50 outline-badge-info"> <span class="cf card-liner-icon cf-xmr mt-2"></span></div>
+                            <div class="media-body align-self-center pl-3">
+                                <span class="mb-0 h6 font-w-600">new servers (this month)</span><br>
+                                <p class="mb-0 font-w-500 h6">{{ $server_countt_last_30_days }}</p>                                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>                        
         </div>
 
 

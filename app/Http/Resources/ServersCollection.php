@@ -39,6 +39,7 @@ class ServersCollection extends JsonResource
             'admin_active'=>$this->admin_active,
             'upDown'=>$this->upDown,
             'screen'=>$this->screen,
+            'is_comment'=>$this->comment_active,
             'created_at' =>\Illuminate\Support\Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->diffForHumans(),
         ];
     }

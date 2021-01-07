@@ -79,10 +79,22 @@ Route::get('/take',function (){
 Route::get('/verifyemail/{email}/{token}','auth\RegisterAndLoginController@verifyemail');
 
 
-
+route::group(['middleware'=> 'only_admin'],function () {
 //admins
-Route::get('/admin', function () {
-    return view('admin.pages.index');
+
+Route::resource('admin', 'admin\StatistiController');
+Route::resource('users', 'admin\UsersManageController');
+Route::resource('servers', 'admin\ServerManageController');
+
+Route::get('ban_unban/{user_id}', 'admin\UsersManageController@ban_user_and_unban')->name('ban');
+Route::post('active_server_deactivate', 'admin\ServerManageController@active_server_deactivate')->name('active_server_deactivate');
+Route::post('active_comment_deactivate', 'admin\ServerManageController@active_comment_deactivate')->name('active_comment_deactivate');
+Route::post('delete_Comment', 'admin\ServerManageController@delete_Comment')->name('delete_Comment');
+Route::get('un_active_servers', 'admin\ServerManageController@get_un_active_servers')->name('get_un_active_servers');
+Route::get('un_approve_servers', 'admin\ServerManageController@get_un_approve_servers')->name('get_un_approve_servers');
+Route::post('approve_server', 'admin\ServerManageController@approve_server')->name('approve_server');
+Route::get('logout', 'admin\UsersManageController@logout')->name('logout');
+
 });
 
 

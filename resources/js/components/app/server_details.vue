@@ -215,7 +215,7 @@
       {{ $t('message.Feedback') }} & {{ $t('message.Comments') }}: <span>{{ comments.length }}</span>
     </h3>
 
-    <div class="card my-3" v-if="!showReplay" v-for="comment in comments">
+    <div class="card my-3" v-if="!showReplay && Server.is_comment" v-for="comment in comments">
       <div class="row p-3">
         <div class="col-1 p-0 m-auto">
           <img src="/img/avatar.png" class="img-fluid" alt="" />
@@ -312,6 +312,7 @@
            <vue-recaptcha @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
 
           <input
+           v-if="$store.state.islogin && !$store.state.user.is_banned || !$store.state.islogin"
             type="submit"
             class="btn btn-dark d-block bg-dark mt-3"
             value="Replay"
@@ -412,6 +413,7 @@
             <vue-recaptcha @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
 
           <input
+           v-if="$store.state.islogin && !$store.state.user.is_banned || !$store.state.islogin"
             type="submit"
             class="btn btn-dark d-block bg-dark mt-3"
             value="Enter"
@@ -422,7 +424,7 @@
       </div>
     </modal>
 
-     <div class="my-3 px-4 py-5 bg-white">
+     <div class="my-3 px-4 py-5 bg-white" v-if="Server.is_comment">
         <h6 class="font-weight-bold">{{ $t('message.Add_Comment') }} </h6>
         <span class="text-danger" v-if="errors.username"
           >{{ this.errors.username[0] }}
@@ -464,6 +466,7 @@
             <vue-recaptcha v-if="show" @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
 
           <input
+           v-if="$store.state.islogin && !$store.state.user.is_banned || !$store.state.islogin"
             type="submit"
             class="btn btn-dark d-block bg-dark mt-3"
             value="Enter"

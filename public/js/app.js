@@ -2260,6 +2260,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2492,6 +2493,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2540,6 +2542,8 @@ __webpack_require__.r(__webpack_exports__);
             title: errors.response.data
           });
         }
+
+        _this.$refs.recaptcha.reset();
 
         _this.$store.state.islogin = false;
         _this.$store.state.user = [];
@@ -3028,6 +3032,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3351,6 +3356,9 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue_recaptcha__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-recaptcha */ "./node_modules/vue-recaptcha/dist/vue-recaptcha.es.js");
+//
+//
+//
 //
 //
 //
@@ -47952,12 +47960,15 @@ var render = function() {
                 }
               }),
               _vm._v(" "),
-              _c("input", {
-                staticClass: "btn btn-dark d-block bg-dark mt-3",
-                attrs: { disabled: _vm.checkuser, type: "submit" },
-                domProps: { value: _vm.$t("message.Generate_Backlink") },
-                on: { click: _vm.GenerateLink }
-              })
+              (_vm.$store.state.islogin && !_vm.$store.state.user.is_banned) ||
+              !_vm.$store.state.islogin
+                ? _c("input", {
+                    staticClass: "btn btn-dark d-block bg-dark mt-3",
+                    attrs: { disabled: _vm.checkuser, type: "submit" },
+                    domProps: { value: _vm.$t("message.Generate_Backlink") },
+                    on: { click: _vm.GenerateLink }
+                  })
+                : _vm._e()
             ])
           ])
         ])
@@ -48498,6 +48509,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("vue-recaptcha", {
+              ref: "recaptcha",
               attrs: { sitekey: _vm.$store.state.sitekey },
               on: { verify: _vm.checkRecaptcha }
             }),
@@ -49378,11 +49390,14 @@ var render = function() {
         }
       }),
       _vm._v(" "),
-      _c("input", {
-        staticClass: "btn btn-dark d-block bg-dark mt-3",
-        attrs: { disabled: _vm.checkuser, type: "submit", value: "Create" },
-        on: { click: _vm.updateserver }
-      })
+      (_vm.$store.state.islogin && !_vm.$store.state.user.is_banned) ||
+      !_vm.$store.state.islogin
+        ? _c("input", {
+            staticClass: "btn btn-dark d-block bg-dark mt-3",
+            attrs: { disabled: _vm.checkuser, type: "submit", value: "Create" },
+            on: { click: _vm.updateserver }
+          })
+        : _vm._e()
     ])
   ])
 }
@@ -50128,7 +50143,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _vm._l(_vm.comments, function(comment) {
-        return !_vm.showReplay
+        return !_vm.showReplay && _vm.Server.is_comment
           ? _c("div", { staticClass: "card my-3" }, [
               _c("div", { staticClass: "row p-3" }, [
                 _vm._m(5, true),
@@ -50367,15 +50382,18 @@ var render = function() {
                 on: { verify: _vm.checkRecaptcha }
               }),
               _vm._v(" "),
-              _c("input", {
-                staticClass: "btn btn-dark d-block bg-dark mt-3",
-                attrs: {
-                  type: "submit",
-                  value: "Replay",
-                  disabled: _vm.clicked
-                },
-                on: { click: _vm.Replay }
-              })
+              (_vm.$store.state.islogin && !_vm.$store.state.user.is_banned) ||
+              !_vm.$store.state.islogin
+                ? _c("input", {
+                    staticClass: "btn btn-dark d-block bg-dark mt-3",
+                    attrs: {
+                      type: "submit",
+                      value: "Replay",
+                      disabled: _vm.clicked
+                    },
+                    on: { click: _vm.Replay }
+                  })
+                : _vm._e()
             ],
             1
           )
@@ -50686,143 +50704,160 @@ var render = function() {
                 on: { verify: _vm.checkRecaptcha }
               }),
               _vm._v(" "),
-              _c("input", {
-                staticClass: "btn btn-dark d-block bg-dark mt-3",
-                attrs: {
-                  type: "submit",
-                  value: "Enter",
-                  disabled: _vm.clicked
-                },
-                on: { click: _vm.Rate }
-              })
+              (_vm.$store.state.islogin && !_vm.$store.state.user.is_banned) ||
+              !_vm.$store.state.islogin
+                ? _c("input", {
+                    staticClass: "btn btn-dark d-block bg-dark mt-3",
+                    attrs: {
+                      type: "submit",
+                      value: "Enter",
+                      disabled: _vm.clicked
+                    },
+                    on: { click: _vm.Rate }
+                  })
+                : _vm._e()
             ],
             1
           )
         ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "my-3 px-4 py-5 bg-white" }, [
-        _c("h6", { staticClass: "font-weight-bold" }, [
-          _vm._v(_vm._s(_vm.$t("message.Add_Comment")) + " ")
-        ]),
-        _vm._v(" "),
-        _vm.errors.username
-          ? _c("span", { staticClass: "text-danger" }, [
-              _vm._v(_vm._s(this.errors.username[0]) + "\n        ")
-            ])
-          : _vm._e(),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "mt-4" },
-          [
-            _c("div", { staticClass: "row" }, [
-              !_vm.$store.state.islogin
-                ? _c("div", { staticClass: "col-md-6" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.comment.email,
-                          expression: "comment.email"
-                        }
-                      ],
-                      staticClass: "form-control rounded my-2",
-                      class: { "is-invalid": _vm.errors.email },
-                      attrs: {
-                        type: "text",
-                        placeholder: _vm.$t("message.Email")
-                      },
-                      domProps: { value: _vm.comment.email },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.comment, "email", $event.target.value)
-                        }
-                      }
-                    })
-                  ])
-                : _vm._e(),
-              _vm._v(" "),
-              !_vm.$store.state.islogin
-                ? _c("div", { staticClass: "col-md-6" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.comment.username,
-                          expression: "comment.username"
-                        }
-                      ],
-                      staticClass: "form-control rounded my-2",
-                      class: { "is-invalid": _vm.errors.username },
-                      attrs: {
-                        type: "text",
-                        placeholder: _vm.$t("message.Username")
-                      },
-                      domProps: { value: _vm.comment.username },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.comment, "username", $event.target.value)
-                        }
-                      }
-                    })
-                  ])
-                : _vm._e()
+      _vm.Server.is_comment
+        ? _c("div", { staticClass: "my-3 px-4 py-5 bg-white" }, [
+            _c("h6", { staticClass: "font-weight-bold" }, [
+              _vm._v(_vm._s(_vm.$t("message.Add_Comment")) + " ")
             ]),
             _vm._v(" "),
-            _c("textarea", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.comment.comment,
-                  expression: "comment.comment"
-                }
-              ],
-              staticClass: "form-control mt-2 rounded",
-              class: { "is-invalid": _vm.errors.comment },
-              attrs: {
-                name: "",
-                id: "",
-                cols: "30",
-                rows: "5",
-                placeholder: "I think..."
-              },
-              domProps: { value: _vm.comment.comment },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.comment, "comment", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _vm.show
-              ? _c("vue-recaptcha", {
-                  attrs: { sitekey: _vm.$store.state.sitekey },
-                  on: { verify: _vm.checkRecaptcha }
-                })
+            _vm.errors.username
+              ? _c("span", { staticClass: "text-danger" }, [
+                  _vm._v(_vm._s(this.errors.username[0]) + "\n        ")
+                ])
               : _vm._e(),
             _vm._v(" "),
-            _c("input", {
-              staticClass: "btn btn-dark d-block bg-dark mt-3",
-              attrs: { type: "submit", value: "Enter" },
-              on: { click: _vm.addcomment }
-            })
-          ],
-          1
-        )
-      ])
+            _c(
+              "div",
+              { staticClass: "mt-4" },
+              [
+                _c("div", { staticClass: "row" }, [
+                  !_vm.$store.state.islogin
+                    ? _c("div", { staticClass: "col-md-6" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.comment.email,
+                              expression: "comment.email"
+                            }
+                          ],
+                          staticClass: "form-control rounded my-2",
+                          class: { "is-invalid": _vm.errors.email },
+                          attrs: {
+                            type: "text",
+                            placeholder: _vm.$t("message.Email")
+                          },
+                          domProps: { value: _vm.comment.email },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.comment,
+                                "email",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    : _vm._e(),
+                  _vm._v(" "),
+                  !_vm.$store.state.islogin
+                    ? _c("div", { staticClass: "col-md-6" }, [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.comment.username,
+                              expression: "comment.username"
+                            }
+                          ],
+                          staticClass: "form-control rounded my-2",
+                          class: { "is-invalid": _vm.errors.username },
+                          attrs: {
+                            type: "text",
+                            placeholder: _vm.$t("message.Username")
+                          },
+                          domProps: { value: _vm.comment.username },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.comment,
+                                "username",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ])
+                    : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.comment.comment,
+                      expression: "comment.comment"
+                    }
+                  ],
+                  staticClass: "form-control mt-2 rounded",
+                  class: { "is-invalid": _vm.errors.comment },
+                  attrs: {
+                    name: "",
+                    id: "",
+                    cols: "30",
+                    rows: "5",
+                    placeholder: "I think..."
+                  },
+                  domProps: { value: _vm.comment.comment },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.comment, "comment", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _vm.show
+                  ? _c("vue-recaptcha", {
+                      attrs: { sitekey: _vm.$store.state.sitekey },
+                      on: { verify: _vm.checkRecaptcha }
+                    })
+                  : _vm._e(),
+                _vm._v(" "),
+                (_vm.$store.state.islogin &&
+                  !_vm.$store.state.user.is_banned) ||
+                !_vm.$store.state.islogin
+                  ? _c("input", {
+                      staticClass: "btn btn-dark d-block bg-dark mt-3",
+                      attrs: { type: "submit", value: "Enter" },
+                      on: { click: _vm.addcomment }
+                    })
+                  : _vm._e()
+              ],
+              1
+            )
+          ])
+        : _vm._e()
     ],
     2
   )

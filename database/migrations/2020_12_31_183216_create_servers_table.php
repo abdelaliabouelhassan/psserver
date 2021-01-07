@@ -38,6 +38,7 @@ class CreateServersTable extends Migration
             $table->string('upDown')->default(ServerRanking::Stable);
             $table->integer('viewd')->unsigned()->default(0);
             $table->boolean('status')->default(false);
+            $table->boolean('comment_active')->default(true);
             $table->timestamps();
         });
     }

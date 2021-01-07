@@ -8,6 +8,8 @@ use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use App\Models\User;
 use App\Models\Vote;
+use App\Models\Comment;
+
 class Server extends Model
 {
     use HasSlug;
@@ -22,6 +24,11 @@ class Server extends Model
     public function vote(){
         return $this->hasMany(Vote::class, 'server_id');
     }
+
+    public function comment(){
+        return $this->hasMany(Comment::class, 'server_id');
+    }
+
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()

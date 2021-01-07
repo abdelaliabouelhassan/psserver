@@ -110,6 +110,7 @@
         
 
            <input
+          v-if="$store.state.islogin && !$store.state.user.is_banned || !$store.state.islogin"
         :disabled="checkuser"
         type="submit"
         class="btn btn-dark d-block bg-dark mt-3"
