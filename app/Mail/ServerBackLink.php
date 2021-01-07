@@ -18,12 +18,11 @@ class ServerBackLink extends Mailable
      */
 
     public $backlink;
- 
+
 
     public function __construct($backlink)
     {
         $this->backlink = $backlink;
-       
     }
 
     /**

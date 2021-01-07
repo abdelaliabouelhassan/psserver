@@ -37,7 +37,7 @@
             }}</label>
           </div>
           <vue-recaptcha
-          ref="recaptcha"
+            ref="recaptcha"
             @verify="checkRecaptcha"
             :sitekey="$store.state.sitekey"
           ></vue-recaptcha>
@@ -103,9 +103,8 @@ export default {
               icon: "error",
               title: errors.response.data,
             });
-
           }
-          this.$refs.recaptcha.reset()
+          this.$refs.recaptcha.reset();
           this.$store.state.islogin = false;
           this.$store.state.user = [];
           this.disabel = false;

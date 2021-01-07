@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Server;
+
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
@@ -38,7 +39,8 @@ class User extends Authenticatable
     ];
 
 
-    public function server(){
-        return $this->hasMany(Server::class,'user_id');
+    public function server()
+    {
+        return $this->hasMany(Server::class, 'user_id');
     }
 }

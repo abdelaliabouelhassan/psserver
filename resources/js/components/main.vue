@@ -4,7 +4,9 @@
     <modal name="register" :height="600"><register></register></modal>
     <modal name="admin" :height="200">
       <div class="my-3 px-4 py-5 bg-white">
-        <h6 class="font-weight-bold">Welcome Back Do You Want To GO To Admin Panel ?</h6>
+        <h6 class="font-weight-bold">
+          Welcome Back Do You Want To GO To Admin Panel ?
+        </h6>
         <button class="btn btn-dark" @click="go_admin_panel">
           {{ $t("message.Yes") }}
         </button>
@@ -30,7 +32,7 @@ export default {
     return {};
   },
   methods: {
-    go_admin_panel(){
+    go_admin_panel() {
       location.href = "/admin";
     },
     getLang() {

@@ -7,7 +7,7 @@ use App\Models\Server;
 use App\Mail\ServerBackLink;
 use Illuminate\Support\Facades\Mail;
 
-class CheckBackLinks extends Command
+class CheckBackLink extends Command
 {
     /**
      * The name and signature of the console command.
@@ -41,21 +41,19 @@ class CheckBackLinks extends Command
     public function handle()
     {
        
-       $servers = Server::where('hasBacklink',true)->where('admin_active', true)->where('server_owner_active', true)->get();
-       foreach($servers as $server){
+        $servers = Server::where('hasBacklink', true)->where('admin_active', true)->where('server_owner_active', true)->get();
+        foreach ($servers as $server) {
             //check backlinks
             $url =  request()->server('SERVER_NAME') . '/' . $server->slug;
             if (!checkBackLink($server->url, $url)) {
                 //status => false
-                    $server->hasBacklink = false;
-                    $server->save();
+                $server->hasBacklink = false;
+                $server->save();
                 //send email 
                 $back_link = url('/serverdetails/' . $server->slug);
                 Mail::to($server->user->email)->send(new ServerBackLink($back_link));
             }
-
-       }
-
-    
+           
+        }
     }
 }

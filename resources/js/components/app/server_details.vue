@@ -1,19 +1,16 @@
 <template>
   <div>
-
-     <modal name="warm" :height="200">
-    <div class="my-3 px-4 py-5 bg-white">
-        <h6 class="font-weight-bold"> {{$t('message.server_is_inactive')}}</h6>
-          <button
-            class="btn btn-dark "
-            @click="visit"
-          >{{$t('message.Yes')}}</button>
-           <button
-            class="btn btn-dark "
-            @click="$modal.hide('warm')"
-          >{{$t('message.No')}}</button>
+    <modal name="warm" :height="200">
+      <div class="my-3 px-4 py-5 bg-white">
+        <h6 class="font-weight-bold">{{ $t("message.server_is_inactive") }}</h6>
+        <button class="btn btn-dark" @click="visit">
+          {{ $t("message.Yes") }}
+        </button>
+        <button class="btn btn-dark" @click="$modal.hide('warm')">
+          {{ $t("message.No") }}
+        </button>
       </div>
-</modal>
+    </modal>
 
     <div class="card serverCard p-4 mb-3 mt-5">
       <img
@@ -42,19 +39,19 @@
                     style="cursor: pointer"
                     @click="goDetails(Server.slug)"
                   >
-                    {{$t('message.Hard')}}
+                    {{ $t("message.Hard") }}
                   </p>
                   <p
                     class="hard text-success bg-green rounded"
                     v-if="Server.difficulty == 'Easy'"
                   >
-                    {{$t('message.Easy')}}
+                    {{ $t("message.Easy") }}
                   </p>
                   <p
                     class="hard text-orange bg-orange rounded"
                     v-if="Server.difficulty == 'Medium'"
                   >
-                    {{$t('message.Medium')}}
+                    {{ $t("message.Medium") }}
                   </p>
                   <h5 class="font-weight-bold">{{ url }}</h5>
                 </div>
@@ -65,12 +62,12 @@
                 <span>
                   <img src="/img/like.png" class="img-fluid" alt="" />
                 </span>
-                <span class="text-success">{{Server.realtimeVote}}</span>
+                <span class="text-success">{{ Server.realtimeVote }}</span>
                 <span class="mx-3 text-secondary">|</span>
                 <span>
                   <i class="fa fa-external-link-alt text-secondary font-13"></i>
                 </span>
-                <span class="text-secondary font-13">{{Server.viewd}}</span>
+                <span class="text-secondary font-13">{{ Server.viewd }}</span>
               </p>
             </div>
           </div>
@@ -91,16 +88,16 @@
 
     <div class="card my-3 p-3">
       <a
-        @click="Check_last_vote(Server.url,Server.has_vote_in_12)"
+        @click="Check_last_vote(Server.url, Server.has_vote_in_12)"
         target="_blank"
         class="btn btn-dark bg-dark btn-block rounded font-weight-normal"
-        >{{ url }} - {{$t('message.Server_details')}}</a
+        >{{ url }} - {{ $t("message.Server_details") }}</a
       >
       <div class="row mt-3">
         <div class="col-md-6">
           <div class="row">
             <div class="col-4 m-auto">
-              <p>{{ $t('message.Server_Type') }}:</p>
+              <p>{{ $t("message.Server_Type") }}:</p>
             </div>
             <div class="col-7">
               <p
@@ -109,19 +106,19 @@
                 style="cursor: pointer"
                 @click="goDetails(Server.slug)"
               >
-                {{$t('message.Hard')}}
+                {{ $t("message.Hard") }}
               </p>
               <p
                 class="hard text-success bg-green rounded"
                 v-if="Server.difficulty == 'Easy'"
               >
-                {{$t('message.Easy')}}
+                {{ $t("message.Easy") }}
               </p>
               <p
                 class="hard text-orange bg-orange rounded"
                 v-if="Server.difficulty == 'Medium'"
               >
-                {{$t('message.Medium')}}
+                {{ $t("message.Medium") }}
               </p>
               <p class="d-inline text-muted ml-2">{{ Server.category }}</p>
             </div>
@@ -129,7 +126,7 @@
           <hr />
           <div class="row">
             <div class="col-4 m-auto">
-              <p>{{ $t('message.Max_Level') }}:</p>
+              <p>{{ $t("message.Max_Level") }}:</p>
             </div>
             <div class="col-7">
               <p class="d-inline text-muted ml-2">{{ Server.maxlevel }}</p>
@@ -147,10 +144,12 @@
           <hr />
           <div class="row">
             <div class="col-4 m-auto">
-              <p>{{ $t('message.Votes') }}:</p>
+              <p>{{ $t("message.Votes") }}:</p>
             </div>
             <div class="col-7">
-              <p class="d-inline text-success ml-2">{{Server.realtimeVote}}</p>
+              <p class="d-inline text-success ml-2">
+                {{ Server.realtimeVote }}
+              </p>
             </div>
           </div>
           <hr />
@@ -158,13 +157,16 @@
         <div class="col-md-6">
           <div class="row">
             <div class="col-4 m-auto">
-              <p>{{ $t('message.Website') }}:</p>
+              <p>{{ $t("message.Website") }}:</p>
             </div>
             <div class="col-7">
               <p class="d-inline text-muted ml-2">
-                <a  @click="Check_last_vote(Server.url,Server.has_vote_in_12)" target="_blank" class="text-muted">{{
-                  url
-                }}</a>
+                <a
+                  @click="Check_last_vote(Server.url, Server.has_vote_in_12)"
+                  target="_blank"
+                  class="text-muted"
+                  >{{ url }}</a
+                >
                 <i class="fa fa-external-link-alt"></i>
               </p>
             </div>
@@ -172,25 +174,25 @@
           <hr />
           <div class="row">
             <div class="col-4 m-auto">
-              <p>{{ $t('message.Comments') }}:</p>
+              <p>{{ $t("message.Comments") }}:</p>
             </div>
             <div class="col-7">
-              <p class="d-inline text-muted ml-2">{{comments.length}}</p>
+              <p class="d-inline text-muted ml-2">{{ comments.length }}</p>
             </div>
           </div>
           <hr />
           <div class="row">
             <div class="col-4 m-auto">
-              <p>{{ $t('message.Clicks') }}:</p>
+              <p>{{ $t("message.Clicks") }}:</p>
             </div>
             <div class="col-7">
-              <p class="d-inline text-muted ml-2">{{Server.viewd}}</p>
+              <p class="d-inline text-muted ml-2">{{ Server.viewd }}</p>
             </div>
           </div>
           <hr />
           <div class="row">
             <div class="col-4 m-auto">
-              <p>{{ $t('message.Server_start') }}:</p>
+              <p>{{ $t("message.Server_start") }}:</p>
             </div>
             <div class="col-7">
               <p class="d-inline text-muted ml-2">{{ Server.created_at }}</p>
@@ -204,7 +206,7 @@
           href="javascript:void(0)"
           class="text-dark text-decoration-none font-weight-bold"
           @click="modalRate"
-          >{{$t('message.Rate_Server')}}</a
+          >{{ $t("message.Rate_Server") }}</a
         >
       </div>
     </div>
@@ -212,10 +214,15 @@
     <!--  -->
 
     <h3 class="my-5 font-weight-bold">
-      {{ $t('message.Feedback') }} & {{ $t('message.Comments') }}: <span>{{ comments.length }}</span>
+      {{ $t("message.Feedback") }} & {{ $t("message.Comments") }}:
+      <span>{{ comments.length }}</span>
     </h3>
 
-    <div class="card my-3" v-if="!showReplay && Server.is_comment" v-for="comment in comments">
+    <div
+      class="card my-3"
+      v-if="!showReplay && Server.is_comment"
+      v-for="comment in comments"
+    >
       <div class="row p-3">
         <div class="col-1 p-0 m-auto">
           <img src="/img/avatar.png" class="img-fluid" alt="" />
@@ -229,7 +236,7 @@
               <p>{{ comment.created_at }}</p>
             </div>
             <div class="col-2">
-              <i class="fa fa-heart text-muted font-14" v-if=" comment.rate"></i
+              <i class="fa fa-heart text-muted font-14" v-if="comment.rate"></i
               ><span class="font-14 ml-1">{{ comment.rate }}</span>
             </div>
             <div class="col-4 text-right pr-3">
@@ -238,19 +245,26 @@
                 class="btn btn-dark bg-dark p-0 px-2 mr-2 rounded"
                 style="font-size: 10px"
               >
-                {{ $t('message.REPLY') }}
+                {{ $t("message.REPLY") }}
               </button>
             </div>
           </div>
           <p class="font-14">
             {{ comment.comment }}
           </p>
-          <a href="javascript:void(0)" v-if="comment.replay.length != 0" @click="showReplays(comment.replay)">show replays</a>
+          <a
+            href="javascript:void(0)"
+            v-if="comment.replay.length != 0"
+            @click="showReplays(comment.replay)"
+            >show replays</a
+          >
         </div>
       </div>
     </div>
-    <a href="javascript:void(0)" v-if="showReplay" @click="showReplay = false">Hide Replays</a>
-     <div class="card my-3" v-if="showReplay" v-for="comment in replays">
+    <a href="javascript:void(0)" v-if="showReplay" @click="showReplay = false"
+      >Hide Replays</a
+    >
+    <div class="card my-3" v-if="showReplay" v-for="comment in replays">
       <div class="row p-3">
         <div class="col-1 p-0 m-auto">
           <img src="/img/avatar.png" class="img-fluid" alt="" />
@@ -267,14 +281,13 @@
           <p class="font-14">
             {{ comment.comment }}
           </p>
-         
         </div>
       </div>
     </div>
 
     <modal name="replay" :height="500">
       <div class="my-3 px-4 py-5 bg-white">
-        <h6 class="font-weight-bold">{{$t('message.Add_Your_Replay')}}</h6>
+        <h6 class="font-weight-bold">{{ $t("message.Add_Your_Replay") }}</h6>
         <span class="text-danger" v-if="errors.username"
           >{{ this.errors.username[0] }}
         </span>
@@ -293,7 +306,7 @@
               <input
                 type="text"
                 class="form-control rounded my-2"
-               :placeholder="$t('message.Username')"
+                :placeholder="$t('message.Username')"
                 v-model="replayForm.username"
                 :class="{ 'is-invalid': errors.username }"
               />
@@ -309,10 +322,17 @@
             placeholder="I think..."
             v-model="replayForm.comment"
           ></textarea>
-           <vue-recaptcha ref="recaptcha1" @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
+          <vue-recaptcha
+            ref="recaptcha1"
+            @verify="checkRecaptcha"
+            :sitekey="$store.state.sitekey"
+          ></vue-recaptcha>
 
           <input
-           v-if="$store.state.islogin && !$store.state.user.is_banned || !$store.state.islogin"
+            v-if="
+              ($store.state.islogin && !$store.state.user.is_banned) ||
+              !$store.state.islogin
+            "
             type="submit"
             class="btn btn-dark d-block bg-dark mt-3"
             value="Replay"
@@ -339,7 +359,9 @@
                 v-model="form.rating"
                 :class="{ 'is-invalid': errors.rating }"
               >
-                <option value="" selected>{{ $t('message.Select_Your_rating') }} </option>
+                <option value="" selected>
+                  {{ $t("message.Select_Your_rating") }}
+                </option>
                 <option value="Very bad">Very bad</option>
                 <option value="Bad">Bad</option>
                 <option value="Acceptable">Acceptable</option>
@@ -401,8 +423,8 @@
             v-model="tos"
           /><label for="check" class="ml-2 my-2 terms"
             ><span class="" :class="{ 'text-danger': errorTos }"
-              >{{ $t('message.I_have_read') }} </span
-            >
+              >{{ $t("message.I_have_read") }}
+            </span>
             <a
               href=""
               class="text-success font-16"
@@ -410,10 +432,17 @@
               >Terms of Use</a
             ></label
           >
-            <vue-recaptcha ref="recaptcha2" @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
+          <vue-recaptcha
+            ref="recaptcha2"
+            @verify="checkRecaptcha"
+            :sitekey="$store.state.sitekey"
+          ></vue-recaptcha>
 
           <input
-           v-if="$store.state.islogin && !$store.state.user.is_banned || !$store.state.islogin"
+            v-if="
+              ($store.state.islogin && !$store.state.user.is_banned) ||
+              !$store.state.islogin
+            "
             type="submit"
             class="btn btn-dark d-block bg-dark mt-3"
             value="Enter"
@@ -424,79 +453,81 @@
       </div>
     </modal>
 
-     <div class="my-3 px-4 py-5 bg-white" v-if="Server.is_comment">
-        <h6 class="font-weight-bold">{{ $t('message.Add_Comment') }} </h6>
-        <span class="text-danger" v-if="errors.username"
-          >{{ this.errors.username[0] }}
-        </span>
-        <div class="mt-4">
-          <div class="row">
-           
-            <div class="col-md-6" v-if="!$store.state.islogin">
-              <input
-                type="text"
-                class="form-control rounded my-2"
-                 :placeholder="$t('message.Email')"
-                v-model="comment.email"
-                :class="{ 'is-invalid': errors.email }"
-              />
-            </div>
-            <div class="col-md-6" v-if="!$store.state.islogin">
-              <input
-                type="text"
-                class="form-control rounded my-2"
-                :placeholder="$t('message.Username')"
-                v-model="comment.username"
-                :class="{ 'is-invalid': errors.username }"
-              />
-            </div>
-           
+    <div class="my-3 px-4 py-5 bg-white" v-if="Server.is_comment">
+      <h6 class="font-weight-bold">{{ $t("message.Add_Comment") }}</h6>
+      <span class="text-danger" v-if="errors.username"
+        >{{ this.errors.username[0] }}
+      </span>
+      <div class="mt-4">
+        <div class="row">
+          <div class="col-md-6" v-if="!$store.state.islogin">
+            <input
+              type="text"
+              class="form-control rounded my-2"
+              :placeholder="$t('message.Email')"
+              v-model="comment.email"
+              :class="{ 'is-invalid': errors.email }"
+            />
           </div>
-          <textarea
-            :class="{ 'is-invalid': errors.comment }"
-            name=""
-            id=""
-            cols="30"
-            rows="5"
-            class="form-control mt-2 rounded"
-            placeholder="I think..."
-            v-model="comment.comment"
-          ></textarea>
-      
-            <vue-recaptcha 
-            ref="recaptcha3"
-             v-if="show" @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
-
-          <input
-           v-if="$store.state.islogin && !$store.state.user.is_banned || !$store.state.islogin"
-            type="submit"
-            class="btn btn-dark d-block bg-dark mt-3"
-            value="Enter"
-            @click="addcomment"
-            
-          />
+          <div class="col-md-6" v-if="!$store.state.islogin">
+            <input
+              type="text"
+              class="form-control rounded my-2"
+              :placeholder="$t('message.Username')"
+              v-model="comment.username"
+              :class="{ 'is-invalid': errors.username }"
+            />
+          </div>
         </div>
+        <textarea
+          :class="{ 'is-invalid': errors.comment }"
+          name=""
+          id=""
+          cols="30"
+          rows="5"
+          class="form-control mt-2 rounded"
+          placeholder="I think..."
+          v-model="comment.comment"
+        ></textarea>
+
+        <vue-recaptcha
+          ref="recaptcha3"
+          v-if="show"
+          @verify="checkRecaptcha"
+          :sitekey="$store.state.sitekey"
+        ></vue-recaptcha>
+
+        <input
+          v-if="
+            ($store.state.islogin && !$store.state.user.is_banned) ||
+            !$store.state.islogin
+          "
+          type="submit"
+          class="btn btn-dark d-block bg-dark mt-3"
+          value="Enter"
+          @click="addcomment"
+        />
       </div>
+    </div>
   </div>
 </template>
 
 <script>
-
-import VueRecaptcha from 'vue-recaptcha';
+import VueRecaptcha from "vue-recaptcha";
 export default {
-   components: { VueRecaptcha },
+  components: { VueRecaptcha },
   data() {
     return {
-      show:false,
+      show: false,
       Server: [],
       url: "",
-      viUrl:'',
+      viUrl: "",
       clicked: false,
-      comment:{
-        email:'',
-        comment:'',
-        username:'',
-        server_id:'',
+      comment: {
+        email: "",
+        comment: "",
+        username: "",
+        server_id: "",
       },
       form: {
         comment: "",
@@ -505,44 +536,43 @@ export default {
         username: "",
         iam: "Warrior (m)",
         server_id: "",
-        ReqResponse:'',
+        ReqResponse: "",
       },
       replayForm: {
         comment: "",
         email: "",
         username: "",
         comment_id: "",
-        ReqResponse:'',
+        ReqResponse: "",
       },
       errorTos: false,
       tos: false,
       errors: [],
       comments: [],
-      replays:[],
-      showReplay:false,
-      index:0,
+      replays: [],
+      showReplay: false,
+      index: 0,
     };
   },
   methods: {
-     visit(){
-      window.open(this.viUrl, '_blank')
+    visit() {
+      window.open(this.viUrl, "_blank");
     },
-        Check_last_vote(url,status){
-      if(status){
-      window.open(url, '_blank');
-      }else{
-        this.viUrl = url
-        this.$modal.show('warm')
+    Check_last_vote(url, status) {
+      if (status) {
+        window.open(url, "_blank");
+      } else {
+        this.viUrl = url;
+        this.$modal.show("warm");
       }
-  
     },
-     checkRecaptcha(response){
-      this.form.ReqResponse = response
-        this.disabel = false
+    checkRecaptcha(response) {
+      this.form.ReqResponse = response;
+      this.disabel = false;
     },
-    showReplays(replays){
-      this.replays = replays
-      this.showReplay = true
+    showReplays(replays) {
+      this.replays = replays;
+      this.showReplay = true;
     },
     Replay() {
       this.clicked = true;
@@ -553,24 +583,24 @@ export default {
           this.clicked = false;
           Toast.fire({
             icon: "success",
-            title:  this.$t('message.You_have_replayed'),
+            title: this.$t("message.You_have_replayed"),
           });
-            this.getComments();
+          this.getComments();
         })
         .catch((errors) => {
-         this.$refs.recaptcha1.reset()
+          this.$refs.recaptcha1.reset();
           this.clicked = false;
           if (errors.response.status == 422) {
             this.errors = errors.response.data.errors;
-          } else if(errors.response.status == 403){
-               Toast.fire({
-            icon: "error",
-            title: errors.response.data,
-          });
-          }else {
+          } else if (errors.response.status == 403) {
             Toast.fire({
               icon: "error",
-              title: this.$t('message.Something_went_wrong'),
+              title: errors.response.data,
+            });
+          } else {
+            Toast.fire({
+              icon: "error",
+              title: this.$t("message.Something_went_wrong"),
             });
           }
         });
@@ -601,12 +631,12 @@ export default {
           this.clicked = false;
           Toast.fire({
             icon: "success",
-            title: this.$t('message.You_have_voted_successfully'),
+            title: this.$t("message.You_have_voted_successfully"),
           });
-           this.getComments();
+          this.getComments();
         })
         .catch((errors) => {
-             this.$refs.recaptcha2.reset()
+          this.$refs.recaptcha2.reset();
           this.clicked = false;
           if (errors.response.status == 422) {
             this.errors = errors.response.data.errors;
@@ -618,7 +648,7 @@ export default {
           } else {
             Toast.fire({
               icon: "error",
-              title:  this.$t('message.Something_went_wrong'),
+              title: this.$t("message.Something_went_wrong"),
             });
           }
         });
@@ -636,20 +666,20 @@ export default {
         })
         .catch((errors) => {});
     },
-    addcomment(){
-       this.comment.server_id = this.Server.id;
-          this.axios
+    addcomment() {
+      this.comment.server_id = this.Server.id;
+      this.axios
         .post("/api/addComment", this.comment)
         .then((response) => {
           this.clicked = false;
           Toast.fire({
             icon: "success",
-            title: this.$t('message.Comment_Added_successfully'),
+            title: this.$t("message.Comment_Added_successfully"),
           });
-           this.getComments();
+          this.getComments();
         })
         .catch((errors) => {
-        this.$refs.recaptcha3.reset()
+          this.$refs.recaptcha3.reset();
           this.clicked = false;
           if (errors.response.status == 422) {
             this.errors = errors.response.data.errors;
@@ -661,18 +691,18 @@ export default {
           } else {
             Toast.fire({
               icon: "error",
-              title: this.$t('message.Something_went_wrong'),
+              title: this.$t("message.Something_went_wrong"),
             });
           }
         });
-    }
+    },
   },
   created() {
-    var vm = this
-     this.getServer();
+    var vm = this;
+    this.getServer();
     this.getComments();
     setTimeout(() => {
-      vm.show = true
+      vm.show = true;
     }, 1000);
   },
 };

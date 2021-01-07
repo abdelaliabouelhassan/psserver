@@ -94,6 +94,3 @@ function checkRecaptcha($key,$response){
     }
 
 }
-
-
-?>

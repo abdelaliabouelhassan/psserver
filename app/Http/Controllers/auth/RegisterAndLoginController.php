@@ -18,12 +18,13 @@ class RegisterAndLoginController extends Controller
 
 
     // create new account
-    public function register(Request $request){
-        
+    public function register(Request $request)
+    {
+
         $request->validate([
-            'username'=>['required','max:100','min:2','unique:users'],
-            'email'=>['required','email','unique:users'],
-            'password'=>['required','min:8','confirmed']
+            'username' => ['required', 'max:100', 'min:2', 'unique:users'],
+            'email' => ['required', 'email', 'unique:users'],
+            'password' => ['required', 'min:8', 'confirmed']
 
         ]);
 
@@ -32,68 +33,71 @@ class RegisterAndLoginController extends Controller
         }
 
         $my_Ip =  getIPAddress();
-      
 
-       $user =  User::create([
-           'username'=>$request->username,
-           'email'=>$request->email,
-           'password'=>Hash::make($request->password),
-           'ip'=> $my_Ip,
+
+        $user =  User::create([
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'ip' => $my_Ip,
         ]);
 
         $user =   User::findOrFail($user->id);
         $bytes = random_bytes(20);
-        $name    =   bin2hex($bytes) .'_'. uniqid() . '_' .  Carbon::now();
+        $name    =   bin2hex($bytes) . '_' . uniqid() . '_' .  Carbon::now();
         $token = $name;
         $user->remember_token = $token;
         $user->save();
-        Mail::to($request->email)->send(new VerificationEmail($token,$request->email,$request->username));
+        Mail::to($request->email)->send(new VerificationEmail($token, $request->email, $request->username));
 
-        return response()->json('Account Created Successfully',200);
-
+        return response()->json('Account Created Successfully', 200);
     }
     //login
-    public function login(Request $request){
-           $request->validate([
-            'username'=>['required'],
-            'password'=>['required'],
-         ]);
+    public function login(Request $request)
+    {
+        $request->validate([
+            'username' => ['required'],
+            'password' => ['required'],
+        ]);
 
-         if(!checkRecaptcha(env('INVISIBLE_RECAPTCHA_SECRETKEY', '6LeCNhwaAAAAACh31QVu_Fve05EQqn7p9iOWNQmU'),$request->ReqResponse)){
-             return response()->json(trans('message.invalid_recaptcha'), 403);
+        if (!checkRecaptcha(env('INVISIBLE_RECAPTCHA_SECRETKEY', '6LeCNhwaAAAAACh31QVu_Fve05EQqn7p9iOWNQmU'), $request->ReqResponse)) {
+            return response()->json(trans('message.invalid_recaptcha'), 403);
         }
 
-        if(Auth::attempt($request->only('username','password'))){
-            return response()->json(Auth::user(),200);
+        if (Auth::attempt($request->only('username', 'password'))) {
+            return response()->json(Auth::user(), 200);
         }
 
-        return response()->json(trans('message.Cerdentials'),403);
+        return response()->json(trans('message.Cerdentials'), 403);
     }
     //logout
-    public function logout(){
+    public function logout()
+    {
         return Auth::logout();
     }
 
-    
 
 
-    public function verifyemail($email,$token){
-         $user =   User::where('email',$email)->first();
-         if($user){
-               if($user->remember_token == $token){
-                    $user->email_verified_at = now();
-                    $user->remember_token = "";
-                    $user->save();
-                    return redirect('/home');
-               }else{
-                   return abort(404);
-               }
-         }else{
-             return abort(404);
-         }
+
+    public function verifyemail($email, $token)
+    {
+        $user =   User::where('email', $email)->first();
+        if ($user) {
+            if ($user->remember_token == $token) {
+                $user->email_verified_at = now();
+                $user->remember_token = "";
+                $user->save();
+                return redirect('/home');
+            } else {
+                return abort(404);
+            }
+        } else {
+            return abort(404);
+        }
     }
 
-    public function Verification(){
+    public function Verification()
+    {
         $user =   User::findOrFail(auth('sanctum')->id());
         $bytes = random_bytes(20);
         $name    =   bin2hex($bytes) . '_' . uniqid() . '_' .  Carbon::now();
@@ -106,27 +110,21 @@ class RegisterAndLoginController extends Controller
     }
 
 
-    public function changepassword(Request $request){
+    public function changepassword(Request $request)
+    {
         $request->validate([
             'old_password' => ['required'],
             'password' => ['required', 'min:8', 'confirmed']
 
         ]);
-            
-     if( !Hash::check($request->old_password, auth('sanctum')->user()->password)){
-            return response()->json(trans('message.match'), 403); 
-     }else{
+
+        if (!Hash::check($request->old_password, auth('sanctum')->user()->password)) {
+            return response()->json(trans('message.match'), 403);
+        } else {
             User::findOrFail(auth('sanctum')->user()->id)->update([
                 'password' => Hash::make($request->password),
             ]);
-            return response()->json('Password Updated Successfully', 200); 
-
-     }
-
-
-
-
-
-
+            return response()->json('Password Updated Successfully', 200);
+        }
     }
 }

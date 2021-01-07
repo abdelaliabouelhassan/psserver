@@ -8,10 +8,11 @@ use App\Mail\Contactus;
 
 class ContactUsController extends Controller
 {
-    
 
 
-    public function Contactus(Request $request){
+
+    public function Contactus(Request $request)
+    {
         $request->validate([
             'username' => ['required'],
             'email' => ['required', 'email'],
@@ -27,6 +28,5 @@ class ContactUsController extends Controller
         Mail::to(env('App_email'))->send(new Contactus($request->email, $request->username, $request->message));
 
         return response()->json('Message Sent Successfully', 200);
-
     }
 }

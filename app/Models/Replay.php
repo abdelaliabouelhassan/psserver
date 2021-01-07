@@ -10,6 +10,4 @@ class Replay extends Model
 {
     use HasFactory;
     protected $guarded = [];
-
-  
 }

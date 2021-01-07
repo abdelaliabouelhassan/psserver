@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use App\Models\Server;
 use App\Enums\ServerRanking;
 
-class updateVote extends Command
+class UpdateVote extends Command
 {
     /**
      * The name and signature of the console command.

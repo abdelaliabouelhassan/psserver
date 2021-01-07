@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Server;
 use Illuminate\Console\Command;
 
-class Check_has_votes_in_the_last_12 extends Command
+class CheckHasVotesInTheLast12 extends Command
 {
     /**
      * The name and signature of the console command.

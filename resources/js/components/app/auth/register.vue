@@ -1,12 +1,13 @@
 <template>
   <div class="text-center py-2">
-    <h2 class="font-weight-bold" >{{$t('message.Create_Account')}}</h2>
+    <h2 class="font-weight-bold">{{ $t("message.Create_Account") }}</h2>
     <p>
-      {{$t('message.Already')}}<a
-       style="cursor:pointer"
+      {{ $t("message.Already")
+      }}<a
+        style="cursor: pointer"
         class="ml-2 text-danger text-decoration-none"
         @click="login_modal"
-        >{{$t('message.Sign_In')}}</a
+        >{{ $t("message.Sign_In") }}</a
       >
     </p>
     <div class="row">
@@ -28,7 +29,7 @@
             type="email"
             class="form-control my-3 rounded"
             :class="{ 'is-invalid': errors.email }"
-             :placeholder="$t('message.Email')"
+            :placeholder="$t('message.Email')"
             name="email"
             v-model="form.email"
           />
@@ -49,19 +50,26 @@
           <input
             type="password"
             class="form-control my-3 rounded"
-             :placeholder="$t('message.Confirm_Password')"
+            :placeholder="$t('message.Confirm_Password')"
             name="confirmPassword"
             v-model="form.password_confirmation"
           />
           <div class="text-left">
-            <input type="checkbox" v-model="tos" /><label for="check" class="ml-2"  :class="{ 'text-danger': errorTos }"
-              ><span> {{$t('message.I_have_read')}}</span>
-              <a href="javascript:void(0)" class="text-success font-16" 
-                >{{$t('message.Terms_of_Use')}}</a
-              ></label
+            <input type="checkbox" v-model="tos" /><label
+              for="check"
+              class="ml-2"
+              :class="{ 'text-danger': errorTos }"
+              ><span> {{ $t("message.I_have_read") }}</span>
+              <a href="javascript:void(0)" class="text-success font-16">{{
+                $t("message.Terms_of_Use")
+              }}</a></label
             >
           </div>
-          <vue-recaptcha ref="recaptcha" @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
+          <vue-recaptcha
+            ref="recaptcha"
+            @verify="checkRecaptcha"
+            :sitekey="$store.state.sitekey"
+          ></vue-recaptcha>
           <input
             :disabled="disabel"
             type="submit"
@@ -77,68 +85,66 @@
 </template>
 
 <script>
-import VueRecaptcha from 'vue-recaptcha';
+import VueRecaptcha from "vue-recaptcha";
 export default {
-   components: { VueRecaptcha },
+  components: { VueRecaptcha },
   data() {
     return {
-        disabel:false,
-        tos:false,
+      disabel: false,
+      tos: false,
       form: {
         username: "",
         password: "",
         email: "",
         password_confirmation: "",
-        ReqResponse:'',
+        ReqResponse: "",
       },
       errors: [],
-      errorTos:false,
+      errorTos: false,
     };
   },
   methods: {
-     checkRecaptcha(response){
-         this.form.ReqResponse = response
-        this.disabel = false
+    checkRecaptcha(response) {
+      this.form.ReqResponse = response;
+      this.disabel = false;
     },
     register() {
+      if (!this.tos) {
+        this.errorTos = true;
+        return;
+      }
 
-    if(!this.tos){
-            this.errorTos = true
-            return;
-    }
-
-     this.disabel = true;
+      this.disabel = true;
       this.axios
         .post("/api/register", this.form)
         .then((response) => {
           this.errors = [];
-        
+
           Toast.fire({
             icon: "success",
-            title: this.$t('message.Account_created'),
+            title: this.$t("message.Account_created"),
           });
-           this.$modal.hide('register')
-           this.disabel = false;
-           this.errorTos = false
+          this.$modal.hide("register");
+          this.disabel = false;
+          this.errorTos = false;
         })
         .catch((errors) => {
           if (errors.response.status == 422) {
             this.errors = errors.response.data.errors;
+          } else if (errors.response.status == 403) {
+            Toast.fire({
+              icon: "error",
+              title: errors.response.data,
+            });
           }
-          else if(errors.response.status == 403){
-               Toast.fire({
-            icon: "error",
-            title: errors.response.data,
-          });
-          }
-           this.$refs.recaptcha.reset()
-           this.disabel = false;
+          this.$refs.recaptcha.reset();
+          this.disabel = false;
         });
     },
-    login_modal(){
-       this.$modal.hide('register')
-        this.$modal.show('login')
-    }
+    login_modal() {
+      this.$modal.hide("register");
+      this.$modal.show("login");
+    },
   },
 };
 </script>

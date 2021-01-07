@@ -18,18 +18,21 @@ class Server extends Model
 
 
 
-    public function user(){
-        return $this->belongsTo(User::class,'user_id');
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
-    public function vote(){
+    public function vote()
+    {
         return $this->hasMany(Vote::class, 'server_id');
     }
 
-    public function comment(){
+    public function comment()
+    {
         return $this->hasMany(Comment::class, 'server_id');
     }
 
-    public function getSlugOptions() : SlugOptions
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
             ->generateSlugsFrom('title')

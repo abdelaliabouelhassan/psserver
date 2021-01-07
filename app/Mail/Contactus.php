@@ -21,7 +21,7 @@ class Contactus extends Mailable
     public $username;
     public $message;
 
-    public function __construct($email,$username,$message)
+    public function __construct($email, $username, $message)
     {
         $this->email = $email;
         $this->username = $username;

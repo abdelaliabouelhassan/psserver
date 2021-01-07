@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+
 class UsersManageController extends Controller
 {
     /**
@@ -17,8 +18,8 @@ class UsersManageController extends Controller
      */
     public function index()
     {
-        $users = User::where('is_admin',false)->get();
-        return view('admin.pages.users.index',compact('users'));
+        $users = User::where('is_admin', false)->get();
+        return view('admin.pages.users.index', compact('users'));
     }
 
     /**
@@ -42,30 +43,31 @@ class UsersManageController extends Controller
 
 
         $request->validate([
-            'email'=>'required|email|unique:users',
-            'username'=> 'required|unique:users',
-            'password'=>'min:8'
+            'email' => 'required|email|unique:users',
+            'username' => 'required|unique:users',
+            'password' => 'min:8'
         ]);
-            $is_admin = false;
-            if($request->is_admin){
-                $is_admin = true;
-            }
-            
-            User::create([
-                'username'=>$request->username,
-                'password'=>Hash::make($request->password),
-                'email'=>$request->email,
-                'is_admin'=>$is_admin,
-            ]);
+        $is_admin = false;
+        if ($request->is_admin) {
+            $is_admin = true;
+        }
 
-            session()->flash('good', 'User Created Successfully');
+        User::create([
+            'username' => $request->username,
+            'password' => Hash::make($request->password),
+            'email' => $request->email,
+            'is_admin' => $is_admin,
+        ]);
+
+        session()->flash('good', 'User Created Successfully');
 
         return redirect()->back();
     }
 
 
-    public function logout(){
-         Auth::logout();
+    public function logout()
+    {
+        Auth::logout();
         return redirect('/');
     }
 
@@ -89,7 +91,7 @@ class UsersManageController extends Controller
     public function edit($id)
     {
         $user =    User::findOrFail($id);
-        return view('admin.pages.users.edit',compact('user'));
+        return view('admin.pages.users.edit', compact('user'));
     }
 
     /**
@@ -101,30 +103,30 @@ class UsersManageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+
         $request->validate([
-            'username'=>'required',
-            'email'=>'required',
+            'username' => 'required',
+            'email' => 'required',
 
         ]);
-        $is_password= false;
+        $is_password = false;
 
-        if($request->password){
+        if ($request->password) {
             $request->validate([
                 'password' => 'min:8',
 
             ]);
-                $is_password = true;
+            $is_password = true;
         }
-          $user =    User::findOrFail($id);
-        if($is_password){
-            $user->password =    Hash::make($request->password); 
+        $user =    User::findOrFail($id);
+        if ($is_password) {
+            $user->password =    Hash::make($request->password);
         }
         $is_admin = false;
         if ($request->is_admin) {
             $is_admin = true;
         }
-        if(auth('sanctum')->id() == $user->id){
+        if (auth('sanctum')->id() == $user->id) {
             $is_admin = true;
         }
 
@@ -135,23 +137,22 @@ class UsersManageController extends Controller
         session()->flash('good', 'User Updated Successfully');
 
         return redirect()->back();
-
-       
     }
 
 
 
-    public function ban_user_and_unban($id){
-       $user  =  User::findOrFail($id);
+    public function banUserAndUnban($id)
+    {
+        $user  =  User::findOrFail($id);
 
-       if($user->is_banned){
-        $user->is_banned = false;
+        if ($user->is_banned) {
+            $user->is_banned = false;
             session()->flash('good', 'User UnBanned Successfully');
-       }else{
+        } else {
             session()->flash('good', 'User Banned Successfully');
             $user->is_banned = true;
-       }
-$user->save();
+        }
+        $user->save();
 
         return redirect()->back();
     }
@@ -165,7 +166,7 @@ $user->save();
     public function destroy($id)
     {
         User::findOrFail($id)->delete();
-        Server::where('user_id',$id)->delete();
+        Server::where('user_id', $id)->delete();
         session()->flash('good', 'User Deleted Successfully');
         return redirect()->back();
     }

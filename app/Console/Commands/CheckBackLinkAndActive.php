@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\Models\Server;
 
-class CheckBackLinksAndActive extends Command
+class CheckBackLinkAndActive extends Command
 {
     /**
      * The name and signature of the console command.

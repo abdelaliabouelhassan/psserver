@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Models\Comment;
 use App\Models\Vote;
 use Spatie\Browsershot\Browsershot;
+
 class ServerManageController extends Controller
 {
     /**
@@ -21,24 +22,27 @@ class ServerManageController extends Controller
     {
         $servers = Server::orderBy('vote_amount', 'desc')->where('status', true)->where('admin_active', true)->where('server_owner_active', true)->get();
 
-      
-        return view('admin.pages.servers.index',compact('servers'));
+
+        return view('admin.pages.servers.index', compact('servers'));
     }
 
-    public function get_un_active_servers(){
+    public function getUnActiveServer()
+    {
         $servers = Server::orderBy('vote_amount', 'desc')->where('status', true)->where('admin_active', false)->where('server_owner_active', true)->get();
         return view('admin.pages.servers.index', compact('servers'));
     }
 
-    public function get_un_approve_servers(){
+    public function getUnApprovedServers()
+    {
         $servers = Server::orderBy('vote_amount', 'desc')->where('status', false)->get();
         return view('admin.pages.servers.index', compact('servers'));
     }
 
 
-    public function approve_server(Request $request){
+    public function approveServer(Request $request)
+    {
 
-       
+
         $server =  Server::findOrFail($request->id);
         //take screenshot
         $image_name = uniqid() . '_' . time() . '.png';
@@ -65,30 +69,30 @@ class ServerManageController extends Controller
         return redirect()->back();
     }
 
-    public function active_server_deactivate(Request $request){
-       $server =  Server::findOrFail($request->id);
-       if($server->admin_active){
+    public function deactivateActiveServer(Request $request)
+    {
+        $server =  Server::findOrFail($request->id);
+        if ($server->admin_active) {
             $request->validate([
-                'description'=>'required'
+                'description' => 'required'
             ]);
             $server->admin_active = false;
             Mail::to($server->user->email)->send(new ServerAdmin_active($request->description));
-           
-       }else{
+        } else {
             $server->admin_active = true;
-       }
+        }
         $server->save();
         session()->flash('good', 'Server Updated Successfully');
 
         return redirect()->back();
     }
 
-    public function active_comment_deactivate(Request $request){
+    public function activeCommentDeactivate(Request $request)
+    {
         $server =  Server::findOrFail($request->id);
-        if($server->comment_active){
-            $server->comment_active =false;
-
-        }else{
+        if ($server->comment_active) {
+            $server->comment_active = false;
+        } else {
             $server->comment_active = true;
         }
         $server->save();
@@ -96,7 +100,8 @@ class ServerManageController extends Controller
         return redirect()->back();
     }
 
-    public function delete_Comment(Request $request){
+    public function deleteComment(Request $request)
+    {
         Comment::findOrFail($request->id)->delete();
         session()->flash('good', 'Comment Deleted Successfully');
         return redirect()->back();
@@ -131,8 +136,8 @@ class ServerManageController extends Controller
      */
     public function show($id)
     {
-       $server =  Server::findOrFail($id)->first();
-       return view('admin.pages.servers.show',compact('server'));
+        $server =  Server::findOrFail($id)->first();
+        return view('admin.pages.servers.show', compact('server'));
     }
 
     /**
@@ -167,8 +172,8 @@ class ServerManageController extends Controller
     public function destroy($id)
     {
         Server::findOrFail($id)->delete();
-        Comment::where('server_id',$id)->delete();
-        Vote::where('server_id',$id)->delete();
+        Comment::where('server_id', $id)->delete();
+        Vote::where('server_id', $id)->delete();
         session()->flash('good', 'Server Deleted Successfully');
         return redirect()->back();
     }

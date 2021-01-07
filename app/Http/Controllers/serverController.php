@@ -9,18 +9,20 @@ use App\Http\Resources\ServersCollection;
 use Spatie\Browsershot\Browsershot;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Str;
+
 class serverController extends Controller
 {
 
 
 
-    public function GenerateLink(Request $request){
-        $request->validate([ 
+    public function GenerateLink(Request $request)
+    {
+        $request->validate([
             'URL' => ['required', 'url'],
             'title' => ['required', 'max:150', 'min:4'],
-       ]);
+        ]);
 
-       $server =  Server::create([
+        $server =  Server::create([
             'url' => $request->URL,
             'title' => $request->title,
             'user_id' => auth('sanctum')->id(),
@@ -28,15 +30,15 @@ class serverController extends Controller
 
         $link = url('/serverdetails/' . $server->slug);
         $data = [
-            'link'=>$link,
-            'id'=>$server->id,
+            'link' => $link,
+            'id' => $server->id,
         ];
-        return response()->json($data, 200); 
+        return response()->json($data, 200);
     }
 
     public function CreateServer(Request $request)
     {
-       
+
 
         $request->validate([
             'Banner' => ['required'],
@@ -45,7 +47,7 @@ class serverController extends Controller
             'Level' => ['required'],
             'Rates' => ['required'],
             'Description' => ['required', 'min:50'],
-            'Difficulty'=>['required'],
+            'Difficulty' => ['required'],
         ]);
 
         if ($request->YouTube != "") {
@@ -55,15 +57,15 @@ class serverController extends Controller
         }
 
         //check recaptcha
-        if(!checkRecaptcha(env('INVISIBLE_RECAPTCHA_SECRETKEY', '6LeCNhwaAAAAACh31QVu_Fve05EQqn7p9iOWNQmU'),$request->ReqResponse)){
+        if (!checkRecaptcha(env('INVISIBLE_RECAPTCHA_SECRETKEY', '6LeCNhwaAAAAACh31QVu_Fve05EQqn7p9iOWNQmU'), $request->ReqResponse)) {
             return response()->json(trans('message.invalid_recaptcha'), 403);
         }
 
 
         //check backlink
-        
+
         $server =  Server::findOrFail($request->id);
-        $url =  request()->server('SERVER_NAME') . '/'. $server->slug;
+        $url =  request()->server('SERVER_NAME') . '/' . $server->slug;
         if (!checkBackLink($server->url, $url)) {
             return response()->json(trans("message.BackLink") . '(' . $server->url . ')!', 403);
         }
@@ -81,7 +83,7 @@ class serverController extends Controller
             $image_base64 = base64_decode($image_parts[1]);
             file_put_contents($folderPath . $name, $image_base64);
             $dbPath =   $folderPath . $name;
-          
+
             $Language = "";
             foreach ($request->Language as $lang) {
                 $Language .= $lang . ',';
@@ -95,9 +97,9 @@ class serverController extends Controller
                 'youtube_id' => $request->YouTube,
                 'rates' => $request->Rates,
                 'description' => $request->Description,
-                'difficulty'=>$request->Difficulty,
-                'hasBacklink'=>true,
-                'screen' => null ,     
+                'difficulty' => $request->Difficulty,
+                'hasBacklink' => true,
+                'screen' => null,
             ]);
 
             return response()->json('Server Created Successfully ', 200);
@@ -107,36 +109,39 @@ class serverController extends Controller
 
 
 
-    public function GetServers(){
-          $servers = Server::orderBy('vote_amount', 'desc')->where('status',true)->where('admin_active', true)->where('server_owner_active', true)->paginate(15);
-          return  ServersCollection::collection($servers);     
+    public function GetServers()
+    {
+        $servers = Server::orderBy('vote_amount', 'desc')->where('status', true)->where('admin_active', true)->where('server_owner_active', true)->paginate(15);
+        return  ServersCollection::collection($servers);
     }
 
-    public function GetServerBySlug($slug){
-        $servers = Server:: where('slug', $slug)->firstOrFail();
+    public function GetServerBySlug($slug)
+    {
+        $servers = Server::where('slug', $slug)->firstOrFail();
         $servers->viewd = $servers->viewd + 1;
         $servers->save();
-        $servers = Server::where('slug',$slug)->get();
-         return  ServersCollection::collection($servers); 
+        $servers = Server::where('slug', $slug)->get();
+        return  ServersCollection::collection($servers);
     }
 
-    public function getMyServers(){
-      return   Server::where('user_id',auth('sanctum')->id())->get();
-
+    public function getMyServers()
+    {
+        return   Server::where('user_id', auth('sanctum')->id())->get();
     }
 
-    public function getServerInfo($slug){
-      $server =   Server::where('slug',$slug)->where('user_id',auth('sanctum')->id())->first();
-      if($server){
-          return $server;
-      }else{
+    public function getServerInfo($slug)
+    {
+        $server =   Server::where('slug', $slug)->where('user_id', auth('sanctum')->id())->first();
+        if ($server) {
+            return $server;
+        } else {
             return response()->json('Server not found ', 404);
-      }
-
+        }
     }
 
 
-    public function updateServer(Request $request){
+    public function updateServer(Request $request)
+    {
         $request->validate([
             'url' => ['required', 'url'],
             'title' => ['required', 'max:150', 'min:4'],
@@ -155,18 +160,18 @@ class serverController extends Controller
         }
 
 
-     $server =    Server::findOrFail($request->id);
+        $server =    Server::findOrFail($request->id);
         //check backlink
 
         $url =  request()->server('SERVER_NAME') . '/' . $server->slug;
         if (!checkBackLink($server->url, $url)) {
-            return response()->json( trans("message.BackLink") .'(' . $server->url . ')!', 403);
+            return response()->json(trans("message.BackLink") . '(' . $server->url . ')!', 403);
         }
 
 
         $banner = $server->banner;
 
-        if($request->banner == $banner){
+        if ($request->banner == $banner) {
             $server->update([
                 'url' => $request->url,
                 'title' => $request->title,
@@ -179,8 +184,7 @@ class serverController extends Controller
                 'status' => false,
                 'hasBacklink' => true,
             ]);
-
-        }else{
+        } else {
             $name = time() . '.'  . explode('/', explode(':', substr($request->banner, 0, strpos($request->banner, ';')))[1])[1];
             $folderPath = "uploads/images/";
             $dbPath = "";
@@ -204,32 +208,32 @@ class serverController extends Controller
                 'status' => false,
                 'hasBacklink' => true,
             ]);
-
         }
 
-    
+
 
         return response()->json('Server Updated Successfully ', 200);
-
-        
     }
 
-    public function getserverbyserver($server){
-        $servers = Server::orderBy('vote_amount', 'desc')->where('language','like' , '%' .$server . '%')->where('status', true)->paginate(15);
-        return  ServersCollection::collection($servers);    
+    public function getserverbyserver($server)
+    {
+        $servers = Server::orderBy('vote_amount', 'desc')->where('language', 'like', '%' . $server . '%')->where('status', true)->paginate(15);
+        return  ServersCollection::collection($servers);
     }
 
 
-    public function Active(Request $request){
-              $server =   Server::findOrFail($request->id);
-              if($server->user_id == auth('sanctum')->id() && $server->admin_active && $server->status){
-                    $server->server_owner_active = true;
-                    $server->save();
+    public function Active(Request $request)
+    {
+        $server =   Server::findOrFail($request->id);
+        if ($server->user_id == auth('sanctum')->id() && $server->admin_active && $server->status) {
+            $server->server_owner_active = true;
+            $server->save();
             return response()->json('Server Activated  Successfully ', 200);
-              }
+        }
     }
 
-      public function Deactivate(Request $request){
+    public function Deactivate(Request $request)
+    {
         $server =   Server::findOrFail($request->id);
         if ($server->user_id == auth('sanctum')->id() && $server->admin_active && $server->status) {
             $server->server_owner_active = false;
@@ -238,9 +242,9 @@ class serverController extends Controller
         }
     }
 
-    public function GetFeathred_Server(){
+    public function GetFeathred_Server()
+    {
         $servers = Server::orderBy('vote_amount', 'desc')->where('status', true)->where('admin_active', true)->where('server_owner_active', true)->get();
-        return  ServersCollection::collection($servers);  
+        return  ServersCollection::collection($servers);
     }
-
 }

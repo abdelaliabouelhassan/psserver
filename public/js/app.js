@@ -1968,6 +1968,89 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
@@ -2261,6 +2344,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2273,7 +2371,7 @@ __webpack_require__.r(__webpack_exports__);
       firstStep: true,
       endStep: false,
       ndStep: false,
-      link: '',
+      link: "",
       errors: [],
       form: {
         id: "",
@@ -2288,7 +2386,7 @@ __webpack_require__.r(__webpack_exports__);
         Description: "",
         Difficulty: "",
         isGif: false,
-        ReqResponse: ''
+        ReqResponse: ""
       }
     };
   },
@@ -2308,7 +2406,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.link = response.data.link;
         _this.form.id = response.data.id, Toast.fire({
           icon: "success",
-          title: _this.$t('message.Backlink_Geneated_Successfully')
+          title: _this.$t("message.Backlink_Geneated_Successfully")
         });
       })["catch"](function (errors) {
         _this.clicked = false;
@@ -2317,12 +2415,12 @@ __webpack_require__.r(__webpack_exports__);
           _this.errors = errors.response.data.errors;
           Toast.fire({
             icon: "error",
-            title: _this.$t('message.Please_errors')
+            title: _this.$t("message.Please_errors")
           });
         } else {
           Toast.fire({
             icon: "error",
-            title: _this.$t('message.Something_went_wrong')
+            title: _this.$t("message.Something_went_wrong")
           });
         }
       });
@@ -2333,9 +2431,9 @@ __webpack_require__.r(__webpack_exports__);
       var file = e.target.files[0];
       var reader = new FileReader();
 
-      if (file['type'] === 'image/jpeg' || file['type'] === 'image/png' || file['type'] === 'image/gif') {
-        if (file['size'] < 1111775) {
-          if (file['type'] === 'image/gif') {
+      if (file["type"] === "image/jpeg" || file["type"] === "image/png" || file["type"] === "image/gif") {
+        if (file["size"] < 1111775) {
+          if (file["type"] === "image/gif") {
             this.form.isGif = true;
           }
 
@@ -2345,10 +2443,10 @@ __webpack_require__.r(__webpack_exports__);
 
           reader.readAsDataURL(file);
         } else {
-          swalWithBootstrapButtons.fire('The Banner has not been uploaded.', 'The Banner Size > 1 mb .', 'error');
+          swalWithBootstrapButtons.fire("The Banner has not been uploaded.", "The Banner Size > 1 mb .", "error");
         }
       } else {
-        swalWithBootstrapButtons.fire('The image has not been uploaded.', 'The File You Selected Is Not Banner.', 'error');
+        swalWithBootstrapButtons.fire("The image has not been uploaded.", "The File You Selected Is Not Banner.", "error");
       }
     },
     createServer: function createServer() {
@@ -2359,7 +2457,7 @@ __webpack_require__.r(__webpack_exports__);
         _this3.clicked = false;
         Toast.fire({
           icon: "success",
-          title: _this3.$t('message.Created_Successfully')
+          title: _this3.$t("message.Created_Successfully")
         });
       })["catch"](function (errors) {
         _this3.clicked = false;
@@ -2368,7 +2466,7 @@ __webpack_require__.r(__webpack_exports__);
           _this3.errors = errors.response.data.errors;
           Toast.fire({
             icon: "error",
-            title: _this3.$t('message.Please_errors')
+            title: _this3.$t("message.Please_errors")
           });
         } else if (errors.response.status == 403) {
           Toast.fire({
@@ -2378,7 +2476,7 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           Toast.fire({
             icon: "error",
-            title: _this3.$t('message.Something_went_wrong')
+            title: _this3.$t("message.Something_went_wrong")
           });
         }
 
@@ -2393,13 +2491,13 @@ __webpack_require__.r(__webpack_exports__);
         _this4.emailVrf = true;
         Toast.fire({
           icon: "success",
-          title: _this4.$t('message.Verification_email_sent_successfully')
+          title: _this4.$t("message.Verification_email_sent_successfully")
         });
       })["catch"](function (errors) {
         _this4.emailVrf = true;
         Toast.fire({
           icon: "error",
-          title: _this4.$t('message.Something_went_wrong')
+          title: _this4.$t("message.Something_went_wrong")
         });
       });
     },
@@ -2649,6 +2747,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2663,7 +2769,7 @@ __webpack_require__.r(__webpack_exports__);
         password: "",
         email: "",
         password_confirmation: "",
-        ReqResponse: ''
+        ReqResponse: ""
       },
       errors: [],
       errorTos: false
@@ -2687,10 +2793,10 @@ __webpack_require__.r(__webpack_exports__);
         _this.errors = [];
         Toast.fire({
           icon: "success",
-          title: _this.$t('message.Account_created')
+          title: _this.$t("message.Account_created")
         });
 
-        _this.$modal.hide('register');
+        _this.$modal.hide("register");
 
         _this.disabel = false;
         _this.errorTos = false;
@@ -2710,8 +2816,8 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     login_modal: function login_modal() {
-      this.$modal.hide('register');
-      this.$modal.show('login');
+      this.$modal.hide("register");
+      this.$modal.show("login");
     }
   }
 });
@@ -2796,6 +2902,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2808,7 +2918,7 @@ __webpack_require__.r(__webpack_exports__);
         email: "",
         message: "",
         username: "",
-        ReqResponse: ''
+        ReqResponse: ""
       },
       tos: false,
       errors: [],
@@ -2842,7 +2952,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response);
         Toast.fire({
           icon: "success",
-          title: _this.$t('message.Message_Sent_Successfully')
+          title: _this.$t("message.Message_Sent_Successfully")
         });
       })["catch"](function (errors) {
         _this.clicked = false;
@@ -2853,7 +2963,7 @@ __webpack_require__.r(__webpack_exports__);
           _this.errors = errors.response.data.errors;
           Toast.fire({
             icon: "error",
-            title: _this.$t('message.Please_errors')
+            title: _this.$t("message.Please_errors")
           });
         } else if (errors.response.status == 403) {
           Toast.fire({
@@ -2863,7 +2973,7 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           Toast.fire({
             icon: "error",
-            title: _this.$t('message.Something_went_wrong')
+            title: _this.$t("message.Something_went_wrong")
           });
         }
       });
@@ -3039,6 +3149,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3047,7 +3163,7 @@ __webpack_require__.r(__webpack_exports__);
       firstStep: true,
       endStep: false,
       ndStep: false,
-      link: '',
+      link: "",
       errors: [],
       form: []
     };
@@ -3063,7 +3179,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.form = response.data;
       })["catch"](function (errors) {
         _this.$router.push({
-          path: '/notfound'
+          path: "/notfound"
         });
       });
     },
@@ -3073,18 +3189,18 @@ __webpack_require__.r(__webpack_exports__);
       var file = e.target.files[0];
       var reader = new FileReader();
 
-      if (file['type'] === 'image/jpeg' || file['type'] === 'image/png' || file['type'] === 'image/gif') {
-        if (file['size'] < 1111775) {
+      if (file["type"] === "image/jpeg" || file["type"] === "image/png" || file["type"] === "image/gif") {
+        if (file["size"] < 1111775) {
           reader.onloadend = function (file) {
             _this2.form.banner = reader.result;
           };
 
           reader.readAsDataURL(file);
         } else {
-          swalWithBootstrapButtons.fire('The Banner has not been uploaded.', 'The Banner Size > 1 mb .', 'error');
+          swalWithBootstrapButtons.fire("The Banner has not been uploaded.", "The Banner Size > 1 mb .", "error");
         }
       } else {
-        swalWithBootstrapButtons.fire('The image has not been uploaded.', 'The File You Selected Is Not Banner.', 'error');
+        swalWithBootstrapButtons.fire("The image has not been uploaded.", "The File You Selected Is Not Banner.", "error");
       }
     },
     updateserver: function updateserver() {
@@ -3095,7 +3211,7 @@ __webpack_require__.r(__webpack_exports__);
         _this3.clicked = false;
         Toast.fire({
           icon: "success",
-          title: _this3.$t('message.Server_Updated_Successfully')
+          title: _this3.$t("message.Server_Updated_Successfully")
         });
       })["catch"](function (errors) {
         _this3.clicked = false;
@@ -3104,7 +3220,7 @@ __webpack_require__.r(__webpack_exports__);
           _this3.errors = errors.response.data.errors;
           Toast.fire({
             icon: "error",
-            title: _this3.$t('message.Please_errors')
+            title: _this3.$t("message.Please_errors")
           });
         } else if (errors.response.status == 403) {
           Toast.fire({
@@ -3114,7 +3230,7 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           Toast.fire({
             icon: "error",
-            title: _this3.$t('message.Something_went_wrong')
+            title: _this3.$t("message.Something_went_wrong")
           });
         }
       });
@@ -3289,10 +3405,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      visit_url: '',
+      visit_url: "",
       Servers: [],
       page: 1,
       total: 1
@@ -3300,14 +3434,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     visit: function visit() {
-      window.open(this.visit_url, '_blank');
+      window.open(this.visit_url, "_blank");
     },
     Check_last_vote: function Check_last_vote(url, status) {
       if (status) {
-        window.open(url, '_blank');
+        window.open(url, "_blank");
       } else {
         this.visit_url = url;
-        this.$modal.show('warm');
+        this.$modal.show("warm");
       }
     },
     goDetails: function goDetails(slug, index) {
@@ -3844,6 +3978,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -3854,13 +4020,13 @@ __webpack_require__.r(__webpack_exports__);
       show: false,
       Server: [],
       url: "",
-      viUrl: '',
+      viUrl: "",
       clicked: false,
       comment: {
-        email: '',
-        comment: '',
-        username: '',
-        server_id: ''
+        email: "",
+        comment: "",
+        username: "",
+        server_id: ""
       },
       form: {
         comment: "",
@@ -3869,14 +4035,14 @@ __webpack_require__.r(__webpack_exports__);
         username: "",
         iam: "Warrior (m)",
         server_id: "",
-        ReqResponse: ''
+        ReqResponse: ""
       },
       replayForm: {
         comment: "",
         email: "",
         username: "",
         comment_id: "",
-        ReqResponse: ''
+        ReqResponse: ""
       },
       errorTos: false,
       tos: false,
@@ -3889,14 +4055,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     visit: function visit() {
-      window.open(this.viUrl, '_blank');
+      window.open(this.viUrl, "_blank");
     },
     Check_last_vote: function Check_last_vote(url, status) {
       if (status) {
-        window.open(url, '_blank');
+        window.open(url, "_blank");
       } else {
         this.viUrl = url;
-        this.$modal.show('warm');
+        this.$modal.show("warm");
       }
     },
     checkRecaptcha: function checkRecaptcha(response) {
@@ -3916,7 +4082,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.clicked = false;
         Toast.fire({
           icon: "success",
-          title: _this.$t('message.You_have_replayed')
+          title: _this.$t("message.You_have_replayed")
         });
 
         _this.getComments();
@@ -3935,7 +4101,7 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           Toast.fire({
             icon: "error",
-            title: _this.$t('message.Something_went_wrong')
+            title: _this.$t("message.Something_went_wrong")
           });
         }
       });
@@ -3966,7 +4132,7 @@ __webpack_require__.r(__webpack_exports__);
         _this3.clicked = false;
         Toast.fire({
           icon: "success",
-          title: _this3.$t('message.You_have_voted_successfully')
+          title: _this3.$t("message.You_have_voted_successfully")
         });
 
         _this3.getComments();
@@ -3985,7 +4151,7 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           Toast.fire({
             icon: "error",
-            title: _this3.$t('message.Something_went_wrong')
+            title: _this3.$t("message.Something_went_wrong")
           });
         }
       });
@@ -4010,7 +4176,7 @@ __webpack_require__.r(__webpack_exports__);
         _this5.clicked = false;
         Toast.fire({
           icon: "success",
-          title: _this5.$t('message.Comment_Added_successfully')
+          title: _this5.$t("message.Comment_Added_successfully")
         });
 
         _this5.getComments();
@@ -4029,7 +4195,7 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           Toast.fire({
             icon: "error",
-            title: _this5.$t('message.Something_went_wrong')
+            title: _this5.$t("message.Something_went_wrong")
           });
         }
       });
@@ -4123,6 +4289,72 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -4130,12 +4362,12 @@ __webpack_require__.r(__webpack_exports__);
       errors: [],
       clicked: false,
       server: {
-        id: ''
+        id: ""
       },
       user: {
-        old_password: '',
-        password: '',
-        password_confirmation: ''
+        old_password: "",
+        password: "",
+        password_confirmation: ""
       }
     };
   },
@@ -4145,7 +4377,7 @@ __webpack_require__.r(__webpack_exports__);
         next();
       } else {
         vm.$router.push({
-          path: '/home'
+          path: "/home"
         });
       }
     });
@@ -4163,7 +4395,7 @@ __webpack_require__.r(__webpack_exports__);
 
         Toast.fire({
           icon: "success",
-          title: _this.$t('message.Server_Deactivated_Successfully')
+          title: _this.$t("message.Server_Deactivated_Successfully")
         });
       })["catch"](function (errors) {});
     },
@@ -4177,13 +4409,13 @@ __webpack_require__.r(__webpack_exports__);
         console.log(response);
         Toast.fire({
           icon: "success",
-          title: _this2.$t('message.Server_Activated_Successfully')
+          title: _this2.$t("message.Server_Activated_Successfully")
         });
       })["catch"](function (errors) {});
     },
     editServer: function editServer(slug) {
       this.$router.push({
-        path: '/edit/' + slug
+        path: "/edit/" + slug
       });
     },
     getMyServers: function getMyServers() {
@@ -4203,7 +4435,7 @@ __webpack_require__.r(__webpack_exports__);
         _this4.clicked = false;
         Toast.fire({
           icon: "success",
-          title: _this4.$t('message.Password_Updated_Successfully')
+          title: _this4.$t("message.Password_Updated_Successfully")
         });
         vm.errors = [];
       })["catch"](function (errors) {
@@ -4214,7 +4446,7 @@ __webpack_require__.r(__webpack_exports__);
           vm.errors = errors.response.data.errors;
           Toast.fire({
             icon: "error",
-            title: _this4.$t('message.Please_errors')
+            title: _this4.$t("message.Please_errors")
           });
         } else if (errors.response.status == 403) {
           vm.clicked = false;
@@ -4228,7 +4460,7 @@ __webpack_require__.r(__webpack_exports__);
           vm.errors = [];
           Toast.fire({
             icon: "error",
-            title: _this4.$t('message.Something_went_wrong')
+            title: _this4.$t("message.Something_went_wrong")
           });
         }
       });
@@ -4298,6 +4530,45 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -4489,6 +4760,73 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -4503,7 +4841,7 @@ __webpack_require__.r(__webpack_exports__);
     search: function search(server) {
       something.$emit("search", server);
 
-      if (this.$route.path != '/') {
+      if (this.$route.path != "/") {
         this.$router.push({
           path: "/"
         });
@@ -4524,7 +4862,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.$store.state.islogin = false;
         _this.$store.state.user = [];
         vm.$router.push({
-          path: '/'
+          path: "/"
         });
       })["catch"](function (errors) {
         console.log(errors.response);
@@ -4592,7 +4930,7 @@ __webpack_require__.r(__webpack_exports__);
     search: function search() {
       something.$emit("search", this.server);
 
-      if (this.$route.path != '/') {
+      if (this.$route.path != "/") {
         this.$router.push({
           path: "/"
         });
@@ -4671,12 +5009,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       server: [],
       server2: [],
-      url: ''
+      url: ""
     };
   },
   created: function created() {
@@ -4712,6 +5069,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app_auth_register_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./app/auth/register.vue */ "./resources/js/components/app/auth/register.vue");
+//
+//
 //
 //
 //
@@ -9246,7 +9605,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n.fr[data-v-37d0cc56]{\n  margin-left: 4rem;\n}\n.en[data-v-37d0cc56]{\n  margin-left: 9rem;\n}\n.fr_headerbtns[data-v-37d0cc56]{\n  margin-left: -2rem;\n}\n.login[data-v-37d0cc56]{\n  margin-left: 8rem;\n}\n.login_en[data-v-37d0cc56]{\n  margin-left: 14rem;\n}\n.langSelect[data-v-37d0cc56]{\n    cursor: pointer;\n     background-color: black;\n    color: white;\n    border: black;\n    width: 115px\n}\n@media only screen and (max-width: 1646px){\n.row[data-v-37d0cc56]{\n    margin-left: -2rem;\n}\n}\n@media only screen and (max-width: 1646px){\n.row[data-v-37d0cc56]{\n    margin-left: -6rem;\n}\n}\n@media only screen and (max-width: 1461px){\n.logo[data-v-37d0cc56]{\n    margin-left: 8rem;\n}\n.row[data-v-37d0cc56]{\n      margin-left: -10rem;\n}\n}\n@media only screen and (max-width: 1378px){\n#last[data-v-37d0cc56]{\n    display: none;\n}\n.logo[data-v-37d0cc56]{\n    margin-left: 0rem;\n}\n.row[data-v-37d0cc56]{\n      margin-left: -2rem;\n}\n}\n@media only screen and (max-width: 1378px){\n#last[data-v-37d0cc56]{\n    display: none;\n}\n.logo[data-v-37d0cc56]{\n    margin-left: 0rem;\n}\n.row[data-v-37d0cc56]{\n      margin-left: -2rem;\n}\n}\n@media only screen and (max-width: 1262px){\n#last[data-v-37d0cc56]{\n    display: none;\n}\n.logo[data-v-37d0cc56]{\n   margin-left: -10rem;\n}\n.row[data-v-37d0cc56]{\n      margin-left: -4rem;\n}\n}\n@media only screen and (max-width: 1262px){\n.logo[data-v-37d0cc56]{\n     margin-left: 1rem;\n}\n}\n@media only screen and (max-width: 1209px) and (max-width: 1218px){\n.row[data-v-37d0cc56]{\n    margin-left: 2rem\n}\n#part[data-v-37d0cc56]{\n    display: none;\n}\n.logo[data-v-37d0cc56]{\n      margin-left: -4rem;\n}\n}\n@media only screen and (max-width: 1199px){\nul[data-v-37d0cc56]{\n   margin-left: 1rem;\n}\n#part[data-v-37d0cc56]{\n    display: block;\n}\n#last[data-v-37d0cc56]{\n    display: block;\n}\n@media only screen and (max-width: 767px){\n.align-items-center[data-v-37d0cc56]{\n    margin-bottom: 1rem;\n}\n}\n@media only screen and (max-width: 474px){\n.navigation[data-v-37d0cc56]{\n    margin-bottom: -4rem;\n}\n}\n@media only screen and (max-width: 475px){\n.navigation[data-v-37d0cc56]{\n    margin-left: -4rem;\n    margin-top: -2rem;\n}\n.align-items-center[data-v-37d0cc56]{\n    margin-bottom: 4rem;\n}\n}\n}\n", ""]);
+exports.push([module.i, "\n.fr[data-v-37d0cc56] {\n  margin-left: 4rem;\n}\n.en[data-v-37d0cc56] {\n  margin-left: 9rem;\n}\n.fr_headerbtns[data-v-37d0cc56] {\n  margin-left: -2rem;\n}\n.login[data-v-37d0cc56] {\n  margin-left: 8rem;\n}\n.login_en[data-v-37d0cc56] {\n  margin-left: 14rem;\n}\n.langSelect[data-v-37d0cc56] {\n  cursor: pointer;\n  background-color: black;\n  color: white;\n  border: black;\n  width: 115px;\n}\n@media only screen and (max-width: 1646px) {\n.row[data-v-37d0cc56] {\n    margin-left: -2rem;\n}\n}\n@media only screen and (max-width: 1646px) {\n.row[data-v-37d0cc56] {\n    margin-left: -6rem;\n}\n}\n@media only screen and (max-width: 1461px) {\n.logo[data-v-37d0cc56] {\n    margin-left: 8rem;\n}\n.row[data-v-37d0cc56] {\n    margin-left: -10rem;\n}\n}\n@media only screen and (max-width: 1378px) {\n#last[data-v-37d0cc56] {\n    display: none;\n}\n.logo[data-v-37d0cc56] {\n    margin-left: 0rem;\n}\n.row[data-v-37d0cc56] {\n    margin-left: -2rem;\n}\n}\n@media only screen and (max-width: 1378px) {\n#last[data-v-37d0cc56] {\n    display: none;\n}\n.logo[data-v-37d0cc56] {\n    margin-left: 0rem;\n}\n.row[data-v-37d0cc56] {\n    margin-left: -2rem;\n}\n}\n@media only screen and (max-width: 1262px) {\n#last[data-v-37d0cc56] {\n    display: none;\n}\n.logo[data-v-37d0cc56] {\n    margin-left: -10rem;\n}\n.row[data-v-37d0cc56] {\n    margin-left: -4rem;\n}\n}\n@media only screen and (max-width: 1262px) {\n.logo[data-v-37d0cc56] {\n    margin-left: 1rem;\n}\n}\n@media only screen and (max-width: 1209px) and (max-width: 1218px) {\n.row[data-v-37d0cc56] {\n    margin-left: 2rem;\n}\n#part[data-v-37d0cc56] {\n    display: none;\n}\n.logo[data-v-37d0cc56] {\n    margin-left: -4rem;\n}\n}\n@media only screen and (max-width: 1199px) {\nul[data-v-37d0cc56] {\n    margin-left: 1rem;\n}\n#part[data-v-37d0cc56] {\n    display: block;\n}\n#last[data-v-37d0cc56] {\n    display: block;\n}\n@media only screen and (max-width: 767px) {\n.align-items-center[data-v-37d0cc56] {\n      margin-bottom: 1rem;\n}\n}\n@media only screen and (max-width: 474px) {\n.navigation[data-v-37d0cc56] {\n      margin-bottom: -4rem;\n}\n}\n@media only screen and (max-width: 475px) {\n.navigation[data-v-37d0cc56] {\n      margin-left: -4rem;\n      margin-top: -2rem;\n}\n.align-items-center[data-v-37d0cc56] {\n      margin-bottom: 4rem;\n}\n}\n}\n", ""]);
 
 // exports
 
@@ -47567,7 +47926,11 @@ var staticRenderFns = [
                       "data-target": "#collapseOne"
                     }
                   },
-                  [_vm._v("How can i add my server to Metin2-Toplist.com?")]
+                  [
+                    _vm._v(
+                      "\n            How can i add my server to Metin2-Toplist.com?\n          "
+                    )
+                  ]
                 )
               ]),
               _vm._v(" "),
@@ -47589,7 +47952,7 @@ var staticRenderFns = [
               _c("div", { staticClass: "card-body" }, [
                 _c("p", { staticClass: "font-14 text-justify" }, [
                   _vm._v(
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. "
+                    "\n            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n            eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis\n            ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas\n            accumsan lacus vel facilisis. Lorem ipsum dolor sit amet,\n            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut\n            labore et dolore magna aliqua. Quis ipsum suspendisse ultrices\n            gravida. Risus commodo viverra maecenas accumsan lacus vel\n            facilisis.\n          "
                   )
                 ])
               ])
@@ -47617,7 +47980,11 @@ var staticRenderFns = [
                       "data-target": "#collapseTwo"
                     }
                   },
-                  [_vm._v("How can i add my server to Metin2-Toplist.com?")]
+                  [
+                    _vm._v(
+                      "\n            How can i add my server to Metin2-Toplist.com?\n          "
+                    )
+                  ]
                 )
               ]),
               _vm._v(" "),
@@ -47639,7 +48006,7 @@ var staticRenderFns = [
               _c("div", { staticClass: "card-body" }, [
                 _c("p", { staticClass: "font-14 text-justify" }, [
                   _vm._v(
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. "
+                    "\n            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n            eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis\n            ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas\n            accumsan lacus vel facilisis. Lorem ipsum dolor sit amet,\n            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut\n            labore et dolore magna aliqua. Quis ipsum suspendisse ultrices\n            gravida. Risus commodo viverra maecenas accumsan lacus vel\n            facilisis.\n          "
                   )
                 ])
               ])
@@ -47667,7 +48034,11 @@ var staticRenderFns = [
                       "data-target": "#collapseThree"
                     }
                   },
-                  [_vm._v("How can i add my server to Metin2-Toplist.com?")]
+                  [
+                    _vm._v(
+                      "\n            How can i add my server to Metin2-Toplist.com?\n          "
+                    )
+                  ]
                 )
               ]),
               _vm._v(" "),
@@ -47689,7 +48060,7 @@ var staticRenderFns = [
               _c("div", { staticClass: "card-body" }, [
                 _c("p", { staticClass: "font-14 text-justify" }, [
                   _vm._v(
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. "
+                    "\n            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n            eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis\n            ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas\n            accumsan lacus vel facilisis. Lorem ipsum dolor sit amet,\n            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut\n            labore et dolore magna aliqua. Quis ipsum suspendisse ultrices\n            gravida. Risus commodo viverra maecenas accumsan lacus vel\n            facilisis.\n          "
                   )
                 ])
               ])
@@ -47717,7 +48088,11 @@ var staticRenderFns = [
                       "data-target": "#collapseFour"
                     }
                   },
-                  [_vm._v("How can i add my server to Metin2-Toplist.com?")]
+                  [
+                    _vm._v(
+                      "\n            How can i add my server to Metin2-Toplist.com?\n          "
+                    )
+                  ]
                 )
               ]),
               _vm._v(" "),
@@ -47739,7 +48114,7 @@ var staticRenderFns = [
               _c("div", { staticClass: "card-body" }, [
                 _c("p", { staticClass: "font-14 text-justify" }, [
                   _vm._v(
-                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus vel facilisis. "
+                    "\n            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do\n            eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis\n            ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas\n            accumsan lacus vel facilisis. Lorem ipsum dolor sit amet,\n            consectetur adipiscing elit, sed do eiusmod tempor incididunt ut\n            labore et dolore magna aliqua. Quis ipsum suspendisse ultrices\n            gravida. Risus commodo viverra maecenas accumsan lacus vel\n            facilisis.\n          "
                   )
                 ])
               ])
@@ -47778,9 +48153,7 @@ var render = function() {
           { staticClass: "alert alert-dark", attrs: { role: "alert" } },
           [
             _vm._v(
-              "\n     " +
-                _vm._s(_vm.$t("message.You_need_to_login")) +
-                "\n      "
+              "\n    " + _vm._s(_vm.$t("message.You_need_to_login")) + "\n    "
             ),
             _c(
               "a",
@@ -47788,7 +48161,13 @@ var render = function() {
                 attrs: { href: "javascript:void(0)" },
                 on: { click: _vm.login_modal }
               },
-              [_vm._v(" " + _vm._s(_vm.$t("message.click_to_login")) + " ")]
+              [
+                _vm._v(
+                  "\n      " +
+                    _vm._s(_vm.$t("message.click_to_login")) +
+                    "\n    "
+                )
+              ]
             )
           ]
         )
@@ -47801,9 +48180,7 @@ var render = function() {
           { staticClass: "alert alert-dark", attrs: { role: "alert" } },
           [
             _vm._v(
-              "\n      " +
-                _vm._s(_vm.$t("message.verify_your_email")) +
-                "\n      "
+              "\n    " + _vm._s(_vm.$t("message.verify_your_email")) + "\n    "
             ),
             _c(
               "a",
@@ -47819,7 +48196,7 @@ var render = function() {
                 attrs: { href: "javascript:void(0)" },
                 on: { click: _vm.SendEmailVerfication }
               },
-              [_vm._v(_vm._s(_vm.$t("message.send_another")) + "\n      ")]
+              [_vm._v(_vm._s(_vm.$t("message.send_another")) + "\n    ")]
             )
           ]
         )
@@ -47836,35 +48213,33 @@ var render = function() {
         _c("ul", [
           _c("li", [
             _vm._v(
-              "\n              " +
+              "\n          " +
                 _vm._s(_vm.$t("message.Following_participating")) +
-                "\n                "
+                "\n          "
             ),
             _c("ol", [
               _c("li", [
-                _vm._v(" " + _vm._s(_vm.$t("message.rule1")) + " "),
+                _vm._v(_vm._s(_vm.$t("message.rule1")) + " "),
                 _c("b", [_vm._v("malware")])
               ]),
               _vm._v(" "),
-              _c("li", [_vm._v(" " + _vm._s(_vm.$t("message.rule2")))]),
+              _c("li", [_vm._v(_vm._s(_vm.$t("message.rule2")))]),
               _vm._v(" "),
-              _c("li", [_vm._v(" " + _vm._s(_vm.$t("message.rule3")))]),
+              _c("li", [_vm._v(_vm._s(_vm.$t("message.rule3")))]),
               _vm._v(" "),
-              _c("li", [_vm._v(" " + _vm._s(_vm.$t("message.rule4")))])
+              _c("li", [_vm._v(_vm._s(_vm.$t("message.rule4")))])
             ])
           ]),
           _vm._v(" "),
           _c("li", [
             _vm._v(
-              "\n            " +
-                _vm._s(_vm.$t("message.rule5")) +
-                "\n          "
+              "\n          " + _vm._s(_vm.$t("message.rule5")) + "\n        "
             )
           ]),
           _vm._v(" "),
           _c("li", [
             _vm._v(
-              "\n           " + _vm._s(_vm.$t("message.rule6")) + "\n          "
+              "\n          " + _vm._s(_vm.$t("message.rule6")) + "\n        "
             )
           ]),
           _vm._v(" "),
@@ -47899,9 +48274,9 @@ var render = function() {
                 },
                 [
                   _vm._v(
-                    '       <a href="' +
+                    '     <a href="' +
                       _vm._s(_vm.link) +
-                      '" title="Metin2 P Server">Metin2 P Server</a>\n      '
+                      '" title="Metin2 P Server">Metin2 P Server</a>\n    '
                   )
                 ]
               ),
@@ -48327,7 +48702,7 @@ var render = function() {
             _vm._v(" "),
             _c("div", { staticClass: "col-md-12" }, [
               _c("label", { attrs: { for: "Rates" } }, [
-                _vm._v(_vm._s(_vm.$t("message.Rates")) + "  :")
+                _vm._v(_vm._s(_vm.$t("message.Rates")) + " :")
               ]),
               _vm._v(" "),
               _vm.errors.Rates
@@ -48419,7 +48794,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", [
             _c("input", {
-              staticClass: "btn btn-dark  bg-dark mt-3",
+              staticClass: "btn btn-dark bg-dark mt-3",
               attrs: { disabled: _vm.checkuser, type: "submit" },
               domProps: { value: _vm.$t("message.Create") },
               on: { click: _vm.createServer }
@@ -49219,7 +49594,7 @@ var render = function() {
         _vm._v(" "),
         _c("div", { staticClass: "col-md-12" }, [
           _c("label", { attrs: { for: "Category" } }, [
-            _vm._v(_vm._s(_vm.$t("message.Difficulty")) + "  :")
+            _vm._v(_vm._s(_vm.$t("message.Difficulty")) + " :")
           ]),
           _vm._v(" "),
           _vm.errors.difficulty
@@ -49262,15 +49637,15 @@ var render = function() {
             },
             [
               _c("option", { attrs: { value: "Easy" } }, [
-                _vm._v(_vm._s(_vm.$t("message.Easy")) + " ")
+                _vm._v(_vm._s(_vm.$t("message.Easy")))
               ]),
               _vm._v(" "),
               _c("option", { attrs: { value: "Medium" } }, [
-                _vm._v(_vm._s(_vm.$t("message.Medium")) + " ")
+                _vm._v(_vm._s(_vm.$t("message.Medium")))
               ]),
               _vm._v(" "),
               _c("option", { attrs: { value: "Hard" } }, [
-                _vm._v(_vm._s(_vm.$t("message.Hard")) + " ")
+                _vm._v(_vm._s(_vm.$t("message.Hard")))
               ])
             ]
           )
@@ -49506,26 +49881,26 @@ var render = function() {
       _c("modal", { attrs: { name: "warm", height: 200 } }, [
         _c("div", { staticClass: "my-3 px-4 py-5 bg-white" }, [
           _c("h6", { staticClass: "font-weight-bold" }, [
-            _vm._v(" " + _vm._s(_vm.$t("message.server_is_inactive")))
+            _vm._v(_vm._s(_vm.$t("message.server_is_inactive")))
           ]),
           _vm._v(" "),
           _c(
             "button",
-            { staticClass: "btn btn-dark ", on: { click: _vm.visit } },
-            [_vm._v(_vm._s(_vm.$t("message.Yes")))]
+            { staticClass: "btn btn-dark", on: { click: _vm.visit } },
+            [_vm._v("\n        " + _vm._s(_vm.$t("message.Yes")) + "\n      ")]
           ),
           _vm._v(" "),
           _c(
             "button",
             {
-              staticClass: "btn btn-dark ",
+              staticClass: "btn btn-dark",
               on: {
                 click: function($event) {
                   return _vm.$modal.hide("warm")
                 }
               }
             },
-            [_vm._v(_vm._s(_vm.$t("message.No")))]
+            [_vm._v("\n        " + _vm._s(_vm.$t("message.No")) + "\n      ")]
           )
         ])
       ]),
@@ -49589,9 +49964,9 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                    " +
+                            "\n                  " +
                               _vm._s(index + 1) +
-                              "\n                      \n                  "
+                              "\n                "
                           )
                         ]
                       )
@@ -49610,7 +49985,13 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v(_vm._s(_vm.$t("message.Hard")))]
+                            [
+                              _vm._v(
+                                "\n                  " +
+                                  _vm._s(_vm.$t("message.Hard")) +
+                                  "\n                "
+                              )
+                            ]
                           )
                         : _vm._e(),
                       _vm._v(" "),
@@ -49622,9 +50003,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                                " +
+                                "\n                  " +
                                   _vm._s(_vm.$t("message.Easy")) +
-                                  "\n                                            "
+                                  "\n                "
                               )
                             ]
                           )
@@ -49638,9 +50019,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                                " +
+                                "\n                  " +
                                   _vm._s(_vm.$t("message.Medium")) +
-                                  "\n                                            "
+                                  "\n                "
                               )
                             ]
                           )
@@ -49659,11 +50040,11 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                    " +
+                            "\n                  " +
                               _vm._s(
                                 Server.url.replace(/[http:// https://]/g, "")
                               ) +
-                              "\n                  "
+                              "\n                "
                           )
                         ]
                       )
@@ -49676,14 +50057,20 @@ var render = function() {
                     "p",
                     {
                       staticClass: "zuko-text",
-                      staticStyle: { cursor: "pointer" },
+                      staticStyle: { cursor: "pointer", color: "gray" },
                       on: {
                         click: function($event) {
                           return _vm.goDetails(Server.slug, index)
                         }
                       }
                     },
-                    [_vm._v(_vm._s(Server.title))]
+                    [
+                      _vm._v(
+                        "\n              " +
+                          _vm._s(Server.title) +
+                          "\n            "
+                      )
+                    ]
                   ),
                   _vm._v(" "),
                   _c("p", { staticClass: "mt-4" }, [
@@ -49713,8 +50100,8 @@ var render = function() {
                   staticClass: "img-fluid rounded",
                   staticStyle: {
                     cursor: "pointer",
-                    height: "183px",
-                    width: "100%"
+                    height: "120px",
+                    width: "550px"
                   },
                   attrs: {
                     src: Server.banner,
@@ -49817,26 +50204,26 @@ var render = function() {
       _c("modal", { attrs: { name: "warm", height: 200 } }, [
         _c("div", { staticClass: "my-3 px-4 py-5 bg-white" }, [
           _c("h6", { staticClass: "font-weight-bold" }, [
-            _vm._v(" " + _vm._s(_vm.$t("message.server_is_inactive")))
+            _vm._v(_vm._s(_vm.$t("message.server_is_inactive")))
           ]),
           _vm._v(" "),
           _c(
             "button",
-            { staticClass: "btn btn-dark ", on: { click: _vm.visit } },
-            [_vm._v(_vm._s(_vm.$t("message.Yes")))]
+            { staticClass: "btn btn-dark", on: { click: _vm.visit } },
+            [_vm._v("\n        " + _vm._s(_vm.$t("message.Yes")) + "\n      ")]
           ),
           _vm._v(" "),
           _c(
             "button",
             {
-              staticClass: "btn btn-dark ",
+              staticClass: "btn btn-dark",
               on: {
                 click: function($event) {
                   return _vm.$modal.hide("warm")
                 }
               }
             },
-            [_vm._v(_vm._s(_vm.$t("message.No")))]
+            [_vm._v("\n        " + _vm._s(_vm.$t("message.No")) + "\n      ")]
           )
         ])
       ]),
@@ -49873,9 +50260,9 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                    " +
+                              "\n                  " +
                                 _vm._s(_vm.$t("message.Hard")) +
-                                "\n                  "
+                                "\n                "
                             )
                           ]
                         )
@@ -49887,9 +50274,9 @@ var render = function() {
                           { staticClass: "hard text-success bg-green rounded" },
                           [
                             _vm._v(
-                              "\n                    " +
+                              "\n                  " +
                                 _vm._s(_vm.$t("message.Easy")) +
-                                "\n                  "
+                                "\n                "
                             )
                           ]
                         )
@@ -49901,9 +50288,9 @@ var render = function() {
                           { staticClass: "hard text-orange bg-orange rounded" },
                           [
                             _vm._v(
-                              "\n                    " +
+                              "\n                  " +
                                 _vm._s(_vm.$t("message.Medium")) +
-                                "\n                  "
+                                "\n                "
                             )
                           ]
                         )
@@ -50001,9 +50388,9 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\n                " +
+                          "\n              " +
                             _vm._s(_vm.$t("message.Hard")) +
-                            "\n              "
+                            "\n            "
                         )
                       ]
                     )
@@ -50015,9 +50402,9 @@ var render = function() {
                       { staticClass: "hard text-success bg-green rounded" },
                       [
                         _vm._v(
-                          "\n                " +
+                          "\n              " +
                             _vm._s(_vm.$t("message.Easy")) +
-                            "\n              "
+                            "\n            "
                         )
                       ]
                     )
@@ -50029,9 +50416,9 @@ var render = function() {
                       { staticClass: "hard text-orange bg-orange rounded" },
                       [
                         _vm._v(
-                          "\n                " +
+                          "\n              " +
                             _vm._s(_vm.$t("message.Medium")) +
-                            "\n              "
+                            "\n            "
                         )
                       ]
                     )
@@ -50078,7 +50465,11 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "col-7" }, [
                 _c("p", { staticClass: "d-inline text-success ml-2" }, [
-                  _vm._v(_vm._s(_vm.Server.realtimeVote))
+                  _vm._v(
+                    "\n              " +
+                      _vm._s(_vm.Server.realtimeVote) +
+                      "\n            "
+                  )
                 ])
               ])
             ]),
@@ -50177,11 +50568,11 @@ var render = function() {
       _vm._v(" "),
       _c("h3", { staticClass: "my-5 font-weight-bold" }, [
         _vm._v(
-          "\n      " +
+          "\n    " +
             _vm._s(_vm.$t("message.Feedback")) +
             " & " +
             _vm._s(_vm.$t("message.Comments")) +
-            ": "
+            ":\n    "
         ),
         _c("span", [_vm._v(_vm._s(_vm.comments.length))])
       ]),
@@ -50230,9 +50621,9 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                " +
+                            "\n              " +
                               _vm._s(_vm.$t("message.REPLY")) +
-                              "\n              "
+                              "\n            "
                           )
                         ]
                       )
@@ -50241,9 +50632,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("p", { staticClass: "font-14" }, [
                     _vm._v(
-                      "\n            " +
-                        _vm._s(comment.comment) +
-                        "\n          "
+                      "\n          " + _vm._s(comment.comment) + "\n        "
                     )
                   ]),
                   _vm._v(" "),
@@ -50303,9 +50692,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("p", { staticClass: "font-14" }, [
                     _vm._v(
-                      "\n            " +
-                        _vm._s(comment.comment) +
-                        "\n          "
+                      "\n          " + _vm._s(comment.comment) + "\n        "
                     )
                   ])
                 ])
@@ -50322,7 +50709,7 @@ var render = function() {
           _vm._v(" "),
           _vm.errors.username
             ? _c("span", { staticClass: "text-danger" }, [
-                _vm._v(_vm._s(this.errors.username[0]) + "\n        ")
+                _vm._v(_vm._s(this.errors.username[0]) + "\n      ")
               ])
             : _vm._e(),
           _vm._v(" "),
@@ -50453,7 +50840,7 @@ var render = function() {
           _vm._v(" "),
           _vm.errors.username
             ? _c("span", { staticClass: "text-danger" }, [
-                _vm._v(_vm._s(this.errors.username[0]) + "\n        ")
+                _vm._v(_vm._s(this.errors.username[0]) + "\n      ")
               ])
             : _vm._e(),
           _vm._v(" "),
@@ -50500,7 +50887,9 @@ var render = function() {
                     [
                       _c("option", { attrs: { value: "", selected: "" } }, [
                         _vm._v(
-                          _vm._s(_vm.$t("message.Select_Your_rating")) + " "
+                          "\n                " +
+                            _vm._s(_vm.$t("message.Select_Your_rating")) +
+                            "\n              "
                         )
                       ]),
                       _vm._v(" "),
@@ -50729,7 +51118,9 @@ var render = function() {
                 { staticClass: "ml-2 my-2 terms", attrs: { for: "check" } },
                 [
                   _c("span", { class: { "text-danger": _vm.errorTos } }, [
-                    _vm._v(_vm._s(_vm.$t("message.I_have_read")) + " ")
+                    _vm._v(
+                      _vm._s(_vm.$t("message.I_have_read")) + "\n          "
+                    )
                   ]),
                   _vm._v(" "),
                   _c(
@@ -50771,12 +51162,12 @@ var render = function() {
       _vm.Server.is_comment
         ? _c("div", { staticClass: "my-3 px-4 py-5 bg-white" }, [
             _c("h6", { staticClass: "font-weight-bold" }, [
-              _vm._v(_vm._s(_vm.$t("message.Add_Comment")) + " ")
+              _vm._v(_vm._s(_vm.$t("message.Add_Comment")))
             ]),
             _vm._v(" "),
             _vm.errors.username
               ? _c("span", { staticClass: "text-danger" }, [
-                  _vm._v(_vm._s(this.errors.username[0]) + "\n        ")
+                  _vm._v(_vm._s(this.errors.username[0]) + "\n    ")
                 ])
               : _vm._e(),
             _vm._v(" "),
@@ -51008,15 +51399,15 @@ var render = function() {
           _c("tr", [
             _c("th", [_vm._v("#")]),
             _vm._v(" "),
-            _c("th", [_vm._v(_vm._s(_vm.$t("message.Servername")) + " ")]),
+            _c("th", [_vm._v(_vm._s(_vm.$t("message.Servername")))]),
             _vm._v(" "),
             _c("th", [_vm._v(_vm._s(_vm.$t("message.Votelink")))]),
             _vm._v(" "),
-            _c("th", [_vm._v(_vm._s(_vm.$t("message.Votes")) + " ")]),
+            _c("th", [_vm._v(_vm._s(_vm.$t("message.Votes")))]),
             _vm._v(" "),
-            _c("th", [_vm._v(_vm._s(_vm.$t("message.Clicks")) + " ")]),
+            _c("th", [_vm._v(_vm._s(_vm.$t("message.Clicks")))]),
             _vm._v(" "),
-            _c("th", [_vm._v(_vm._s(_vm.$t("message.Actions")) + " ")])
+            _c("th", [_vm._v(_vm._s(_vm.$t("message.Actions")))])
           ])
         ]),
         _vm._v(" "),
@@ -51048,16 +51439,14 @@ var render = function() {
                   staticClass: "img-fluid",
                   attrs: { src: "img/like.png", alt: "" }
                 }),
-                _vm._v(
-                  _vm._s(myserve.realtimeVote) + "\r\n                    "
-                )
+                _vm._v(_vm._s(myserve.realtimeVote) + "\n          ")
               ]),
               _vm._v(" "),
               _c("td", [
                 _c("i", {
                   staticClass: "fa fa-external-link-alt text-dark font-10 mr-1"
                 }),
-                _vm._v(_vm._s(myserve.viewd) + "\r\n                    ")
+                _vm._v(_vm._s(myserve.viewd) + "\n          ")
               ]),
               _vm._v(" "),
               _c("td", { staticClass: "text-center" }, [
@@ -51072,7 +51461,13 @@ var render = function() {
                       }
                     }
                   },
-                  [_vm._v(_vm._s(_vm.$t("message.edit")) + " ")]
+                  [
+                    _vm._v(
+                      "\n              " +
+                        _vm._s(_vm.$t("message.edit")) +
+                        "\n            "
+                    )
+                  ]
                 ),
                 _vm._v(" "),
                 myserve.status &&
@@ -51089,7 +51484,13 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v(_vm._s(_vm.$t("message.Deactivate")) + " ")]
+                      [
+                        _vm._v(
+                          "\n              " +
+                            _vm._s(_vm.$t("message.Deactivate")) +
+                            "\n            "
+                        )
+                      ]
                     )
                   : _vm._e(),
                 _vm._v(" "),
@@ -51107,7 +51508,13 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v(_vm._s(_vm.$t("message.Active")) + " ")]
+                      [
+                        _vm._v(
+                          "\n              " +
+                            _vm._s(_vm.$t("message.Active")) +
+                            "\n            "
+                        )
+                      ]
                     )
                   : _vm._e()
               ])
@@ -51128,9 +51535,9 @@ var render = function() {
           },
           [
             _vm._v(
-              "\r\n                    " +
+              "\n        " +
                 _vm._s(_vm.$t("message.Add_New_Server")) +
-                "\r\n                "
+                "\n      "
             )
           ]
         )
@@ -51143,7 +51550,11 @@ var render = function() {
         staticClass:
           "btn btn-dark bg-dark btn-block rounded text-white font-14 mt-5"
       },
-      [_vm._v(_vm._s(_vm.$t("message.Change_your_password")))]
+      [
+        _vm._v(
+          "\n    " + _vm._s(_vm.$t("message.Change_your_password")) + "\n  "
+        )
+      ]
     ),
     _vm._v(" "),
     _c("div", { staticClass: "row mt-4" }, [
@@ -51284,7 +51695,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("section", { staticClass: " py-4" }, [
+    return _c("section", { staticClass: "py-4" }, [
       _c(
         "div",
         {
@@ -51394,9 +51805,9 @@ var render = function() {
             _vm._v(" "),
             _c("p", { staticClass: "mt-3 text-justify" }, [
               _vm._v(
-                "\n                        " +
+                "\n            " +
                   _vm._s(_vm.$t("message.Footer_text")) +
-                  "\n                    "
+                  "\n          "
               )
             ])
           ]),
@@ -51411,7 +51822,11 @@ var render = function() {
                       "d-block my-2 text-dark font-weight-bold text-decoration-none",
                     attrs: { href: "" }
                   },
-                  [_vm._v(" " + _vm._s(_vm.$t("message.HOMEPAGE")))]
+                  [
+                    _vm._v(
+                      "\n                " + _vm._s(_vm.$t("message.HOMEPAGE"))
+                    )
+                  ]
                 ),
                 _vm._v(" "),
                 _c(
@@ -51474,7 +51889,11 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "col-md-4 m-auto" }, [
                 _c("p", { staticClass: "mb-2 font-weight-bold" }, [
-                  _vm._v(_vm._s(_vm.$t("message.Find_Us_On")))
+                  _vm._v(
+                    "\n                " +
+                      _vm._s(_vm.$t("message.Find_Us_On")) +
+                      "\n              "
+                  )
                 ]),
                 _vm._v(" "),
                 _vm._m(0)
@@ -51491,18 +51910,22 @@ var render = function() {
           _c("div", { staticClass: "col-md-6" }, [
             _c("p", { staticClass: "text-secondary" }, [
               _vm._v(
-                "\n                         " +
+                "\n            " +
                   _vm._s(_vm.$t("message.Footer_text1")) +
-                  " "
+                  "\n            "
               ),
               _c("a", { staticClass: "text-white", attrs: { href: "" } }, [
                 _vm._v("trademarks")
               ]),
-              _vm._v(" " + _vm._s(_vm.$t("message.Footer_text2")) + " "),
+              _vm._v(
+                "\n            " +
+                  _vm._s(_vm.$t("message.Footer_text2")) +
+                  "\n            "
+              ),
               _c("a", { staticClass: "text-white", attrs: { href: "" } }, [
                 _vm._v(" " + _vm._s(_vm.$t("message.Footer_text3")))
               ]),
-              _vm._v(".\n                    ")
+              _vm._v(".\n          ")
             ])
           ]),
           _vm._v(" "),
@@ -51931,7 +52354,13 @@ var render = function() {
                       staticClass: "btn btn-danger logout",
                       on: { click: _vm.logout }
                     },
-                    [_vm._v(_vm._s(_vm.$t("message.LOG_OUT")))]
+                    [
+                      _vm._v(
+                        "\n          " +
+                          _vm._s(_vm.$t("message.LOG_OUT")) +
+                          "\n        "
+                      )
+                    ]
                   )
                 ],
                 1
@@ -52117,19 +52546,23 @@ var render = function() {
         ? _c("div", { staticClass: "card firstCard py-5 mt-4" }, [
             _c("div", { staticClass: "container" }, [
               _c("p", { staticClass: "text-danger" }, [
-                _vm._v(" " + _vm._s(_vm.$t("message.FEATURED_SERVER")) + " ")
+                _vm._v(_vm._s(_vm.$t("message.FEATURED_SERVER")))
               ]),
               _vm._v(" "),
-              _c("span", { staticClass: " d-inline m-auto" }, [_vm._v("»")]),
+              _c("span", { staticClass: "d-inline m-auto" }, [_vm._v("»")]),
               _vm._v(" "),
               _c(
                 "h2",
                 { staticClass: "font-weight-bold text-white d-inline" },
-                [_vm._v(" " + _vm._s(_vm.url))]
+                [_vm._v(_vm._s(_vm.url))]
               ),
               _vm._v(" "),
               _c("p", { staticClass: "mt-4 mb-3 text-white card-lorem" }, [
-                _vm._v(_vm._s(_vm.server.short_description))
+                _vm._v(
+                  "\n        " +
+                    _vm._s(_vm.server.short_description) +
+                    "\n      "
+                )
               ]),
               _vm._v(" "),
               _c("p", [
@@ -52182,9 +52615,9 @@ var render = function() {
               _c("div", { staticClass: "px-3" }, [
                 _c("p", { staticClass: "text-white" }, [
                   _vm._v(
-                    "\n                    " +
+                    "\n          " +
                       _vm._s(_vm.server2.short_description) +
-                      "\n                "
+                      "\n        "
                   )
                 ]),
                 _vm._v(" "),
@@ -52215,7 +52648,11 @@ var render = function() {
         _c("div", { staticClass: "container" }, [
           _c("div", { staticClass: "text-center" }, [
             _c("p", { staticClass: "text-white mb-3" }, [
-              _vm._v(_vm._s(_vm.$t("message.Promoted_server_trailer")))
+              _vm._v(
+                "\n          " +
+                  _vm._s(_vm.$t("message.Promoted_server_trailer")) +
+                  "\n        "
+              )
             ]),
             _vm._v(" "),
             _c("iframe", {
@@ -52293,7 +52730,9 @@ var render = function() {
       _c("modal", { attrs: { name: "admin", height: 200 } }, [
         _c("div", { staticClass: "my-3 px-4 py-5 bg-white" }, [
           _c("h6", { staticClass: "font-weight-bold" }, [
-            _vm._v("Welcome Back Do You Want To GO To Admin Panel ?")
+            _vm._v(
+              "\n        Welcome Back Do You Want To GO To Admin Panel ?\n      "
+            )
           ]),
           _vm._v(" "),
           _c(

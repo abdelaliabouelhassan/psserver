@@ -1,13 +1,12 @@
 <template>
   <div class="card mt-5 px-4 py-5 bg-white">
-    <h6 class="font-weight-bold">{{$t('message.Send_us_message')}}</h6>
-    <div  class="mt-4">
+    <h6 class="font-weight-bold">{{ $t("message.Send_us_message") }}</h6>
+    <div class="mt-4">
       <div class="row">
-        
         <div class="col-md-6">
-            <span class="text-danger" v-if="errors.username">{{
-          this.errors.username[0]
-        }}</span>
+          <span class="text-danger" v-if="errors.username">{{
+            this.errors.username[0]
+          }}</span>
           <input
             type="text"
             :class="{ 'is-invalid': errors.username }"
@@ -16,11 +15,11 @@
             :placeholder="$t('message.Username')"
           />
         </div>
-       
+
         <div class="col-md-6">
-             <span class="text-danger" v-if="errors.email">{{
-          this.errors.email[0]
-        }}</span>
+          <span class="text-danger" v-if="errors.email">{{
+            this.errors.email[0]
+          }}</span>
           <input
             type="text"
             :class="{ 'is-invalid': errors.email }"
@@ -48,12 +47,17 @@
         v-model="tos"
         :class="{ 'is-invalid': etos }"
       /><label for="check" class="ml-2 my-2 terms"
-        ><span :class="{ 'text-danger': etos }"
-          >{{$t('message.I_have_read')}}</span
-        >
+        ><span :class="{ 'text-danger': etos }">{{
+          $t("message.I_have_read")
+        }}</span>
         <a href="" class="text-success font-16">Terms of Use</a></label
       >
-         <vue-recaptcha  ref="recaptcha" v-if="show" @verify="checkRecaptcha" :sitekey="$store.state.sitekey"></vue-recaptcha>
+      <vue-recaptcha
+        ref="recaptcha"
+        v-if="show"
+        @verify="checkRecaptcha"
+        :sitekey="$store.state.sitekey"
+      ></vue-recaptcha>
 
       <input
         :disabled="clicked"
@@ -67,17 +71,17 @@
 </template>
 
 <script>
- import VueRecaptcha from 'vue-recaptcha';
+import VueRecaptcha from "vue-recaptcha";
 export default {
-   components: { VueRecaptcha },
+  components: { VueRecaptcha },
   data() {
     return {
-      show:false,
+      show: false,
       form: {
         email: "",
         message: "",
         username: "",
-        ReqResponse:'',
+        ReqResponse: "",
       },
       tos: false,
       errors: [],
@@ -85,16 +89,16 @@ export default {
       etos: false,
     };
   },
-  created(){
-    var vm = this
-    setTimeout(()=>{
-        vm.show = true
-    },1000);
+  created() {
+    var vm = this;
+    setTimeout(() => {
+      vm.show = true;
+    }, 1000);
   },
   methods: {
-     checkRecaptcha(response){
-      this.form.ReqResponse = response
-        this.disabel = false
+    checkRecaptcha(response) {
+      this.form.ReqResponse = response;
+      this.disabel = false;
     },
     ContactUs() {
       if (!this.tos) {
@@ -106,31 +110,31 @@ export default {
       this.axios
         .post("/api/Contactus", this.form)
         .then((response) => {
-             this.clicked = false;
+          this.clicked = false;
           console.log(response);
           Toast.fire({
             icon: "success",
-            title: this.$t('message.Message_Sent_Successfully'),
+            title: this.$t("message.Message_Sent_Successfully"),
           });
         })
         .catch((errors) => {
           this.clicked = false;
-          this.$refs.recaptcha.reset()
+          this.$refs.recaptcha.reset();
           if (errors.response.status == 422) {
             this.errors = errors.response.data.errors;
             Toast.fire({
               icon: "error",
-              title: this.$t('message.Please_errors'),
+              title: this.$t("message.Please_errors"),
             });
-          } else if(errors.response.status == 403){
-               Toast.fire({
-            icon: "error",
-            title: errors.response.data,
-          });
-          }else {
+          } else if (errors.response.status == 403) {
             Toast.fire({
               icon: "error",
-              title: this.$t('message.Something_went_wrong'),
+              title: errors.response.data,
+            });
+          } else {
+            Toast.fire({
+              icon: "error",
+              title: this.$t("message.Something_went_wrong"),
             });
           }
         });
