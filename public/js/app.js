@@ -4438,6 +4438,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     checkRecaptcha: function checkRecaptcha(response) {
       this.form.ReqResponse = response;
+      this.comment.ReqResponse = response;
+      this.comment.ReqResponse = response;
       this.disabel = false;
     },
     showReplays: function showReplays(replays) {

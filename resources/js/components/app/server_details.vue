@@ -676,6 +676,8 @@ export default {
     },
     checkRecaptcha(response) {
       this.form.ReqResponse = response;
+      this.comment.ReqResponse = response;
+      this.comment.ReqResponse = response;
       this.disabel = false;
     },
     showReplays(replays) {
