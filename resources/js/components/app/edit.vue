@@ -154,7 +154,7 @@
         :disabled="checkuser"
         type="submit"
         class="btn btn-dark d-block bg-dark mt-3"
-        value="Create"
+        value="Update"
         @click="updateserver"
       />
     </div>

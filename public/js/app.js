@@ -50555,7 +50555,7 @@ var render = function() {
       !_vm.$store.state.islogin
         ? _c("input", {
             staticClass: "btn btn-dark d-block bg-dark mt-3",
-            attrs: { disabled: _vm.checkuser, type: "submit", value: "Create" },
+            attrs: { disabled: _vm.checkuser, type: "submit", value: "Update" },
             on: { click: _vm.updateserver }
           })
         : _vm._e()
@@ -53534,7 +53534,7 @@ var render = function() {
           ])
         : _vm._e(),
       _vm._v(" "),
-      _vm.youtube_URL
+      _vm.youtube_URL != null
         ? _c("div", { staticClass: "card card-three mt-3 bg-dark py-3" }, [
             _c("div", { staticClass: "container" }, [
               _c("div", { staticClass: "text-center" }, [

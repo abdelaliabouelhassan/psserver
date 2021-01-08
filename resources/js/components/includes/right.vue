@@ -53,7 +53,7 @@
         </div>
       </div>
     </div>
-    <div class="card card-three mt-3 bg-dark py-3" v-if="youtube_URL">
+    <div class="card card-three mt-3 bg-dark py-3" v-if="youtube_URL != null">
       <div class="container">
         <div class="text-center">
           <p class="text-white mb-3">

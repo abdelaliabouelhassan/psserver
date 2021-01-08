@@ -189,8 +189,6 @@ class serverController extends Controller
             $folderPath = "uploads/images/";
             $dbPath = "";
 
-
-
             $image_parts = explode(";base64,", $request->banner);
             $image_base64 = base64_decode($image_parts[1]);
             file_put_contents($folderPath . $name, $image_base64);
