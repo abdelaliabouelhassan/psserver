@@ -4336,7 +4336,8 @@ __webpack_require__.r(__webpack_exports__);
         email: "",
         comment: "",
         username: "",
-        server_id: ""
+        server_id: "",
+        ReqResponse: ''
       },
       form: {
         comment: "",

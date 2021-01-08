@@ -569,6 +569,7 @@ export default {
         comment: "",
         username: "",
         server_id: "",
+        ReqResponse:'',
       },
       form: {
         comment: "",
