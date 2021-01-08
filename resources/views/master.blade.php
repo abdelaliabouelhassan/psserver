@@ -24,13 +24,13 @@
     <link href="//fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
 
     <!-- slick css -->
-    <link rel="stylesheet" href="slick/slick.css">
-    <link rel="stylesheet" href="slick/slick-theme.css">
+    <link rel="stylesheet" href="/slick/slick.css">
+    <link rel="stylesheet" href="/slick/slick-theme.css">
 
     <!-- vgnav -->
-    <link href="vgnav/vgnav.css"
+    <link href="/vgnav/vgnav.css"
           rel="stylesheet" type="text/css">
-    <link href="vgnav/vgnav-theme.css"
+    <link href="/vgnav/vgnav-theme.css"
           rel="stylesheet" type="text/css">
     <link rel="stylesheet"
           href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css">
@@ -39,10 +39,10 @@
     <link href="//vegas-dev.github.io/vegas-nav/demo/css/demo.css"
           rel="stylesheet" type="text/css">
     <!-- lity css -->
-    <link rel="stylesheet" href="lity/lity.css">
+    <link rel="stylesheet" href="/lity/lity.css">
 
     <!-- style css -->
-    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="/style/style.css">
 {{-- recaptcha --}}
  <script src='//www.google.com/recaptcha/api.js'></script>
  
@@ -59,7 +59,7 @@
     <main-App></main-App>
 </div>
 
-<script src="js/app.js"></script>
+<script src="/js/app.js"></script>
 
 <!-- javascripts -->
 <script src="//code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -82,14 +82,14 @@
 <script
     src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/css.min.js"></script>
 <script
-    src="vgnav/vgnav.min.js"></script>
+    src="/vgnav/vgnav.min.js"></script>
 <!-- slick js -->
-<script src="slick/slick.min.js"></script>
+<script src="/slick/slick.min.js"></script>
 
 <!-- lity js -->
-<script src="lity/lity.js"></script>
+<script src="/lity/lity.js"></script>
 <!-- custom js -->
-<script src="custom js/script.js"></script>
+<script src="/custom js/script.js"></script>
 
  
 

@@ -34,7 +34,7 @@
         <img src="/img/m2.png" class="img-fluid d-inline ml-4" alt="" />
       </div>
     </div>
-    <div class="card card-two mt-3"  v-if=comment>
+    <div class="card card-two mt-3"  v-if="comment">
       <img :src="server.banner" class="card-img-top img-fluid" alt="" />
       <div class="card-body bg-dark">
         <div class="px-3">

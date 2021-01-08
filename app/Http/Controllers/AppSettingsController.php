@@ -44,8 +44,14 @@ class AppSettingsController extends Controller
     }
 
     public function getUrl(){
+
         $app =    AppSettings::first();
+        if($app){
         return $app->youtube_url;
+        }else{
+            return null;
+        }
+        
     }
 
     public function GetfeathredServerComment(){
