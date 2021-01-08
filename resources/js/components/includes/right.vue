@@ -1,7 +1,8 @@
 <template>
   <div class="col-md-4 my-1">
     <router-link
-      to="/createserver"
+      to="/addServer"
+      id="test"
       class="btn btn-danger btn-block rounded py-3 font-weight-bold"
       >{{ $t("message.ADD_YOUR_SERVER") }}</router-link
     >
@@ -13,7 +14,7 @@
         <p class="mt-4 mb-3 text-white card-lorem">
           {{ server.short_description }}
         </p>
-        <p>
+        <p  id="viewS">
           <span>
             <img src="/img/like.png" class="img-fluid" alt="" />
           </span>
@@ -25,6 +26,7 @@
           <span class="text-white">{{ server.viewd }}</span>
         </p>
         <a
+         
           @click="goDetails(server.slug)"
           class="btn btn-light mt-5 d-inline"
           >{{ $t("message.VISIT_WEBSITE") }}</a
@@ -32,26 +34,26 @@
         <img src="/img/m2.png" class="img-fluid d-inline ml-4" alt="" />
       </div>
     </div>
-    <div class="card card-two mt-3" v-if="server2">
-      <img src="/img/add.png" class="card-img-top img-fluid" alt="" />
+    <div class="card card-two mt-3"  v-if=comment>
+      <img :src="server.banner" class="card-img-top img-fluid" alt="" />
       <div class="card-body bg-dark">
         <div class="px-3">
           <p class="text-white">
-            {{ server2.short_description }}
+          {{ comment.comment}}
           </p>
           <div class="row mt-3">
             <div class="col-6">
               <img src="/img/eye.png" class="img-fluid" alt="" />
-              <span class="vision">{{ server2.viewd }}</span>
+              <span class="vision">{{ server.viewd }}</span>
             </div>
             <div class="col-6">
-              <span class="vision">{{ server2.created_at }}</span>
+              <span class="vision">{{ comment.created_at}}</span>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="card card-three mt-3 bg-dark py-3">
+    <div class="card card-three mt-3 bg-dark py-3" v-if="youtube_URL">
       <div class="container">
         <div class="text-center">
           <p class="text-white mb-3">
@@ -60,7 +62,7 @@
           <iframe
             width="100%"
             height="auto"
-            src="https://www.youtube.com/embed/xcJtL7QggTI"
+            :src="youtube_URL"
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen
@@ -76,23 +78,41 @@ export default {
   data() {
     return {
       server: [],
-      server2: [],
+      comment: [],
       url: "",
+      youtube_URL:'',
     };
   },
   created() {
     this.get_server();
+    this.getUrl();
+    this.getCommnt();
   },
   methods: {
+    getUrl(){
+       this.axios
+        .get("/api/getUrl")
+        .then((response) => {
+          this.youtube_URL = response.data;
+        })
+        .catch((errors) => {});
+    },
+     getCommnt(){
+       this.axios
+        .get("/api/GetfeathredServerComment")
+        .then((response) => {
+          this.comment = response.data.data[0];
+        })
+        .catch((errors) => {});
+    },
     goDetails(slug) {
-      this.$router.push({ path: `/serverdetails/${slug}` });
+      this.$router.push({ path: `/servers/${slug}/details` });
     },
     get_server() {
       this.axios
-        .get("/api/GetFeathred_Server")
+        .get("/api/GetfeathredServer")
         .then((response) => {
           this.server = response.data.data[0];
-          this.server2 = response.data.data[1];
           this.url = this.server.url.replace(/[http://www https://www]/g, "");
         })
         .catch((errors) => {});
@@ -102,4 +122,14 @@ export default {
 </script>
 
 <style scoped>
+
+
+@media only screen and (max-width: 1494px) {
+ #viewS{
+   padding-bottom: 13px;
+ }
+ #test:active{
+  color: red;
+ }
+}
 </style>

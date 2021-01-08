@@ -163,6 +163,7 @@
                     <li><a href="{{ route('servers.index')}}"><i class="icon-grid"></i>Active Servers</a></li>
                      <li><a href="{{ route('get_un_active_servers')}}"><i class="icon-grid"></i>UnAvtive Servers</a></li>
                     <li><a href="{{ route('get_un_approve_servers') }}"><i class="icon-earphones"></i>Servers Need Approval</a></li>
+                    <li><a href="{{ route('add_banners') }}"><i class="icon-earphones"></i>App Settings</a></li>
                 </ul>
             </li>
         </ul>

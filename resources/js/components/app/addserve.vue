@@ -27,7 +27,7 @@
       </a>
     </div>
 
-    <h6 class="font-weight-bold">{{ $t("message.Add_New_Server") }}</h6>
+    <h6 class="font-weight-bold" v-if="this.$store.state.islogin">{{ $t("message.Add_New_Server") }}</h6>
     <div>
       <b>{{ $t("message.Rules") }}</b>
       <div class="alert alert-info" role="alert">
@@ -67,8 +67,24 @@
             :placeholder="$t('message.Backlink_website')"
           >
        <a href="{{ link }}" title="Metin2 P Server">Metin2 P Server</a>
+       bbcode
+       [url]{{ link }}[/url]
+       or
+       [url={{ link }}]Metin2 P Server[/url]
       </textarea
           >
+<br>
+ <b>How To Use </b>
+      <div class="alert alert-info" role="alert">
+             <ul>
+          <li>
+             Copy the URL and put it in your server (in the URL you provided us )
+          </li>
+        </ul>
+      </div>
+
+
+
           <input
             :disabled="checkuser"
             type="submit"

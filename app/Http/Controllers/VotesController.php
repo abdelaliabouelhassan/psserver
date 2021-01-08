@@ -187,9 +187,9 @@ class VotesController extends Controller
     public function addComment(Request $request)
     {
         //check recaptcha 
-        // if (!checkRecaptcha(env('INVISIBLE_RECAPTCHA_SECRETKEY', '6LeCNhwaAAAAACh31QVu_Fve05EQqn7p9iOWNQmU'), $request->ReqResponse)) {
-        //     return response()->json('invalid recaptcha.', 403);
-        // }
+        if (!checkRecaptcha(env('INVISIBLE_RECAPTCHA_SECRETKEY', '6LeCNhwaAAAAACh31QVu_Fve05EQqn7p9iOWNQmU'), $request->ReqResponse)) {
+            return response()->json('invalid recaptcha.', 403);
+        }
         $my_Ip = getIPAddress();
 
 

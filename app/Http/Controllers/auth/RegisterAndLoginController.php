@@ -4,6 +4,7 @@ namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
 use App\Mail\VerificationEmail;
+use App\Mail\ForgotPassword;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -70,6 +71,72 @@ class RegisterAndLoginController extends Controller
 
         return response()->json(trans('message.Cerdentials'), 403);
     }
+
+
+    public function forgotPassword(Request $request)
+    {
+        $request->validate([
+            'email' => ['required'],
+        ]);
+
+        if (!checkRecaptcha(env('INVISIBLE_RECAPTCHA_SECRETKEY', '6LeCNhwaAAAAACh31QVu_Fve05EQqn7p9iOWNQmU'), $request->ReqResponse)) {
+            return response()->json(trans('message.invalid_recaptcha'), 403);
+        }
+        $user =    User::where('email', $request->email)->first();
+        if ($user) {
+
+            $code = mt_rand(1000, 9999);
+            $user->remember_token = $code;
+            $user->save();
+            Mail::to($request->email)->send(new ForgotPassword($code));
+        } else {
+            return response()->json(trans('message.Cerdentials'), 403);
+        }
+    }
+
+
+
+    public function checkCode(Request $request)
+    {
+        $request->validate([
+            'code' => ['required'],
+        ]);
+        if (!checkRecaptcha(env('INVISIBLE_RECAPTCHA_SECRETKEY', '6LeCNhwaAAAAACh31QVu_Fve05EQqn7p9iOWNQmU'), $request->ReqResponse)) {
+            return response()->json(trans('message.invalid_recaptcha'), 403);
+        }
+        $user =    User::where('email', $request->email)->first();
+        if ($user) {
+            if ($user->remember_token == $request->code) {
+                return response()->json('Go Next', 200);
+            } else {
+                return response()->json('The Code Incorrect', 403);
+            }
+        } else {
+            return response()->json('Something Went Wrong...', 403);
+        }
+    }
+
+    public function changeforgotPassword(Request $request)
+    {
+        $request->validate([
+            'password' => ['required'],
+        ]);
+        if (!checkRecaptcha(env('INVISIBLE_RECAPTCHA_SECRETKEY', '6LeCNhwaAAAAACh31QVu_Fve05EQqn7p9iOWNQmU'), $request->ReqResponse)) {
+            return response()->json(trans('message.invalid_recaptcha'), 403);
+        }
+         $user =    User::where('email', $request->email)->first();
+        if ($user) {
+
+            $user->password =  Hash::make($request->password);
+            $user->remember_token = "";
+            $user->save();
+            return response()->json('Password Updated Successfully', 200);
+        } else {
+            return response()->json('Something Went Wrong...', 403);
+        }
+    }
+
+
     //logout
     public function logout()
     {

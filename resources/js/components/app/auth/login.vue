@@ -36,6 +36,14 @@
               $t("message.Remember_Me")
             }}</label>
           </div>
+
+           <div class="text-left">
+            <label
+              for="check"
+              class="ml-2"
+              ><a href="javascript:void(0)" @click="forgotPassword"> Forgot Your Password ?</a> </label>
+          </div>
+
           <vue-recaptcha
             ref="recaptcha"
             @verify="checkRecaptcha"
@@ -73,6 +81,10 @@ export default {
     };
   },
   methods: {
+    forgotPassword(){
+      this.$modal.hide("login");
+      this.$modal.show("forgotpassword");
+    },
     checkRecaptcha(response) {
       this.form.ReqResponse = response;
       this.disabel = false;

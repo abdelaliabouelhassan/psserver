@@ -30,6 +30,16 @@ route::group(['middleware' => 'check_lang'], function () {
     Route::get('/logout', 'auth\RegisterAndLoginController@logout');
     Route::post('/changepassword', 'auth\RegisterAndLoginController@changepassword');
 
+    //forgot password
+
+    Route::post('/forgotpassword', 'auth\RegisterAndLoginController@forgotPassword');
+    //forgot password check code  
+
+    Route::post('/checkCode', 'auth\RegisterAndLoginController@checkCode');
+    //change password
+
+    Route::post('/changepassword', 'auth\RegisterAndLoginController@changeforgotPassword');
+
 
     //Verification email
     Route::middleware('auth:sanctum')->post('/Verification', 'auth\RegisterAndLoginController@Verification');
@@ -44,7 +54,6 @@ route::group(['middleware' => 'check_lang'], function () {
     Route::get('/getServerInfo/{slug}', 'serverController@getServerInfo');
     Route::post('/updateServer', 'serverController@updateServer');
     Route::get('/GetServers/{server}', 'serverController@getserverbyserver');
-    Route::get('/GetFeathred_Server/', 'serverController@GetFeathred_Server');
     //vote
     Route::post('/Vote', 'VotesController@Vote');
 
@@ -71,4 +80,19 @@ route::group(['middleware' => 'check_lang'], function () {
 
     Route::post('/changLang', 'AppSettingsController@changLang');
     Route::get('/getLang', 'AppSettingsController@getLang');
+
+
+    //app banners
+
+    Route::get('/GetBanners', 'AppSettingsController@GetBanners');
+    Route::get('/GetfeathredServer', 'AppSettingsController@GetfeathredServer');
+    Route::get('/getUrl', 'AppSettingsController@getUrl');
+    Route::get('/GetfeathredServerComment', 'AppSettingsController@GetfeathredServerComment');
+    Route::get('/deleteComment/{id}', 'AppSettingsController@deleteComment');
+    Route::get('/banuser/{id}', 'AppSettingsController@banUser');
+    Route::get('/Unbanuser/{id}', 'AppSettingsController@unBanUser');
+    Route::get('/unactive/{id}', 'AppSettingsController@unActiveCommment');
+    Route::get('/active/{id}', 'AppSettingsController@activeCommment');
+  
+
 });

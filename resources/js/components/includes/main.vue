@@ -8,7 +8,7 @@
               <h6 class="font-weight-bold">{{ $t("message.Welcome") }}</h6>
               <p>{{ $t("message.Largest_private_server_list") }}</p>
             </div>
-            <div class="col-sm-4 text-right">
+            <div class="col-sm-4 text-right" v-show="show">
               <div class="input-group">
                 <select
                   v-model="server"
@@ -16,7 +16,7 @@
                   id=""
                   class="form-control d-inline mx-2"
                 >
-                  <option value="">{{ $t("message.ADD_SERVER") }}</option>
+                  <option value="">{{ $t("message.All_Servers") }}</option>
                   <option value="Deutsch">Deutsch</option>
                   <option value="English">English</option>
                   <option value="Espanol">Espanol</option>
@@ -51,10 +51,16 @@ export default {
       }
     },
   },
+  created(){
+    something.$on('hideSelect',(value)=>{
+      this.show = value;
+    })
+  },
 
   data() {
     return {
       server: "",
+      show:true,
     };
   },
 };

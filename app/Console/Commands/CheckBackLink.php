@@ -50,7 +50,7 @@ class CheckBackLink extends Command
                 $server->hasBacklink = false;
                 $server->save();
                 //send email 
-                $back_link = url('/serverdetails/' . $server->slug);
+                $back_link = url('/servers/' . $server->slug . 'details');
                 Mail::to($server->user->email)->send(new ServerBackLink($back_link));
             }
            

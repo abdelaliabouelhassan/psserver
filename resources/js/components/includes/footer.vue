@@ -32,21 +32,20 @@
               </div>
               <div class="col-md-4 m-auto">
                 <a
-                  href=""
+                  href="javascript:void(0)"
                   class="d-block my-2 text-dark font-weight-bold text-decoration-none"
                   >{{ $t("message.PARTNERS") }}</a
                 >
                 <router-link
-                  to="/createserver"
+                  to="/addServer"
                   class="d-block my-2 text-danger font-weight-bold text-decoration-none"
                   >{{ $t("message.ADD_SERVERS") }}</router-link
                 >
 
-                <a
-                  href=""
-                  class="d-block my-2 text-dark font-weight-bold text-decoration-none"
-                  >{{ $t("message.FAQ") }}</a
-                >
+               <router-link to="/faq" class="d-block my-2 text-dark font-weight-bold text-decoration-none">{{
+                  $t("message.FAQ")
+                }}</router-link>
+            
               </div>
               <div class="col-md-4 m-auto">
                 <p class="mb-2 font-weight-bold">
@@ -93,7 +92,7 @@
               >.
             </p>
           </div>
-          <div class="col-md-6 text-right">
+          <div id="partners" class="col-md-6 text-right">
             <a href="" class="text-white mr-2">Regulations</a>
             <span>|</span>
             <a href="" class="text-secondary ml-2">Privacy Policy</a>

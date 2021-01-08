@@ -72,7 +72,7 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-7 m-auto">
+        <div class="col-sm-7 m-auto"  style="cursor: pointer"  @click="Check_last_vote(Server.url, Server.has_vote_in_12)">
           <img
             :src="'/' + Server.screen"
             onerror="this.src='/img/550120.jpg'"
@@ -159,7 +159,7 @@
             <div class="col-4 m-auto">
               <p>{{ $t("message.Website") }}:</p>
             </div>
-            <div class="col-7">
+            <div class="col-7"  style="cursor: pointer">
               <p class="d-inline text-muted ml-2">
                 <a
                   @click="Check_last_vote(Server.url, Server.has_vote_in_12)"
@@ -217,6 +217,23 @@
       {{ $t("message.Feedback") }} & {{ $t("message.Comments") }}:
       <span>{{ comments.length }}</span>
     </h3>
+               <button
+                 v-if="$store.state.user.is_admin && Server.is_comment"
+                @click="unActive(Server.id)"
+                class="btn btn-danger bg-danger p-0 px-2 mr-2 rounded"
+                style="font-size: 10px"
+              >
+                unActive Comment  
+              </button>
+
+                <button
+                 v-if="$store.state.user.is_admin && !Server.is_comment"
+                @click="active(Server.id)"
+                class="btn btn-success bg-success p-0 px-2 mr-2 rounded"
+                style="font-size: 10px"
+              >
+                Active Comment  
+              </button>
 
     <div
       class="card my-3"
@@ -246,6 +263,30 @@
                 style="font-size: 10px"
               >
                 {{ $t("message.REPLY") }}
+              </button>
+                 <button
+                 v-if="$store.state.user.is_admin"
+                @click="DeleteComment(comment.id)"
+                class="btn btn-danger bg-danger p-0 px-2 mr-2 rounded"
+                style="font-size: 10px"
+              >
+                Delete 
+              </button>
+                <button
+                 v-if="$store.state.user.is_admin && !comment.is_banned"
+                @click="banUser(comment.user_id)"
+                class="btn btn-danger bg-danger p-0 px-2 mr-2 rounded"
+                style="font-size: 10px"
+              >
+                ban user 
+              </button>
+               <button
+                 v-if="$store.state.user.is_admin && comment.is_banned"
+                @click="unBanUser(comment.user_id)"
+                class="btn btn-success bg-success p-0 px-2 mr-2 rounded"
+                style="font-size: 10px"
+              >
+                UnBan user 
               </button>
             </div>
           </div>
@@ -293,7 +334,7 @@
         </span>
         <div class="mt-4">
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-6" v-if="!$store.state.islogin">
               <input
                 type="text"
                 class="form-control rounded my-2"
@@ -302,7 +343,7 @@
                 :class="{ 'is-invalid': errors.email }"
               />
             </div>
-            <div class="col-md-6">
+            <div class="col-md-6" v-if="!$store.state.islogin">
               <input
                 type="text"
                 class="form-control rounded my-2"
@@ -555,6 +596,72 @@ export default {
     };
   },
   methods: {
+    unActive(id){
+ this.axios
+        .get("/api/unactive/" + id)
+        .then((response) => {      
+          Toast.fire({
+            icon: "success",
+            title: 'User UnBanned',
+          });
+          this.getServer();
+        })
+        .catch((errors) => {
+        });
+    },
+    active(id){
+ this.axios
+        .get("/api/active/" + id)
+        .then((response) => {      
+          Toast.fire({
+            icon: "success",
+            title: 'User UnBanned',
+          });
+          this.getServer();
+        })
+        .catch((errors) => {
+        });
+    },
+    unBanUser(id){
+       this.axios
+        .get("/api/Unbanuser/" + id)
+        .then((response) => {      
+          Toast.fire({
+            icon: "success",
+            title: 'User UnBanned',
+          });
+          this.getComments();
+        })
+        .catch((errors) => {
+        });
+    },
+    
+    banUser(id){
+    this.axios
+        .get("/api/banuser/" + id)
+        .then((response) => {      
+          Toast.fire({
+            icon: "success",
+            title: 'User Banned',
+          });
+          this.getComments();
+        })
+        .catch((errors) => {
+        });
+    },
+    DeleteComment(id){
+       this.axios
+        .get("/api/deleteComment/" + id)
+        .then((response) => {
+          Toast.fire({
+            icon: "success",
+            title: 'Comment Deleted',
+          });
+          this.getComments();
+        })
+        .catch((errors) => {
+        });
+    },
     visit() {
       window.open(this.viUrl, "_blank");
     },

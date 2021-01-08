@@ -95,10 +95,10 @@
                 </span>
                 <span class="text-success">{{ Server.realtimeVote }}</span>
                 <span class="mx-3 text-secondary">|</span>
-                <span>
+                <span style="cursor: pointer" @click="Check_last_vote(Server.url, Server.has_vote_in_12)">
                   <i class="fa fa-external-link-alt text-secondary font-13"></i>
                 </span>
-                <span class="text-secondary font-13">{{ Server.viewd }}</span>
+                <span class="text-secondary font-13"   style="cursor: pointer" @click="Check_last_vote(Server.url, Server.has_vote_in_12)">{{ Server.viewd }}</span>
               </p>
             </div>
           </div>
@@ -106,7 +106,8 @@
         <div class="col-sm-7 m-auto">
           <a>
             <img
-              @click="Check_last_vote(Server.url, Server.has_vote_in_12)"
+              @click="goDetails(Server.slug, index)"
+          
               :src="Server.banner"
               class="img-fluid rounded"
               style="cursor: pointer; height: 120px; width: 550px"
@@ -161,7 +162,7 @@ export default {
     goDetails(slug, index) {
       something.$emit("index", index);
 
-      this.$router.push({ path: `/serverdetails/${slug}` });
+      this.$router.push({ path: `/servers/${slug}/details` });
     },
     handelPagination(pageNum) {
       this.axios
@@ -197,6 +198,10 @@ export default {
           .catch((errors) => {});
       }
     });
+
+     if(this.$route.path == '/home'){
+         something.$emit("hideSelect",true);
+    }
   },
 };
 </script>

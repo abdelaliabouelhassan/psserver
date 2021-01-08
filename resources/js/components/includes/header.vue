@@ -11,7 +11,7 @@
     >
       <div class="col-md-3">
         <div class="logo">
-          <router-link to="/"
+          <router-link to="/home"
             ><img src="/img/logo.png" style="width: 90px" alt=""
           /></router-link>
         </div>
@@ -80,7 +80,7 @@
                 </ul>
               </li>
               <li id="part">
-                <a href="" class="text-white">{{ $t("message.PARTNERS") }}</a>
+                <a href="#partners" class="text-white">{{ $t("message.PARTNERS") }}</a>
               </li>
               <li>
                 <router-link to="/faq" class="text-white">{{
@@ -101,7 +101,7 @@
                 </ul> -->
               </li>
               <li>
-                <router-link to="/contact" class="text-white">{{
+                <router-link    to="/contact" class="text-white">{{
                   $t("message.CONTACT")
                 }}</router-link>
               </li>
@@ -142,13 +142,13 @@
           </a>
           <!-- <a href="" class="btn btn-link text-white
                     hidbtn dropdown-toggle">Sign in</a> -->
-          <router-link to="/createserver" class="btn btn-danger ml-2">{{
+          <router-link to="/addServer" class="btn btn-danger ml-2">{{
             $t("message.ADD_SERVER")
           }}</router-link>
         </p>
         <p class="my-auto headerbtns ml-5" v-if="$store.state.islogin">
           <router-link
-            to="/myprofile"
+            to="/my-profile"
             style="font-size: 0px"
             class="btn btn-link text-white hidbtn text-decoration-none"
           >
@@ -181,7 +181,12 @@ export default {
   data() {
     return {};
   },
+  created(){
+ 
+   
+  },
   methods: {
+
     changeLang() {
       this.$i18n.locale = this.$store.state.lang;
       this.axios

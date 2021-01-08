@@ -76,7 +76,7 @@ export default {
   components: { VueRecaptcha },
   data() {
     return {
-      show: false,
+      show: false,  
       form: {
         email: "",
         message: "",
@@ -90,6 +90,9 @@ export default {
     };
   },
   created() {
+       if(this.$route.path == '/contact'){
+         something.$emit("hideSelect",false);
+    }
     var vm = this;
     setTimeout(() => {
       vm.show = true;

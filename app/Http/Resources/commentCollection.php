@@ -21,6 +21,8 @@ class commentCollection extends JsonResource
             'created_at' => \Illuminate\Support\Carbon::createFromFormat('Y-m-d H:i:s', $this->created_at)->diffForHumans(),
             'rate' => $this->rate,
             'id' => $this->id,
+            'user_id'=> $this->User->id,
+            'is_banned' => $this->User->is_banned,
             'replay' => replayCollection::collection($this->replay),
             'username' => $this->User->username,
         ];

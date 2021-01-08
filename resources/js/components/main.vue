@@ -2,6 +2,7 @@
   <div>
     <modal name="login" :height="400"><login></login></modal>
     <modal name="register" :height="600"><register></register></modal>
+     <modal name="forgotpassword" :height="400"><forgotpassword></forgotpassword></modal>
     <modal name="admin" :height="200">
       <div class="my-3 px-4 py-5 bg-white">
         <h6 class="font-weight-bold">
@@ -26,8 +27,9 @@
 
 <script>
 import register from "./app/auth/register.vue";
+import forgotpassword from "./app/auth/forgotpassword";
 export default {
-  components: { register },
+  components: { register,forgotpassword },
   data() {
     return {};
   },
