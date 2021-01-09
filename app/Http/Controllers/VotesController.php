@@ -208,7 +208,7 @@ class VotesController extends Controller
                 'password' => 'guest',
                 'ip' => $my_Ip,
             ]);
-            return response()->json('Comment Created successfully', 200);
+           
         }
         $request->validate([
             'comment' => ['required', 'min:3'],
