@@ -222,7 +222,7 @@ class VotesController extends Controller
 
 
         if ($comment) {
-            return response()->json(trans('message.invalid_recaptcha'), 403);
+            return response()->json(trans('message.comment5'), 403);
         }
 
         Comment::create([

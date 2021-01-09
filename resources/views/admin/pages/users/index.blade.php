@@ -45,6 +45,7 @@
                             </thead>
                             <tbody>
                                 @foreach($users as $user)
+                                @if($user->id != auth('sanctum')->id())
                                 <tr>
                                     <td>{{ $user->username }}</td>
                                     <td>{{ $user->email }}</td>
@@ -61,6 +62,7 @@
                                       </form>                         
                                        <a href="{{ route('users.edit',$user->id) }}" class="btn btn-primary" style="display: inline-block">Edit</a><a href="{{  route('ban',$user->id)  }}" onclick="return confirm('Ae you sure  you want {{ $user->is_banned ? 'UnBan' : 'Ban' }} this user ?')" style="display: inline-block" class="btn btn-{{ $user->is_banned ? 'success' : 'danger' }}">{{ $user->is_banned ? 'UnBan' : 'Ban' }}</a></td>
                                 </tr>
+                                @endif
                 @endforeach
                             </tbody>
                             <tfoot>

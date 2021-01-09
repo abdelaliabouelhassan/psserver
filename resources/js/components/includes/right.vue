@@ -11,8 +11,8 @@
         <p class="text-danger">{{ $t("message.FEATURED_SERVER") }}</p>
         <span class="d-inline m-auto">&raquo;</span>
         <h2 class="font-weight-bold text-white d-inline">{{ url }}</h2>
-        <p class="mt-4 mb-3 text-white card-lorem">
-          {{ server.short_description }}
+        <p class="mt-4 mb-3 text-white card-lorem" v-html="server.short_description">
+      
         </p>
         <p  id="viewS">
           <span>
@@ -38,8 +38,8 @@
       <img :src="server.banner" class="card-img-top img-fluid" alt="" />
       <div class="card-body bg-dark">
         <div class="px-3">
-          <p class="text-white">
-          {{ comment.comment}}
+          <p class="text-white" v-html="comment.comment">
+      
           </p>
           <div class="row mt-3">
             <div class="col-6">

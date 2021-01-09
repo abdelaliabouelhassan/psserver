@@ -290,8 +290,8 @@
               </button>
             </div>
           </div>
-          <p class="font-14">
-            {{ comment.comment }}
+          <p class="font-14" v-html="comment.comment">
+         
           </p>
           <a
             href="javascript:void(0)"
@@ -319,8 +319,8 @@
               <p>{{ comment.created_at }}</p>
             </div>
           </div>
-          <p class="font-14">
-            {{ comment.comment }}
+          <p class="font-14" v-html="comment.comment">
+            
           </p>
         </div>
       </div>
@@ -499,6 +499,10 @@
       <span class="text-danger" v-if="errors.username"
         >{{ this.errors.username[0] }}
       </span>
+      <br>
+       <span class="text-danger" v-if="errors.comment"
+        >{{ this.errors.comment[0] }}
+      </span>
       <div class="mt-4">
         <div class="row">
           <div class="col-md-6" v-if="!$store.state.islogin">
@@ -520,16 +524,8 @@
             />
           </div>
         </div>
-        <textarea
-          :class="{ 'is-invalid': errors.comment }"
-          name=""
-          id=""
-          cols="30"
-          rows="5"
-          class="form-control mt-2 rounded"
-          placeholder="I think..."
-          v-model="comment.comment"
-        ></textarea>
+        <vue-html5-editor :content="comment.comment" @change="updateData" :class="{ 'is-invalid': errors.comment }"  :height="300"></vue-html5-editor>
+
 
         <vue-recaptcha
           ref="recaptcha3"
@@ -597,6 +593,9 @@ export default {
     };
   },
   methods: {
+    updateData(e){
+      this.comment.comment = e;
+    },
     unActive(id){
  this.axios
         .get("/api/unactive/" + id)

@@ -268,16 +268,10 @@
       <span class="text-danger" v-if="errors.Description">{{
         this.errors.Description[0]
       }}</span>
-      <textarea
-        :class="{ 'is-invalid': errors.Description }"
-        name=""
-        id="Description"
-        cols="30"
-        rows="5"
-        class="form-control mt-2 rounded"
-        :placeholder="$t('message.Description')"
-        v-model="form.Description"
-      ></textarea>
+
+     <vue-html5-editor :content="form.Description" @change="updateData"  :class="{ 'is-invalid': errors.Description }"  :height="300"></vue-html5-editor>
+
+
       <div>
         <vue-recaptcha
           ref="recaptcha"
@@ -340,6 +334,9 @@ export default {
     };
   },
   methods: {
+    updateData(e){
+      this.form.Description = e;
+    },
     checkRecaptcha(response) {
       this.form.ReqResponse = response;
     },

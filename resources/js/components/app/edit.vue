@@ -135,16 +135,10 @@
       <span class="text-danger" v-if="errors.description">{{
         this.errors.description[0]
       }}</span>
-      <textarea
-        :class="{ 'is-invalid': errors.description }"
-        name=""
-        id="Description"
-        cols="30"
-        rows="5"
-        class="form-control mt-2 rounded"
-        :placeholder="$t('message.Description')"
-        v-model="form.description"
-      ></textarea>
+
+              <vue-html5-editor :content="form.description" @change="updateData"  :class="{ 'is-invalid': errors.description }" :height="300"></vue-html5-editor>
+
+   
 
       <input
         v-if="
@@ -179,6 +173,9 @@ export default {
     this.getServerInfo();
   },
   methods: {
+    updateData(e){
+      this.form.description =e;
+    },
     getServerInfo() {
       this.axios
         .get("/api/getServerInfo/" + this.$route.params.slug)

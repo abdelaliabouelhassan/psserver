@@ -37,7 +37,7 @@
                     <img class="card-img-top" src="{{ asset($server->banner) }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title"> <span style="color: gray">Title :</span>{{ $server->title }}</h5>
-                        <p class="card-text"> <span style="color: gray">description :</span> {{ $server->description }}</p>
+                        <p class="card-text"> <span style="color: gray">description :</span> {!!  $server->description !!}</p>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item"><span style="color: gray">category : {{ $server->category }}</span></li>
@@ -120,7 +120,7 @@
                                 @foreach($server->comment as $comment)
                                 <tr>
                                     <td>{{ $comment->user->username }}</td>
-                                    <td>{{ $comment->comment }}</td>
+                                    <td>{!! $comment->comment !!}</td>
                                     <td>{{ \Illuminate\Support\Carbon::createFromFormat('Y-m-d H:i:s', $comment->created_at)->diffForHumans()  }}</td>
                  
                                     <td>                              

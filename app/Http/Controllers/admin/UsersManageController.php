@@ -18,7 +18,7 @@ class UsersManageController extends Controller
      */
     public function index()
     {
-        $users = User::where('is_admin', false)->get();
+        $users = User::all();
         return view('admin.pages.users.index', compact('users'));
     }
 

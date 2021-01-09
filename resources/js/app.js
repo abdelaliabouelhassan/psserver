@@ -105,6 +105,19 @@ import store from './store/store'
 /*End Vuex*/
 
 
+import VueHtml5Editor from 'vue-html5-editor'
+Vue.use(VueHtml5Editor, {
+    visibleModules: [
+        "color",
+        "font",
+        "align",
+        "list",
+        "hr",
+        "eraser",
+        "undo",
+        "full-screen",
+    ],});
+
 /********** End  packages  ***********/
 
 const i18n = new VueI18n({
