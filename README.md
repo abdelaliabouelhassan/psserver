@@ -25,7 +25,6 @@ INVISIBLE_RECAPTCHA_SECRETKEY=6LeCNhwaAAAAACh31QVu_Fve05EQqn7p9iOWNQmU
 ##go to 'resources/js/lang/ => this for vue js && for laravel go to 'resources/lang/
 ## i added only English and french  because that what i know 
 
-##for WYSIWYG, I tried to integrate it with Vue js but no luck nothing works so I leave it only textarea 
 
 ##seed the database => php artisan db:seed
 ## login credentials
