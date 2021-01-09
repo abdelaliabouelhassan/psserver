@@ -2369,6 +2369,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -5206,6 +5211,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {};
@@ -5262,6 +5299,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
 //
 //
 //
@@ -50612,10 +50652,6 @@ var render = function() {
                     }
                   },
                   [
-                    _c("option", { attrs: { value: "Deutsch" } }, [
-                      _vm._v("Deutsch")
-                    ]),
-                    _vm._v(" "),
                     _c("option", { attrs: { value: "English" } }, [
                       _vm._v("English")
                     ]),
@@ -50630,6 +50666,26 @@ var render = function() {
                     _vm._v(" "),
                     _c("option", { attrs: { value: "Roman" } }, [
                       _vm._v("Roman")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "German" } }, [
+                      _vm._v("German")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "Turkish" } }, [
+                      _vm._v("Turkish")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "Portuguese" } }, [
+                      _vm._v("Portuguese")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "Hungarian" } }, [
+                      _vm._v("Hungarian")
+                    ]),
+                    _vm._v(" "),
+                    _c("option", { attrs: { value: "Greek" } }, [
+                      _vm._v("Greek")
                     ])
                   ]
                 )
@@ -54464,11 +54520,11 @@ var render = function() {
                           attrs: { href: "javascript:void(0)" },
                           on: {
                             click: function($event) {
-                              return _vm.search("Deutsch")
+                              return _vm.search("German")
                             }
                           }
                         },
-                        [_vm._v("Deutsch")]
+                        [_vm._v("German")]
                       )
                     ]),
                     _vm._v(" "),
@@ -54533,6 +54589,70 @@ var render = function() {
                           }
                         },
                         [_vm._v("Roman")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "text-dark",
+                          attrs: { href: "javascript:void(0)" },
+                          on: {
+                            click: function($event) {
+                              return _vm.search("Turkish")
+                            }
+                          }
+                        },
+                        [_vm._v("Turkish")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "text-dark",
+                          attrs: { href: "javascript:void(0)" },
+                          on: {
+                            click: function($event) {
+                              return _vm.search("Portuguese")
+                            }
+                          }
+                        },
+                        [_vm._v("Portuguese")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "text-dark",
+                          attrs: { href: "javascript:void(0)" },
+                          on: {
+                            click: function($event) {
+                              return _vm.search("Hungarian")
+                            }
+                          }
+                        },
+                        [_vm._v("Hungarian")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "text-dark",
+                          attrs: { href: "javascript:void(0)" },
+                          on: {
+                            click: function($event) {
+                              return _vm.search("Greek")
+                            }
+                          }
+                        },
+                        [_vm._v("Greek")]
                       )
                     ])
                   ])
@@ -54837,10 +54957,6 @@ var render = function() {
                               _vm._v(_vm._s(_vm.$t("message.All_Servers")))
                             ]),
                             _vm._v(" "),
-                            _c("option", { attrs: { value: "Deutsch" } }, [
-                              _vm._v("Deutsch")
-                            ]),
-                            _vm._v(" "),
                             _c("option", { attrs: { value: "English" } }, [
                               _vm._v("English")
                             ]),
@@ -54849,12 +54965,28 @@ var render = function() {
                               _vm._v("Espanol")
                             ]),
                             _vm._v(" "),
-                            _c("option", { attrs: { value: "France" } }, [
-                              _vm._v("France")
-                            ]),
-                            _vm._v(" "),
                             _c("option", { attrs: { value: "Roman" } }, [
                               _vm._v("Roman")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "German" } }, [
+                              _vm._v("German")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "Turkish" } }, [
+                              _vm._v("Turkish")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "Portuguese" } }, [
+                              _vm._v("Portuguese")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "Hungarian" } }, [
+                              _vm._v("Hungarian")
+                            ]),
+                            _vm._v(" "),
+                            _c("option", { attrs: { value: "Greek" } }, [
+                              _vm._v("Greek")
                             ])
                           ]
                         ),

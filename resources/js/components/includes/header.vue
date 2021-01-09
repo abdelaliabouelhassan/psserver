@@ -40,9 +40,9 @@
                   <li>
                     <a
                       href="javascript:void(0)"
-                      @click="search('Deutsch')"
+                      @click="search('German')"
                       class="text-dark"
-                      >Deutsch</a
+                      >German</a
                     >
                   </li>
                   <li>
@@ -75,6 +75,38 @@
                       @click="search('Roman')"
                       class="text-dark"
                       >Roman</a
+                    >
+                  </li>
+                     <li>
+                    <a
+                      href="javascript:void(0)"
+                      @click="search('Turkish')"
+                      class="text-dark"
+                      >Turkish</a
+                    >
+                  </li>
+                     <li>
+                    <a
+                      href="javascript:void(0)"
+                      @click="search('Portuguese')"
+                      class="text-dark"
+                      >Portuguese</a
+                    >
+                  </li>
+                   <li>
+                    <a
+                      href="javascript:void(0)"
+                      @click="search('Hungarian')"
+                      class="text-dark"
+                      >Hungarian</a
+                    >
+                  </li>
+                   <li>
+                    <a
+                      href="javascript:void(0)"
+                      @click="search('Greek')"
+                      class="text-dark"
+                      >Greek</a
                     >
                   </li>
                 </ul>

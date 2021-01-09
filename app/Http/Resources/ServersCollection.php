@@ -30,7 +30,7 @@ class ServersCollection extends JsonResource
             'description'=>$this->description,
             'short_description'=>$truncated = Str::limit($this->description, 20, '...'),
             'status'=>$this->status,
-            'is_international' => Str::containsAll($this->language, ['Deutsch,', 'English,', 'Espanol,', 'France,', 'Roman,']),
+            'is_international' => Str::containsAll($this->language, ['English,', 'Espanol,', 'Roman,', 'German,', 'Turkish,', 'Portuguese,', 'Hungarian,', 'Greek,']),
             'slug'=>$this->slug,
             'realtimeVote'=>$this->vote_amount,
             'viewd'=>$this->viewd,

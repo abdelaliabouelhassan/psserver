@@ -17,11 +17,14 @@
                   class="form-control d-inline mx-2"
                 >
                   <option value="">{{ $t("message.All_Servers") }}</option>
-                  <option value="Deutsch">Deutsch</option>
                   <option value="English">English</option>
                   <option value="Espanol">Espanol</option>
-                  <option value="France">France</option>
                   <option value="Roman">Roman</option>
+                  <option value="German">German</option>
+                  <option value="Turkish">Turkish</option>
+                   <option value="Portuguese">Portuguese</option>
+                    <option value="Hungarian">Hungarian</option>
+                     <option value="Greek">Greek</option>
                 </select>
 
                 <div class="input-group-append">
